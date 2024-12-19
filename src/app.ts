@@ -1,4 +1,4 @@
-import BaseGame from './BaseGame.js';
+import BaseGame from './LostInTheForest.js';
 
 const game: BaseGame = new BaseGame(document.getElementById('game') as HTMLCanvasElement);
 
