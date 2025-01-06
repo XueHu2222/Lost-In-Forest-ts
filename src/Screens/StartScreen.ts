@@ -1,4 +1,5 @@
 import Button from '../Button.js';
+import CanvasRenderer from '../CanvasRenderer.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
@@ -28,6 +29,7 @@ export default class StartScreen extends Stage{
     this.languageButtons = [dutch, english];
 
     this.startButton = new Button('Start', 0, 0);
+    this.backgroundImage = CanvasRenderer.loadNewImage('./assets/start.png');
   }
 
   public override getNextStage(): Stage | null {
@@ -43,6 +45,6 @@ export default class StartScreen extends Stage{
   }
 
   public override render(canvas: HTMLCanvasElement): void {
-
+    CanvasRenderer.drawImage(canvas, this.backgroundImage, 0, 0, canvas.width, canvas.height);
   }
 }

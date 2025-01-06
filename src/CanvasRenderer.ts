@@ -57,9 +57,11 @@ export default class CanvasRenderer {
     image: HTMLImageElement,
     dx: number,
     dy: number,
+    width: number = 1,
+    height: number = 1
   ): void {
     const ctx: CanvasRenderingContext2D = CanvasRenderer.getCanvasContext(canvas);
-    ctx.drawImage(image, dx, dy);
+    ctx.drawImage(image, dx, dy, width, height);
   }
 
   /**
