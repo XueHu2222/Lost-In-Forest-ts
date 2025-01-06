@@ -1,30 +1,37 @@
 import Game from './Game.js';
 
-import CanvasRenderer from './CanvasRenderer.js';
-import KeyListener from './KeyListener.js';
 import MouseListener from './MouseListener.js';
+import Stage from './Stage.js';
+import StartScreen from './Screens/StartScreen.js';
+import Player from './Player.js';
 
-export default class BaseGame extends Game {
+export default class LostInTheForest extends Game {
   private canvas: HTMLCanvasElement;
 
-  private keyListener: KeyListener;
-
   private mouseListener: MouseListener;
+
+  private player: Player;
+
+  private currentStage: Stage;
+
+  private isDutch: boolean;
 
   public constructor(canvas: HTMLCanvasElement) {
     super();
     this.canvas = canvas;
     this.canvas.height = window.innerHeight;
     this.canvas.width = window.innerWidth;
-    this.keyListener = new KeyListener();
     this.mouseListener = new MouseListener(canvas);
+    this.player = new Player;
+    this.currentStage = new StartScreen(this.setIsDutch, this.player);
+    this.isDutch = false;
   }
 
   /**
    * Process all input. Called from the GameLoop.
    */
   public processInput(): void {
-
+    this.currentStage.processInput(this.mouseListener);
   }
 
   /**
@@ -34,6 +41,8 @@ export default class BaseGame extends Game {
    * @returns true if the game should continue
    */
   public update(elapsed: number): boolean {
+    this.currentStage = this.currentStage.getNextStage() || this.currentStage;
+    this.currentStage.update(elapsed);
     return false;
   }
 
@@ -41,6 +50,10 @@ export default class BaseGame extends Game {
    * Render all the elements in the screen.
    */
   public render(): void {
+    this.currentStage.render(this.canvas);
+  }
 
+  public setIsDutch(value: boolean): void{
+    this.isDutch = value;
   }
 }

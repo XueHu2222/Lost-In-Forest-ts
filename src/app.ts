@@ -1,6 +1,6 @@
-import BaseGame from './LostInTheForest.js';
+import LostInTheForest from './LostInTheForest.js';
 
-const game: BaseGame = new BaseGame(document.getElementById('game') as HTMLCanvasElement);
+const game: LostInTheForest = new LostInTheForest(document.getElementById('game') as HTMLCanvasElement);
 
 window.addEventListener('load', () => {
   game.start();
