@@ -16,6 +16,6 @@ export default abstract class Animal extends CanvasItem {
   }
 
   public update(elapsed: number): void{
-    console.log(elapsed, this.frames);
+
   }
 }
