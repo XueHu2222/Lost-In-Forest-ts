@@ -16,6 +16,6 @@ export default abstract class Area extends Stage {
     // TODO: Set correct values
     this.animal = new Bunny(0, 0);
     this.animalText = '';
-    this.playButton = new Button('Play', 0, 0);
+    this.playButton = new Button('Play', 0, 0 , null, 100, 100);
   }
 }

@@ -27,17 +27,18 @@ export default class StartScreen extends Stage{
     this.setIsDutch = setIsDutch;
 
     // TODO: Set the correct button positions
-    const boy: Button = new Button(null, 0, 0);
-    const girl: Button = new Button(null, 0, 0);
-    const nonBinary: Button = new Button(null, 0, 0);
+    const boy: Button = new Button(null, 0, 0, null, 100, 100);
+    const girl: Button = new Button(null, 0, 0, null, 100, 100);
+    const nonBinary: Button = new Button(null, 0, 0, null, 100, 100);
     this.genderButtons = [boy, girl, nonBinary];
 
-    const dutch: Button = new Button(null, 0, 0);
-    const english: Button = new Button(null, 0, 0);
+    const dutch: Button = new Button(null, 0, 0, null, 100, 100);
+    const english: Button = new Button(null, 0, 0, null, 100, 100);
     this.languageButtons = [dutch, english];
 
     const startImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/start-buttonstart.png');
-    this.startButton = new Button(null, canvas.width *0.35, canvas.height * 0.8, startImageButton);
+    this.startButton = new Button(null, canvas.width *0.35, canvas.height * 0.8, startImageButton,
+      canvas.width * 0.3, canvas.height * 0.2);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/start.png');
   }
 
@@ -74,6 +75,6 @@ export default class StartScreen extends Stage{
    */
   public override render(canvas: HTMLCanvasElement): void {
     CanvasRenderer.drawImage(canvas, this.backgroundImage, 0, 0, canvas.width, canvas.height);
-    this.startButton.render(canvas, canvas.width * 0.3, canvas.height * 0.2);
+    this.startButton.render(canvas);
   }
 }
