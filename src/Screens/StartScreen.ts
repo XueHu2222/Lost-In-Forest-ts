@@ -45,6 +45,6 @@ export default class StartScreen extends Stage{
   }
 
   public override render(canvas: HTMLCanvasElement): void {
-    CanvasRenderer.drawImage(canvas, this.backgroundImage, 0, 0, canvas.width, canvas.height);
+    this.renderBackground(canvas);
   }
 }
