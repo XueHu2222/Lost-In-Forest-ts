@@ -43,7 +43,7 @@ export default class LostInTheForest extends Game {
   public update(elapsed: number): boolean {
     this.currentStage = this.currentStage.getNextStage() || this.currentStage;
     this.currentStage.update(elapsed);
-    return false;
+    return true;
   }
 
   /**
