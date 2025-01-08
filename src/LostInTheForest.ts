@@ -4,6 +4,7 @@ import MouseListener from './MouseListener.js';
 import Stage from './Stage.js';
 import StartScreen from './Screens/StartScreen.js';
 import Player from './Player.js';
+import HistoryChallenge from './Challenges/HistoryChallenge.js';
 
 export default class LostInTheForest extends Game {
   private canvas: HTMLCanvasElement;
@@ -23,7 +24,7 @@ export default class LostInTheForest extends Game {
     this.canvas.width = window.innerWidth;
     this.mouseListener = new MouseListener(canvas);
     this.player = new Player;
-    this.currentStage = new StartScreen(this.setIsDutch, this.player);
+    this.currentStage = new StartScreen(this.setIsDutch, this.player, canvas);
     this.isDutch = false;
   }
 

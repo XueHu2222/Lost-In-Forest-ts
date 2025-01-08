@@ -30,7 +30,6 @@ export default abstract class Challenge extends Stage {
   public constructor(difficultyLevel: string, player: Player, isDutch: boolean) {
     super(player, isDutch);
     this.difficultyLevel = difficultyLevel;
-    // TODO: Set correct values for the buttons
     this.backButton = new Button('Back', 20, 20);
     this.hintIndex = 0;
     this.hintButton = new Button('Hint', 120, 20);
@@ -50,18 +49,57 @@ export default abstract class Challenge extends Stage {
    * @returns
    */
   protected initiateCategories(categoryData: string[][], categoryNames: string[]): void {
+    if (categoryData.length != categoryNames.length) {
+      console.error('categoryData or categoryNames is not properly initialized');
+      return;
+    }
+
+    categoryNames.forEach((categoryName: string, index: number) => {
+      const challengeELements: ChallengeElement[] = [];
+      if (categoryData[index]) {
+        for (const challengeElementText of categoryData[index]) {
+          challengeELements.push(new ChallengeElement(challengeElementText));
+        }
+      }
+      this.categories.push(new Category(categoryName, challengeELements));
+    });
+  }
+
+  protected initiatePositions(): void {
+    // Create a randomized array of challengeElements
+    const randomizedChallengeElements: ChallengeElement[] = [];
+    for (const category of this.categories) {
+      for (const challengeElement of category.getChallengeElements()) {
+        randomizedChallengeElements.push(challengeElement);
+      }
+    }
+    randomizedChallengeElements.sort(() => Math.random() - 0.5);
+
+    // Assign each challengeElement a position
+    let yPos: number = 300;
+    for (let i: number = 0; i < this.categories.length; i++) {
+      let xPos: number = 500;
+      for (let j: number = 0; j < (this.categories[i]?.getChallengeElements().length ?? 0); j++) {
+        if (randomizedChallengeElements[0]) {
+          randomizedChallengeElements[0]?.setPosX(xPos);
+          randomizedChallengeElements[0]?.setPosY(yPos);
+          this.positions.push({
+            posX: xPos, posY: yPos,
+            contains: randomizedChallengeElements[0]
+          });
+          randomizedChallengeElements.shift();
+        }
+        xPos += 300;
+      }
+      yPos += 200;
+    }
+  }
+
+  protected completeCategory(): void {
 
   }
 
-  protected initiatePositions(): void{
-
-  }
-
-  protected completeCategory(): void{
-
-  }
-
-  protected deselectAllElements(): void{
+  protected deselectAllElements(): void {
 
   }
 
@@ -74,6 +112,16 @@ export default abstract class Challenge extends Stage {
   }
 
   public render(canvas: HTMLCanvasElement): void {
-
+    this.backButton.render(canvas);
+    this.hintButton.render(canvas);
+    this.theoryButton.render(canvas);
+    for (const button of this.difficultyButtons) {
+      button.render(canvas);
+    }
+    for (const category of this.categories) {
+      for (const challengeElement of category.getChallengeElements()) {
+        challengeElement.render(canvas);
+      }
+    }
   }
 }

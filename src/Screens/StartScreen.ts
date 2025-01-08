@@ -13,9 +13,12 @@ export default class StartScreen extends Stage{
 
   private startButton: Button;
 
-  public constructor(setIsDutch: (value: boolean) => void, player: Player){
+  private canvas: HTMLCanvasElement;
+
+  public constructor(setIsDutch: (value: boolean) => void, player: Player, canvas: HTMLCanvasElement){
     super(player, false);
 
+    this.canvas = canvas;
     this.setIsDutch = setIsDutch;
 
     // TODO: Set the correct button positions
@@ -29,7 +32,7 @@ export default class StartScreen extends Stage{
     this.languageButtons = [dutch, english];
 
     this.startButton = new Button('Start', 0, 0);
-    this.backgroundImage = CanvasRenderer.loadNewImage('./assets/start.png');
+k    this.backgroundImage = CanvasRenderer.loadNewImage('./assets/start.png');
   }
 
   public override getNextStage(): Stage | null {

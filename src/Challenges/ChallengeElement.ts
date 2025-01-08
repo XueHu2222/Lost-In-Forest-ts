@@ -1,4 +1,5 @@
 import Button from '../Button.js';
+import CanvasRenderer from '../CanvasRenderer.js';
 
 export default class ChallengeElement extends Button {
   private isSelected: boolean;
@@ -13,8 +14,9 @@ export default class ChallengeElement extends Button {
 
   public override render(canvas: HTMLCanvasElement): void {
     super.render(canvas);
+    CanvasRenderer.fillRectangle(canvas, this.posX, this.posY, 80, 50, 'blue');
     if (this.isSelected) {
-      // Add color
+      CanvasRenderer.fillRectangle(canvas, this.posX, this.posY, 80, 50, 'blue');
     }
     if (this.isHint) {
       // Add border
