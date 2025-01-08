@@ -35,9 +35,11 @@ export default class StartScreen extends Stage {
 
     this.selectedImage = CanvasRenderer.loadNewImage('./assets/selected.png');
 
-    this.selectedGender= new Button(null, 0, 0, null, 100, 100);
+    this.selectedGender= new Button(null, this.canvas.width * 0.3375, this.canvas.height
+      * 0.275, this.selectedImage, this.canvas.width * 0.1, this.canvas.height * 0.2);
 
-    this.selectedFlag= new Button(null, 0, 0, null, 100, 100);
+    this.selectedFlag= new Button(null, this.canvas.width * 0.3375, this.canvas.height
+      * 0.525, this.selectedImage, this.canvas.width * 0.175, this.canvas.height * 0.2);
 
     //to add images for the button
     const girlImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/girlButton.png');
