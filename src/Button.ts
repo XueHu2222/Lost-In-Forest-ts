@@ -5,15 +5,11 @@ import MouseListener from './MouseListener.js';
 export default class Button extends CanvasItem {
   private text: string | null;
 
-  protected width: number;
-
-  protected height: number;
-
-  public constructor(text: string | null, posX: number,
-    posY: number, image: HTMLImageElement | null = null, width: number,
+  public constructor(posX: number, posY: number,
+    image: HTMLImageElement | null = null, width: number,
     height: number) {
     super();
-    this.text = text;
+    this.text = '';
     this.posX = posX;
     this.posY = posY;
     this.width = width;
@@ -43,9 +39,13 @@ export default class Button extends CanvasItem {
    * @param canvas where it renders on
    */
   public override render(canvas: HTMLCanvasElement): void {
-    super.render(canvas, this.width, this.height); // always renders the parent class (canvasItem)
-    if (this.text) {
+    super.render(canvas); // always renders the parent class (canvasItem)
+    if (this.text != '' && this.text) {
       CanvasRenderer.writeText(canvas, this.text, this.posX, this.posY);
     }
+  }
+
+  public setText(text: string): void{
+    this.text = text;
   }
 }

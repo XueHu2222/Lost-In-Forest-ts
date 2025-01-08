@@ -32,19 +32,23 @@ export default class StartScreen extends Stage {
     this.canvas = canvas;
     this.setIsDutch = setIsDutch;
     this.selectedImage = CanvasRenderer.loadNewImage('./assets/selected.png');
-    this.selectedGender= new Button(null, 0, 0, null, 100, 100);
-    this.selectedFlag= new Button(null, 0, 0, null, 100, 100);
+
+    this.selectedGender = new Button(this.canvas.width * 0.3375, this.canvas.height
+      * 0.275, this.selectedImage, this.canvas.width * 0.1, this.canvas.height * 0.2);
+
+    this.selectedFlag = new Button(this.canvas.width * 0.3375, this.canvas.height
+      * 0.525, this.selectedImage, this.canvas.width * 0.175, this.canvas.height * 0.2);
 
     //to add images for the button
     const girlImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/girlButton.png');
     const boyImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/boyButton.png');
     const nonBinaryImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/nonbinaireButton.png');
     //creating gender buttons
-    const boy: Button = new Button(null, canvas.width * 0.35, canvas.height * 0.3,
+    const boy: Button = new Button(canvas.width * 0.35, canvas.height * 0.3,
       boyImageButton, canvas.width * 0.075, canvas.height * 0.15);
-    const girl: Button = new Button(null, canvas.width * 0.4625, canvas.height * 0.3,
+    const girl: Button = new Button(canvas.width * 0.4625, canvas.height * 0.3,
       girlImageButton, canvas.width * 0.075, canvas.height * 0.15);
-    const nonBinary: Button = new Button(null, canvas.width * 0.575, canvas.height * 0.3,
+    const nonBinary: Button = new Button(canvas.width * 0.575, canvas.height * 0.3,
       nonBinaryImageButton, canvas.width * 0.075, canvas.height * 0.15);
     this.genderButtons = [boy, girl, nonBinary];
 
@@ -52,15 +56,15 @@ export default class StartScreen extends Stage {
     const dutchImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/nlFlagButton.png');
     const englishImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/enFlagButton.png');
     //creating flag buttons
-    const dutch: Button = new Button(null, canvas.width * 0.35, canvas.height * 0.55,
+    const dutch: Button = new Button(canvas.width * 0.35, canvas.height * 0.55,
       dutchImageButton, canvas.width * 0.15, canvas.height * 0.15);
-    const english: Button = new Button(null, canvas.width * 0.5, canvas.height * 0.55,
+    const english: Button = new Button(canvas.width * 0.5, canvas.height * 0.55,
       englishImageButton, canvas.width * 0.15, canvas.height * 0.15);
     this.languageButtons = [dutch, english];
 
     //start button
     const startImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/start-buttonstart.png');
-    this.startButton = new Button(null, canvas.width * 0.35, canvas.height * 0.8, startImageButton,
+    this.startButton = new Button(canvas.width * 0.35, canvas.height * 0.8, startImageButton,
       canvas.width * 0.3, canvas.height * 0.2);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/start.png');
   }
@@ -86,30 +90,36 @@ export default class StartScreen extends Stage {
       if (this.startButton.isCollidingWithMouse(mouseListener)) {
         this.started = true;
       }
+
       //gender buttons that also give selected and set gender
-      if (this.genderButtons[0]?.isCollidingWithMouse(mouseListener)){
-        this.player.setGender('boy');
-        this.selectedGender= new Button(null, this.canvas.width * 0.3375, this.canvas.height
-           * 0.275, this.selectedImage, this.canvas.width * 0.1, this.canvas.height * 0.2);
-      }else if (this.genderButtons[2]?.isCollidingWithMouse(mouseListener)){
-        this.player.setGender('nonBinary');
-        this.selectedGender= new Button(null, this.canvas.width * 0.565, this.canvas.height * 0.275,
-          this.selectedImage, this.canvas.width * 0.1, this.canvas.height * 0.2);
-      }else if (this.genderButtons[1]?.isCollidingWithMouse(mouseListener)){
-        this.player.setGender('girl');
-        this.selectedGender= new Button(null, this.canvas.width * 0.45, this.canvas.height * 0.275,
-          this.selectedImage, this.canvas.width * 0.1, this.canvas.height * 0.2);
-      }
+      this.genderButtons.forEach((genderButton: Button, index: number) => {
+        if (genderButton.isCollidingWithMouse(mouseListener)) {
+          // Set the gender
+          const genders: string[] = ['boy', 'girl', 'nonBinary'];
+          if(genders[index]){
+            this.player.setGender(genders[index]);
+          }
+          
+          // Make the selected Gender button active
+          this.selectedGender = new Button(
+            genderButton.getPosX() - this.canvas.width * 0.0125,
+            genderButton.getPosY() - this.canvas.height * 0.025,
+            this.selectedImage, this.canvas.width * 0.1, this.canvas.height * 0.2);
+        }
+      });
+
       //flag buttons that also give selected and set language
-      if (this.languageButtons[0]?.isCollidingWithMouse(mouseListener)){
-        this.setIsDutch(true);
-        this.selectedFlag= new Button(null, this.canvas.width * 0.3375, this.canvas.height
-           * 0.525, this.selectedImage, this.canvas.width * 0.175, this.canvas.height * 0.2);
-      }else if (this.languageButtons[1]?.isCollidingWithMouse(mouseListener)){
-        this.setIsDutch(false);
-        this.selectedFlag= new Button(null, this.canvas.width * 0.4875, this.canvas.height * 0.525,
-          this.selectedImage, this.canvas.width * 0.175, this.canvas.height * 0.2);
-      }
+      this.languageButtons.forEach((languageButton: Button, index: number) => {
+        if (languageButton.isCollidingWithMouse(mouseListener)) {
+          this.setIsDutch(index == 0 ? true : false);
+
+          // Make the selected language button active
+          this.selectedFlag = new Button(
+            languageButton.getPosX() - this.canvas.width * 0.0125,
+            languageButton.getPosY() - this.canvas.height * 0.025,
+            this.selectedImage, this.canvas.width * 0.175, this.canvas.height * 0.2);
+        }
+      });
     }
   }
 
