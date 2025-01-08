@@ -1,3 +1,4 @@
+import CanvasRenderer from './CanvasRenderer.js';
 import MouseListener from './MouseListener.js';
 import Player from './Player.js';
 
@@ -8,7 +9,7 @@ export default abstract class Stage {
 
   protected backgroundImage: HTMLImageElement;
 
-  public constructor(player: Player, isDutch: boolean){
+  public constructor(player: Player, isDutch: boolean) {
     this.player = player;
     this.isDutch = isDutch;
     this.backgroundImage = new Image;
@@ -21,4 +22,8 @@ export default abstract class Stage {
   public abstract update(elapsed: number): void;
 
   public abstract render(canvas: HTMLCanvasElement): void;
+
+  protected renderBackground(canvas: HTMLCanvasElement): void {
+    CanvasRenderer.drawImage(canvas, this.backgroundImage, 0, 0, canvas.width, canvas.height);
+  }
 }

@@ -4,6 +4,7 @@ import MouseListener from './MouseListener.js';
 import Stage from './Stage.js';
 import StartScreen from './Screens/StartScreen.js';
 import Player from './Player.js';
+import CanvasRenderer from './CanvasRenderer.js';
 
 export default class LostInTheForest extends Game {
   private canvas: HTMLCanvasElement;
@@ -23,8 +24,8 @@ export default class LostInTheForest extends Game {
     this.canvas.width = window.innerWidth;
     this.mouseListener = new MouseListener(canvas);
     this.player = new Player;
-    this.currentStage = new StartScreen(this.setIsDutch, this.player);
     this.isDutch = false;
+    this.currentStage = new StartScreen(this.setIsDutch, this.player);
   }
 
   /**
@@ -50,6 +51,7 @@ export default class LostInTheForest extends Game {
    * Render all the elements in the screen.
    */
   public render(): void {
+    CanvasRenderer.clearCanvas(this.canvas);
     this.currentStage.render(this.canvas);
   }
 
