@@ -6,7 +6,8 @@ export default class ChallengeElement extends Button {
   private isHint: boolean;
 
   public constructor(text: string) {
-    super(text, 0, 0);
+    super(0, 0, null, 100, 100);
+    this.setText(text);
     this.isSelected = false;
     this.isHint = false;
   }

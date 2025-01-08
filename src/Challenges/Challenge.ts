@@ -31,12 +31,21 @@ export default abstract class Challenge extends Stage {
     super(player, isDutch);
     this.difficultyLevel = difficultyLevel;
     // TODO: Set correct values for the buttons
-    this.backButton = new Button('Back', 20, 20);
+    this.backButton = new Button(20, 20, null, 100, 100);
+    this.backButton.setText('Back');
     this.hintIndex = 0;
-    this.hintButton = new Button('Hint', 120, 20);
-    this.theoryButton = new Button('Theory', 220, 20);
+    this.hintButton = new Button(120, 20, null, 100, 100);
+    this.hintButton.setText('Hint');
+    this.theoryButton = new Button(220, 20, null, 100, 100);
+    this.theoryButton.setText('Theory');
     this.theoryIsOpen = false;
-    this.difficultyButtons = [new Button('Easy', 20, 50), new Button('Medium', 120, 50), new Button('Hard', 220, 50)];
+    const easyButton: Button = new Button(20, 50, null, 100, 100);
+    easyButton.setText('Easy');
+    const mediumButton: Button = new Button(20, 50, null, 100, 100);
+    mediumButton.setText('Medium');
+    const hardButton: Button = new Button(20, 50, null, 100, 100);
+    hardButton.setText('Hard');
+    this.difficultyButtons = [easyButton, mediumButton, hardButton];
     this.categories = [];
     this.completedCategories = [];
     this.selectedCategories = [];
