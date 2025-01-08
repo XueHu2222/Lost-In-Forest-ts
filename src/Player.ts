@@ -9,11 +9,15 @@ export default class Player extends CanvasItem {
   public constructor() {
     super();
     this.map = new Map;
-    this.gender = 'Boy';
+    this.gender = 'boy';
   }
 
   public setGender(gender: string): void{
     this.gender = gender;
+  }
+
+  public getGender(): string{
+    return this.gender;
   }
 
   public getMap(): Map{
