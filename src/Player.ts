@@ -1,4 +1,5 @@
 import CanvasItem from './CanvasItem.js';
+import CanvasRenderer from './CanvasRenderer.js';
 import Map from './Map.js';
 
 export default class Player extends CanvasItem {
@@ -10,10 +11,12 @@ export default class Player extends CanvasItem {
     super();
     this.map = new Map;
     this.gender = 'boy';
+    this.image = CanvasRenderer.loadNewImage(`./assets/Player/${this.gender}.png`);
   }
 
   public setGender(gender: string): void{
     this.gender = gender;
+    this.image = CanvasRenderer.loadNewImage(`./assets/Player/${this.gender}.png`);
   }
 
   public getGender(): string{

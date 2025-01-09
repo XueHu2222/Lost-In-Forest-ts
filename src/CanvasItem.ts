@@ -37,6 +37,14 @@ export default abstract class CanvasItem {
     this.posY = posY;
   }
 
+  public setWidth(width: number): void {
+    this.width = width;
+  }
+
+  public setHeight(height: number): void {
+    this.height = height;
+  }
+
   public getPosX(): number{
     return this.posX;
   }
