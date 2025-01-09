@@ -29,9 +29,13 @@ export default class HistoryChallenge extends Challenge {
   public override getNextStage(): Stage | null {
     return null;
   }
-  public override processInput(mouseListener: MouseListener): void {
 
+  public override processInput(mouseListener: MouseListener): void {
+    if (mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
+      this.checkElementsClicked(mouseListener);
+    }
   }
+
   public override update(elapsed: number): void {
 
   }

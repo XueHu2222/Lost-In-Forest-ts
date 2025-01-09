@@ -7,7 +7,7 @@ export default class Map extends Button {
   private isUnlocked: boolean;
 
   public constructor(area: Area, areaImage: HTMLImageElement, posX: number, posY: number) {
-    super(null, posX, posY);
+    super(posX, posY, null, 0, 0);
     this.area = area;
     this.isUnlocked = false;
   }

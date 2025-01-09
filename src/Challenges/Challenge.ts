@@ -1,4 +1,5 @@
 import Button from '../Button.js';
+import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
 import Category from './Category.js';
@@ -23,22 +24,36 @@ export default abstract class Challenge extends Stage {
 
   protected completedCategories: Category[];
 
-  protected selectedCategories: ChallengeElement[];
+  protected selectedElements: ChallengeElement[];
 
   protected positions: { posX: number, posY: number, contains: ChallengeElement }[];
 
   public constructor(difficultyLevel: string, player: Player, isDutch: boolean) {
     super(player, isDutch);
     this.difficultyLevel = difficultyLevel;
-    this.backButton = new Button('Back', 20, 20);
+    // TODO: Set correct values for the buttons
+    this.backButton = new Button(20, 50, null, 100, 100);
+    this.backButton.setText('Back');
+
     this.hintIndex = 0;
-    this.hintButton = new Button('Hint', 120, 20);
-    this.theoryButton = new Button('Theory', 220, 20);
+    this.hintButton = new Button(120, 50, null, 100, 100);
+    this.hintButton.setText('Hint');
+
+    this.theoryButton = new Button(220, 50, null, 100, 100);
+    this.theoryButton.setText('Theory');
     this.theoryIsOpen = false;
-    this.difficultyButtons = [new Button('Easy', 20, 50), new Button('Medium', 120, 50), new Button('Hard', 220, 50)];
+
+    const easyButton: Button = new Button(20, 100, null, 100, 100);
+    easyButton.setText('Easy');
+    const mediumButton: Button = new Button(120, 100, null, 100, 100);
+    mediumButton.setText('Medium');
+    const hardButton: Button = new Button(220, 100, null, 100, 100);
+    hardButton.setText('Hard');
+    this.difficultyButtons = [easyButton, mediumButton, hardButton];
+
     this.categories = [];
     this.completedCategories = [];
-    this.selectedCategories = [];
+    this.selectedElements = [];
     this.positions = [];
   }
 
@@ -58,7 +73,9 @@ export default abstract class Challenge extends Stage {
       const challengeELements: ChallengeElement[] = [];
       if (categoryData[index]) {
         for (const challengeElementText of categoryData[index]) {
-          challengeELements.push(new ChallengeElement(challengeElementText));
+          const newChallengeElement: ChallengeElement = new ChallengeElement(challengeElementText);
+          newChallengeElement.setTextSize(22);
+          challengeELements.push(newChallengeElement);
         }
       }
       this.categories.push(new Category(categoryName, challengeELements));
@@ -95,19 +112,92 @@ export default abstract class Challenge extends Stage {
     }
   }
 
-  protected completeCategory(): void {
+  protected checkElementsClicked(mouseListener: MouseListener): void {
+    for (const position of this.positions) {
+      if (position.contains.isCollidingWithMouse(mouseListener)) {
+        // Deselect
+        if (position.contains.getIsSelected()) {
+          position.contains.setSelected(false);
+          // selectedElements = selectedElements, but with the deselected element removed
+          this.selectedElements = this.selectedElements.
+            filter((value: ChallengeElement) => value != position.contains);
+        } else {
+          position.contains.setSelected(true);
+          this.selectedElements.push(position.contains);
+        }
+
+        if (this.selectedElements.length == 4) {
+          this.checkIfSelectedIsCorrect();
+        }
+      }
+    }
+  }
+
+  private checkIfSelectedIsCorrect(): void {
+    for (const category of this.categories) {
+      // Create a list for the category elements text and selected elements text
+      const categoriesList: string[] = [];
+      category.getChallengeElements().
+        forEach((element: ChallengeElement) => {
+          categoriesList.push(element.getText());
+        });
+
+      const selectedList: string[] = [];
+      this.selectedElements.
+        forEach((element: ChallengeElement) => {
+          selectedList.push(element.getText());
+        });
+      // Sort those lists and join them into a string to compare if they are the same
+      if (categoriesList.sort().join() == selectedList.sort().join()) {
+        this.completedCategories.push(category);
+        this.completeCategory();
+      }
+    }
+    this.deselectAllElements();
+  }
+
+  // TODO: Refactor without the for each, but with category as argument
+  private completeCategory(): void {
+    this.completedCategories.forEach((category: Category, index: number) => {
+      let currentElementIndex: number = 0;
+      for (let i: number = index * 4; i < (index + 1) * 4; i++) {
+        const position: { posX: number, posY: number, contains: ChallengeElement }
+          | undefined = this.positions[i];
+        if (position) {
+          const tempContains: ChallengeElement = position.contains;
+          // Remove from previous position
+          for (const pos of this.positions) {
+            if (pos.contains == category.getChallengeElements()[currentElementIndex]) {
+              pos.contains = tempContains;
+              pos.contains.setPosX(pos.posX);
+              pos.contains.setPosY(pos.posY);
+            }
+          }
+
+          // Give first row position a new element
+          position.contains =
+            category.getChallengeElements()[currentElementIndex] as ChallengeElement;
+          position.contains.setPosX(position.posX);
+          position.contains.setPosY(position.posY);
+          position.contains.setTextColor('yellow');
+        }
+        currentElementIndex += 1;
+      }
+    });
+  }
+
+  private deselectAllElements(): void {
+    for (const element of this.selectedElements) {
+      element.setSelected(false);
+    }
+    this.selectedElements = [];
+  }
+
+  private renderTheory(canvas: HTMLCanvasElement): void {
 
   }
 
-  protected deselectAllElements(): void {
-
-  }
-
-  protected renderTheory(canvas: HTMLCanvasElement): void {
-
-  }
-
-  protected renderHint(canvas: HTMLCanvasElement): void {
+  private renderHint(canvas: HTMLCanvasElement): void {
 
   }
 
