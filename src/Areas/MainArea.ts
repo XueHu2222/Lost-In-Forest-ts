@@ -22,7 +22,7 @@ export default class MainArea extends Area {
 
   }
 
-  public override render(canvas: HTMLCanvasElement): void {
-    this.renderBackground(canvas);
+  public override render(): void {
+    this.renderBackground();
   }
 }

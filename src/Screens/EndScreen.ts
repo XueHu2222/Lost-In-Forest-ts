@@ -14,7 +14,7 @@ export default class EndScreen extends Stage {
 
   }
 
-  public override render(canvas: HTMLCanvasElement): void {
+  public override render(): void {
 
   }
 }

@@ -133,7 +133,8 @@ export default class StartScreen extends Stage {
    * @param canvas where it renders
    */
   public override render(): void {
-    CanvasRenderer.drawImage(this.canvas, this.backgroundImage, 0, 0, this.canvas.width, this.canvas.height);
+    CanvasRenderer.drawImage(this.canvas, this.backgroundImage,
+      0, 0, this.canvas.width, this.canvas.height);
     //selected
     this.renderBackground();
     this.selectedGender.render(this.canvas);

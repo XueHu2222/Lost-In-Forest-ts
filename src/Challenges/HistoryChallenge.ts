@@ -15,7 +15,7 @@ export default class HistoryChallenge extends Challenge {
 
   }
 
-  public override render(canvas: HTMLCanvasElement): void {
+  public override render(): void {
 
   }
 }
