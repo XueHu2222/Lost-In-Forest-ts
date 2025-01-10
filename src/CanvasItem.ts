@@ -1,4 +1,5 @@
 import CanvasRenderer from './CanvasRenderer.js';
+import LostInTheForest from './LostInTheForest.js';
 
 export default abstract class CanvasItem {
   protected image: HTMLImageElement;
@@ -25,8 +26,9 @@ export default abstract class CanvasItem {
    * @param width the widht that needs to be renderd
    * @param height the height that needs to be renderd
    */
-  public render(canvas: HTMLCanvasElement): void {
-    CanvasRenderer.drawImage(canvas, this.image, this.posX, this.posY, this.width, this.height);
+  public render(): void {
+    CanvasRenderer.drawImage(LostInTheForest.canvas, this.image,
+      this.posX, this.posY, this.width, this.height);
   }
 
   public setPosX(posX: number): void {
@@ -35,6 +37,14 @@ export default abstract class CanvasItem {
 
   public setPosY(posY: number): void {
     this.posY = posY;
+  }
+
+  public setWidth(width: number): void {
+    this.width = width;
+  }
+
+  public setHeight(height: number): void {
+    this.height = height;
   }
 
   public getPosX(): number{

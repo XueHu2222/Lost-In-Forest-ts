@@ -1,4 +1,5 @@
 import CanvasRenderer from './CanvasRenderer.js';
+import LostInTheForest from './LostInTheForest.js';
 import MouseListener from './MouseListener.js';
 import Player from './Player.js';
 
@@ -9,10 +10,13 @@ export default abstract class Stage {
 
   protected backgroundImage: HTMLImageElement;
 
+  protected canvas: HTMLCanvasElement;
+
   public constructor(player: Player, isDutch: boolean) {
     this.player = player;
     this.isDutch = isDutch;
     this.backgroundImage = new Image;
+    this.canvas = LostInTheForest.canvas;
   }
 
   public abstract getNextStage(): Stage | null;
@@ -21,9 +25,10 @@ export default abstract class Stage {
 
   public abstract update(elapsed: number): void;
 
-  public abstract render(canvas: HTMLCanvasElement): void;
+  public abstract render(): void;
 
-  protected renderBackground(canvas: HTMLCanvasElement): void {
-    CanvasRenderer.drawImage(canvas, this.backgroundImage, 0, 0, canvas.width, canvas.height);
+  protected renderBackground(): void {
+    CanvasRenderer.drawImage(this.canvas, this.backgroundImage, 0, 0,
+      this.canvas.width, this.canvas.height);
   }
 }

@@ -15,7 +15,7 @@ export default class PhysicsChallenge extends Challenge {
 
   }
 
-  public override render(canvas: HTMLCanvasElement): void {
+  public override render(): void {
 
   }
 }

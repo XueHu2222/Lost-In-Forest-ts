@@ -82,7 +82,7 @@ export default abstract class Challenge extends Stage {
 
   }
 
-  public render(canvas: HTMLCanvasElement): void {
+  public render(): void {
 
   }
 }
