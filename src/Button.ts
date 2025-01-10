@@ -43,15 +43,15 @@ export default class Button extends CanvasItem {
 
   /**
    * Renders the button
-   * @param canvas where it renders on
+   * @param canvas where it renders onP
    */
   public override render(canvas: HTMLCanvasElement): void {
     super.render(canvas); // always renders the parent class (canvasItem)
     if (this.text != '' && this.text) {
       if (this.image != null) {
         // Calculate the center position
-        const centerX: number = this.posX + (this.image.width / 2) - (-60 / 2);
-        const centerY: number = this.posY + (this.image.height / 2) - (100 / 2);
+        const centerX: number = this.posX + (this.image.width / 2) - (-50 / 2);
+        const centerY: number = this.posY + (this.image.height / 2) - (105 / 2);
 
         // Write the text at the center position
         CanvasRenderer.writeText(canvas, this.text, centerX, centerY, 'center', 'arial', this.textSize, this.textColor);

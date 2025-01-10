@@ -62,7 +62,7 @@ export default abstract class Challenge extends Stage {
     this.positions = [];
 
     const backgroundImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/selected.png');
-    this.finishButton = new Button(620, 700, backgroundImage, 220, 60);
+    this.finishButton = new Button(620, 650, backgroundImage, 220, 60);
     this.finishButton.setText('Finish');
     this.finishButton.setTextColor('yellow');
 
