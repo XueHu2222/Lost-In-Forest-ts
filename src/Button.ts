@@ -1,5 +1,6 @@
 import CanvasItem from './CanvasItem.js';
 import CanvasRenderer from './CanvasRenderer.js';
+import LostInTheForest from './LostInTheForest.js';
 import MouseListener from './MouseListener.js';
 
 export default class Button extends CanvasItem {
@@ -49,8 +50,8 @@ export default class Button extends CanvasItem {
     if (this.text != '' && this.text) {
       if (this.image != null) {
         // Calculate the center position
-        const centerX: number = this.posX + (this.image.width / 2) - (-120 / 2);
-        const centerY: number = this.posY + (this.image.height / 2) - (60 / 2);
+        const centerX: number = this.posX + (this.image.width / 2) - (-60 / 2);
+        const centerY: number = this.posY + (this.image.height / 2) - (100 / 2);
 
         // Write the text at the center position
         CanvasRenderer.writeText(canvas, this.text, centerX, centerY, 'center', 'arial', this.textSize, this.textColor);
@@ -58,13 +59,16 @@ export default class Button extends CanvasItem {
         CanvasRenderer.writeText(canvas, this.text, this.posX, this.posY);
       }
     }
+    if (this.isCollidingWithMouse(LostInTheForest.mouseListener)) {
+      LostInTheForest.canvas.style.cursor = 'pointer';
+    }
   }
 
   public setText(text: string): void {
     this.text = text;
   }
 
-  public getText(): string{
+  public getText(): string {
     return this.text || '';
   }
 

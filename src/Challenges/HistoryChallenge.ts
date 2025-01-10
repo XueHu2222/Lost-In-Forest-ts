@@ -1,3 +1,5 @@
+import MainArea from '../Areas/MainArea.js';
+import CanvasRenderer from '../CanvasRenderer.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
@@ -17,6 +19,10 @@ export default class HistoryChallenge extends Challenge {
         categoryData.push(['Mammoet / Mammoth', 'Vuur / Fire', 'Grotten / Caves', 'Steen / Stone']); // Prehistory
         break;
       case 'medium':
+        categoryData.push(['1', '1', '1', '1']);
+        categoryData.push(['2', '2', '2', '2']);
+        categoryData.push(['3', '3', '3', '3']);
+        categoryData.push(['4', '4', '4', '4']);
         break;
       case 'hard':
         break;
@@ -24,9 +30,13 @@ export default class HistoryChallenge extends Challenge {
     const categoryNames: string[] = ['World War 2', 'The Dark Ages', 'Antiquity', 'Prehistory'];
     this.initiateCategories(categoryData, categoryNames);
     this.initiatePositions();
+    this.backgroundImage = CanvasRenderer.loadNewImage('./assets/Challenges/historyBackground.png');
   }
 
   public override getNextStage(): Stage | null {
+    if(this.isFinished){
+      return new MainArea(this.player, this.isDutch);
+    }
     return null;
   }
 

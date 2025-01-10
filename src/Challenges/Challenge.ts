@@ -1,4 +1,5 @@
 import Button from '../Button.js';
+import CanvasRenderer from '../CanvasRenderer.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
@@ -28,6 +29,10 @@ export default abstract class Challenge extends Stage {
 
   protected positions: { posX: number, posY: number, contains: ChallengeElement }[];
 
+  protected finishButton: Button;
+
+  protected isFinished: boolean;
+
   public constructor(difficultyLevel: string, player: Player, isDutch: boolean) {
     super(player, isDutch);
     this.difficultyLevel = difficultyLevel;
@@ -55,6 +60,13 @@ export default abstract class Challenge extends Stage {
     this.completedCategories = [];
     this.selectedElements = [];
     this.positions = [];
+
+    const backgroundImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/selected.png');
+    this.finishButton = new Button(620, 700, backgroundImage, 220, 60);
+    this.finishButton.setText('Finish');
+    this.finishButton.setTextColor('yellow');
+
+    this.isFinished = false;
   }
 
   /**
@@ -74,7 +86,7 @@ export default abstract class Challenge extends Stage {
       if (categoryData[index]) {
         for (const challengeElementText of categoryData[index]) {
           const newChallengeElement: ChallengeElement = new ChallengeElement(challengeElementText);
-          newChallengeElement.setTextSize(22);
+          newChallengeElement.setTextSize(13);
           challengeELements.push(newChallengeElement);
         }
       }
@@ -93,9 +105,9 @@ export default abstract class Challenge extends Stage {
     randomizedChallengeElements.sort(() => Math.random() - 0.5);
 
     // Assign each challengeElement a position
-    let yPos: number = 300;
+    let yPos: number = 200;
     for (let i: number = 0; i < this.categories.length; i++) {
-      let xPos: number = 500;
+      let xPos: number = 300;
       for (let j: number = 0; j < (this.categories[i]?.getChallengeElements().length ?? 0); j++) {
         if (randomizedChallengeElements[0]) {
           randomizedChallengeElements[0]?.setPosX(xPos);
@@ -106,15 +118,23 @@ export default abstract class Challenge extends Stage {
           });
           randomizedChallengeElements.shift();
         }
-        xPos += 300;
+        xPos += 220;
       }
-      yPos += 200;
+      yPos += 120;
     }
   }
 
   protected checkElementsClicked(mouseListener: MouseListener): void {
     for (const position of this.positions) {
       if (position.contains.isCollidingWithMouse(mouseListener)) {
+        // Check if element is part of completed category
+        for(const category of this.completedCategories){
+          for(const element of category.getChallengeElements()){
+            if(element === position.contains){
+              return;
+            }
+          }
+        }
         // Deselect
         if (position.contains.getIsSelected()) {
           position.contains.setSelected(false);
@@ -130,6 +150,9 @@ export default abstract class Challenge extends Stage {
           this.checkIfSelectedIsCorrect();
         }
       }
+    }
+    if (this.finishButton.isCollidingWithMouse(mouseListener)) {
+      this.isFinished = true;
     }
   }
 
@@ -151,6 +174,14 @@ export default abstract class Challenge extends Stage {
       if (categoriesList.sort().join() == selectedList.sort().join()) {
         this.completedCategories.push(category);
         this.completeCategory();
+      }
+    }
+    if (this.completedCategories.length === 3) {
+      for (const category of this.categories) {
+        if (!this.completedCategories.includes(category)) {
+          this.completedCategories.push(category);
+          this.completeCategory();
+        }
       }
     }
     this.deselectAllElements();
@@ -202,15 +233,38 @@ export default abstract class Challenge extends Stage {
   }
 
   public render(canvas: HTMLCanvasElement): void {
+    this.renderBackground(canvas);
     this.backButton.render(canvas);
     this.hintButton.render(canvas);
     this.theoryButton.render(canvas);
+    if (this.completedCategories.length >= 3) {
+      this.finishButton.render(canvas);
+    }
     for (const button of this.difficultyButtons) {
       button.render(canvas);
     }
     for (const category of this.categories) {
       for (const challengeElement of category.getChallengeElements()) {
         challengeElement.render(canvas);
+      }
+    }
+    // Render category names when completed
+    for (const category of this.completedCategories) {
+      const challengeElements: ChallengeElement[] = category.getChallengeElements();
+      if (challengeElements && challengeElements.length > 0) {
+        const firstElement: ChallengeElement | undefined = challengeElements[0];
+        if (firstElement) {
+          CanvasRenderer.writeText(
+            canvas,
+            category.getName() + '!',
+            firstElement.getPosX() + 450,
+            firstElement.getPosY() - 15,
+            'center',
+            'arial',
+            20,
+            'yellow'
+          );
+        }
       }
     }
   }

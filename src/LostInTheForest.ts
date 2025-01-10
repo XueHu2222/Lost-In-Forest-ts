@@ -8,9 +8,9 @@ import CanvasRenderer from './CanvasRenderer.js';
 import HistoryChallenge from './Challenges/HistoryChallenge.js';
 
 export default class LostInTheForest extends Game {
-  private canvas: HTMLCanvasElement;
+  public static canvas: HTMLCanvasElement;
 
-  private mouseListener: MouseListener;
+  public static mouseListener: MouseListener;
 
   private player: Player;
 
@@ -20,20 +20,20 @@ export default class LostInTheForest extends Game {
 
   public constructor(canvas: HTMLCanvasElement) {
     super();
-    this.canvas = canvas;
-    this.canvas.height = window.innerHeight;
-    this.canvas.width = window.innerWidth;
-    this.mouseListener = new MouseListener(canvas);
+    LostInTheForest.canvas = canvas;
+    LostInTheForest.canvas.height = window.innerHeight;
+    LostInTheForest.canvas.width = window.innerWidth;
+    LostInTheForest.mouseListener = new MouseListener(canvas);
     this.player = new Player;
     this.isDutch = true;
-    this.currentStage = new HistoryChallenge('easy', this.player, this.isDutch);
+    this.currentStage = new HistoryChallenge('medium', this.player, this.isDutch);
   }
 
   /**
    * Process all input. Called from the GameLoop.
    */
   public processInput(): void {
-    this.currentStage.processInput(this.mouseListener);
+    this.currentStage.processInput(LostInTheForest.mouseListener);
   }
 
   /**
@@ -52,8 +52,9 @@ export default class LostInTheForest extends Game {
    * Render all the elements in the screen.
    */
   public render(): void {
-    CanvasRenderer.clearCanvas(this.canvas);
-    this.currentStage.render(this.canvas);
+    CanvasRenderer.clearCanvas(LostInTheForest.canvas);
+    LostInTheForest.canvas.style.cursor = 'default';
+    this.currentStage.render(LostInTheForest.canvas);
   }
 
   public setIsDutch(value: boolean): void{
