@@ -18,20 +18,20 @@ export default class ChallengeElement extends Button {
     this.selectedButton = new Button(0, 0, image, 255, 80);
   }
 
-  public override render(canvas: HTMLCanvasElement): void {
-    // CanvasRenderer.fillRectangle(canvas, this.posX, this.posY, 80, 50, 'blue');
+  public override render(): void {
+    super.render();
     if (this.isSelected) {
       this.textColor = 'darkgreen';
       this.selectedButton.setPosX(this.posX - 20);
       this.selectedButton.setPosY(this.posY - 10);
-      this.selectedButton.render(canvas);
+      this.selectedButton.render();
     }else if(this.textColor != 'yellow'){
       this.textColor = 'white';
     }
     if (this.isHint) {
       // Add border
     }
-    super.render(canvas);
+    super.render();
   }
 
   public setSelected(value: boolean): void{

@@ -22,14 +22,11 @@ export default class StartScreen extends Stage {
 
   private selectedFlag: Button;
 
-  private canvas: HTMLCanvasElement;
-
   public constructor(setIsDutch: (value: boolean) => void,
-    player: Player, canvas: HTMLCanvasElement) {
+    player: Player) {
     super(player, false);
 
     //to give everything a standard value
-    this.canvas = canvas;
     this.setIsDutch = setIsDutch;
     this.selectedImage = CanvasRenderer.loadNewImage('./assets/selected.png');
 
@@ -44,28 +41,28 @@ export default class StartScreen extends Stage {
     const boyImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/boyButton.png');
     const nonBinaryImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/nonbinaireButton.png');
     //creating gender buttons
-    const boy: Button = new Button(canvas.width * 0.35, canvas.height * 0.3,
-      boyImageButton, canvas.width * 0.075, canvas.height * 0.15);
-    const girl: Button = new Button(canvas.width * 0.4625, canvas.height * 0.3,
-      girlImageButton, canvas.width * 0.075, canvas.height * 0.15);
-    const nonBinary: Button = new Button(canvas.width * 0.575, canvas.height * 0.3,
-      nonBinaryImageButton, canvas.width * 0.075, canvas.height * 0.15);
+    const boy: Button = new Button(this.canvas.width * 0.35, this.canvas.height * 0.3,
+      boyImageButton, this.canvas.width * 0.075, this.canvas.height * 0.15);
+    const girl: Button = new Button(this.canvas.width * 0.4625, this.canvas.height * 0.3,
+      girlImageButton, this.canvas.width * 0.075, this.canvas.height * 0.15);
+    const nonBinary: Button = new Button(this.canvas.width * 0.575, this.canvas.height * 0.3,
+      nonBinaryImageButton, this.canvas.width * 0.075, this.canvas.height * 0.15);
     this.genderButtons = [boy, girl, nonBinary];
 
     //images for flag buttons
     const dutchImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/nlFlagButton.png');
     const englishImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/enFlagButton.png');
     //creating flag buttons
-    const dutch: Button = new Button(canvas.width * 0.35, canvas.height * 0.55,
-      dutchImageButton, canvas.width * 0.15, canvas.height * 0.15);
-    const english: Button = new Button(canvas.width * 0.5, canvas.height * 0.55,
-      englishImageButton, canvas.width * 0.15, canvas.height * 0.15);
+    const dutch: Button = new Button(this.canvas.width * 0.35, this.canvas.height * 0.55,
+      dutchImageButton, this.canvas.width * 0.15, this.canvas.height * 0.15);
+    const english: Button = new Button(this.canvas.width * 0.5, this.canvas.height * 0.55,
+      englishImageButton, this.canvas.width * 0.15, this.canvas.height * 0.15);
     this.languageButtons = [dutch, english];
 
     //start button
     const startImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/start-buttonstart.png');
-    this.startButton = new Button(canvas.width * 0.35, canvas.height * 0.8, startImageButton,
-      canvas.width * 0.3, canvas.height * 0.2);
+    this.startButton = new Button(this.canvas.width * 0.35, this.canvas.height * 0.8, startImageButton,
+      this.canvas.width * 0.3, this.canvas.height * 0.2);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/start.png');
   }
 
@@ -135,19 +132,20 @@ export default class StartScreen extends Stage {
    * what to render to render
    * @param canvas where it renders
    */
-  public override render(canvas: HTMLCanvasElement): void {
-    CanvasRenderer.drawImage(canvas, this.backgroundImage, 0, 0, canvas.width, canvas.height);
+  public override render(): void {
+    CanvasRenderer.drawImage(this.canvas, this.backgroundImage,
+      0, 0, this.canvas.width, this.canvas.height);
     //selected
-    this.renderBackground(canvas);
-    this.selectedGender.render(canvas);
-    this.selectedFlag.render(canvas);
+    this.renderBackground();
+    this.selectedGender.render();
+    this.selectedFlag.render();
     //buttons
-    this.startButton.render(canvas);
+    this.startButton.render();
     this.genderButtons.forEach((gender: Button) => {
-      gender.render(canvas);
+      gender.render();
     });
     this.languageButtons.forEach((language: Button) => {
-      language.render(canvas);
+      language.render();
     });
   }
 }

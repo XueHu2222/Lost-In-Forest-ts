@@ -19,7 +19,7 @@ export default abstract class CutScene extends Stage {
   protected loadCutsceneImages(imageFolder: string, folderLength: number): void {
     // Push all the images into the frames array
     for (let i: number = 1; i <= folderLength; i++) {
-      const imagePath: string = `./assets/${imageFolder}/${i}.jpg`;
+      const imagePath: string = `./assets/${imageFolder}/${i}.png`;
       this.frames.push(CanvasRenderer.loadNewImage(imagePath));
     }
 
@@ -36,10 +36,10 @@ export default abstract class CutScene extends Stage {
    * Render the background
    * @param canvas The canvas used to change the background
    */
-  public override render(canvas: HTMLCanvasElement): void {
+  public override render(): void {
     if (this.frames[0]) {
       this.backgroundImage = this.frames[0];
-      this.renderBackground(canvas);
+      this.renderBackground();
     }
   }
 }

@@ -15,7 +15,7 @@ export default class SummerArea extends Area {
 
   }
 
-  public override render(canvas: HTMLCanvasElement): void {
+  public override render(): void {
 
   }
 }

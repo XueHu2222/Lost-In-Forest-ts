@@ -54,7 +54,8 @@ export default class LostInTheForest extends Game {
   public render(): void {
     CanvasRenderer.clearCanvas(LostInTheForest.canvas);
     LostInTheForest.canvas.style.cursor = 'default';
-    this.currentStage.render(LostInTheForest.canvas);
+    this.currentStage.render();
+    this.currentStage.render();
   }
 
   public setIsDutch(value: boolean): void{

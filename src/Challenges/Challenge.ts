@@ -128,9 +128,9 @@ export default abstract class Challenge extends Stage {
     for (const position of this.positions) {
       if (position.contains.isCollidingWithMouse(mouseListener)) {
         // Check if element is part of completed category
-        for(const category of this.completedCategories){
-          for(const element of category.getChallengeElements()){
-            if(element === position.contains){
+        for (const category of this.completedCategories) {
+          for (const element of category.getChallengeElements()) {
+            if (element === position.contains) {
               return;
             }
           }
@@ -232,20 +232,20 @@ export default abstract class Challenge extends Stage {
 
   }
 
-  public render(canvas: HTMLCanvasElement): void {
-    this.renderBackground(canvas);
-    this.backButton.render(canvas);
-    this.hintButton.render(canvas);
-    this.theoryButton.render(canvas);
+  public render(): void {
+    this.renderBackground();
+    this.backButton.render();
+    this.hintButton.render();
+    this.theoryButton.render();
     if (this.completedCategories.length >= 3) {
-      this.finishButton.render(canvas);
+      this.finishButton.render();
     }
     for (const button of this.difficultyButtons) {
-      button.render(canvas);
+      button.render();
     }
     for (const category of this.categories) {
       for (const challengeElement of category.getChallengeElements()) {
-        challengeElement.render(canvas);
+        challengeElement.render();
       }
     }
     // Render category names when completed
@@ -255,7 +255,7 @@ export default abstract class Challenge extends Stage {
         const firstElement: ChallengeElement | undefined = challengeElements[0];
         if (firstElement) {
           CanvasRenderer.writeText(
-            canvas,
+            this.canvas,
             category.getName() + '!',
             firstElement.getPosX() + 450,
             firstElement.getPosY() - 15,
