@@ -19,7 +19,7 @@ export default abstract class CutScene extends Stage {
   protected loadCutsceneImages(imageFolder: string, folderLength: number): void {
     // Push all the images into the frames array
     for (let i: number = 1; i <= folderLength; i++) {
-      const imagePath: string = `./assets/${imageFolder}/${i}.jpg`;
+      const imagePath: string = `./assets/${imageFolder}/${i}.png`;
       this.frames.push(CanvasRenderer.loadNewImage(imagePath));
     }
 

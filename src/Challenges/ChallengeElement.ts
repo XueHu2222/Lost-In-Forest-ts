@@ -12,8 +12,8 @@ export default class ChallengeElement extends Button {
     this.isHint = false;
   }
 
-  public override render(canvas: HTMLCanvasElement): void {
-    super.render(canvas);
+  public override render(): void {
+    super.render();
     if (this.isSelected) {
       // Add color
     }

@@ -1,5 +1,6 @@
 import CanvasItem from './CanvasItem.js';
 import CanvasRenderer from './CanvasRenderer.js';
+import LostInTheForest from './LostInTheForest.js';
 import MouseListener from './MouseListener.js';
 
 export default class Button extends CanvasItem {
@@ -38,10 +39,10 @@ export default class Button extends CanvasItem {
    * Renders the button
    * @param canvas where it renders on
    */
-  public override render(canvas: HTMLCanvasElement): void {
-    super.render(canvas); // always renders the parent class (canvasItem)
+  public override render(): void {
+    super.render(); // always renders the parent class (canvasItem)
     if (this.text != '' && this.text) {
-      CanvasRenderer.writeText(canvas, this.text, this.posX, this.posY);
+      CanvasRenderer.writeText(LostInTheForest.canvas, this.text, this.posX, this.posY);
     }
   }
 

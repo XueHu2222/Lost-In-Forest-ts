@@ -137,15 +137,15 @@ export default class StartScreen extends Stage {
       0, 0, this.canvas.width, this.canvas.height);
     //selected
     this.renderBackground();
-    this.selectedGender.render(this.canvas);
-    this.selectedFlag.render(this.canvas);
+    this.selectedGender.render();
+    this.selectedFlag.render();
     //buttons
-    this.startButton.render(this.canvas);
+    this.startButton.render();
     this.genderButtons.forEach((gender: Button) => {
-      gender.render(this.canvas);
+      gender.render();
     });
     this.languageButtons.forEach((language: Button) => {
-      language.render(this.canvas);
+      language.render();
     });
   }
 }
