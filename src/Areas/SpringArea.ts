@@ -7,7 +7,7 @@ export default class SpringArea extends Area {
     return null;
   }
 
-  public override processInput(mouseListener: MouseListener): void {
+  public override processInput(): void {
 
   }
 

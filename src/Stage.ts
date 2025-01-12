@@ -21,7 +21,7 @@ export default abstract class Stage {
 
   public abstract getNextStage(): Stage | null;
 
-  public abstract processInput(mouseListener: MouseListener): void;
+  public abstract processInput(): void;
 
   public abstract update(elapsed: number): void;
 

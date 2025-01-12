@@ -7,7 +7,7 @@ export default class GeographyChallenge extends Challenge {
     return null;
   }
 
-  public override processInput(mouseListener: MouseListener): void {
+  public override processInput(): void {
 
   }
 

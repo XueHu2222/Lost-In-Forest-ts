@@ -1,6 +1,5 @@
 import MainArea from '../Areas/MainArea.js';
 import CanvasRenderer from '../CanvasRenderer.js';
-import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
 import Challenge from './Challenge.js';
@@ -28,22 +27,19 @@ export default class HistoryChallenge extends Challenge {
         break;
     }
     const categoryNames: string[] = ['World War 2', 'The Dark Ages', 'Antiquity', 'Prehistory'];
-    this.initiateCategories(categoryData, categoryNames);
-    this.initiatePositions();
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/Challenges/historyBackground.png');
+    this.initiateCategoryElements(categoryData, categoryNames);
   }
 
+  /**
+   * Set the next stage when this challenge is finished
+   * @returns New stage when challenge is finished
+   */
   public override getNextStage(): Stage | null {
     if(this.isFinished){
       return new MainArea(this.player, this.isDutch);
     }
     return null;
-  }
-
-  public override processInput(mouseListener: MouseListener): void {
-    if (mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
-      this.checkElementsClicked(mouseListener);
-    }
   }
 
   public override update(elapsed: number): void {

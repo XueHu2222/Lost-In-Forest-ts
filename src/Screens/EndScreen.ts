@@ -6,7 +6,7 @@ export default class EndScreen extends Stage {
     return null;
   }
 
-  public override processInput(mouseListener: MouseListener): void {
+  public override processInput(): void {
 
   }
 

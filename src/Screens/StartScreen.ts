@@ -1,6 +1,7 @@
 import Button from '../Button.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import BeginCutScene from '../Cutscenes/BeginCutScene.js';
+import LostInTheForest from '../LostInTheForest.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
@@ -81,16 +82,16 @@ export default class StartScreen extends Stage {
    * To check if the mouse is used
    * @param mouseListener gives the mouse as an object
    */
-  public override processInput(mouseListener: MouseListener): void {
-    if (mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
+  public override processInput(): void {
+    if (LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
       //startbutton
-      if (this.startButton.isCollidingWithMouse(mouseListener)) {
+      if (this.startButton.isCollidingWithMouse()) {
         this.started = true;
       }
 
       //gender buttons that also give selected and set gender
       this.genderButtons.forEach((genderButton: Button, index: number) => {
-        if (genderButton.isCollidingWithMouse(mouseListener)) {
+        if (genderButton.isCollidingWithMouse()) {
           // Set the gender
           const genders: string[] = ['boy', 'girl', 'nonBinary'];
           if(genders[index]){
@@ -107,7 +108,7 @@ export default class StartScreen extends Stage {
 
       //flag buttons that also give selected and set language
       this.languageButtons.forEach((languageButton: Button, index: number) => {
-        if (languageButton.isCollidingWithMouse(mouseListener)) {
+        if (languageButton.isCollidingWithMouse()) {
           this.setIsDutch(index == 0 ? true : false);
 
           // Make the selected language button active

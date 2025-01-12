@@ -1,5 +1,6 @@
 import Button from '../Button.js';
 import CanvasRenderer from '../CanvasRenderer.js';
+import LostInTheForest from '../LostInTheForest.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
@@ -9,29 +10,33 @@ import ChallengeElement from './ChallengeElement.js';
 export default abstract class Challenge extends Stage {
   protected difficultyLevel: string;
 
-  protected backButton: Button;
+  private backButton: Button;
 
-  protected hintIndex: number;
+  private hintIndex: number;
 
-  protected hintButton: Button;
+  private hintButton: Button;
 
-  protected theoryButton: Button;
+  private theoryButton: Button;
 
-  protected theoryIsOpen: boolean;
+  private theoryIsOpen: boolean;
 
-  protected difficultyButtons: Button[];
+  private difficultyButtons: Button[];
 
-  protected categories: Category[];
+  private categories: Category[];
 
-  protected completedCategories: Category[];
+  private completedCategories: Category[];
 
-  protected selectedElements: ChallengeElement[];
+  private selectedElements: ChallengeElement[];
 
-  protected positions: { posX: number, posY: number, contains: ChallengeElement }[];
+  private positions: { posX: number, posY: number, contains: ChallengeElement }[];
 
-  protected finishButton: Button;
+  private finishButton: Button;
 
   protected isFinished: boolean;
+
+  private readonly AMOUNT_OF_CATEGORIES: number = 4;
+
+  private readonly AMOUNT_OF_ELEMENTS_PER_CATEGORY: number = 4;
 
   public constructor(difficultyLevel: string, player: Player, isDutch: boolean) {
     super(player, isDutch);
@@ -73,155 +78,193 @@ export default abstract class Challenge extends Stage {
    * Initiates the values of categories
    * @param categoryData An array of an array of the challengeElement names
    * @param categoryNames The names of each category
-   * @returns
    */
-  protected initiateCategories(categoryData: string[][], categoryNames: string[]): void {
-    if (categoryData.length != categoryNames.length) {
-      console.error('categoryData or categoryNames is not properly initialized');
-      return;
-    }
-
+  protected initiateCategoryElements(categoryData: string[][], categoryNames: string[]): void {
     categoryNames.forEach((categoryName: string, index: number) => {
       const challengeELements: ChallengeElement[] = [];
-      if (categoryData[index]) {
-        for (const challengeElementText of categoryData[index]) {
-          const newChallengeElement: ChallengeElement = new ChallengeElement(challengeElementText);
-          newChallengeElement.setTextSize(13);
-          challengeELements.push(newChallengeElement);
-        }
+      for (const challengeElementText of categoryData[index] as string[]) {
+        const newChallengeElement: ChallengeElement = new ChallengeElement(challengeElementText);
+        newChallengeElement.setTextSize(13);
+        challengeELements.push(newChallengeElement);
       }
       this.categories.push(new Category(categoryName, challengeELements));
     });
+    this.initiateElementPositions();
   }
 
-  protected initiatePositions(): void {
-    // Create a randomized array of challengeElements
-    const randomizedChallengeElements: ChallengeElement[] = [];
-    for (const category of this.categories) {
-      for (const challengeElement of category.getChallengeElements()) {
-        randomizedChallengeElements.push(challengeElement);
-      }
-    }
-    randomizedChallengeElements.sort(() => Math.random() - 0.5);
+  /**
+   * Give every challenge element a random position
+   */
+  protected initiateElementPositions(): void {
+    const challengeElements: ChallengeElement[] = this.getAllChallengeElements();
 
-    // Assign each challengeElement a position
+    /**
+     * Randomize to put the elements in a random order
+     * Math.random is used because it is either between 0 to 1.
+     * Now the result will end up being -0.5 or 0.5
+    */
+    challengeElements.sort(() => Math.random() - 0.5);
+
     let yPos: number = 200;
-    for (let i: number = 0; i < this.categories.length; i++) {
+    // Each row of the elements
+    for (let i: number = 0; i < this.AMOUNT_OF_CATEGORIES; i++) {
       let xPos: number = 300;
-      for (let j: number = 0; j < (this.categories[i]?.getChallengeElements().length ?? 0); j++) {
-        if (randomizedChallengeElements[0]) {
-          randomizedChallengeElements[0]?.setPosX(xPos);
-          randomizedChallengeElements[0]?.setPosY(yPos);
-          this.positions.push({
-            posX: xPos, posY: yPos,
-            contains: randomizedChallengeElements[0]
-          });
-          randomizedChallengeElements.shift();
-        }
+      // Each column of an element row
+      for (let j: number = 0; j < this.AMOUNT_OF_ELEMENTS_PER_CATEGORY; j++) {
+        // Give the first element of the array a position
+        challengeElements[0]?.setPosX(xPos);
+        challengeElements[0]?.setPosY(yPos);
+        this.positions.push({
+          posX: xPos, posY: yPos,
+          contains: challengeElements[0] as ChallengeElement
+        });
+        // Remove this element from the array
+        challengeElements.shift();
         xPos += 220;
       }
       yPos += 120;
     }
   }
 
-  protected checkElementsClicked(mouseListener: MouseListener): void {
-    for (const position of this.positions) {
-      if (position.contains.isCollidingWithMouse(mouseListener)) {
-        // Check if element is part of completed category
-        for (const category of this.completedCategories) {
-          for (const element of category.getChallengeElements()) {
-            if (element === position.contains) {
-              return;
-            }
-          }
-        }
-        // Deselect
-        if (position.contains.getIsSelected()) {
-          position.contains.setSelected(false);
-          // selectedElements = selectedElements, but with the deselected element removed
-          this.selectedElements = this.selectedElements.
-            filter((value: ChallengeElement) => value != position.contains);
-        } else {
-          position.contains.setSelected(true);
-          this.selectedElements.push(position.contains);
+  /**
+   * Selects or deselects the clicked element
+   * @returns When clicked on a completed element
+   */
+  private checkElementsClicked(): void {
+    for (const element of this.getAllChallengeElements()) {
+      if (element.isCollidingWithMouse()) {
+        // Cannot select an element form a completed category
+        if (this.checkIfElementCategoryIsCompleted(element)) {
+          return;
         }
 
-        if (this.selectedElements.length == 4) {
+        if (element.getIsSelected()) {
+          // Deselect
+          element.setSelected(false);
+          // selectedElements = selectedElements, but with the deselected element removed
+          this.selectedElements = this.selectedElements.
+            filter((challengeElement: ChallengeElement) => challengeElement != element);
+        } else {
+          // Select
+          element.setSelected(true);
+          this.selectedElements.push(element);
+        }
+
+        if (this.selectedElements.length === this.AMOUNT_OF_ELEMENTS_PER_CATEGORY) {
           this.checkIfSelectedIsCorrect();
         }
       }
     }
-    if (this.finishButton.isCollidingWithMouse(mouseListener)) {
-      this.isFinished = true;
-    }
   }
 
+  /**
+   * Check if all the selected elements belong to a category
+   */
   private checkIfSelectedIsCorrect(): void {
+    // Check if selected elements belong to a category
     for (const category of this.categories) {
-      // Create a list for the category elements text and selected elements text
-      const categoriesList: string[] = [];
-      category.getChallengeElements().
-        forEach((element: ChallengeElement) => {
-          categoriesList.push(element.getText());
-        });
-
-      const selectedList: string[] = [];
-      this.selectedElements.
-        forEach((element: ChallengeElement) => {
-          selectedList.push(element.getText());
-        });
-      // Sort those lists and join them into a string to compare if they are the same
-      if (categoriesList.sort().join() == selectedList.sort().join()) {
-        this.completedCategories.push(category);
-        this.completeCategory();
+      let catagoryIsCompleted: boolean = true;
+      // Check if each selected element is part of this category
+      for (const element of this.selectedElements) {
+        if (!category.getChallengeElements().includes(element)) {
+          catagoryIsCompleted = false;
+        }
+      }
+      if (catagoryIsCompleted) {
+        this.completeCategory(category);
       }
     }
+
+    // Complete the last category when you have done the third
     if (this.completedCategories.length === 3) {
       for (const category of this.categories) {
+        // Complete the category that has not been completed yet
         if (!this.completedCategories.includes(category)) {
-          this.completedCategories.push(category);
-          this.completeCategory();
+          this.completeCategory(category);
         }
       }
     }
     this.deselectAllElements();
   }
 
-  // TODO: Refactor without the for each, but with category as argument
-  private completeCategory(): void {
-    this.completedCategories.forEach((category: Category, index: number) => {
-      let currentElementIndex: number = 0;
-      for (let i: number = index * 4; i < (index + 1) * 4; i++) {
-        const position: { posX: number, posY: number, contains: ChallengeElement }
-          | undefined = this.positions[i];
-        if (position) {
-          const tempContains: ChallengeElement = position.contains;
-          // Remove from previous position
-          for (const pos of this.positions) {
-            if (pos.contains == category.getChallengeElements()[currentElementIndex]) {
-              pos.contains = tempContains;
-              pos.contains.setPosX(pos.posX);
-              pos.contains.setPosY(pos.posY);
-            }
-          }
+  /**
+   * Put the completed categoryElements in its own row
+   * @param category Completed category
+   */
+  private completeCategory(category: Category): void {
+    this.completedCategories.push(category);
 
-          // Give first row position a new element
-          position.contains =
-            category.getChallengeElements()[currentElementIndex] as ChallengeElement;
-          position.contains.setPosX(position.posX);
-          position.contains.setPosY(position.posY);
-          position.contains.setTextColor('yellow');
+    const rowNumber: number = this.completedCategories.length - 1;
+    const startingIndex: number = rowNumber * this.AMOUNT_OF_ELEMENTS_PER_CATEGORY;
+    const endIndex: number = startingIndex + this.AMOUNT_OF_ELEMENTS_PER_CATEGORY;
+
+    let currentElementIndex: number = 0;
+    for (let i: number = startingIndex; i < endIndex; i++) {
+      const position: { posX: number, posY: number, contains: ChallengeElement }
+        | undefined = this.positions[i];
+      if (position) {
+        const tempContains: ChallengeElement = position.contains;
+        // Remove from previous position
+        for (const pos of this.positions) {
+          if (pos.contains === category.getChallengeElements()[currentElementIndex]) {
+            pos.contains = tempContains;
+            pos.contains.setPosX(pos.posX);
+            pos.contains.setPosY(pos.posY);
+          }
         }
-        currentElementIndex += 1;
+
+        // Give first row position a new element
+        position.contains =
+          category.getChallengeElements()[currentElementIndex] as ChallengeElement;
+        position.contains.setPosX(position.posX);
+        position.contains.setPosY(position.posY);
+        position.contains.setTextColor('yellow');
       }
-    });
+      currentElementIndex += 1;
+    }
   }
 
+  /**
+   * Deselect all selected elements
+   */
   private deselectAllElements(): void {
     for (const element of this.selectedElements) {
       element.setSelected(false);
     }
     this.selectedElements = [];
+  }
+
+  /**
+   * Get all challengeElements from all the catagories
+   * @returns All challenge elements
+   */
+  private getAllChallengeElements(): ChallengeElement[] {
+    const challengeElements: ChallengeElement[] = [];
+
+    // Find all challengeElements via all the categories
+    for (const category of this.categories) {
+      for (const challengeElement of category.getChallengeElements()) {
+        challengeElements.push(challengeElement);
+      }
+    }
+    // Randomize the array
+    return challengeElements;
+  }
+
+  /**
+   * Check if element belongs to a completed category
+   * @param element Element to check
+   * @returns true if element is from a completed category
+   */
+  private checkIfElementCategoryIsCompleted(element: ChallengeElement): boolean {
+    for (const category of this.completedCategories) {
+      for (const completedElement of category.getChallengeElements()) {
+        if (completedElement === element) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   private renderTheory(canvas: HTMLCanvasElement): void {
@@ -232,40 +275,52 @@ export default abstract class Challenge extends Stage {
 
   }
 
+  /**
+   * Process all the button clicks
+   */
+  public processInput(): void {
+    if (LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
+      this.checkElementsClicked();
+      if (this.finishButton.isCollidingWithMouse()) {
+        this.isFinished = true;
+      }
+    }
+  }
+
+  /**
+   * Render all the buttons and text
+   */
   public render(): void {
     this.renderBackground();
     this.backButton.render();
     this.hintButton.render();
     this.theoryButton.render();
-    if (this.completedCategories.length >= 3) {
+
+    if (this.completedCategories.length === this.AMOUNT_OF_CATEGORIES) {
       this.finishButton.render();
     }
+
     for (const button of this.difficultyButtons) {
       button.render();
     }
-    for (const category of this.categories) {
-      for (const challengeElement of category.getChallengeElements()) {
-        challengeElement.render();
-      }
+
+    for (const element of this.getAllChallengeElements()) {
+      element.render();
     }
+
     // Render category names when completed
     for (const category of this.completedCategories) {
-      const challengeElements: ChallengeElement[] = category.getChallengeElements();
-      if (challengeElements && challengeElements.length > 0) {
-        const firstElement: ChallengeElement | undefined = challengeElements[0];
-        if (firstElement) {
-          CanvasRenderer.writeText(
-            this.canvas,
-            category.getName() + '!',
-            firstElement.getPosX() + 450,
-            firstElement.getPosY() - 15,
-            'center',
-            'arial',
-            20,
-            'yellow'
-          );
-        }
-      }
+      const firstElement: ChallengeElement = category.getChallengeElements()[0] as ChallengeElement;
+      CanvasRenderer.writeText(
+        this.canvas,
+        category.getName() + '!',
+        firstElement.getPosX() + 450,
+        firstElement.getPosY() - 15,
+        'center',
+        'arial',
+        20,
+        'yellow'
+      );
     }
   }
 }

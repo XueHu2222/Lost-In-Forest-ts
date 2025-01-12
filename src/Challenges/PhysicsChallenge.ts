@@ -7,7 +7,7 @@ export default class PhysicsChallenge extends Challenge {
     return null;
   }
 
-  public override processInput(mouseListener: MouseListener): void {
+  public override processInput(): void {
 
   }
 

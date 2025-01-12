@@ -7,7 +7,7 @@ export default class WinterArea extends Area {
     return null;
   }
 
-  public override processInput(mouseListener: MouseListener): void {
+  public override processInput(): void {
 
   }
 

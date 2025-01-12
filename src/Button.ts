@@ -31,7 +31,8 @@ export default class Button extends CanvasItem {
    * @param mouseListener gives position of the mouse
    * @returns if the mouse is on the button
    */
-  public isCollidingWithMouse(mouseListener: MouseListener): boolean {
+  public isCollidingWithMouse(): boolean {
+    const mouseListener: MouseListener = LostInTheForest.mouseListener;
     if (mouseListener.getMousePosition().y > this.posY
       && mouseListener.getMousePosition().y < this.posY + this.height
       && mouseListener.getMousePosition().x > this.posX
@@ -59,7 +60,7 @@ export default class Button extends CanvasItem {
         CanvasRenderer.writeText(LostInTheForest.canvas, this.text, this.posX, this.posY);
       }
     }
-    if (this.isCollidingWithMouse(LostInTheForest.mouseListener)) {
+    if (this.isCollidingWithMouse()) {
       LostInTheForest.canvas.style.cursor = 'pointer';
     }
   }
