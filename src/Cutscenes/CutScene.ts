@@ -29,7 +29,7 @@ export default abstract class CutScene extends Stage {
       if (!this.frames[0]) {
         clearInterval(intervalId); // Stop the interval when frames are empty
       }
-    }, 500);
+    }, 50);
   }
 
   /**

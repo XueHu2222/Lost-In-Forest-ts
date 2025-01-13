@@ -9,7 +9,7 @@ export default class Player extends CanvasItem {
 
   public constructor() {
     super();
-    this.map = new Map;
+    this.map = new Map(this);
     this.gender = 'boy';
     this.image = CanvasRenderer.loadNewImage(`./assets/Player/${this.gender}.png`);
   }
