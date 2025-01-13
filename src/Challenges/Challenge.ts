@@ -67,7 +67,8 @@ export default abstract class Challenge extends Stage {
     this.positions = [];
 
     const backgroundImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/selected.png');
-    this.finishButton = new Button(620, 650, backgroundImage, 220, 60);
+    this.finishButton = new Button(LostInTheForest.canvas.width * 0.435,
+      LostInTheForest.canvas.height * 0.75, backgroundImage, 220, 60);
     this.finishButton.setText('Finish');
     this.finishButton.setTextColor('yellow');
 
@@ -84,7 +85,7 @@ export default abstract class Challenge extends Stage {
       const challengeELements: ChallengeElement[] = [];
       for (const challengeElementText of categoryData[index] as string[]) {
         const newChallengeElement: ChallengeElement = new ChallengeElement(challengeElementText);
-        newChallengeElement.setTextSize(13);
+        newChallengeElement.setTextSize(16);
         challengeELements.push(newChallengeElement);
       }
       this.categories.push(new Category(categoryName, challengeELements));
@@ -105,10 +106,10 @@ export default abstract class Challenge extends Stage {
     */
     challengeElements.sort(() => Math.random() - 0.5);
 
-    let yPos: number = 200;
+    let yPos: number = LostInTheForest.canvas.height * 0.25;
     // Each row of the elements
     for (let i: number = 0; i < this.AMOUNT_OF_CATEGORIES; i++) {
-      let xPos: number = 300;
+      let xPos: number = LostInTheForest.canvas.width * 0.2;
       // Each column of an element row
       for (let j: number = 0; j < this.AMOUNT_OF_ELEMENTS_PER_CATEGORY; j++) {
         // Give the first element of the array a position
@@ -120,9 +121,9 @@ export default abstract class Challenge extends Stage {
         });
         // Remove this element from the array
         challengeElements.shift();
-        xPos += 220;
+        xPos += LostInTheForest.canvas.width * 0.15;
       }
-      yPos += 120;
+      yPos += LostInTheForest.canvas.height * 0.125;
     }
   }
 
@@ -296,8 +297,8 @@ export default abstract class Challenge extends Stage {
     this.hintButton.render();
     this.theoryButton.render();
 
+    this.finishButton.render();
     if (this.completedCategories.length === this.AMOUNT_OF_CATEGORIES) {
-      this.finishButton.render();
     }
 
     for (const button of this.difficultyButtons) {
