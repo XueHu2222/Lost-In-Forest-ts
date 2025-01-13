@@ -26,7 +26,7 @@ export default class LostInTheForest extends Game {
     LostInTheForest.mouseListener = new MouseListener(canvas);
     this.player = new Player;
     this.isDutch = true;
-    this.currentStage = new HistoryChallenge('medium', this.player, this.isDutch);
+    this.currentStage = new HistoryChallenge('easy', this.player, this.isDutch);
   }
 
   /**
