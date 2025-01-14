@@ -13,7 +13,7 @@ export default class LostInTheForest extends Game {
 
   private player: Player;
 
-  private currentStage: Stage;
+  public static currentStage: Stage;
 
   private isDutch: boolean;
 
@@ -24,7 +24,7 @@ export default class LostInTheForest extends Game {
     LostInTheForest.canvas.width = window.innerWidth;
     this.mouseListener = new MouseListener(canvas);
     this.player = new Player;
-    this.currentStage = new StartScreen(this.setIsDutch.bind(this), this.player);
+    LostInTheForest.currentStage = new StartScreen(this.setIsDutch.bind(this), this.player);
     this.isDutch = true;
   }
 
@@ -32,7 +32,7 @@ export default class LostInTheForest extends Game {
    * Process all input. Called from the GameLoop.
    */
   public processInput(): void {
-    this.currentStage.processInput(this.mouseListener);
+    LostInTheForest.currentStage.processInput(this.mouseListener);
   }
 
   /**
@@ -42,8 +42,9 @@ export default class LostInTheForest extends Game {
    * @returns true if the game should continue
    */
   public update(elapsed: number): boolean {
-    this.currentStage = this.currentStage.getNextStage() || this.currentStage;
-    this.currentStage.update(elapsed);
+    LostInTheForest.currentStage = LostInTheForest.currentStage.getNextStage()
+     || LostInTheForest.currentStage;
+    LostInTheForest.currentStage.update(elapsed);
     return true;
   }
 
@@ -52,7 +53,7 @@ export default class LostInTheForest extends Game {
    */
   public render(): void {
     CanvasRenderer.clearCanvas(LostInTheForest.canvas);
-    this.currentStage.render();
+    LostInTheForest.currentStage.render();
   }
 
   public setIsDutch(value: boolean): void{
