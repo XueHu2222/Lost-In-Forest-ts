@@ -1,4 +1,4 @@
-import MainArea from '../Areas/MainArea.js';
+import AutumnArea from '../Areas/AutumnArea.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
@@ -31,7 +31,7 @@ export default class HistoryChallenge extends Challenge {
         break;
     }
     const categoryNames: string[] = ['World War 2', 'The Dark Ages', 'Antiquity', 'Prehistory'];
-    this.backgroundImage = CanvasRenderer.loadNewImage('./assets/Challenges/History/historyBackground.png');
+    this.challengeScience = 'History';
     this.initiateCategoryElements(categoryData, categoryNames);
   }
 
@@ -40,8 +40,11 @@ export default class HistoryChallenge extends Challenge {
    * @returns New stage when challenge is finished
    */
   public override getNextStage(): Stage | null {
-    if(this.clickedFinished){
-      return new MainArea(this.player, this.isDutch);
+    if (this.clickedFinished || this.goBack) {
+      return new AutumnArea(this.player, this.isDutch);
+    }
+    if(this.nextDifficulty){
+      return new HistoryChallenge(this.nextDifficulty, this.player, this.isDutch);
     }
     return null;
   }

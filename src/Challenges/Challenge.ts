@@ -8,17 +8,21 @@ import Category from './Category.js';
 import ChallengeElement from './ChallengeElement.js';
 
 export default abstract class Challenge extends Stage {
+  private readonly AMOUNT_OF_CATEGORIES: number;
+
+  private readonly AMOUNT_OF_ELEMENTS_PER_CATEGORY: number;
+
   protected difficultyLevel: string;
 
   private backButton: Button;
-
-  private hintIndex: number;
 
   private hintButton: Button;
 
   private theoryButton: Button;
 
   private theoryIsOpen: boolean;
+
+  private hintIsOpen: boolean;
 
   private difficultyButtons: Button[];
 
@@ -36,72 +40,116 @@ export default abstract class Challenge extends Stage {
 
   protected clickedFinished: boolean;
 
-  protected stageType: typeof Challenge | null;
+  protected nextDifficulty: string | null;
 
-  protected nextStage: Challenge | null;
+  protected goBack: boolean;
 
-  private readonly AMOUNT_OF_CATEGORIES: number = 4;
+  private buttonImage: HTMLImageElement;
 
-  private readonly AMOUNT_OF_ELEMENTS_PER_CATEGORY: number = 4;
+  private buttonSelectImage: HTMLImageElement;
+
+  protected challengeScience: string;
+
+  protected primaryTextColor: string;
+
+  protected secondaryTextColor: string;
+
+  protected textColor: string;
+
+  protected activeTextColor: string | null;
 
   public constructor(difficultyLevel: string, player: Player, isDutch: boolean) {
     super(player, isDutch);
-    const backgroundImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/Challenges/History/button.png');
+    this.AMOUNT_OF_CATEGORIES = 4;
+    this.AMOUNT_OF_ELEMENTS_PER_CATEGORY = 4;
+
+    this.buttonImage = new Image;
+    this.buttonSelectImage = new Image;
+    this.challengeScience = '';
 
     this.difficultyLevel = difficultyLevel;
-    // TODO: Set correct values for the buttons
-    this.backButton = new Button(20, 50, null, 100, 100);
-    this.backButton.setText('Back');
-
-    this.hintIndex = 0;
-    this.hintButton = new Button(LostInTheForest.canvas.width * 0.2,
-      LostInTheForest.canvas.height * 0.15, backgroundImage, 220, 60);
-    this.hintButton.setText('Hint');
-    this.hintButton.setTextColor('yellow');
-
-    this.theoryButton = new Button(220, 50, null, 100, 100);
-    this.theoryButton.setText('Theory');
-    this.theoryIsOpen = false;
-
-    // Difficulty Buttons
-    const easyButton: Button = new Button(0,
-      LostInTheForest.canvas.height * 0.15, backgroundImage, 220, 60);
-    easyButton.setText('Easy');
-    const mediumButton: Button = new Button(0,
-      LostInTheForest.canvas.height * 0.25, backgroundImage, 220, 60);
-    mediumButton.setText('Medium');
-    const hardButton: Button = new Button(0,
-      LostInTheForest.canvas.height * 0.35, backgroundImage, 220, 60);
-    hardButton.setText('Hard');
-    this.difficultyButtons = [easyButton, mediumButton, hardButton];
-
-    switch (difficultyLevel) {
-      case 'easy':
-        easyButton.setTextColor('yellow');
-        break;
-      case 'medium':
-        mediumButton.setTextColor('yellow');
-        break;
-      case 'hard':
-        hardButton.setTextColor('yellow');
-        break;
-    }
-    this.nextStage = null;
 
     this.categories = [];
     this.completedCategories = [];
     this.selectedElements = [];
     this.positions = [];
 
-    this.finishButton = new Button(LostInTheForest.canvas.width * 0.435,
-      LostInTheForest.canvas.height * 0.75, backgroundImage, 220, 60);
-    this.finishButton.setText('Finish');
-    this.finishButton.setTextColor('yellow');
-
     this.clickedFinished = false;
     this.isCompleted = false;
 
-    this.stageType = null;
+    this.nextDifficulty = null;
+    this.hintIsOpen = false;
+    this.goBack = false;
+    this.theoryIsOpen = false;
+
+    this.primaryTextColor = 'blue';
+    this.secondaryTextColor = 'yellow';
+    this.textColor = 'white';
+    this.activeTextColor = null;
+
+    // Buttons
+    this.backButton = new Button(0, 0, null, null, 0, 0);
+    this.hintButton = new Button(0, 0, null, null, 0, 0);
+    this.theoryButton = new Button(0, 0, null, null, 0, 0);
+    this.difficultyButtons = [];
+    this.finishButton = new Button(0, 0, null, null, 0, 0);
+  }
+
+  private initiateButtons(): void {
+    this.backgroundImage = CanvasRenderer.loadNewImage(`./assets/Challenges/${this.challengeScience}/background.png`);
+    if (!this.activeTextColor) {
+      this.activeTextColor = this.textColor;
+    }
+
+    // Difficulty Buttons
+    this.buttonImage = CanvasRenderer.loadNewImage(`./assets/Challenges/${this.challengeScience}/button.png`);
+    this.buttonSelectImage = CanvasRenderer.loadNewImage(`./assets/Challenges/${this.challengeScience}/buttonSelect.png`);
+    const easyButton: Button = new Button(this.canvas.width * 0.02,
+      this.canvas.height * 0.25, this.buttonImage, this.buttonSelectImage, 220, 60);
+    easyButton.setText('Easy');
+    easyButton.setTextColor(this.textColor);
+    const mediumButton: Button = new Button(this.canvas.width * 0.02,
+      this.canvas.height * 0.35, this.buttonImage, this.buttonSelectImage, 220, 60);
+    mediumButton.setText('Medium');
+    mediumButton.setTextColor(this.textColor);
+    const hardButton: Button = new Button(this.canvas.width * 0.02,
+      this.canvas.height * 0.45, this.buttonImage, this.buttonSelectImage, 220, 60);
+    hardButton.setText('Hard');
+    hardButton.setTextColor(this.textColor);
+    this.difficultyButtons = [easyButton, mediumButton, hardButton];
+    switch (this.difficultyLevel) {
+      case 'easy':
+        easyButton.setTextColor(this.activeTextColor);
+        easyButton.setSelected(true);
+        break;
+      case 'medium':
+        mediumButton.setTextColor(this.activeTextColor);
+        mediumButton.setSelected(true);
+        break;
+      case 'hard':
+        hardButton.setTextColor(this.activeTextColor);
+        hardButton.setSelected(true);
+        break;
+    }
+
+    // Misc Buttons
+    this.backButton = new Button(this.canvas.width * 0.02,
+      this.canvas.height * 0.15, this.buttonImage, null, 220, 60);
+    this.backButton.setText('↩');
+    this.backButton.setTextColor(this.textColor);
+
+    this.hintButton = new Button(this.canvas.width * 0.2,
+      this.canvas.height * 0.15, this.buttonImage, null, 220, 60);
+    this.hintButton.setText('Hint');
+    this.hintButton.setTextColor(this.primaryTextColor);
+
+    this.theoryButton = new Button(220, 50, null, null, 100, 100);
+    this.theoryButton.setText('Theory');
+
+    this.finishButton = new Button(this.canvas.width * 0.435,
+      this.canvas.height * 0.80, this.buttonImage, null, 220, 60);
+    this.finishButton.setText('Finish ✓');
+    this.finishButton.setTextColor(this.textColor);
   }
 
   /**
@@ -110,11 +158,14 @@ export default abstract class Challenge extends Stage {
    * @param categoryNames The names of each category
    */
   protected initiateCategoryElements(categoryData: string[][], categoryNames: string[]): void {
+    this.initiateButtons();
     categoryNames.forEach((categoryName: string, index: number) => {
       const challengeELements: ChallengeElement[] = [];
       for (const challengeElementText of categoryData[index] as string[]) {
-        const newChallengeElement: ChallengeElement = new ChallengeElement(challengeElementText);
-        newChallengeElement.setTextSize(16);
+        const newChallengeElement: ChallengeElement =
+          new ChallengeElement(challengeElementText, this.buttonImage, this.buttonSelectImage);
+        newChallengeElement.setTextSize(18);
+        newChallengeElement.setTextColor(this.textColor);
         challengeELements.push(newChallengeElement);
       }
       this.categories.push(new Category(categoryName, challengeELements));
@@ -125,7 +176,7 @@ export default abstract class Challenge extends Stage {
   /**
    * Give every challenge element a random position
    */
-  protected initiateElementPositions(): void {
+  private initiateElementPositions(): void {
     const challengeElements: ChallengeElement[] = this.getAllChallengeElements();
 
     /**
@@ -135,10 +186,10 @@ export default abstract class Challenge extends Stage {
     */
     challengeElements.sort(() => Math.random() - 0.5);
 
-    let yPos: number = LostInTheForest.canvas.height * 0.25;
+    let yPos: number = this.canvas.height * 0.28;
     // Each row of the elements
     for (let i: number = 0; i < this.AMOUNT_OF_CATEGORIES; i++) {
-      let xPos: number = LostInTheForest.canvas.width * 0.2;
+      let xPos: number = this.canvas.width * 0.2;
       // Each column of an element row
       for (let j: number = 0; j < this.AMOUNT_OF_ELEMENTS_PER_CATEGORY; j++) {
         // Give the first element of the array a position
@@ -150,9 +201,9 @@ export default abstract class Challenge extends Stage {
         });
         // Remove this element from the array
         challengeElements.shift();
-        xPos += LostInTheForest.canvas.width * 0.15;
+        xPos += this.canvas.width * 0.15;
       }
-      yPos += LostInTheForest.canvas.height * 0.125;
+      yPos += this.canvas.height * 0.125;
     }
   }
 
@@ -171,12 +222,14 @@ export default abstract class Challenge extends Stage {
         if (element.getIsSelected()) {
           // Deselect
           element.setSelected(false);
+          element.setTextColor(this.textColor);
           // selectedElements = selectedElements, but with the deselected element removed
           this.selectedElements = this.selectedElements.
             filter((challengeElement: ChallengeElement) => challengeElement != element);
         } else {
           // Select
           element.setSelected(true);
+          element.setTextColor(this.activeTextColor || '');
           this.selectedElements.push(element);
         }
 
@@ -248,10 +301,9 @@ export default abstract class Challenge extends Stage {
           category.getChallengeElements()[currentElementIndex] as ChallengeElement;
         position.contains.setPosX(position.posX);
         position.contains.setPosY(position.posY);
-        position.contains.setTextColor('yellow');
+        position.contains.setTextColor('pink');
       }
       currentElementIndex += 1;
-      this.hintIndex = 0;
       if (this.completedCategories.length === this.AMOUNT_OF_CATEGORIES) {
         this.isCompleted = true;
       }
@@ -264,8 +316,21 @@ export default abstract class Challenge extends Stage {
   private deselectAllElements(): void {
     for (const element of this.selectedElements) {
       element.setSelected(false);
+      element.setTextColor(this.textColor);
     }
     this.selectedElements = [];
+    this.selectCompletedElements();
+  }
+
+  /**
+   * Sets the color of the completed elements
+   */
+  private selectCompletedElements(): void {
+    for (const category of this.completedCategories) {
+      for (const element of category.getChallengeElements()) {
+        element.setTextColor(this.secondaryTextColor);
+      }
+    }
   }
 
   /**
@@ -301,23 +366,6 @@ export default abstract class Challenge extends Stage {
     return false;
   }
 
-  /**
-   * Selects an element of an uncompleted category
-   */
-  private hint(): void {
-    if (this.hintIndex < 3) {
-      this.hintIndex += 1;
-    }
-    let hintCategory: Category | null = null;
-    const categories: Category[] = [...this.categories].reverse();
-    for (const category of categories) {
-      if (!this.completedCategories.includes(category)) {
-        hintCategory = category;
-      }
-    }
-    hintCategory?.getChallengeElements()[this.hintIndex]?.setIsHint(true);
-  }
-
   private renderTheory(canvas: HTMLCanvasElement): void {
 
   }
@@ -331,21 +379,16 @@ export default abstract class Challenge extends Stage {
       if (this.finishButton.isCollidingWithMouse() && this.isCompleted) {
         this.clickedFinished = true;
       }
-      if (this.hintButton.isCollidingWithMouse()) {
-        // The first time you click hint on a new Category, you have to see two hint elements
-        if (this.hintIndex == 0) {
-          this.hint();
-        }
-        this.hint();
-      }
       for (const button of this.difficultyButtons) {
         if (button.isCollidingWithMouse()) {
-          // switch(this.stageType){
-          //   case :
-          // }
-          // this.nextStage = new this.stageType
-          // (button.getText().toLowerCase(), this.player, this.isDutch);
+          this.nextDifficulty = button.getText().toLowerCase();
         }
+      }
+      if (this.hintButton.isCollidingWithMouse()) {
+        this.hintIsOpen = !this.hintIsOpen;
+      }
+      if (this.backButton.isCollidingWithMouse()) {
+        this.goBack = true;
       }
     }
   }
@@ -356,14 +399,24 @@ export default abstract class Challenge extends Stage {
   public render(): void {
     this.renderBackground();
     this.backButton.render();
-    this.hintButton.render();
-    if (this.hintIndex < 3) {
-      this.hintButton.setTextColor('yellow');
-    } else {
-      this.hintButton.setTextColor('red');
-    }
     this.theoryButton.render();
-
+    this.hintButton.render();
+    const hintCategoryText: string = this.categories.reduce((acc: string, cur: Category) => acc += cur.getName() + ' - ', ' - ');
+    if (this.hintIsOpen) {
+      this.hintButton.setTextColor('black');
+      CanvasRenderer.writeText(
+        this.canvas,
+        'Categories: ' + hintCategoryText,
+        this.canvas.width * 0.35,
+        this.canvas.height * 0.2,
+        'left',
+        'arial',
+        20,
+        'black'
+      );
+    } else {
+      this.hintButton.setTextColor(this.primaryTextColor);
+    }
     if (this.isCompleted) {
       this.finishButton.render();
     }
@@ -387,7 +440,7 @@ export default abstract class Challenge extends Stage {
         'center',
         'arial',
         20,
-        'yellow'
+        this.secondaryTextColor
       );
     }
   }

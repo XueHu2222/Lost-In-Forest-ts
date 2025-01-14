@@ -1,4 +1,4 @@
-import MainArea from '../Areas/MainArea.js';
+import SpringArea from '../Areas/SpringArea.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
@@ -39,7 +39,11 @@ export default class PhysicsChallenge extends Challenge {
         categoryNames = ['Flammable Substances', 'Non-Flammable Substances', 'Floating Substances', 'Sinking Substances'];
         break;
     }
-    this.backgroundImage = CanvasRenderer.loadNewImage('./assets/Challenges/historyBackground.png');
+    this.challengeScience = 'Physics';
+    this.textColor = 'white';
+    this.activeTextColor = 'green';
+    this.primaryTextColor = 'red';
+    this.secondaryTextColor = 'yellow';
     this.initiateCategoryElements(categoryData, categoryNames);
   }
 
@@ -48,8 +52,11 @@ export default class PhysicsChallenge extends Challenge {
    * @returns New stage when challenge is finished
    */
   public override getNextStage(): Stage | null {
-    if (this.clickedFinished) {
-      return new MainArea(this.player, this.isDutch);
+    if (this.clickedFinished || this.goBack) {
+      return new SpringArea(this.player, this.isDutch);
+    }
+    if (this.nextDifficulty) {
+      return new PhysicsChallenge(this.nextDifficulty, this.player, this.isDutch);
     }
     return null;
   }

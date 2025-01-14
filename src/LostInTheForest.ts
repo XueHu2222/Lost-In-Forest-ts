@@ -6,7 +6,10 @@ import StartScreen from './Screens/StartScreen.js';
 import Player from './Player.js';
 import CanvasRenderer from './CanvasRenderer.js';
 import HistoryChallenge from './Challenges/HistoryChallenge.js';
+import BiologyChallenge from './Challenges/BiologyChallenge.js';
 import GeographyChallenge from './Challenges/GeographyChallenge.js';
+import SpringArea from './Areas/SpringArea.js';
+import PhysicsChallenge from './Challenges/PhysicsChallenge.js';
 
 export default class LostInTheForest extends Game {
   public static canvas: HTMLCanvasElement;
@@ -15,7 +18,7 @@ export default class LostInTheForest extends Game {
 
   private player: Player;
 
-  private currentStage: Stage;
+  public static currentStage: Stage;
 
   private isDutch: boolean;
 
@@ -27,14 +30,14 @@ export default class LostInTheForest extends Game {
     LostInTheForest.mouseListener = new MouseListener(canvas);
     this.player = new Player;
     this.isDutch = true;
-    this.currentStage = new HistoryChallenge('easy', this.player, this.isDutch);
+    LostInTheForest.currentStage = new PhysicsChallenge('easy', this.player, this.isDutch);
   }
 
   /**
    * Process all input. Called from the GameLoop.
    */
   public processInput(): void {
-    this.currentStage.processInput();
+    LostInTheForest.currentStage.processInput();
   }
 
   /**
@@ -44,8 +47,9 @@ export default class LostInTheForest extends Game {
    * @returns true if the game should continue
    */
   public update(elapsed: number): boolean {
-    this.currentStage = this.currentStage.getNextStage() || this.currentStage;
-    this.currentStage.update(elapsed);
+    LostInTheForest.currentStage = LostInTheForest.currentStage.getNextStage()
+     || LostInTheForest.currentStage;
+    LostInTheForest.currentStage.update(elapsed);
     return true;
   }
 
@@ -55,8 +59,7 @@ export default class LostInTheForest extends Game {
   public render(): void {
     CanvasRenderer.clearCanvas(LostInTheForest.canvas);
     LostInTheForest.canvas.style.cursor = 'default';
-    this.currentStage.render();
-    this.currentStage.render();
+    LostInTheForest.currentStage.render();
   }
 
   public setIsDutch(value: boolean): void{

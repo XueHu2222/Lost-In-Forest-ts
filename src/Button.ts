@@ -10,9 +10,13 @@ export default class Button extends CanvasItem {
 
   private textSize: number;
 
+  protected isSelected: boolean;
+
+  protected selectedImage: HTMLImageElement | null;
+
   public constructor(posX: number, posY: number,
-    image: HTMLImageElement | null = null, width: number,
-    height: number) {
+    image: HTMLImageElement | null = null, selectImage:
+    HTMLImageElement | null = null, width: number, height: number) {
     super();
     this.text = '';
     this.textColor = 'red';
@@ -24,6 +28,8 @@ export default class Button extends CanvasItem {
     if (image != null) {
       this.image = image;
     }
+    this.isSelected = false;
+    this.selectedImage = selectImage;
   }
 
   /**
@@ -48,6 +54,14 @@ export default class Button extends CanvasItem {
    */
   public override render(): void {
     super.render(); // always renders the parent class (canvasItem)
+    if(this.isSelected && this.selectedImage){
+      CanvasRenderer.drawImage(LostInTheForest.canvas, this.selectedImage,
+        this.posX,
+        this.posY,
+        this.width,
+        this.height
+      );
+    }
     if (this.text != '' && this.text) {
       if (this.image != null) {
         // Calculate the center position
@@ -79,6 +93,14 @@ export default class Button extends CanvasItem {
 
   public setTextSize(size: number): void {
     this.textSize = size;
+  }
+
+  public setSelected(value: boolean): void{
+    this.isSelected = value;
+  }
+
+  public getIsSelected(): boolean{
+    return this.isSelected;
   }
 }
 

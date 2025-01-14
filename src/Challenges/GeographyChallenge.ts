@@ -1,4 +1,4 @@
-import MainArea from '../Areas/MainArea.js';
+import SummerArea from '../Areas/SummerArea.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
@@ -37,7 +37,11 @@ export default class GeographyChallenge extends Challenge {
         categoryNames = ['Island Nations', 'Landlocked Countries', 'Coastal Nations', 'Countries with Deserts'];
         break;
     }
-    this.backgroundImage = CanvasRenderer.loadNewImage('./assets/Challenges/historyBackground.png');
+    this.challengeScience = 'Geography';
+    this.textColor = 'black';
+    this.activeTextColor = 'green';
+    this.primaryTextColor = 'blue';
+    this.secondaryTextColor = 'red';
     this.initiateCategoryElements(categoryData, categoryNames);
   }
 
@@ -46,8 +50,11 @@ export default class GeographyChallenge extends Challenge {
    * @returns New stage when challenge is finished
    */
   public override getNextStage(): Stage | null {
-    if (this.clickedFinished) {
-      return new MainArea(this.player, this.isDutch);
+    if (this.clickedFinished || this.goBack) {
+      return new SummerArea(this.player, this.isDutch);
+    }
+    if (this.nextDifficulty) {
+      return new GeographyChallenge(this.nextDifficulty, this.player, this.isDutch);
     }
     return null;
   }

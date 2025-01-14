@@ -1,4 +1,4 @@
-import MainArea from '../Areas/MainArea.js';
+import WinterArea from '../Areas/WinterArea.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
@@ -39,17 +39,24 @@ export default class BiologyChallenge extends Challenge {
         categoryNames = ['Herbivores', 'Carnivores', 'Omnivores', 'Insectivores'];
         break;
     }
-    this.backgroundImage = CanvasRenderer.loadNewImage('./assets/Challenges/historyBackground.png');
+    this.challengeScience = 'Biology';
+    this.textColor = 'black';
+    this.activeTextColor = 'orange';
+    this.primaryTextColor = 'blue';
+    this.secondaryTextColor = 'purple';
     this.initiateCategoryElements(categoryData, categoryNames);
   }
 
   /**
-   * Set the next stage when this challenge is finished
-   * @returns New stage when challenge is finished
-   */
+ * Set the next stage when this challenge is finished
+ * @returns New stage when challenge is finished
+ */
   public override getNextStage(): Stage | null {
-    if (this.clickedFinished) {
-      return new MainArea(this.player, this.isDutch);
+    if (this.clickedFinished || this.goBack) {
+      return new WinterArea(this.player, this.isDutch);
+    }
+    if (this.nextDifficulty) {
+      return new BiologyChallenge(this.nextDifficulty, this.player, this.isDutch);
     }
     return null;
   }

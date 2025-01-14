@@ -1,6 +1,8 @@
 import Animal from '../Animals/Animal.js';
 import Bunny from '../Animals/Bunny.js';
 import Button from '../Button.js';
+import LostInTheForest from '../LostInTheForest.js';
+import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
 
@@ -11,12 +13,30 @@ export default abstract class Area extends Stage {
 
   protected playButton: Button;
 
-  public constructor(player: Player, isDutch: boolean){
+  public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
     // TODO: Set correct values
     this.animal = new Bunny(0, 0);
     this.animalText = '';
-    this.playButton = new Button(0, 0, null, 100, 100);
+    this.playButton = new Button(0, 0, null, null, 100, 100);
     this.playButton.setText('Play');
   }
+
+  public update(): void {
+    this.player.getMap().update();
+  }
+
+  public override getNextStage(): Stage | null {
+    if (this.player.getMap().getNextArea()) {
+      return this.player.getMap().getNextArea();
+    }
+    return null;
+  }
+
+  public override processInput(): void {
+    if (LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
+      this.player.getMap().processInput();
+    }
+  }
 }
+
