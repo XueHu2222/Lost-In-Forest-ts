@@ -1,8 +1,5 @@
-import Animal from '../Animals/Animal.js';
 import Monkey from '../Animals/Monkey.js';
-import Button from '../Button.js';
 import CanvasRenderer from '../CanvasRenderer.js';
-import LostInTheForest from '../LostInTheForest.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
@@ -10,34 +7,33 @@ import Area from './Area.js';
 import MainArea from './MainArea.js';
 
 export default class WinterArea extends Area {
-  private monkey: Animal;
-
-  private dialogueAnimalArea: Button;
-
   private monkeyDialogue: string[][][];
-
-  private challengeStarted: boolean = false;
 
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/winter.png');
-    this.player.setPosX(LostInTheForest.canvas.width * 0.15);
-    this.player.setPosY(LostInTheForest.canvas.height * 0.45);
-    this.player.setWidth(LostInTheForest.canvas.width * 0.35);
-    this.player.setHeight(LostInTheForest.canvas.height * 0.8);
+    this.player.setPosX(this.canvas.width * 0.15);
+    this.player.setPosY(this.canvas.height * 0.45);
+    this.player.setWidth(this.canvas.width * 0.35);
+    this.player.setHeight(this.canvas.height * 0.8);
 
-    this.monkey = new Monkey(
-      LostInTheForest.canvas.width * 0.55,
-      LostInTheForest.canvas.height * 0.67
+    this.animal = new Monkey(
+      this.canvas.width * 0.55,
+      this.canvas.height * 0.67
     );
 
-    const dialogueImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/dialogue.png');
-    this.dialogueAnimalArea = new Button(
-      this.canvas.width * 0.7,
-      this.canvas.height * 0.4,
-      dialogueImage,
-      this.canvas.width * 0.27,
-      this.canvas.height * 0.3);
+    this.animalDialoguePosition = {
+      x: this.canvas.width * 0.7,
+      y: this.canvas.height * 0.4,
+    };
+
+    this.animalDialogueSize = {
+      x: this.canvas.width * 0.29,
+      y: this.canvas.height * 0.3
+    };
+
+    this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue1.png');
+    this.initiateDialogButton();
 
     this.monkeyDialogue = [
       [['Hihi, hallo.'], ['(....klik om door te gaan)']],
@@ -46,8 +42,8 @@ export default class WinterArea extends Area {
     ];
 
     this.animalDialogue = this.monkeyDialogue;
-    this.dialogPosition = {
-      x: this.canvas.width * 0.74,
+    this.dialogueTextPosition = {
+      x: this.canvas.width * 0.75,
       y: this.canvas.height * 0.48
     };
   }
@@ -60,16 +56,7 @@ export default class WinterArea extends Area {
   }
 
   public override processInput(mouseListener: MouseListener): void {
-    if (mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
-      if (this.dialogueAnimalArea.isCollidingWithMouse(mouseListener)) {
-        if (this.animalDialogueIndex < this.monkeyDialogue.length - 1) {
-          this.animalDialogueIndex += 1;
-        } else {
-          this.challengeStarted = true;
-          console.log('game is start');
-        }
-      }
-    }
+    super.processInput(mouseListener);
   }
 
   public override update(elapsed: number): void {
@@ -77,11 +64,6 @@ export default class WinterArea extends Area {
   }
 
   public override render(): void {
-    this.renderBackground();
-    this.player.render();
-    this.monkey.render();
-
-    this.dialogueAnimalArea.render();
     super.render();
   }
 }
