@@ -12,7 +12,7 @@ export default class HistoryChallenge extends Challenge {
     // Pushes the correct data for each category based on the difficulty
     switch (difficultyLevel) {
       case 'easy':
-        categoryData.push(['Hitler', 'Anne Frank', 'Duitsland / Germany', 'Soldaten / Soldiers']); // World War 2
+        categoryData.push(['Tanks', 'Anne Frank', 'Duitsland / Germany', 'Soldaten / Soldiers']); // World War 2
         categoryData.push(['Kastelen / Castles', 'Ridders / Knights', 'Koning / Kings', 'Koningin / Queen']); // The Dark Ages
         categoryData.push(['Romeinen / The Romans', 'Grieken / The Greeks', 'Gladiatoren / Gladiators', 'Colosseum']); // Antiquity
         categoryData.push(['Mammoet / Mammoth', 'Vuur / Fire', 'Grotten / Caves', 'Steen / Stone']); // Prehistory

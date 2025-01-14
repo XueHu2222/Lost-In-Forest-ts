@@ -1,3 +1,4 @@
+import Area from '../Areas/Area.js';
 import Button from '../Button.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import LostInTheForest from '../LostInTheForest.js';
@@ -6,6 +7,7 @@ import Player from '../Player.js';
 import Stage from '../Stage.js';
 import Category from './Category.js';
 import ChallengeElement from './ChallengeElement.js';
+import GeographyChallenge from './GeographyChallenge.js';
 
 export default abstract class Challenge extends Stage {
   protected difficultyLevel: string;
@@ -36,6 +38,10 @@ export default abstract class Challenge extends Stage {
 
   protected clickedFinished: boolean;
 
+  protected stageType: typeof Challenge | null;
+
+  protected nextStage: Challenge | null;
+
   private readonly AMOUNT_OF_CATEGORIES: number = 4;
 
   private readonly AMOUNT_OF_ELEMENTS_PER_CATEGORY: number = 4;
@@ -59,13 +65,30 @@ export default abstract class Challenge extends Stage {
     this.theoryButton.setText('Theory');
     this.theoryIsOpen = false;
 
-    const easyButton: Button = new Button(20, 100, null, 100, 100);
+    // Difficulty Buttons
+    const easyButton: Button = new Button(0,
+      LostInTheForest.canvas.height * 0.15, backgroundImage, 220, 60);
     easyButton.setText('Easy');
-    const mediumButton: Button = new Button(120, 100, null, 100, 100);
+    const mediumButton: Button = new Button(0,
+      LostInTheForest.canvas.height * 0.25, backgroundImage, 220, 60);
     mediumButton.setText('Medium');
-    const hardButton: Button = new Button(220, 100, null, 100, 100);
+    const hardButton: Button = new Button(0,
+      LostInTheForest.canvas.height * 0.35, backgroundImage, 220, 60);
     hardButton.setText('Hard');
     this.difficultyButtons = [easyButton, mediumButton, hardButton];
+
+    switch (difficultyLevel) {
+      case 'easy':
+        easyButton.setTextColor('yellow');
+        break;
+      case 'medium':
+        mediumButton.setTextColor('yellow');
+        break;
+      case 'hard':
+        hardButton.setTextColor('yellow');
+        break;
+    }
+    this.nextStage = null;
 
     this.categories = [];
     this.completedCategories = [];
@@ -79,6 +102,8 @@ export default abstract class Challenge extends Stage {
 
     this.clickedFinished = false;
     this.isCompleted = false;
+
+    this.stageType = null;
   }
 
   /**
@@ -229,7 +254,7 @@ export default abstract class Challenge extends Stage {
       }
       currentElementIndex += 1;
       this.hintIndex = 0;
-      if(this.completedCategories.length === this.AMOUNT_OF_CATEGORIES){
+      if (this.completedCategories.length === this.AMOUNT_OF_CATEGORIES) {
         this.isCompleted = true;
       }
     }
@@ -310,10 +335,19 @@ export default abstract class Challenge extends Stage {
       }
       if (this.hintButton.isCollidingWithMouse()) {
         // The first time you click hint on a new Category, you have to see two hint elements
-        if(this.hintIndex == 0){
+        if (this.hintIndex == 0) {
           this.hint();
         }
         this.hint();
+      }
+      for (const button of this.difficultyButtons) {
+        if (button.isCollidingWithMouse()) {
+          // switch(this.stageType){
+          //   case :
+          // }
+          this.nextStage = new this.stageType
+          (button.getText().toLowerCase(), this.player, this.isDutch);
+        }
       }
     }
   }
@@ -327,7 +361,7 @@ export default abstract class Challenge extends Stage {
     this.hintButton.render();
     if (this.hintIndex < 3) {
       this.hintButton.setTextColor('yellow');
-    }else{
+    } else {
       this.hintButton.setTextColor('red');
     }
     this.theoryButton.render();
