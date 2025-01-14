@@ -1,5 +1,6 @@
 import Bunny from '../Animals/Bunny.js';
 import CanvasRenderer from '../CanvasRenderer.js';
+import LostInTheForest from '../LostInTheForest.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
@@ -53,6 +54,9 @@ export default class SpringArea extends Area {
 
   public override processInput(mouseListener: MouseListener): void {
     super.processInput(mouseListener);
+    if (mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
+      this.player.getMap().processInput(mouseListener);
+    }
   }
 
   public override update(elapsed: number): void {
@@ -61,5 +65,10 @@ export default class SpringArea extends Area {
 
   public override render(): void {
     super.render();
+    this.renderBackground();
+    this.player.setPosX(LostInTheForest.canvas.width * 0.5);
+    this.player.setPosY(LostInTheForest.canvas.height * 0.35);
+    this.player.render();
+    this.player.getMap().render();
   }
 }

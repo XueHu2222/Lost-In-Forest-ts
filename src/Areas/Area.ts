@@ -76,6 +76,7 @@ export default abstract class Area extends Stage {
     if (this.timeToDisplayDialogue <= 0) {
       this.timeToDisplayDialogue = 0;
     }
+    this.player.getMap().update();
   }
 
   public override render(): void {
@@ -100,4 +101,12 @@ export default abstract class Area extends Stage {
       });
     }
   }
+
+  public override getNextStage(): Stage | null {
+    if (this.player.getMap().getNextArea()) {
+      return this.player.getMap().getNextArea();
+    }
+    return null;
+  }
 }
+

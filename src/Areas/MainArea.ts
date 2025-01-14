@@ -3,9 +3,10 @@ import Button from '../Button.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
-import Stage from '../Stage.js';
 import Area from './Area.js';
 import AutumnArea from './AutumnArea.js';
+import LostInTheForest from '../LostInTheForest.js';
+import Stage from '../Stage.js';
 
 export default class MainArea extends Area {
   private dialoguePlayerArea: Button;
@@ -67,6 +68,9 @@ export default class MainArea extends Area {
 
   public override processInput(mouseListener: MouseListener): void {
     super.processInput(mouseListener);
+    if (mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
+      this.player.getMap().processInput(mouseListener);
+    }
   }
 
   public override update(elapsed: number): void {
@@ -78,5 +82,12 @@ export default class MainArea extends Area {
     this.dialoguePlayerArea.render();
     CanvasRenderer.writeText(this.canvas, 'Help waar ben ik?', this.canvas.width * 0.48, this.canvas.height * 0.36, 'left', 'Arial', 25, 'black');
     CanvasRenderer.writeText(this.canvas, 'Ik wil terug naar huis!', this.canvas.width * 0.48, this.canvas.height * 0.43, 'left', 'Arial', 25, 'black');
+    this.player.setWidth(LostInTheForest.canvas.width * 0.35);
+    this.player.setHeight(LostInTheForest.canvas.height * 0.8);
+    this.renderBackground();
+    this.player.setPosX(LostInTheForest.canvas.width * 0.5);
+    this.player.setPosY(LostInTheForest.canvas.height * 0.35);
+    this.player.render();
+    this.player.getMap().render();
   }
 }
