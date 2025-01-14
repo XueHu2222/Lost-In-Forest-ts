@@ -410,7 +410,7 @@ export default abstract class Challenge extends Stage {
         this.canvas.width * 0.35,
         this.canvas.height * 0.2,
         'left',
-        'arial',
+        'Comic Sans MS',
         20,
         'black'
       );
@@ -438,7 +438,7 @@ export default abstract class Challenge extends Stage {
         firstElement.getPosX() + 450,
         firstElement.getPosY() - 15,
         'center',
-        'arial',
+        'Comic Sans MS',
         20,
         this.secondaryTextColor
       );

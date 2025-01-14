@@ -69,7 +69,7 @@ export default class Button extends CanvasItem {
         const centerY: number = this.posY + (this.image.height / 2) - (105 / 2);
 
         // Write the text at the center position
-        CanvasRenderer.writeText(LostInTheForest.canvas, this.text, centerX, centerY, 'center', 'arial', this.textSize, this.textColor);
+        CanvasRenderer.writeText(LostInTheForest.canvas, this.text, centerX, centerY, 'center', 'Comic Sans MS', this.textSize, this.textColor);
       } else {
         CanvasRenderer.writeText(LostInTheForest.canvas, this.text, this.posX, this.posY);
       }
