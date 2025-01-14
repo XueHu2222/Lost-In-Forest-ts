@@ -43,6 +43,10 @@ export default class Map extends CanvasItem {
       this.posY + LostInTheForest.canvas.width * 0.1));
   }
 
+  /**
+   * If there gets gets clicked on the map icons
+   * @param mouseListener used to check if something is clicked
+   */
   public processInput(mouseListener: MouseListener): void {
     this.areaButtons.forEach((areaButton: AreaButton) => {
       if (areaButton.isCollidingWithMouse(mouseListener)) {
@@ -51,14 +55,19 @@ export default class Map extends CanvasItem {
     });
   }
 
+  /**
+   * updates maps icons
+   */
   public update(): void {
     this.areaButtons.forEach((areaButton: AreaButton) => {
       areaButton.update();
     });
   }
 
+  /**
+   * renders the map
+   */
   public override render(): void {
-    // TODO: Render the area buttons
     super.render();
     this.areaButtons.forEach((areaButton: AreaButton) => {
       areaButton.render();

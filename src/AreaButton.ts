@@ -16,6 +16,9 @@ export default class AreaButton extends Button {
     this.isFinished = false;
   }
 
+  /**
+   * Gives the right map icon depending on if its on the area and if the area is finished
+   */
   public update(): void {
     if (LostInTheForest.currentStage == this.area) {
       // Current stage is the same as this area
