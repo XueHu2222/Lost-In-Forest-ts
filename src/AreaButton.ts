@@ -17,24 +17,21 @@ export default class AreaButton extends Button {
   }
 
   public update(): void {
-    if (LostInTheForest.currentStage == this.area) {
-      // Current stage is the same as this area
-      if (this.area instanceof MainArea) {
+    // Area is a main area
+    if (this.area instanceof MainArea) {
+      this.image = CanvasRenderer.loadNewImage('./assets/Map/main.png');
+      // Current stage is Main
+      if (LostInTheForest.currentStage instanceof MainArea) {
         this.image = CanvasRenderer.loadNewImage('./assets/Map/atMain.png');
-      } else if (this.area) {
-        this.image = CanvasRenderer.loadNewImage('./assets/Map/atArea.png');
       }
+      // Current stage
+    } else if (LostInTheForest.currentStage === this.area) {
+      this.image = CanvasRenderer.loadNewImage('./assets/Map/atArea.png');
+      // Stage is finished or not
+    } else if (this.isFinished) {
+      this.image = CanvasRenderer.loadNewImage('./assets/Map/finishedArea.png');
     } else {
-      // Current stage is not the same as this area
-      if (this.area instanceof MainArea) {
-        this.image = CanvasRenderer.loadNewImage('./assets/Map/main.png');
-      } else if (this.area) {
-        if (this.isFinished) {
-          this.image = CanvasRenderer.loadNewImage('./assets/Map/finishedArea.png');
-        } else {
-          this.image = CanvasRenderer.loadNewImage('./assets/Map/unfinishedArea.png');
-        }
-      }
+      this.image = CanvasRenderer.loadNewImage('./assets/Map/unfinishedArea.png');
     }
   }
 
