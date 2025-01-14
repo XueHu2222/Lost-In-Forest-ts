@@ -31,7 +31,7 @@ export default class HistoryChallenge extends Challenge {
         break;
     }
     const categoryNames: string[] = ['World War 2', 'The Dark Ages', 'Antiquity', 'Prehistory'];
-    this.backgroundImage = CanvasRenderer.loadNewImage('./assets/Challenges/historyBackground.png');
+    this.backgroundImage = CanvasRenderer.loadNewImage('./assets/Challenges/History/historyBackground.png');
     this.initiateCategoryElements(categoryData, categoryNames);
   }
 

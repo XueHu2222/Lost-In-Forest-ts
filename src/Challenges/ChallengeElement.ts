@@ -9,13 +9,14 @@ export default class ChallengeElement extends Button {
   private selectedButton: Button;
 
   public constructor(text: string) {
-    const image: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/selected.png');
+    const image: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/Challenges/History/buttonActive.png');
     super(0, 0, image, 220, 60);
     this.setText(text);
     this.setTextColor('white');
     this.isSelected = false;
     this.isHint = false;
     this.selectedButton = new Button(0, 0, image, 255, 80);
+    this.image = CanvasRenderer.loadNewImage('./assets/Challenges/History/button.png');
   }
 
   public override render(): void {

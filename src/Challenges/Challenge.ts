@@ -1,4 +1,3 @@
-import Area from '../Areas/Area.js';
 import Button from '../Button.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import LostInTheForest from '../LostInTheForest.js';
@@ -7,7 +6,6 @@ import Player from '../Player.js';
 import Stage from '../Stage.js';
 import Category from './Category.js';
 import ChallengeElement from './ChallengeElement.js';
-import GeographyChallenge from './GeographyChallenge.js';
 
 export default abstract class Challenge extends Stage {
   protected difficultyLevel: string;
@@ -48,7 +46,7 @@ export default abstract class Challenge extends Stage {
 
   public constructor(difficultyLevel: string, player: Player, isDutch: boolean) {
     super(player, isDutch);
-    const backgroundImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/selected.png');
+    const backgroundImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/Challenges/History/button.png');
 
     this.difficultyLevel = difficultyLevel;
     // TODO: Set correct values for the buttons
@@ -345,8 +343,8 @@ export default abstract class Challenge extends Stage {
           // switch(this.stageType){
           //   case :
           // }
-          this.nextStage = new this.stageType
-          (button.getText().toLowerCase(), this.player, this.isDutch);
+          // this.nextStage = new this.stageType
+          // (button.getText().toLowerCase(), this.player, this.isDutch);
         }
       }
     }
