@@ -40,14 +40,17 @@ export default abstract class Challenge extends Stage {
 
   public constructor(difficultyLevel: string, player: Player, isDutch: boolean) {
     super(player, isDutch);
+    const backgroundImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/selected.png');
+
     this.difficultyLevel = difficultyLevel;
     // TODO: Set correct values for the buttons
     this.backButton = new Button(20, 50, null, 100, 100);
     this.backButton.setText('Back');
 
     this.hintIndex = 0;
-    this.hintButton = new Button(120, 50, null, 100, 100);
-    this.hintButton.setText('Hint');
+    this.hintButton = new Button(620, 650, backgroundImage, 220, 60);
+    this.hintButton.setText('Finish');
+    this.hintButton.setTextColor('yellow');
 
     this.theoryButton = new Button(220, 50, null, 100, 100);
     this.theoryButton.setText('Theory');
@@ -66,7 +69,6 @@ export default abstract class Challenge extends Stage {
     this.selectedElements = [];
     this.positions = [];
 
-    const backgroundImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/selected.png');
     this.finishButton = new Button(620, 650, backgroundImage, 220, 60);
     this.finishButton.setText('Finish');
     this.finishButton.setTextColor('yellow');
