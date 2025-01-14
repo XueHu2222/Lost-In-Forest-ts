@@ -27,9 +27,9 @@ export default class ChallengeElement extends Button {
       this.selectedButton.render();
     }else if(this.textColor != 'yellow'){
       this.textColor = 'white';
-    }
-    if (this.isHint) {
-      // Add border
+      if (this.isHint) {
+        this.textColor = 'blue';
+      }
     }
     super.render();
   }
@@ -40,5 +40,9 @@ export default class ChallengeElement extends Button {
 
   public getIsSelected(): boolean{
     return this.isSelected;
+  }
+
+  public setIsHint(value: boolean): void{
+    this.isHint = value;
   }
 }

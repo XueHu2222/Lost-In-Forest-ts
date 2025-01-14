@@ -18,12 +18,16 @@ export default class HistoryChallenge extends Challenge {
         categoryData.push(['Mammoet / Mammoth', 'Vuur / Fire', 'Grotten / Caves', 'Steen / Stone']); // Prehistory
         break;
       case 'medium':
-        categoryData.push(['1', '1', '1', '1']);
-        categoryData.push(['2', '2', '2', '2']);
-        categoryData.push(['3', '3', '3', '3']);
-        categoryData.push(['4', '4', '4', '4']);
+        categoryData.push(['D-Day', 'Holocaust', 'Atoombom / Atomic Bomb', '1939']); // World War 2
+        categoryData.push(['Kruistochten / Crusades', 'Monniken / Monks', 'Adel / Nobility', 'De Pest / The Plague']); // The Dark Ages
+        categoryData.push(['Olympische Spelen / Olympic Games', 'Mythologie / Mythology', 'Julius Caesar', 'Filosofie / Philosophy']); // Antiquity
+        categoryData.push(['Homo Sapiens', 'Jagers / Hunters', 'Boeren / Farmers', 'Verzamelaars / Gatherers']); // Prehistory
         break;
       case 'hard':
+        categoryData.push(['Blitzkrieg', 'Kristallnacht', 'Geallieerden / Allies', 'Pearl Harbor']); // World War 2
+        categoryData.push(['Karel de Grote / Charlemagne', 'Horigen / Serfs', 'Leenstelsel / Loan System', 'Vikingen / Vikings']); // The Dark Ages
+        categoryData.push(['Alexander de Grote / Alexander the Great', 'Democratie / Democracy', 'Akropolis / Acropolis', 'Cleopatra']); // Antiquity
+        categoryData.push(['Neanderthaler', 'Grotschilderingen / Cave Paintings', 'Nomaden / Nomads', 'Stenen Werktuigen / Stone Tools']); // Prehistory
         break;
     }
     const categoryNames: string[] = ['World War 2', 'The Dark Ages', 'Antiquity', 'Prehistory'];
@@ -36,7 +40,7 @@ export default class HistoryChallenge extends Challenge {
    * @returns New stage when challenge is finished
    */
   public override getNextStage(): Stage | null {
-    if(this.isFinished){
+    if(this.clickedFinished){
       return new MainArea(this.player, this.isDutch);
     }
     return null;

@@ -32,7 +32,9 @@ export default abstract class Challenge extends Stage {
 
   private finishButton: Button;
 
-  protected isFinished: boolean;
+  private isCompleted: boolean;
+
+  protected clickedFinished: boolean;
 
   private readonly AMOUNT_OF_CATEGORIES: number = 4;
 
@@ -48,8 +50,9 @@ export default abstract class Challenge extends Stage {
     this.backButton.setText('Back');
 
     this.hintIndex = 0;
-    this.hintButton = new Button(620, 650, backgroundImage, 220, 60);
-    this.hintButton.setText('Finish');
+    this.hintButton = new Button(LostInTheForest.canvas.width * 0.2,
+      LostInTheForest.canvas.height * 0.15, backgroundImage, 220, 60);
+    this.hintButton.setText('Hint');
     this.hintButton.setTextColor('yellow');
 
     this.theoryButton = new Button(220, 50, null, 100, 100);
@@ -69,11 +72,13 @@ export default abstract class Challenge extends Stage {
     this.selectedElements = [];
     this.positions = [];
 
-    this.finishButton = new Button(620, 650, backgroundImage, 220, 60);
+    this.finishButton = new Button(LostInTheForest.canvas.width * 0.435,
+      LostInTheForest.canvas.height * 0.75, backgroundImage, 220, 60);
     this.finishButton.setText('Finish');
     this.finishButton.setTextColor('yellow');
 
-    this.isFinished = false;
+    this.clickedFinished = false;
+    this.isCompleted = false;
   }
 
   /**
@@ -86,7 +91,7 @@ export default abstract class Challenge extends Stage {
       const challengeELements: ChallengeElement[] = [];
       for (const challengeElementText of categoryData[index] as string[]) {
         const newChallengeElement: ChallengeElement = new ChallengeElement(challengeElementText);
-        newChallengeElement.setTextSize(13);
+        newChallengeElement.setTextSize(16);
         challengeELements.push(newChallengeElement);
       }
       this.categories.push(new Category(categoryName, challengeELements));
@@ -107,10 +112,10 @@ export default abstract class Challenge extends Stage {
     */
     challengeElements.sort(() => Math.random() - 0.5);
 
-    let yPos: number = 200;
+    let yPos: number = LostInTheForest.canvas.height * 0.25;
     // Each row of the elements
     for (let i: number = 0; i < this.AMOUNT_OF_CATEGORIES; i++) {
-      let xPos: number = 300;
+      let xPos: number = LostInTheForest.canvas.width * 0.2;
       // Each column of an element row
       for (let j: number = 0; j < this.AMOUNT_OF_ELEMENTS_PER_CATEGORY; j++) {
         // Give the first element of the array a position
@@ -122,9 +127,9 @@ export default abstract class Challenge extends Stage {
         });
         // Remove this element from the array
         challengeElements.shift();
-        xPos += 220;
+        xPos += LostInTheForest.canvas.width * 0.15;
       }
-      yPos += 120;
+      yPos += LostInTheForest.canvas.height * 0.125;
     }
   }
 
@@ -223,6 +228,10 @@ export default abstract class Challenge extends Stage {
         position.contains.setTextColor('yellow');
       }
       currentElementIndex += 1;
+      this.hintIndex = 0;
+      if(this.completedCategories.length === this.AMOUNT_OF_CATEGORIES){
+        this.isCompleted = true;
+      }
     }
   }
 
@@ -269,11 +278,24 @@ export default abstract class Challenge extends Stage {
     return false;
   }
 
-  private renderTheory(canvas: HTMLCanvasElement): void {
-
+  /**
+   * Selects an element of an uncompleted category
+   */
+  private hint(): void {
+    if (this.hintIndex < 3) {
+      this.hintIndex += 1;
+    }
+    let hintCategory: Category | null = null;
+    const categories: Category[] = [...this.categories].reverse();
+    for (const category of categories) {
+      if (!this.completedCategories.includes(category)) {
+        hintCategory = category;
+      }
+    }
+    hintCategory?.getChallengeElements()[this.hintIndex]?.setIsHint(true);
   }
 
-  private renderHint(canvas: HTMLCanvasElement): void {
+  private renderTheory(canvas: HTMLCanvasElement): void {
 
   }
 
@@ -283,8 +305,15 @@ export default abstract class Challenge extends Stage {
   public processInput(): void {
     if (LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
       this.checkElementsClicked();
-      if (this.finishButton.isCollidingWithMouse()) {
-        this.isFinished = true;
+      if (this.finishButton.isCollidingWithMouse() && this.isCompleted) {
+        this.clickedFinished = true;
+      }
+      if (this.hintButton.isCollidingWithMouse()) {
+        // The first time you click hint on a new Category, you have to see two hint elements
+        if(this.hintIndex == 0){
+          this.hint();
+        }
+        this.hint();
       }
     }
   }
@@ -296,9 +325,14 @@ export default abstract class Challenge extends Stage {
     this.renderBackground();
     this.backButton.render();
     this.hintButton.render();
+    if (this.hintIndex < 3) {
+      this.hintButton.setTextColor('yellow');
+    }else{
+      this.hintButton.setTextColor('red');
+    }
     this.theoryButton.render();
 
-    if (this.completedCategories.length === this.AMOUNT_OF_CATEGORIES) {
+    if (this.isCompleted) {
       this.finishButton.render();
     }
 
