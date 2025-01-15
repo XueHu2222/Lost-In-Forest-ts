@@ -3,8 +3,6 @@ import CanvasRenderer from '../CanvasRenderer.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Area from './Area.js';
-import AutumnArea from './AutumnArea.js';
-import Stage from '../Stage.js';
 import Animal from '../Animals/Animal.js';
 
 export default class MainArea extends Area {
@@ -15,7 +13,6 @@ export default class MainArea extends Area {
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/main.png');
-    this.player.setPosX(this.canvas.width * 0.5);
     this.player.setPosY(this.canvas.height * 0.35);
     this.player.setWidth(this.canvas.width * 0.35);
     this.player.setHeight(this.canvas.height * 0.8);
@@ -59,21 +56,9 @@ export default class MainArea extends Area {
     );
   }
 
-  public override getNextStage(): Stage | null {
-    if (this.challengeStarted) {
-      return new AutumnArea(this.player, this.isDutch);
-    } return null;
-  }
-
-  public override processInput(mouseListener: MouseListener): void {
-    super.processInput(mouseListener);
-    if (mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
-      this.player.getMap().processInput(mouseListener);
-    }
-  }
-
   public override update(elapsed: number): void {
     super.update(elapsed);
+    this.player.setPosX(this.canvas.width * 0.5);
   }
 
   public override render(): void {

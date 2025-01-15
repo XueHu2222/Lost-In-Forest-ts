@@ -67,6 +67,7 @@ export default abstract class Area extends Stage {
           console.log('game is start');
         }
       }
+      this.player.getMap().processInput(mouseListener);
     }
   }
 

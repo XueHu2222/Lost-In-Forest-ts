@@ -2,18 +2,13 @@ import Animal from '../Animals/Animal.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
-import Stage from '../Stage.js';
 import Area from './Area.js';
-import SummerArea from './SummerArea.js';
+
 
 export default class SpringArea extends Area {
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/spring.png');
-    this.player.setPosX(this.canvas.width * 0.5);
-    this.player.setPosY(this.canvas.height * 0.45);
-    this.player.setWidth(this.canvas.width * 0.35);
-    this.player.setHeight(this.canvas.height * 0.8);
 
     this.animal = new Animal(
       this.canvas.width * 0.1,
@@ -45,21 +40,9 @@ export default class SpringArea extends Area {
     };
   }
 
-  public override getNextStage(): Stage | null {
-    if (this.challengeStarted) {
-      return new SummerArea(this.player, this.isDutch);
-    } return null;
-  }
-
-  public override processInput(mouseListener: MouseListener): void {
-    super.processInput(mouseListener);
-    if (mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
-      this.player.getMap().processInput(mouseListener);
-    }
-  }
-
   public override update(elapsed: number): void {
     super.update(elapsed);
+    this.player.setPosX(this.canvas.width * 0.5);
   }
 
   public override render(): void {
