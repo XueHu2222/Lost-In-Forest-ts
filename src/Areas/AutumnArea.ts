@@ -13,7 +13,7 @@ export default class AutumnArea extends Area {
     this.animal = new Animal(
       this.canvas.width * 0.65,
       this.canvas.height * 0.7,
-      'frog');
+      'frog', 5);
 
     this.animalDialoguePosition = {
       x: this.canvas.width * 0.74,
@@ -30,8 +30,8 @@ export default class AutumnArea extends Area {
 
     this.animalDialogue = [
       [['Hallo kind,'], ['(....klik om door te gaan)']],
-      [['je moet mijn geschiedenis'], ['uitdaging voltooien'], ['op medium als je een stuk'], ['van de sleutel wilt hebben.']],
-      [[' Veel succes!'], ['(....klik om te spelen)']]
+      [['je moet mijn geschiedenis'], ['uitdaging voltooien'], ['op medium als je een stuk'], ['van de sleutel wilt hebben.'], ['(....klik om door te gaan)']],
+      [[' Veel succes!'], ['(..klik op de knop om door te gaan)']]
     ];
 
     this.dialogueTextPosition = {

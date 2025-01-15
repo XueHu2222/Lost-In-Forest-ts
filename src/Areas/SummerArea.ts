@@ -14,7 +14,7 @@ export default class SummerArea extends Area {
     this.animal = new Animal(
       this.canvas.width * 0.5,
       this.canvas.height * 0.05,
-      'owl'
+      'owl', 6
     );
 
     this.animalDialoguePosition = {
@@ -33,7 +33,7 @@ export default class SummerArea extends Area {
     this.animalDialogue = [
       [['Hoot hoot, welkom.'], ['(....klik om door te gaan)']],
       [['Als je een stuk van de sleutel wilt'], ['moet je mijn aardrijkskunde'], ['uitdaging voltooien op medium.'], ['(....klik om door te gaan)']],
-      [['Veel plezier!'], ['(....klik om te spelen)']]
+      [['Veel plezier!'], ['(....klik op de knop om door te gaan)']]
     ];
 
     this.dialogueTextPosition = {

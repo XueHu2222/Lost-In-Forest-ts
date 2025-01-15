@@ -19,7 +19,7 @@ export default class MainArea extends Area {
     this.animal = new Animal(
       this.canvas.width * 0.025,
       this.canvas.height * 0.67,
-      'bunny');
+      'bunny', 4);
 
     this.animalDialoguePosition = {
       x: this.canvas.width * 0.14,
@@ -39,8 +39,8 @@ export default class MainArea extends Area {
 
     this.animalDialogue = [
       [['Geen zorgen, ik kan je helpen!'], ['Om hieruit te komen,'], ['moet je 4 stukken'], ['van de sleutel verzamelen.'], ['(....klik om door te gaan)']],
-      [['Ga naar de 4'], ['verschillende gebieden'], ['om een stuk van'], ['de sleutel te krijgen'], ['(....klik op de map om door te gaan)']],
-      [['Jij mag kiezen'], ['waar je wilt beginnen,'], ['veel succes!'], ['(....klik om te spelen)']]
+      [['Ga naar de 4'], ['verschillende gebieden'], ['om een stuk van'], ['de sleutel te krijgen'], ['(....klik om door te gaan)']],
+      [['Jij mag kiezen'], ['waar je wilt beginnen,'], ['veel succes!'], ['(....klik op de map om door te gaan)']]
     ];
     this.dialogueTextPosition = {
       x: this.canvas.width * 0.2,
