@@ -3,10 +3,10 @@ import Button from '../Button.js';
 import LostInTheForest from '../LostInTheForest.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import Challenge from '../Challenges/Challenge.js';
-import HistoryChallenge from '../Challenges/HistoryChallenge.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
+import BiologyChallenge from '../Challenges/BiologyChallenge.js';
 
 export default abstract class Area extends Stage {
   protected animal: Animal;
@@ -37,13 +37,14 @@ export default abstract class Area extends Stage {
 
   protected playButtonImage: HTMLImageElement = new Image;
 
-  protected gameStarts: boolean = false;
+  protected gameStarts: boolean;
 
-  protected nextChallenge: Challenge;
+  protected nextChallenge: Challenge | null;
 
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
 
+    this.gameStarts = false;
     this.animal = new Animal(0, 0, 'bunny');
     this.animalText = '';
     this.playButton = new Button(0, 0, null, null, 100, 100);
@@ -54,11 +55,11 @@ export default abstract class Area extends Stage {
 
     this.animalDialogueSize = { x: 0, y: 0 };
     this.animalDialoguePosition = { x: 0, y: 0 };
-    this.dialogueAnimalArea = new Button(0, 0, null, 0, 0);
+    this.dialogueAnimalArea = new Button(0, 0, null, null, 0, 0);
 
     this.playButtonPosition = { x: 0, y: 0 };
     this.playButtonImage = CanvasRenderer.loadNewImage('./assets/play-button.png');
-    this.nextChallenge = new HistoryChallenge('easy', player, isDutch);
+    this.nextChallenge = null;
   }
 
   protected initiateDialogButton(): void {
@@ -77,6 +78,7 @@ export default abstract class Area extends Stage {
       this.playButtonPosition.x,
       this.playButtonPosition.y,
       this.playButtonImage,
+      null,
       this.canvas.width * 0.1,
       this.canvas.height * 0.17
     );
@@ -95,11 +97,10 @@ export default abstract class Area extends Stage {
 
       if (this.challengeCouldStarted &&
         this.animalDialogueIndex === this.animalDialogue.length - 1 &&
-        this.playButton.isCollidingWithMouse(mouseListener)) {
-        console.log('Game start');
+        this.playButton.isCollidingWithMouse()) {
         this.gameStarts = true;
       }
-      this.player.getMap().processInput(mouseListener);
+      this.player.getMap().processInput();
     }
   }
 
@@ -109,6 +110,7 @@ export default abstract class Area extends Stage {
       this.timeToDisplayDialogue = 0;
     }
     this.player.getMap().update();
+    this.gameStarts = false;
   }
 
   public override render(): void {
