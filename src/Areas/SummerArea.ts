@@ -1,19 +1,53 @@
+import Animal from '../Animals/Animal.js';
 import CanvasRenderer from '../CanvasRenderer.js';
-import LostInTheForest from '../LostInTheForest.js';
 import Player from '../Player.js';
 import Area from './Area.js';
+
 
 export default class SummerArea extends Area {
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/summer.png');
+
+
+    this.animal = new Animal(
+      this.canvas.width * 0.5,
+      this.canvas.height * 0.05,
+      'owl'
+    );
+
+    this.animalDialoguePosition = {
+      x: this.canvas.width * 0.28,
+      y: this.canvas.height * 0.01,
+    };
+
+    this.animalDialogueSize = {
+      x: this.canvas.width * 0.29,
+      y: this.canvas.height * 0.3
+    };
+
+    this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue2.png');
+    this.initiateDialogButton();
+
+    this.animalDialogue = [
+      [['Hoot hoot, welkom.'], ['(....klik om door te gaan)']],
+      [['Als je een stuk van de sleutel wilt'], ['moet je mijn aardrijkskunde'], ['uitdaging voltooien op medium.'], ['(....klik om door te gaan)']],
+      [['Veel plezier!'], ['(....klik om te spelen)']]
+    ];
+
+    this.dialogueTextPosition = {
+      x: this.canvas.width * 0.32,
+      y: this.canvas.height * 0.1
+    };
+  }
+
+  public override update(elapsed: number): void {
+    super.update(elapsed);
+    this.player.setPosX(this.canvas.width * 0.5);
   }
 
   public override render(): void {
-    this.renderBackground();
-    this.player.setPosX(LostInTheForest.canvas.width * 0.5);
-    this.player.setPosY(LostInTheForest.canvas.height * 0.35);
-    this.player.render();
+    super.render();
     this.player.getMap().render();
   }
 }

@@ -5,6 +5,11 @@ import Stage from './Stage.js';
 import StartScreen from './Screens/StartScreen.js';
 import Player from './Player.js';
 import CanvasRenderer from './CanvasRenderer.js';
+import HistoryChallenge from './Challenges/HistoryChallenge.js';
+import BiologyChallenge from './Challenges/BiologyChallenge.js';
+import GeographyChallenge from './Challenges/GeographyChallenge.js';
+import SpringArea from './Areas/SpringArea.js';
+import PhysicsChallenge from './Challenges/PhysicsChallenge.js';
 
 export default class LostInTheForest extends Game {
   public static canvas: HTMLCanvasElement;
