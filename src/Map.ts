@@ -47,9 +47,9 @@ export default class Map extends CanvasItem {
    * If there gets gets clicked on the map icons
    * @param mouseListener used to check if something is clicked
    */
-  public processInput(mouseListener: MouseListener): void {
+  public processInput(): void {
     this.areaButtons.forEach((areaButton: AreaButton) => {
-      if (areaButton.isCollidingWithMouse(mouseListener)) {
+      if (areaButton.isCollidingWithMouse()) {
         this.nextArea = areaButton.getArea();
       }
     });

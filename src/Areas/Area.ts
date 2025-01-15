@@ -1,5 +1,6 @@
 import Animal from '../Animals/Animal.js';
 import Button from '../Button.js';
+import LostInTheForest from '../LostInTheForest.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import Challenge from '../Challenges/Challenge.js';
 import HistoryChallenge from '../Challenges/HistoryChallenge.js';
@@ -45,7 +46,7 @@ export default abstract class Area extends Stage {
 
     this.animal = new Animal(0, 0, 'bunny');
     this.animalText = '';
-    this.playButton = new Button(0, 0, null, 100, 100);
+    this.playButton = new Button(0, 0, null, null, 100, 100);
     this.playButton.setText('Play');
     this.animalDialogue = [];
     this.animalDialogueIndex = 0;
@@ -64,11 +65,12 @@ export default abstract class Area extends Stage {
     this.dialogueAnimalArea = new Button(
       this.animalDialoguePosition.x,
       this.animalDialoguePosition.y,
-      this.dialogueAnimalImage,
+      this.dialogueAnimalImage, null,
       this.animalDialogueSize.x,
       this.animalDialogueSize.y
     );
   }
+
 
   protected playButtonToChallenge(): void {
     this.playButton = new Button(
@@ -80,15 +82,17 @@ export default abstract class Area extends Stage {
     );
   }
 
-  public override processInput(mouseListener: MouseListener): void {
-    if (mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
-      if (this.dialogueAnimalArea.isCollidingWithMouse(mouseListener)) {
+
+  public override processInput(): void {
+    if (LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
+      if (this.dialogueAnimalArea.isCollidingWithMouse()) {
         if (this.animalDialogueIndex < this.animalDialogue.length - 1) {
           this.animalDialogueIndex += 1;
         } else {
           this.challengeCouldStarted = true;
         }
       }
+
       if (this.challengeCouldStarted &&
         this.animalDialogueIndex === this.animalDialogue.length - 1 &&
         this.playButton.isCollidingWithMouse(mouseListener)) {

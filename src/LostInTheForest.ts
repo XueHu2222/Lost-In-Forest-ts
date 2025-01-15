@@ -5,11 +5,16 @@ import Stage from './Stage.js';
 import StartScreen from './Screens/StartScreen.js';
 import Player from './Player.js';
 import CanvasRenderer from './CanvasRenderer.js';
+import HistoryChallenge from './Challenges/HistoryChallenge.js';
+import BiologyChallenge from './Challenges/BiologyChallenge.js';
+import GeographyChallenge from './Challenges/GeographyChallenge.js';
+import SpringArea from './Areas/SpringArea.js';
+import PhysicsChallenge from './Challenges/PhysicsChallenge.js';
 
 export default class LostInTheForest extends Game {
   public static canvas: HTMLCanvasElement;
 
-  private mouseListener: MouseListener;
+  public static mouseListener: MouseListener;
 
   private player: Player;
 
@@ -22,17 +27,17 @@ export default class LostInTheForest extends Game {
     LostInTheForest.canvas = canvas;
     LostInTheForest.canvas.height = window.innerHeight;
     LostInTheForest.canvas.width = window.innerWidth;
-    this.mouseListener = new MouseListener(canvas);
+    LostInTheForest.mouseListener = new MouseListener(canvas);
     this.player = new Player;
-    LostInTheForest.currentStage = new StartScreen(this.setIsDutch.bind(this), this.player);
     this.isDutch = true;
+    LostInTheForest.currentStage = new StartScreen(this.setIsDutch.bind(this), this.player);
   }
 
   /**
    * Process all input. Called from the GameLoop.
    */
   public processInput(): void {
-    LostInTheForest.currentStage.processInput(this.mouseListener);
+    LostInTheForest.currentStage.processInput();
   }
 
   /**
@@ -53,6 +58,7 @@ export default class LostInTheForest extends Game {
    */
   public render(): void {
     CanvasRenderer.clearCanvas(LostInTheForest.canvas);
+    LostInTheForest.canvas.style.cursor = 'default';
     LostInTheForest.currentStage.render();
   }
 
