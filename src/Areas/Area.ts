@@ -64,7 +64,6 @@ export default abstract class Area extends Stage {
           this.animalDialogueIndex += 1;
         } else {
           this.challengeStarted = true;
-          console.log('game is start');
         }
       }
       this.player.getMap().processInput(mouseListener);
