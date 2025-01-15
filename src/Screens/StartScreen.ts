@@ -1,4 +1,6 @@
 import MainArea from '../Areas/MainArea.js';
+import SpringArea from '../Areas/SpringArea.js';
+import WinterArea from '../Areas/WinterArea.js';
 import Button from '../Button.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import BeginCutScene from '../Cutscenes/BeginCutScene.js';
@@ -73,7 +75,7 @@ export default class StartScreen extends Stage {
    */
   public override getNextStage(): Stage | null {
     if (this.started) {
-      return new BeginCutScene(this.player, this.isDutch);
+      return new SpringArea(this.player, this.isDutch);
     }
     return null;
   }

@@ -30,7 +30,11 @@ export default abstract class Area extends Stage {
 
   protected dialogueAnimalImage: HTMLImageElement = new Image;
 
-  protected switchToIsland: boolean = false;
+  protected playButtonPosition: { x: number, y: number };
+
+  protected playButtonImage: HTMLImageElement = new Image;
+
+  protected isGameStart: boolean = false;
 
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
@@ -42,9 +46,13 @@ export default abstract class Area extends Stage {
     this.animalDialogue = [];
     this.animalDialogueIndex = 0;
     this.dialogueTextPosition = { x: 0, y: 0 };
+
     this.animalDialogueSize = { x: 0, y: 0 };
     this.animalDialoguePosition = { x: 0, y: 0 };
     this.dialogueAnimalArea = new Button(0, 0, null, 0, 0);
+
+    this.playButtonPosition = { x: 0, y: 0 };
+    this.playButtonImage = CanvasRenderer.loadNewImage('./assets/play-button.png');
   }
 
   protected initiateDialogButton(): void {
@@ -57,6 +65,16 @@ export default abstract class Area extends Stage {
     );
   }
 
+  protected playButtonToChallenge(): void {
+    this.playButton = new Button(
+      this.playButtonPosition.x,
+      this.playButtonPosition.y,
+      this.playButtonImage,
+      this.canvas.width * 0.1,
+      this.canvas.height * 0.17
+    );
+  }
+
   public override processInput(mouseListener: MouseListener): void {
     if (mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
       if (this.dialogueAnimalArea.isCollidingWithMouse(mouseListener)) {
@@ -64,9 +82,19 @@ export default abstract class Area extends Stage {
           this.animalDialogueIndex += 1;
         } else {
           this.challengeStarted = true;
+          // console.log('game could start');
         }
       }
       this.player.getMap().processInput(mouseListener);
+      if (mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
+        //check if mouse is on button
+        console.log('iscolliding');
+        if (this.playButton.isCollidingWithMouse(mouseListener)) {
+          this.isGameStart = true;
+          if (this.isGameStart) {
+          }
+        }//if true make it go to a different stage
+      }
     }
   }
 
@@ -83,6 +111,7 @@ export default abstract class Area extends Stage {
     this.animal.render();
     this.dialogueAnimalArea.render();
     this.player.render();
+    this.playButton.render();
 
     const currentDialogue: string[][] = this.animalDialogue[this.animalDialogueIndex] ?? [];
     if (this.timeToDisplayDialogue == 0) {

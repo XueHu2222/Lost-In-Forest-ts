@@ -3,6 +3,8 @@ import CanvasRenderer from '../CanvasRenderer.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Area from './Area.js';
+import MainArea from './MainArea.js';
+import Stage from '../Stage.js';
 
 
 export default class SpringArea extends Area {
@@ -25,8 +27,14 @@ export default class SpringArea extends Area {
       y: this.canvas.height * 0.35
     };
 
+    this.playButtonPosition = {
+      x: this.canvas.width * 0.4,
+      y: this.canvas.height * 0.65
+    };
+
     this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue1.png');
     this.initiateDialogButton();
+    this.playButtonToChallenge();
 
     this.animalDialogue = [
       [['He, daar ben je weer.'], ['(....klik om door te gaan)']],
@@ -38,6 +46,17 @@ export default class SpringArea extends Area {
       x: this.canvas.width * 0.34,
       y: this.canvas.height * 0.38
     };
+  }
+
+  public override processInput(mouseListener: MouseListener): void {
+    super.processInput(mouseListener);
+    // if (mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
+    //   //check if mouse is on button
+    //   if (this.playButton.isCollidingWithMouse(mouseListener)) {
+    //     this.isGameStart = true;
+    //     console.log('iscolliding');
+    //   }//if true make it go to a different stage
+    // }return null;
   }
 
   public override update(elapsed: number): void {

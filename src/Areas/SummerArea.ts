@@ -27,8 +27,14 @@ export default class SummerArea extends Area {
       y: this.canvas.height * 0.3
     };
 
+    this.playButtonPosition = {
+      x: this.canvas.width * 0.4,
+      y: this.canvas.height * 0.6
+    };
+
     this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue2.png');
     this.initiateDialogButton();
+    this.playButtonToChallenge();
 
     this.animalDialogue = [
       [['Hoot hoot, welkom.'], ['(....klik om door te gaan)']],
@@ -40,6 +46,14 @@ export default class SummerArea extends Area {
       x: this.canvas.width * 0.32,
       y: this.canvas.height * 0.1
     };
+  }
+
+  public override processInput(mouseListener: MouseListener): void {
+    super.processInput(mouseListener);
+    if (mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
+      //check if mouse is on button
+      //if true make it go to a different stage
+    }
   }
 
   public override update(elapsed: number): void {

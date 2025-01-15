@@ -28,8 +28,14 @@ export default class WinterArea extends Area {
       y: this.canvas.height * 0.3
     };
 
+    this.playButtonPosition = {
+      x: this.canvas.width * 0.46,
+      y: this.canvas.height * 0.789
+    };
+
     this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue1.png');
     this.initiateDialogButton();
+    this.playButtonToChallenge();
 
     this.monkeyDialogue = [
       [['Hihi, hallo.'], ['(....klik om door te gaan)']],
@@ -42,6 +48,14 @@ export default class WinterArea extends Area {
       x: this.canvas.width * 0.75,
       y: this.canvas.height * 0.48
     };
+  }
+
+  public override processInput(mouseListener: MouseListener): void {
+    super.processInput(mouseListener);
+    if (mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
+      //check if mouse is on button
+      //if true make it go to a different stage
+    }
   }
 
   public override update(elapsed: number): void {

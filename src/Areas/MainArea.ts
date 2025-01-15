@@ -31,10 +31,15 @@ export default class MainArea extends Area {
       y: this.canvas.height * 0.3
     };
 
+    this.playButtonPosition = {
+      x: this.canvas.width * 0.5,
+      y: this.canvas.height * 0.6};
+
     this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue1.png');
     this.dialoguePlayerImage = CanvasRenderer.loadNewImage('./assets/dialogue2.png');
 
     this.initiateDialogButton();
+    this.playButtonToChallenge();
 
 
     this.animalDialogue = [
