@@ -48,17 +48,6 @@ export default class SpringArea extends Area {
     };
   }
 
-  public override processInput(mouseListener: MouseListener): void {
-    super.processInput(mouseListener);
-    // if (mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
-    //   //check if mouse is on button
-    //   if (this.playButton.isCollidingWithMouse(mouseListener)) {
-    //     this.isGameStart = true;
-    //     console.log('iscolliding');
-    //   }//if true make it go to a different stage
-    // }return null;
-  }
-
   public override update(elapsed: number): void {
     super.update(elapsed);
     this.player.setPosX(this.canvas.width * 0.5);

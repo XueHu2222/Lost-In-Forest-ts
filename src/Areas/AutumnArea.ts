@@ -45,13 +45,6 @@ export default class AutumnArea extends Area {
     };
   }
 
-  public override processInput(mouseListener: MouseListener): void {
-    super.processInput(mouseListener);
-    if (mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
-      //check if mouse is on button
-      //if true make it go to a different stage
-    }
-  }
 
   public override update(elapsed: number): void {
     super.update(elapsed);

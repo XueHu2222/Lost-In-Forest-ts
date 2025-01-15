@@ -22,7 +22,7 @@ export default abstract class Area extends Stage {
 
   protected dialogueTextPosition: { x: number, y: number };
 
-  protected challengeStarted: boolean = false;
+  protected challengeCouldStarted: boolean = false;
 
   protected animalDialogueSize: { x: number, y: number };
 
@@ -34,7 +34,7 @@ export default abstract class Area extends Stage {
 
   protected playButtonImage: HTMLImageElement = new Image;
 
-  protected isGameStart: boolean = false;
+  protected gameStarts: boolean = false;
 
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
@@ -81,20 +81,16 @@ export default abstract class Area extends Stage {
         if (this.animalDialogueIndex < this.animalDialogue.length - 1) {
           this.animalDialogueIndex += 1;
         } else {
-          this.challengeStarted = true;
-          // console.log('game could start');
+          this.challengeCouldStarted = true;
         }
       }
-      this.player.getMap().processInput(mouseListener);
-      if (mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
-        //check if mouse is on button
-        console.log('iscolliding');
-        if (this.playButton.isCollidingWithMouse(mouseListener)) {
-          this.isGameStart = true;
-          if (this.isGameStart) {
-          }
-        }//if true make it go to a different stage
+      if (this.animalDialogueIndex ===
+        this.animalDialogue.length - 1 && this.playButton.isCollidingWithMouse(mouseListener)) {
+        console.log('game can start');
+        this.gameStarts = true;
+        console.log(this.gameStarts);
       }
+      this.player.getMap().processInput(mouseListener);
     }
   }
 
@@ -133,6 +129,13 @@ export default abstract class Area extends Stage {
   public override getNextStage(): Stage | null {
     if (this.player.getMap().getNextArea()) {
       return this.player.getMap().getNextArea();
+    }
+    console.log(this.gameStarts);
+    if (this.gameStarts) {
+      //TODO CHALLENGE
+      console.log('challenge started');
+      this.gameStarts = false;
+      return null;
     }
     return null;
   }
