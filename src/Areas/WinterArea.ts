@@ -1,4 +1,4 @@
-import Monkey from '../Animals/Monkey.js';
+import Animal from '../Animals/Animal.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
@@ -17,9 +17,10 @@ export default class WinterArea extends Area {
     this.player.setWidth(this.canvas.width * 0.35);
     this.player.setHeight(this.canvas.height * 0.8);
 
-    this.animal = new Monkey(
+    this.animal = new Animal(
       this.canvas.width * 0.55,
-      this.canvas.height * 0.67
+      this.canvas.height * 0.67,
+      'monkey'
     );
 
     this.animalDialoguePosition = {

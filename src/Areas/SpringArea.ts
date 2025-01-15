@@ -1,4 +1,4 @@
-import Bunny from '../Animals/Bunny.js';
+import Animal from '../Animals/Animal.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
@@ -15,10 +15,10 @@ export default class SpringArea extends Area {
     this.player.setWidth(this.canvas.width * 0.35);
     this.player.setHeight(this.canvas.height * 0.8);
 
-    this.animal = new Bunny(
+    this.animal = new Animal(
       this.canvas.width * 0.1,
-      this.canvas.height * 0.5
-    );
+      this.canvas.height * 0.5,
+      'bunny');
 
     this.animalDialoguePosition = {
       x: this.canvas.width * 0.28,

@@ -1,4 +1,4 @@
-import Owl from '../Animals/Owl.js';
+import Animal from '../Animals/Animal.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
@@ -15,9 +15,10 @@ export default class SummerArea extends Area {
     this.player.setWidth(this.canvas.width * 0.35);
     this.player.setHeight(this.canvas.height * 0.8);
 
-    this.animal = new Owl(
+    this.animal = new Animal(
       this.canvas.width * 0.5,
-      this.canvas.height * 0.05
+      this.canvas.height * 0.05,
+      'owl'
     );
 
     this.animalDialoguePosition = {

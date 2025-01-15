@@ -1,5 +1,4 @@
 import Animal from '../Animals/Animal.js';
-import Bunny from '../Animals/Bunny.js';
 import Button from '../Button.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import MouseListener from '../MouseListener.js';
@@ -36,7 +35,7 @@ export default abstract class Area extends Stage {
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
 
-    this.animal = new Bunny(0, 0);
+    this.animal = new Animal(0, 0, 'bunny');
     this.animalText = '';
     this.playButton = new Button(0, 0, null, 100, 100);
     this.playButton.setText('Play');

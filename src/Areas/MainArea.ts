@@ -1,4 +1,3 @@
-import Bunny from '../Animals/Bunny.js';
 import Button from '../Button.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import MouseListener from '../MouseListener.js';
@@ -6,6 +5,7 @@ import Player from '../Player.js';
 import Area from './Area.js';
 import AutumnArea from './AutumnArea.js';
 import Stage from '../Stage.js';
+import Animal from '../Animals/Animal.js';
 
 export default class MainArea extends Area {
   private dialoguePlayerArea: Button;
@@ -19,10 +19,10 @@ export default class MainArea extends Area {
     this.player.setPosY(this.canvas.height * 0.35);
     this.player.setWidth(this.canvas.width * 0.35);
     this.player.setHeight(this.canvas.height * 0.8);
-    this.animal = new Bunny(
+    this.animal = new Animal(
       this.canvas.width * 0.025,
-      this.canvas.height * 0.67
-    );
+      this.canvas.height * 0.67,
+      'bunny');
 
     this.animalDialoguePosition = {
       x: this.canvas.width * 0.14,

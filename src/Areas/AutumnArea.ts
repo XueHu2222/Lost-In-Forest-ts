@@ -1,4 +1,4 @@
-import Frog from '../Animals/Frog.js';
+import Animal from '../Animals/Animal.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
@@ -15,9 +15,10 @@ export default class AutumnArea extends Area {
     this.player.setWidth(this.canvas.width * 0.35);
     this.player.setHeight(this.canvas.height * 0.8);
 
-    this.animal = new Frog(
+    this.animal = new Animal(
       this.canvas.width * 0.65,
-      this.canvas.height * 0.7);
+      this.canvas.height * 0.7,
+      'frog');
 
     this.animalDialoguePosition = {
       x: this.canvas.width * 0.74,
