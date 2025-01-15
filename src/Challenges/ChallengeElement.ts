@@ -1,28 +1,9 @@
 import Button from '../Button.js';
 
 export default class ChallengeElement extends Button {
-  private isSelected: boolean;
-
-  private isHint: boolean;
-
-  public constructor(text: string) {
-    super(0, 0, null, 100, 100);
+  public constructor(text: string, image: HTMLImageElement, selectImage: HTMLImageElement) {
+    super(0, 0, image, selectImage, 220, 60);
     this.setText(text);
-    this.isSelected = false;
-    this.isHint = false;
-  }
-
-  public override render(): void {
-    super.render();
-    if (this.isSelected) {
-      // Add color
-    }
-    if (this.isHint) {
-      // Add border
-    }
-  }
-
-  public setSelected(value: boolean): void{
-    this.isSelected = value;
+    this.setTextColor('white');
   }
 }

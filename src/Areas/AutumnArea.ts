@@ -1,6 +1,5 @@
 import Animal from '../Animals/Animal.js';
 import CanvasRenderer from '../CanvasRenderer.js';
-import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Area from './Area.js';
 

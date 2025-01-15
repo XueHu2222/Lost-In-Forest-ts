@@ -1,6 +1,5 @@
 import Button from '../Button.js';
 import CanvasRenderer from '../CanvasRenderer.js';
-import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Area from './Area.js';
 import Animal from '../Animals/Animal.js';
@@ -50,7 +49,7 @@ export default class MainArea extends Area {
     this.dialoguePlayerArea = new Button(
       this.canvas.width * 0.45,
       this.canvas.height * 0.27,
-      this.dialoguePlayerImage,
+      this.dialoguePlayerImage, null,
       this.canvas.width * 0.23,
       this.canvas.height * 0.25
     );

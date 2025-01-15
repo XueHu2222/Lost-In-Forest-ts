@@ -17,7 +17,7 @@ export default class EndCutScene extends CutScene {
     return null;
   }
 
-  public override processInput(mouseListener: MouseListener): void {
+  public override processInput(): void {
 
   }
 
