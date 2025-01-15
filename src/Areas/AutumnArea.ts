@@ -1,14 +1,14 @@
 import Animal from '../Animals/Animal.js';
 import CanvasRenderer from '../CanvasRenderer.js';
-import MouseListener from '../MouseListener.js';
+import HistoryChallenge from '../Challenges/HistoryChallenge.js';
 import Player from '../Player.js';
 import Area from './Area.js';
-
 
 export default class AutumnArea extends Area {
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/autumn.png');
+    this.nextChallenge = new HistoryChallenge('medium', this.player, this.isDutch);
 
     this.animal = new Animal(
       this.canvas.width * 0.65,

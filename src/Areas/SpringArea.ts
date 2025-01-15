@@ -1,16 +1,14 @@
 import Animal from '../Animals/Animal.js';
 import CanvasRenderer from '../CanvasRenderer.js';
-import MouseListener from '../MouseListener.js';
+import PhysicsChallenge from '../Challenges/PhysicsChallenge.js';
 import Player from '../Player.js';
 import Area from './Area.js';
-import MainArea from './MainArea.js';
-import Stage from '../Stage.js';
-
 
 export default class SpringArea extends Area {
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/spring.png');
+    this.nextChallenge = new PhysicsChallenge('medium', this.player, this.isDutch);
 
     this.animal = new Animal(
       this.canvas.width * 0.1,

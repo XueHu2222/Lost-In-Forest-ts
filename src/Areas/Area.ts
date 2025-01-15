@@ -1,6 +1,8 @@
 import Animal from '../Animals/Animal.js';
 import Button from '../Button.js';
 import CanvasRenderer from '../CanvasRenderer.js';
+import Challenge from '../Challenges/Challenge.js';
+import HistoryChallenge from '../Challenges/HistoryChallenge.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
@@ -36,6 +38,8 @@ export default abstract class Area extends Stage {
 
   protected gameStarts: boolean = false;
 
+  protected nextChallenge: Challenge;
+
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
 
@@ -53,6 +57,7 @@ export default abstract class Area extends Stage {
 
     this.playButtonPosition = { x: 0, y: 0 };
     this.playButtonImage = CanvasRenderer.loadNewImage('./assets/play-button.png');
+    this.nextChallenge = new HistoryChallenge('easy', player, isDutch);
   }
 
   protected initiateDialogButton(): void {
@@ -84,11 +89,11 @@ export default abstract class Area extends Stage {
           this.challengeCouldStarted = true;
         }
       }
-      if (this.animalDialogueIndex ===
-        this.animalDialogue.length - 1 && this.playButton.isCollidingWithMouse(mouseListener)) {
-        console.log('game can start');
+      if (this.challengeCouldStarted &&
+        this.animalDialogueIndex === this.animalDialogue.length - 1 &&
+        this.playButton.isCollidingWithMouse(mouseListener)) {
+        console.log('Game start');
         this.gameStarts = true;
-        console.log(this.gameStarts);
       }
       this.player.getMap().processInput(mouseListener);
     }
@@ -127,15 +132,11 @@ export default abstract class Area extends Stage {
   }
 
   public override getNextStage(): Stage | null {
+    if (this.gameStarts) {
+      return this.nextChallenge;
+    }
     if (this.player.getMap().getNextArea()) {
       return this.player.getMap().getNextArea();
-    }
-    console.log(this.gameStarts);
-    if (this.gameStarts) {
-      //TODO CHALLENGE
-      console.log('challenge started');
-      this.gameStarts = false;
-      return null;
     }
     return null;
   }
