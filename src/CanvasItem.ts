@@ -54,4 +54,12 @@ export default abstract class CanvasItem {
   public getPosY(): number{
     return this.posY;
   }
+
+  public getWidth(): number {
+    return this.width;
+  }
+
+  public getHeight(): number {
+    return this.height;
+  }
 }

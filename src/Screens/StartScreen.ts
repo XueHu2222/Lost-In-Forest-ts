@@ -1,3 +1,4 @@
+import MainArea from '../Areas/MainArea.js';
 import Button from '../Button.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import BeginCutScene from '../Cutscenes/BeginCutScene.js';
