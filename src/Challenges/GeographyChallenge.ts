@@ -1,5 +1,4 @@
 import SummerArea from '../Areas/SummerArea.js';
-import CanvasRenderer from '../CanvasRenderer.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
 import Challenge from './Challenge.js';
@@ -57,9 +56,5 @@ export default class GeographyChallenge extends Challenge {
       return new GeographyChallenge(this.nextDifficulty, this.player, this.isDutch);
     }
     return null;
-  }
-
-  public override update(elapsed: number): void {
-
   }
 }

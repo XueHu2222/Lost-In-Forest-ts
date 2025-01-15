@@ -1,5 +1,4 @@
 import AutumnArea from '../Areas/AutumnArea.js';
-import CanvasRenderer from '../CanvasRenderer.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
 import Challenge from './Challenge.js';
@@ -47,9 +46,5 @@ export default class HistoryChallenge extends Challenge {
       return new HistoryChallenge(this.nextDifficulty, this.player, this.isDutch);
     }
     return null;
-  }
-
-  public override update(elapsed: number): void {
-
   }
 }

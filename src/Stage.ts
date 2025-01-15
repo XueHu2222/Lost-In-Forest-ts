@@ -1,6 +1,5 @@
 import CanvasRenderer from './CanvasRenderer.js';
 import LostInTheForest from './LostInTheForest.js';
-import MouseListener from './MouseListener.js';
 import Player from './Player.js';
 
 export default abstract class Stage {
@@ -23,7 +22,14 @@ export default abstract class Stage {
 
   public abstract processInput(): void;
 
-  public abstract update(elapsed: number): void;
+
+  /**
+   * Is used for changes during a stage
+   * @param elapsed Time between frames in miliseconds
+   */
+  public update(elapsed: number): void{
+
+  };
 
   public abstract render(): void;
 

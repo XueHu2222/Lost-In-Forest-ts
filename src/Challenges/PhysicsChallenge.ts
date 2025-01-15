@@ -1,5 +1,4 @@
 import SpringArea from '../Areas/SpringArea.js';
-import CanvasRenderer from '../CanvasRenderer.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
 import Challenge from './Challenge.js';
@@ -59,9 +58,5 @@ export default class PhysicsChallenge extends Challenge {
       return new PhysicsChallenge(this.nextDifficulty, this.player, this.isDutch);
     }
     return null;
-  }
-
-  public override update(elapsed: number): void {
-
   }
 }

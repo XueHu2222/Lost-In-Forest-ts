@@ -22,7 +22,10 @@ export default abstract class Area extends Stage {
     this.playButton.setText('Play');
   }
 
-  public update(): void {
+  /**
+   * Update the map
+   */
+  public override update(): void {
     this.player.getMap().update();
   }
 

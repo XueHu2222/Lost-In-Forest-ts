@@ -12,7 +12,13 @@ export default abstract class Challenge extends Stage {
 
   private readonly AMOUNT_OF_ELEMENTS_PER_CATEGORY: number;
 
-  protected difficultyLevel: string;
+  protected primaryTextColor: string;
+
+  protected secondaryTextColor: string;
+
+  protected textColor: string;
+
+  protected activeTextColor: string | null;
 
   private backButton: Button;
 
@@ -20,11 +26,13 @@ export default abstract class Challenge extends Stage {
 
   private theoryButton: Button;
 
-  private theoryIsOpen: boolean;
-
-  private hintIsOpen: boolean;
-
   private difficultyButtons: Button[];
+
+  private finishButton: Button;
+
+  private buttonImage: HTMLImageElement;
+
+  private buttonSelectImage: HTMLImageElement;
 
   private categories: Category[];
 
@@ -34,39 +42,26 @@ export default abstract class Challenge extends Stage {
 
   private positions: { posX: number, posY: number, contains: ChallengeElement }[];
 
-  private finishButton: Button;
+  protected nextDifficulty: string | null;
+
+  private difficultyLevel: string;
+
+  protected challengeScience: string;
+
+  protected goBack: boolean;
 
   private isCompleted: boolean;
 
   protected clickedFinished: boolean;
 
-  protected nextDifficulty: string | null;
+  private hintIsOpen: boolean;
 
-  protected goBack: boolean;
-
-  private buttonImage: HTMLImageElement;
-
-  private buttonSelectImage: HTMLImageElement;
-
-  protected challengeScience: string;
-
-  protected primaryTextColor: string;
-
-  protected secondaryTextColor: string;
-
-  protected textColor: string;
-
-  protected activeTextColor: string | null;
+  private theoryIsOpen: boolean;
 
   public constructor(difficultyLevel: string, player: Player, isDutch: boolean) {
     super(player, isDutch);
     this.AMOUNT_OF_CATEGORIES = 4;
     this.AMOUNT_OF_ELEMENTS_PER_CATEGORY = 4;
-
-    this.buttonImage = new Image;
-    this.buttonSelectImage = new Image;
-    this.challengeScience = '';
-
     this.difficultyLevel = difficultyLevel;
 
     this.categories = [];
@@ -76,7 +71,6 @@ export default abstract class Challenge extends Stage {
 
     this.clickedFinished = false;
     this.isCompleted = false;
-
     this.nextDifficulty = null;
     this.hintIsOpen = false;
     this.goBack = false;
@@ -87,6 +81,10 @@ export default abstract class Challenge extends Stage {
     this.textColor = 'white';
     this.activeTextColor = null;
 
+    this.buttonImage = new Image;
+    this.buttonSelectImage = new Image;
+    this.challengeScience = '';
+
     // Buttons
     this.backButton = new Button(0, 0, null, null, 0, 0);
     this.hintButton = new Button(0, 0, null, null, 0, 0);
@@ -95,28 +93,36 @@ export default abstract class Challenge extends Stage {
     this.finishButton = new Button(0, 0, null, null, 0, 0);
   }
 
+  /**
+   * This method initiates the buttons after the class properties have properly been set
+   */
   private initiateButtons(): void {
+    // Set the correct button properties
     this.backgroundImage = CanvasRenderer.loadNewImage(`./assets/Challenges/${this.challengeScience}/background.png`);
     if (!this.activeTextColor) {
       this.activeTextColor = this.textColor;
     }
-
-    // Difficulty Buttons
     this.buttonImage = CanvasRenderer.loadNewImage(`./assets/Challenges/${this.challengeScience}/button.png`);
     this.buttonSelectImage = CanvasRenderer.loadNewImage(`./assets/Challenges/${this.challengeScience}/buttonSelect.png`);
+
+    // Difficulty Buttons
     const easyButton: Button = new Button(this.canvas.width * 0.02,
       this.canvas.height * 0.25, this.buttonImage, this.buttonSelectImage, 220, 60);
     easyButton.setText('Easy');
     easyButton.setTextColor(this.textColor);
+
     const mediumButton: Button = new Button(this.canvas.width * 0.02,
       this.canvas.height * 0.35, this.buttonImage, this.buttonSelectImage, 220, 60);
     mediumButton.setText('Medium');
     mediumButton.setTextColor(this.textColor);
+
     const hardButton: Button = new Button(this.canvas.width * 0.02,
       this.canvas.height * 0.45, this.buttonImage, this.buttonSelectImage, 220, 60);
     hardButton.setText('Hard');
     hardButton.setTextColor(this.textColor);
     this.difficultyButtons = [easyButton, mediumButton, hardButton];
+
+    // Set the correct difficulty button active
     switch (this.difficultyLevel) {
       case 'easy':
         easyButton.setTextColor(this.activeTextColor);
@@ -132,7 +138,7 @@ export default abstract class Challenge extends Stage {
         break;
     }
 
-    // Misc Buttons
+    // Other Buttons
     this.backButton = new Button(this.canvas.width * 0.02,
       this.canvas.height * 0.15, this.buttonImage, null, 220, 60);
     this.backButton.setText('↩');
@@ -401,6 +407,7 @@ export default abstract class Challenge extends Stage {
     this.backButton.render();
     this.theoryButton.render();
     this.hintButton.render();
+
     const hintCategoryText: string = this.categories.reduce((acc: string, cur: Category) => acc += cur.getName() + ' - ', ' - ');
     if (this.hintIsOpen) {
       this.hintButton.setTextColor('black');
@@ -417,6 +424,7 @@ export default abstract class Challenge extends Stage {
     } else {
       this.hintButton.setTextColor(this.primaryTextColor);
     }
+
     if (this.isCompleted) {
       this.finishButton.render();
     }

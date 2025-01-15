@@ -1,5 +1,4 @@
 import WinterArea from '../Areas/WinterArea.js';
-import CanvasRenderer from '../CanvasRenderer.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
 import Challenge from './Challenge.js';
@@ -59,9 +58,5 @@ export default class BiologyChallenge extends Challenge {
       return new BiologyChallenge(this.nextDifficulty, this.player, this.isDutch);
     }
     return null;
-  }
-
-  public override update(elapsed: number): void {
-
   }
 }

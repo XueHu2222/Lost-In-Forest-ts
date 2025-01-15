@@ -6,8 +6,4 @@ export default class ChallengeElement extends Button {
     this.setText(text);
     this.setTextColor('white');
   }
-
-  public override render(): void {
-    super.render();
-  }
 }
