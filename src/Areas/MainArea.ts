@@ -34,7 +34,7 @@ export default class MainArea extends Area {
     this.dialoguePlayerImage = CanvasRenderer.loadNewImage('./assets/dialogue2.png');
 
     this.initiateDialogButton();
-
+    this.playButtonImage = new Image();
 
     this.animalDialogue = [
       [['Geen zorgen, ik kan je helpen!'], ['Om hieruit te komen,'], ['moet je 4 stukken'], ['van de sleutel verzamelen.'], ['(....klik om door te gaan)']],

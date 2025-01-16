@@ -35,7 +35,6 @@ export default class WinterArea extends Area {
 
     this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue1.png');
     this.initiateDialogButton();
-    this.playButtonToChallenge();
 
     this.monkeyDialogue = [
       [['Hihi, hallo.'], ['(....klik om door te gaan)']],
