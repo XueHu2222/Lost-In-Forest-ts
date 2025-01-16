@@ -13,7 +13,7 @@ export default class PhysicsChallenge extends Challenge {
     switch (difficultyLevel) {
       case 'easy':
         categoryData.push(['Steen / Stone', 'Hout / Wood', 'IJzer / Iron', 'Krijt / Chalk']); // Solids
-        categoryData.push(['Water / Water', 'Melk / Milk', 'Azijn / Vinegar', 'Olie / Oil']); // Liquids
+        categoryData.push(['Water / Water', 'Lichaamsvloeistoffen/Bodily Fluids', 'Azijn / Vinegar', 'Olie / Oil']); // Liquids
         categoryData.push(['Lucht / Air', 'Zuurstof / Oxygen', 'Helium / Helium', 'Waterdamp / Water Vapor']); // Gases
         categoryData.push(['Melk / Milk', 'Suiker / Sugar', 'Chocolade / Chocolate', 'Boter / Butter']); // Food Substances
 
@@ -30,9 +30,9 @@ export default class PhysicsChallenge extends Challenge {
         break;
 
       case 'hard':
-        categoryData.push(['Hout / Wood', 'Papier / Paper', 'Plastic / Plastic', 'Kaarsvet / Candle Wax']); // Flammable Substances
+        categoryData.push(['Hout / Wood', 'Papier / Paper', 'Plantenmateriaal/Plant Material', 'Kaarsvet / Candle Wax']); // Flammable Substances
         categoryData.push(['Water / Water', 'Zand / Sand', 'Glas / Glass', 'Metaal / Metal']); // Non-Flammable Substances
-        categoryData.push(['Hout / Wood', 'Plastic / Plastic', 'Kurken / Cork', 'Olie / Oil']); // Floating Substances
+        categoryData.push(['Schuim/Foam', 'Plastic / Plastic', 'Kurken / Cork', 'Olie / Oil']); // Floating Substances
         categoryData.push(['Steen / Stone', 'Klei / Clay', 'Munt / Coin', 'Sleutel / Key']); // Sinking Substances
 
         categoryNames = ['Flammable Substances', 'Non-Flammable Substances', 'Floating Substances', 'Sinking Substances'];
