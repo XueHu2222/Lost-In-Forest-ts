@@ -52,6 +52,8 @@ export default class PhysicsChallenge extends Challenge {
    */
   public override getNextStage(): Stage | null {
     if (this.clickedFinished || this.goBack) {
+      this.clickedFinished = false;
+      this.goBack = false;
       return new SpringArea(this.player, this.isDutch);
     }
     if (this.nextDifficulty) {

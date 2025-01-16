@@ -40,6 +40,8 @@ export default class HistoryChallenge extends Challenge {
    */
   public override getNextStage(): Stage | null {
     if (this.clickedFinished || this.goBack) {
+      this.clickedFinished = false;
+      this.goBack = false;
       return new AutumnArea(this.player, this.isDutch);
     }
     if(this.nextDifficulty){
