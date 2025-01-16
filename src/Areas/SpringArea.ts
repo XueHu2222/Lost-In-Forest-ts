@@ -33,7 +33,6 @@ export default class SpringArea extends Area {
 
     this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue1.png');
     this.initiateDialogButton();
-    this.playButtonToChallenge();
 
     this.animalDialogue = [
       [['He, daar ben je weer.'], ['(....klik om door te gaan)']],

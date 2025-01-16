@@ -110,6 +110,9 @@ export default abstract class Area extends Stage {
     if (this.timeToDisplayDialogue <= 0) {
       this.timeToDisplayDialogue = 0;
     }
+    if (this.animalDialogueIndex >= this.animalDialogue.length - 1) {
+      this.playButtonToChallenge();
+    }
     this.player.getMap().update();
     this.gameStarts = false;
   }
