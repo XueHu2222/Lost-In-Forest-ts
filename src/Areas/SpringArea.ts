@@ -14,7 +14,7 @@ export default class SpringArea extends Area {
     this.animal = new Animal(
       this.canvas.width * 0.1,
       this.canvas.height * 0.5,
-      'bunny');
+      'bunny', 4);
 
     this.animalDialoguePosition = {
       x: this.canvas.width * 0.28,
@@ -38,7 +38,7 @@ export default class SpringArea extends Area {
     this.animalDialogue = [
       [['He, daar ben je weer.'], ['(....klik om door te gaan)']],
       [['Als jij een stuk'], ['van de sleutel wilt hebben'], ['van mij dan moet je'], ['de scheikunde uitdaging voltooien'], ['op medium.'], ['(....klik om door te gaan)']],
-      [['Veel succes,'], [' je zult het nodig hebben.'], ['(....klik om te spelen)']]
+      [['Veel succes,'], [' je zult het nodig hebben.'], ['(....klik op de knop om door te gaan)']]
     ];
 
     this.dialogueTextPosition = {

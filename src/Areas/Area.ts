@@ -45,7 +45,7 @@ export default abstract class Area extends Stage {
     super(player, isDutch);
 
     this.gameStarts = false;
-    this.animal = new Animal(0, 0, 'bunny');
+    this.animal = new Animal(0, 0, 'bunny', 4);
     this.animalText = '';
     this.playButton = new Button(0, 0, null, null, 100, 100);
     this.playButton.setText('Play');
@@ -105,6 +105,7 @@ export default abstract class Area extends Stage {
   }
 
   public override update(elapsed: number): void {
+    this.animal.update(elapsed);
     this.timeToDisplayDialogue -= elapsed;
     if (this.timeToDisplayDialogue <= 0) {
       this.timeToDisplayDialogue = 0;

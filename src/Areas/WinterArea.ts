@@ -15,7 +15,7 @@ export default class WinterArea extends Area {
     this.animal = new Animal(
       this.canvas.width * 0.55,
       this.canvas.height * 0.67,
-      'monkey'
+      'monkey', 4
     );
 
     this.animalDialoguePosition = {
@@ -40,7 +40,7 @@ export default class WinterArea extends Area {
     this.monkeyDialogue = [
       [['Hihi, hallo.'], ['(....klik om door te gaan)']],
       [['Als je een stuk van de sleutel wilt'], ['hebben van mij dan moet je'], ['mijn biologie uitdaging'], ['voltooien op medium.'], ['(....klik om door te gaan)']],
-      [['Je kan het!'], ['(....klik om te spelen)']]
+      [['Je kan het!'], ['(....klik op de knop om door te gaan)']]
     ];
 
     this.animalDialogue = this.monkeyDialogue;
