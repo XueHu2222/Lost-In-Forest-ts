@@ -1,8 +1,8 @@
 import Animal from '../Animals/Animal.js';
 import CanvasRenderer from '../CanvasRenderer.js';
+import BiologyChallenge from '../Challenges/BiologyChallenge.js';
 import Player from '../Player.js';
 import Area from './Area.js';
-
 
 export default class WinterArea extends Area {
   private monkeyDialogue: string[][][];
@@ -10,6 +10,7 @@ export default class WinterArea extends Area {
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/winter.png');
+    this.nextChallenge = new BiologyChallenge('medium', this.player, this.isDutch);
 
     this.animal = new Animal(
       this.canvas.width * 0.55,
@@ -27,8 +28,14 @@ export default class WinterArea extends Area {
       y: this.canvas.height * 0.3
     };
 
+    this.playButtonPosition = {
+      x: this.canvas.width * 0.46,
+      y: this.canvas.height * 0.789
+    };
+
     this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue1.png');
     this.initiateDialogButton();
+    this.playButtonToChallenge();
 
     this.monkeyDialogue = [
       [['Hihi, hallo.'], ['(....klik om door te gaan)']],
@@ -42,6 +49,7 @@ export default class WinterArea extends Area {
       y: this.canvas.height * 0.48
     };
   }
+
 
   public override update(elapsed: number): void {
     super.update(elapsed);

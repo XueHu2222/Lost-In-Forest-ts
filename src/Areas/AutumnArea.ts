@@ -1,13 +1,14 @@
 import Animal from '../Animals/Animal.js';
 import CanvasRenderer from '../CanvasRenderer.js';
+import HistoryChallenge from '../Challenges/HistoryChallenge.js';
 import Player from '../Player.js';
 import Area from './Area.js';
-
 
 export default class AutumnArea extends Area {
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/autumn.png');
+    this.nextChallenge = new HistoryChallenge('medium', this.player, this.isDutch);
 
     this.animal = new Animal(
       this.canvas.width * 0.65,
@@ -24,8 +25,13 @@ export default class AutumnArea extends Area {
       y: this.canvas.height * 0.25
     };
 
+    this.playButtonPosition = {
+      x: this.canvas.width * 0.46,
+      y: this.canvas.height * 0.63};
+
     this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue1.png');
     this.initiateDialogButton();
+    this.playButtonToChallenge();
 
     this.animalDialogue = [
       [['Hallo kind,'], ['(....klik om door te gaan)']],
@@ -38,6 +44,7 @@ export default class AutumnArea extends Area {
       y: this.canvas.height * 0.57
     };
   }
+
 
   public override update(elapsed: number): void {
     super.update(elapsed);

@@ -1,14 +1,15 @@
 import Animal from '../Animals/Animal.js';
 import CanvasRenderer from '../CanvasRenderer.js';
+import PhysicsChallenge from '../Challenges/PhysicsChallenge.js';
 import LostInTheForest from '../LostInTheForest.js';
 import Player from '../Player.js';
 import Area from './Area.js';
-
 
 export default class SpringArea extends Area {
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/spring.png');
+    this.nextChallenge = new PhysicsChallenge('medium', this.player, this.isDutch);
 
     this.animal = new Animal(
       this.canvas.width * 0.1,
@@ -25,8 +26,14 @@ export default class SpringArea extends Area {
       y: this.canvas.height * 0.35
     };
 
+    this.playButtonPosition = {
+      x: this.canvas.width * 0.4,
+      y: this.canvas.height * 0.65
+    };
+
     this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue1.png');
     this.initiateDialogButton();
+    this.playButtonToChallenge();
 
     this.animalDialogue = [
       [['He, daar ben je weer.'], ['(....klik om door te gaan)']],

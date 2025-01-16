@@ -1,14 +1,14 @@
 import Animal from '../Animals/Animal.js';
 import CanvasRenderer from '../CanvasRenderer.js';
+import GeographyChallenge from '../Challenges/GeographyChallenge.js';
 import Player from '../Player.js';
 import Area from './Area.js';
-
 
 export default class SummerArea extends Area {
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/summer.png');
-
+    this.nextChallenge = new GeographyChallenge('medium', this.player, this.isDutch);
 
     this.animal = new Animal(
       this.canvas.width * 0.5,
@@ -26,8 +26,14 @@ export default class SummerArea extends Area {
       y: this.canvas.height * 0.3
     };
 
+    this.playButtonPosition = {
+      x: this.canvas.width * 0.4,
+      y: this.canvas.height * 0.6
+    };
+
     this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue2.png');
     this.initiateDialogButton();
+    this.playButtonToChallenge();
 
     this.animalDialogue = [
       [['Hoot hoot, welkom.'], ['(....klik om door te gaan)']],
@@ -40,6 +46,7 @@ export default class SummerArea extends Area {
       y: this.canvas.height * 0.1
     };
   }
+
 
   public override update(elapsed: number): void {
     super.update(elapsed);
