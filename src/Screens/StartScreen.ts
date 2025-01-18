@@ -75,7 +75,7 @@ export default class StartScreen extends Stage {
    */
   public override getNextStage(): Stage | null {
     if (this.started) {
-      return new EndScreen(this.player, this.isDutch);
+      return new EndScreen(this.player, this.isDutch, this.setIsDutch);
     }
     return null;
   }
