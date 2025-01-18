@@ -37,7 +37,11 @@ export default class EndScreen extends Stage {
     this.frog = new Animal(this.canvas.width * 0.5, this.canvas.height * 0.68, 'frog', 4);
     this.owl = new Animal(this.canvas.width * 0.03, this.canvas.height * 0.65, 'owl', 4);
     this.monkey = new Animal(this.canvas.width * 0.75, this.canvas.height * 0.63, 'monkey', 4);
-    this.endMessage = ['CONGRATULATIONS!', 'YOU ESCAPED THE FOREST!'];
+    if (this.isDutch) {
+      this.endMessage = ['CONGRATULATIONS!', 'YOU ESCAPED THE FOREST!'];
+    } else {
+      this.endMessage = ['GEFELICITEERD!', 'JE BENT UIT HET BOS ONTSNAPT!'];
+    }
     const homeButtonImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/home-button.png');
     const restartButtonImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/restart-button.png');
 
