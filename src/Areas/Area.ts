@@ -40,13 +40,10 @@ export default abstract class Area extends Stage {
 
   protected nextChallenge: Challenge | null;
 
-  protected isFinished: boolean;
-
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
 
     this.gameStarts = false;
-    this.isFinished = false;
     this.animal = new Animal(0, 0, 'bunny', 4);
     this.animalText = '';
     this.playButton = new Button(0, 0, null, null, 100, 100);
@@ -118,9 +115,6 @@ export default abstract class Area extends Stage {
     }
     this.player.getMap().update();
     this.gameStarts = false;
-    if (this.nextChallenge instanceof Challenge && this.nextChallenge.getGameFinished()) {
-      this.setIsFinished(true);
-    }
   }
 
   public override render(): void {
@@ -155,14 +149,6 @@ export default abstract class Area extends Stage {
       return this.player.getMap().getNextArea();
     }
     return null;
-  }
-
-  public getIsFinished():boolean{
-    return this.isFinished;
-  }
-
-  public setIsFinished(value: boolean): void{
-    this.isFinished = value;
   }
 }
 

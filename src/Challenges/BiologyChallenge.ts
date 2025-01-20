@@ -1,4 +1,5 @@
 import WinterArea from '../Areas/WinterArea.js';
+import LostInTheForest from '../LostInTheForest.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
 import Challenge from './Challenge.js';
@@ -52,6 +53,9 @@ export default class BiologyChallenge extends Challenge {
  */
   public override getNextStage(): Stage | null {
     if (this.clickedFinished || this.goBack) {
+      if (this.clickedFinished) {
+        LostInTheForest.keyHistory = true;
+      }
       this.clickedFinished = false;
       this.goBack = false;
       return new WinterArea(this.player, this.isDutch);
