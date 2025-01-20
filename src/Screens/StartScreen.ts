@@ -6,7 +6,6 @@ import LostInTheForest from '../LostInTheForest.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
-import EndScreen from './EndScreen.js';
 
 export default class StartScreen extends Stage {
   private setIsDutch: (value: boolean) => void;
@@ -30,10 +29,7 @@ export default class StartScreen extends Stage {
     super(player, true);
 
     //to give everything a standard value
-    this.setIsDutch = (value: boolean): void => {
-      this.isDutch = value;
-      setIsDutch(value);
-    };
+    this.setIsDutch = setIsDutch;
     this.selectedImage = CanvasRenderer.loadNewImage('./assets/selected.png');
 
     this.selectedGender = new Button(this.canvas.width * 0.3375, this.canvas.height
@@ -67,9 +63,7 @@ export default class StartScreen extends Stage {
 
     //start button
     const startImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/start-buttonstart.png');
-    this.startButton = new Button(
-      this.canvas.width * 0.35, this.canvas.height * 0.8,
-      startImageButton, null,
+    this.startButton = new Button(this.canvas.width * 0.35, this.canvas.height * 0.8, startImageButton, null,
       this.canvas.width * 0.3, this.canvas.height * 0.2);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/start.png');
   }
@@ -80,7 +74,7 @@ export default class StartScreen extends Stage {
    */
   public override getNextStage(): Stage | null {
     if (this.started) {
-      return new EndScreen(this.player, this.isDutch, this.setIsDutch);
+      return new MainArea(this.player, this.isDutch);
     }
     return null;
   }
@@ -101,7 +95,7 @@ export default class StartScreen extends Stage {
         if (genderButton.isCollidingWithMouse()) {
           // Set the gender
           const genders: string[] = ['boy', 'girl', 'nonBinary'];
-          if (genders[index]) {
+          if(genders[index]){
             this.player.setGender(genders[index]);
           }
 
@@ -116,9 +110,7 @@ export default class StartScreen extends Stage {
       //flag buttons that also give selected and set language
       this.languageButtons.forEach((languageButton: Button, index: number) => {
         if (languageButton.isCollidingWithMouse()) {
-          const isDutch: boolean = index === 0;
-          this.isDutch = isDutch;
-          this.setIsDutch(isDutch);
+          this.setIsDutch(index == 0 ? true : false);
 
           // Make the selected language button active
           this.selectedFlag = new Button(

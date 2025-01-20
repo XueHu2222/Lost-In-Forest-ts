@@ -373,7 +373,7 @@ export default abstract class Challenge extends Stage {
   }
 
   private renderTheory(canvas: HTMLCanvasElement): void {
-
+    
   }
 
   /**

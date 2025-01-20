@@ -27,11 +27,8 @@ export default class EndScreen extends Stage {
 
   protected isRestart: boolean = false;
 
-  protected setIsDutch: (value: boolean) => void;
-
-  public constructor(player: Player, isDutch: boolean, setIsDutch: (value: boolean) => void) {
+  public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
-    this.setIsDutch = setIsDutch;
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/start.png');
     this.bunny = new Animal(this.canvas.width * 0.25, this.canvas.height * 0.63, 'bunny', 4);
     this.frog = new Animal(this.canvas.width * 0.5, this.canvas.height * 0.68, 'frog', 4);
@@ -62,7 +59,7 @@ export default class EndScreen extends Stage {
 
   public override getNextStage(): Stage | null {
     if (this.isGoHome) {
-      return new StartScreen(this.setIsDutch, this.player);
+      return new StartScreen(LostInTheForest.setIsDutch.bind(LostInTheForest), this.player);
     } if (this.isRestart) {
       return new BeginCutScene(this.player, this.isDutch);
     }
