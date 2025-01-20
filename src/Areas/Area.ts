@@ -143,6 +143,7 @@ export default abstract class Area extends Stage {
 
   public override getNextStage(): Stage | null {
     if (this.gameStarts) {
+      this.nextChallenge?.setNextDifficulty(null);
       return this.nextChallenge;
     }
     if (this.player.getMap().getNextArea()) {

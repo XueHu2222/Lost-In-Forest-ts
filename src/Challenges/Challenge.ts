@@ -479,7 +479,9 @@ export default abstract class Challenge extends Stage {
       );
     }
   }
-  
 
+  public setNextDifficulty(value: string | null): void{
+    this.nextDifficulty = value;
+  }
 }
 

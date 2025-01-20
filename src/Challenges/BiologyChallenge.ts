@@ -33,7 +33,7 @@ export default class BiologyChallenge extends Challenge {
       case 'hard':
         categoryData.push(['Paard / Horse', 'Koe / Cow', 'Giraf / Giraffe', 'Konijn / Rabbit']); // Herbivores
         categoryData.push(['Tijger / Tiger', 'Wolf / Wolf', 'Haai / Shark', 'Leeuw / Lion']); // Carnivores
-        categoryData.push(['Beer / Bear', 'Beer / Bear', 'Mens / Human', 'Wasbeer / Raccoon']); // Omnivores
+        categoryData.push(['Beer / Bear', 'Varken / Pig', 'Mens / Human', 'Wasbeer / Raccoon']); // Omnivores
         categoryData.push(['Mier / Ant', 'Egel / Hedgehog', 'Vogel / Bird', 'Kameleon / Chameleon']); // Insectivores
 
         categoryNames = ['Herbivores', 'Carnivores', 'Omnivores', 'Insectivores'];
