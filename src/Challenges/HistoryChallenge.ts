@@ -2,11 +2,13 @@ import AutumnArea from '../Areas/AutumnArea.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
 import Challenge from './Challenge.js';
+import Animal from '../Animals/Animal.js';
 
 export default class HistoryChallenge extends Challenge {
   public constructor(difficultyLevel: string, player: Player, isDutch: boolean) {
     super(difficultyLevel, player, isDutch);
     const categoryData: string[][] = [];
+    this.animal = new Animal(this.canvas.width * 0.8, this.canvas.height * 0.66, 'frog', 5);
 
     // Pushes the correct data for each category based on the difficulty
     switch (difficultyLevel) {

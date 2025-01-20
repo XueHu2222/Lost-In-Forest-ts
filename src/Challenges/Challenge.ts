@@ -6,8 +6,11 @@ import Player from '../Player.js';
 import Stage from '../Stage.js';
 import Category from './Category.js';
 import ChallengeElement from './ChallengeElement.js';
+import Animal from '../Animals/Animal.js';
 
 export default abstract class Challenge extends Stage {
+  protected animal: Animal;
+
   private readonly AMOUNT_OF_CATEGORIES: number;
 
   private readonly AMOUNT_OF_ELEMENTS_PER_CATEGORY: number;
@@ -60,6 +63,7 @@ export default abstract class Challenge extends Stage {
 
   public constructor(difficultyLevel: string, player: Player, isDutch: boolean) {
     super(player, isDutch);
+    this.animal = new Animal(0, 0, 'monkey', 4);
     this.AMOUNT_OF_CATEGORIES = 4;
     this.AMOUNT_OF_ELEMENTS_PER_CATEGORY = 4;
     this.difficultyLevel = difficultyLevel;
@@ -149,8 +153,10 @@ export default abstract class Challenge extends Stage {
     this.hintButton.setText('Hint');
     this.hintButton.setTextColor(this.primaryTextColor);
 
-    this.theoryButton = new Button(220, 50, null, null, 100, 100);
-    this.theoryButton.setText('Theory');
+    const dialogueImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/dialogue2.png');
+    this.theoryButton = new Button(this.canvas.width * 0.76, this.canvas.height * 0.56,
+      dialogueImage, null, this.canvas.width * 0.15, this.canvas.height * 0.15);
+
 
     this.finishButton = new Button(this.canvas.width * 0.435,
       this.canvas.height * 0.80, this.buttonImage, null, 220, 60);
@@ -373,7 +379,6 @@ export default abstract class Challenge extends Stage {
   }
 
   private renderTheory(canvas: HTMLCanvasElement): void {
-
   }
 
   /**
@@ -396,7 +401,17 @@ export default abstract class Challenge extends Stage {
       if (this.backButton.isCollidingWithMouse()) {
         this.goBack = true;
       }
+      if (this.theoryButton.isCollidingWithMouse()) {
+        this.theoryIsOpen = true;
+      }
     }
+  }
+
+  /**
+   *
+   */
+  public override update(elapsed: number): void {
+    this.animal.update(elapsed);
   }
 
   /**
@@ -407,6 +422,11 @@ export default abstract class Challenge extends Stage {
     this.backButton.render();
     this.theoryButton.render();
     this.hintButton.render();
+    this.animal.render();
+    CanvasRenderer.writeText(this.canvas, 'Klik voor de theorie', this.canvas.width * 0.83, this.canvas.height * 0.64, 'center', 'Arial', 20, 'black');
+
+    if(this.theoryIsOpen){
+    }
 
     const hintCategoryText: string = this.categories.reduce((acc: string, cur: Category) => acc += cur.getName() + ' - ', ' - ');
     if (this.hintIsOpen) {
