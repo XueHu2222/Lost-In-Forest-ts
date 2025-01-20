@@ -6,7 +6,6 @@ import Challenge from '../Challenges/Challenge.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
-import BiologyChallenge from '../Challenges/BiologyChallenge.js';
 
 export default abstract class Area extends Stage {
   protected animal: Animal;

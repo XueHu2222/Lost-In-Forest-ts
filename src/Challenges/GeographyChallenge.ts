@@ -1,4 +1,5 @@
 import SummerArea from '../Areas/SummerArea.js';
+import LostInTheForest from '../LostInTheForest.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
 import Challenge from './Challenge.js';
@@ -50,6 +51,9 @@ export default class GeographyChallenge extends Challenge {
    */
   public override getNextStage(): Stage | null {
     if (this.clickedFinished || this.goBack) {
+      if (this.clickedFinished) {
+        LostInTheForest.keyGeography = true;
+      }
       this.clickedFinished = false;
       this.goBack = false;
       return new SummerArea(this.player, this.isDutch);

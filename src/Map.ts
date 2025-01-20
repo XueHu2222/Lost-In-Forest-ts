@@ -7,7 +7,6 @@ import WinterArea from './Areas/WinterArea.js';
 import CanvasItem from './CanvasItem.js';
 import CanvasRenderer from './CanvasRenderer.js';
 import LostInTheForest from './LostInTheForest.js';
-import MouseListener from './MouseListener.js';
 import Player from './Player.js';
 import Stage from './Stage.js';
 
