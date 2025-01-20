@@ -1,3 +1,8 @@
+import Area from '../Areas/Area.js';
+import AutumnArea from '../Areas/AutumnArea.js';
+import SpringArea from '../Areas/SpringArea.js';
+import SummerArea from '../Areas/SummerArea.js';
+import WinterArea from '../Areas/WinterArea.js';
 import Button from '../Button.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import LostInTheForest from '../LostInTheForest.js';
@@ -452,4 +457,9 @@ export default abstract class Challenge extends Stage {
       );
     }
   }
+  
+  public getGameFinished():boolean{
+    return this.isCompleted;
+  }
 }
+

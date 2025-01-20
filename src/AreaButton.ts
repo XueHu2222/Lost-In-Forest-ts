@@ -31,19 +31,11 @@ export default class AreaButton extends Button {
     } else if (LostInTheForest.currentStage === this.area) {
       this.image = CanvasRenderer.loadNewImage('./assets/Map/atArea.png');
       // Stage is finished or not
-    } else if (this.isFinished) {
+    } else if (this.area.getIsFinished()) {
       this.image = CanvasRenderer.loadNewImage('./assets/Map/finishedArea.png');
     } else {
       this.image = CanvasRenderer.loadNewImage('./assets/Map/unfinishedArea.png');
     }
-  }
-
-  public setIsFinished(value: boolean): void {
-    this.isFinished = value;
-  }
-
-  public getIsFinished(): boolean {
-    return this.isFinished;
   }
 
   public getArea(): Area {
