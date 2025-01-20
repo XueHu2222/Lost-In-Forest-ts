@@ -22,10 +22,6 @@ export default class LostInTheForest extends Game {
 
   public static isDutch: boolean = true;
 
-  public static setIsDutch(value: boolean): void {
-    LostInTheForest.isDutch = value;
-  }
-
   public constructor(canvas: HTMLCanvasElement) {
     super();
     LostInTheForest.canvas = canvas;
