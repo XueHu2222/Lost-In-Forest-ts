@@ -385,24 +385,6 @@ export default abstract class Challenge extends Stage {
 
   }
 
-  // private keyCollected():void{
-  //   if (this.isCompleted){
-  //     const currentStage: Stage = LostInTheForest.currentStage;
-  //     if (currentStage instanceof HistoryChallenge){
-  //       LostInTheForest.keyHistory = true;
-  //     }
-  //     if (currentStage instanceof BiologyChallenge){
-  //       LostInTheForest.keyBiology = true;
-  //     }
-  //     if (currentStage instanceof PhysicsChallenge){
-  //       LostInTheForest.keyPhysics = true;
-  //     }
-  //     if (currentStage instanceof GeographyChallenge){
-  //       LostInTheForest.keyGeography = true;
-  //     }
-  //   }
-  // }
-
   /**
    * Process all the button clicks
    */
