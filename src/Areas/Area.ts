@@ -92,8 +92,9 @@ export default abstract class Area extends Stage {
       if (this.dialogueAnimalArea.isCollidingWithMouse()) {
         if (this.animalDialogueIndex < this.animalDialogue.length - 1) {
           this.animalDialogueIndex += 1;
-        } else {
-          this.challengeCouldStarted = true;
+          if (this.animalDialogueIndex === this.animalDialogue.length - 1) {
+            this.challengeCouldStarted = true;
+          }
         }
       }
 
@@ -111,6 +112,9 @@ export default abstract class Area extends Stage {
     this.timeToDisplayDialogue -= elapsed;
     if (this.timeToDisplayDialogue <= 0) {
       this.timeToDisplayDialogue = 0;
+    }
+    if (this.animalDialogueIndex >= this.animalDialogue.length - 1) {
+      this.playButtonToChallenge();
     }
     this.player.getMap().update();
     this.gameStarts = false;

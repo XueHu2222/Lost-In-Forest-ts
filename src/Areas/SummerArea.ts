@@ -34,7 +34,6 @@ export default class SummerArea extends Area {
 
     this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue2.png');
     this.initiateDialogButton();
-    this.playButtonToChallenge();
 
     this.animalDialogue = [
       [['Hoot hoot, welkom.'], ['(....klik om door te gaan)']],
