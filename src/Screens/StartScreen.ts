@@ -6,6 +6,7 @@ import LostInTheForest from '../LostInTheForest.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
+import EndScreen from './EndScreen.js';
 
 export default class StartScreen extends Stage {
   private setIsDutch: (value: boolean) => void;
@@ -74,7 +75,7 @@ export default class StartScreen extends Stage {
    */
   public override getNextStage(): Stage | null {
     if (this.started) {
-      return new MainArea(this.player, this.isDutch);
+      return new EndScreen(this.player, LostInTheForest.isDutch);
     }
     return null;
   }

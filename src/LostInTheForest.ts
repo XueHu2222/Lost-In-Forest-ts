@@ -33,7 +33,6 @@ export default class LostInTheForest extends Game {
     LostInTheForest.canvas.width = window.innerWidth;
     LostInTheForest.mouseListener = new MouseListener(canvas);
     this.player = new Player;
-    // this.isDutch = true;
     LostInTheForest.currentStage = new StartScreen(this.setIsDutch.bind(this), this.player);
   }
 
