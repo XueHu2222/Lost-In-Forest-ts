@@ -50,7 +50,6 @@ export default class LostInTheForest extends Game {
     LostInTheForest.currentStage = LostInTheForest.currentStage.getNextStage()
      || LostInTheForest.currentStage;
     LostInTheForest.currentStage.update(elapsed);
-    console.log(LostInTheForest.currentStage);
     return true;
   }
 
