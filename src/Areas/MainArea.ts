@@ -3,6 +3,7 @@ import CanvasRenderer from '../CanvasRenderer.js';
 import Player from '../Player.js';
 import Area from './Area.js';
 import Animal from '../Animals/Animal.js';
+import LostInTheForest from '../LostInTheForest.js';
 
 export default class MainArea extends Area {
   private dialoguePlayerArea: Button;
@@ -58,6 +59,10 @@ export default class MainArea extends Area {
   public override update(elapsed: number): void {
     super.update(elapsed);
     this.player.setPosX(this.canvas.width * 0.5);
+    if (LostInTheForest.keyBiology && LostInTheForest.keyGeography &&
+      LostInTheForest.keyHistory && LostInTheForest.keyPhysics) {
+      this.backgroundImage = CanvasRenderer.loadNewImage('./assets/mainEnd.png');
+    }
   }
 
   public override render(): void {
