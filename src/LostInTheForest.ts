@@ -39,10 +39,10 @@ export default class LostInTheForest extends Game {
     this.player = new Player;
     this.isDutch = true;
     LostInTheForest.currentStage = new StartScreen(this.setIsDutch.bind(this), this.player);
-    LostInTheForest.keyBiology = true;
-    LostInTheForest.keyGeography = true;
-    LostInTheForest.keyPhysics = true;
-    LostInTheForest.keyHistory = true;
+    LostInTheForest.keyBiology = false;
+    LostInTheForest.keyGeography = false;
+    LostInTheForest.keyPhysics = false;
+    LostInTheForest.keyHistory = false;
   }
 
   /**
