@@ -9,14 +9,6 @@ import Stage from '../Stage.js';
 import StartScreen from './StartScreen.js';
 
 export default class EndScreen extends Stage {
-  protected bunny: Animal;
-
-  protected frog: Animal;
-
-  protected owl: Animal;
-
-  protected monkey: Animal;
-
   protected endMessage: string[];
 
   protected homeButton: Button;
@@ -27,13 +19,17 @@ export default class EndScreen extends Stage {
 
   protected isRestart: boolean = false;
 
+  protected allAnimals: Animal[] = [];
+
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/start.png');
-    this.bunny = new Animal(this.canvas.width * 0.25, this.canvas.height * 0.63, 'bunny', 4);
-    this.frog = new Animal(this.canvas.width * 0.5, this.canvas.height * 0.68, 'frog', 4);
-    this.owl = new Animal(this.canvas.width * 0.03, this.canvas.height * 0.65, 'owl', 4);
-    this.monkey = new Animal(this.canvas.width * 0.75, this.canvas.height * 0.63, 'monkey', 4);
+    this.allAnimals = [
+      new Animal(this.canvas.width * 0.25, this.canvas.height * 0.63, 'bunny', 4),
+      new Animal(this.canvas.width * 0.5, this.canvas.height * 0.68, 'frog', 4),
+      new Animal(this.canvas.width * 0.03, this.canvas.height * 0.65, 'owl', 4),
+      new Animal(this.canvas.width * 0.75, this.canvas.height * 0.63, 'monkey', 4),
+    ];
 
     if (this.isDutch) {
       this.endMessage = ['GEFELICITEERD!', 'JE BENT UIT HET BOS ONTSNAPT!'];
@@ -78,19 +74,13 @@ export default class EndScreen extends Stage {
   }
 
   public override update(elapsed: number): void {
-    this.bunny.update(elapsed);
-    this.frog.update(elapsed);
-    this.owl.update(elapsed);
-    this.monkey.update(elapsed);
+    this.allAnimals.forEach((animal: Animal) => animal.update(elapsed));
   }
 
   public override render(): void {
     CanvasRenderer.drawImage(this.canvas, this.backgroundImage,
       0, 0, this.canvas.width, this.canvas.height);
-    this.bunny.render();
-    this.frog.render();
-    this.owl.render();
-    this.monkey.render();
+      this.allAnimals.forEach((animal: Animal) => animal.render());
     this.homeButton.render();
     this.restartButton.render();
 
