@@ -4,11 +4,18 @@ import Player from '../Player.js';
 import Area from './Area.js';
 import Animal from '../Animals/Animal.js';
 import LostInTheForest from '../LostInTheForest.js';
+import Stage from '../Stage.js';
+import EndCutScene from '../Cutscenes/EndCutScene.js';
+import MouseListener from '../MouseListener.js';
 
 export default class MainArea extends Area {
   private dialoguePlayerArea: Button;
 
   private dialoguePlayerImage: HTMLImageElement = new Image();
+
+  private endButton: Button;
+
+  private ended: boolean;
 
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
@@ -16,6 +23,12 @@ export default class MainArea extends Area {
     this.player.setPosY(this.canvas.height * 0.35);
     this.player.setWidth(this.canvas.width * 0.35);
     this.player.setHeight(this.canvas.height * 0.8);
+
+    this.ended = false;
+    const exitImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/exit-button.png');
+    this.endButton = new Button(this.canvas.width * 0.5, this.canvas.height * 0.7, exitImage, null,
+      this.canvas.width * 0.1, this.canvas.width * 0.1);
+
     this.animal = new Animal(
       this.canvas.width * 0.025,
       this.canvas.height * 0.67,
@@ -71,5 +84,28 @@ export default class MainArea extends Area {
     CanvasRenderer.writeText(this.canvas, 'Help waar ben ik?', this.canvas.width * 0.48, this.canvas.height * 0.36, 'left', 'Arial', 25, 'black');
     CanvasRenderer.writeText(this.canvas, 'Ik wil terug naar huis!', this.canvas.width * 0.48, this.canvas.height * 0.43, 'left', 'Arial', 25, 'black');
     this.player.getMap().render();
+    if (LostInTheForest.keyBiology && LostInTheForest.keyGeography &&
+      LostInTheForest.keyHistory && LostInTheForest.keyPhysics) {
+      this.endButton.render();
+    }
+  }
+
+  public override getNextStage(): Stage | null {
+    if (super.getNextStage()) {
+      return super.getNextStage();
+    }
+    if (this.ended) {
+      return new EndCutScene(this.player, this.isDutch);
+    }
+    return null;
+  }
+
+  public override processInput(): void {
+    if (LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
+      this.processAreaInput();
+      if (this.endButton.isCollidingWithMouse()) {
+        this.ended = true;
+      }
+    }
   }
 }

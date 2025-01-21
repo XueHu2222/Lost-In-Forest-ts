@@ -86,22 +86,26 @@ export default abstract class Area extends Stage {
 
   public override processInput(): void {
     if (LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
-      if (this.dialogueAnimalArea.isCollidingWithMouse()) {
-        if (this.animalDialogueIndex < this.animalDialogue.length - 1) {
-          this.animalDialogueIndex += 1;
-          if (this.animalDialogueIndex === this.animalDialogue.length - 1) {
-            this.challengeCouldStarted = true;
-          }
+      this.processAreaInput();
+    }
+  }
+
+  protected processAreaInput(): void{
+    if (this.dialogueAnimalArea.isCollidingWithMouse()) {
+      if (this.animalDialogueIndex < this.animalDialogue.length - 1) {
+        this.animalDialogueIndex += 1;
+        if (this.animalDialogueIndex === this.animalDialogue.length - 1) {
+          this.challengeCouldStarted = true;
         }
       }
-
-      if (this.challengeCouldStarted &&
-        this.animalDialogueIndex === this.animalDialogue.length - 1 &&
-        this.playButton.isCollidingWithMouse()) {
-        this.gameStarts = true;
-      }
-      this.player.getMap().processInput();
     }
+
+    if (this.challengeCouldStarted &&
+      this.animalDialogueIndex === this.animalDialogue.length - 1 &&
+      this.playButton.isCollidingWithMouse()) {
+      this.gameStarts = true;
+    }
+    this.player.getMap().processInput();
   }
 
   public override update(elapsed: number): void {

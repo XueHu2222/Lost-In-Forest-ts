@@ -63,8 +63,8 @@ export default class StartScreen extends Stage {
 
     //start button
     const startImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/start-buttonstart.png');
-    this.startButton = new Button(this.canvas.width * 0.35, this.canvas.height * 0.8, startImageButton, null,
-      this.canvas.width * 0.3, this.canvas.height * 0.2);
+    this.startButton = new Button(this.canvas.width * 0.35, this.canvas.height * 0.8,
+      startImageButton, null, this.canvas.width * 0.3, this.canvas.height * 0.2);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/start.png');
   }
 
@@ -95,7 +95,7 @@ export default class StartScreen extends Stage {
         if (genderButton.isCollidingWithMouse()) {
           // Set the gender
           const genders: string[] = ['boy', 'girl', 'nonBinary'];
-          if(genders[index]){
+          if (genders[index]) {
             this.player.setGender(genders[index]);
           }
 
