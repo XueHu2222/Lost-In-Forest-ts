@@ -91,13 +91,10 @@ export default class MainArea extends Area {
   }
 
   public override getNextStage(): Stage | null {
-    if (super.getNextStage()) {
-      return super.getNextStage();
-    }
     if (this.ended) {
       return new EndCutScene(this.player, this.isDutch);
     }
-    return null;
+    return super.getNextStage();;
   }
 
   public override processInput(): void {
