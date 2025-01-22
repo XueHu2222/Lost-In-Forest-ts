@@ -11,7 +11,7 @@ import CutScene from '../CutScene.js';
 export default class MainArea extends Area {
   private dialoguePlayerArea: Button;
 
-  private dialoguePlayerImage: HTMLImageElement = new Image();
+  private dialoguePlayerImage: HTMLImageElement;
 
   private endButton: Button;
 

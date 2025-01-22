@@ -5,8 +5,6 @@ import LostInTheForest from './LostInTheForest.js';
 export default class Animal extends CanvasItem {
   private timeToNextFrame: number;
 
-  private elapsedTime: number;
-
   private animal: string;
 
   private folderLength: number;
@@ -20,7 +18,6 @@ export default class Animal extends CanvasItem {
     // TODO: Set correct values
     this.frames = [];
     this.timeToNextFrame = 500;
-    this.elapsedTime = 0;
     this.position = {x: posX, y: posY};
     this.animal = 'bunny';
     this.animal = animal;
