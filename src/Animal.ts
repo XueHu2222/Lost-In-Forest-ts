@@ -1,6 +1,6 @@
-import CanvasItem from '../CanvasItem.js';
-import CanvasRenderer from '../CanvasRenderer.js';
-import LostInTheForest from '../LostInTheForest.js';
+import CanvasItem from './CanvasItem.js';
+import CanvasRenderer from './CanvasRenderer.js';
+import LostInTheForest from './LostInTheForest.js';
 
 export default class Animal extends CanvasItem {
   private timeToNextFrame: number;

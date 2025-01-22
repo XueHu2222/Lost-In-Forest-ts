@@ -2,11 +2,11 @@ import Button from '../Button.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import Player from '../Player.js';
 import Area from './Area.js';
-import Animal from '../Animals/Animal.js';
+import Animal from '../Animal.js';
 import LostInTheForest from '../LostInTheForest.js';
 import Stage from '../Stage.js';
 import MouseListener from '../MouseListener.js';
-import CutScene from '../Cutscenes/CutScene.js';
+import CutScene from '../CutScene.js';
 
 export default class MainArea extends Area {
   private dialoguePlayerArea: Button;

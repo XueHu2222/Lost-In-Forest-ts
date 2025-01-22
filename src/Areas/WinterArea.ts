@@ -1,4 +1,4 @@
-import Animal from '../Animals/Animal.js';
+import Animal from '../Animal.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import BiologyChallenge from '../Challenges/BiologyChallenge.js';
 import LostInTheForest from '../LostInTheForest.js';

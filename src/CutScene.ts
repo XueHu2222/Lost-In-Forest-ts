@@ -1,7 +1,7 @@
-import Area from '../Areas/Area.js';
-import CanvasRenderer from '../CanvasRenderer.js';
-import Player from '../Player.js';
-import Stage from '../Stage.js';
+import Area from './Areas/Area.js';
+import CanvasRenderer from './CanvasRenderer.js';
+import Player from './Player.js';
+import Stage from './Stage.js';
 
 export default class CutScene extends Stage {
   private frames: HTMLImageElement[];
