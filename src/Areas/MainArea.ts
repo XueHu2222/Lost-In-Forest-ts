@@ -90,7 +90,6 @@ export default class MainArea extends Area {
     this.dialoguePlayerArea.render();
     CanvasRenderer.writeText(this.canvas, 'Help waar ben ik?', this.canvas.width * 0.48, this.canvas.height * 0.36, 'left', 'Arial', 25, 'black');
     CanvasRenderer.writeText(this.canvas, 'Ik wil terug naar huis!', this.canvas.width * 0.48, this.canvas.height * 0.43, 'left', 'Arial', 25, 'black');
-    this.player.getMap().render();
     if (LostInTheForest.keyBiology && LostInTheForest.keyGeography &&
       LostInTheForest.keyHistory && LostInTheForest.keyPhysics) {
       this.endButton.render();

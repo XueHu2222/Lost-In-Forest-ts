@@ -47,14 +47,8 @@ export default class SummerArea extends Area {
     };
   }
 
-
   public override update(elapsed: number): void {
     super.update(elapsed);
     this.player.setPosX(this.canvas.width * 0.5);
-  }
-
-  public override render(): void {
-    super.render();
-    this.player.getMap().render();
   }
 }

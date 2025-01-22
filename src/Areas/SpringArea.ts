@@ -50,9 +50,4 @@ export default class SpringArea extends Area {
     super.update(elapsed);
     this.player.setPosX(this.canvas.width * 0.5);
   }
-
-  public override render(): void {
-    super.render();
-    this.player.getMap().render();
-  }
 }

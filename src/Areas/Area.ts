@@ -85,7 +85,7 @@ export default abstract class Area extends Stage {
 
 
   /**
-   * 
+   *
    */
   public override processInput(): void {
     if (LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
@@ -140,6 +140,7 @@ export default abstract class Area extends Stage {
     this.dialogueAnimalArea.render();
     this.player.render();
     this.playButton.render();
+    this.player.getMap().render();
 
     const currentDialogue: string[][] = this.animalDialogue[this.animalDialogueIndex] ?? [];
     if (this.timeToDisplayDialogue == 0) {
