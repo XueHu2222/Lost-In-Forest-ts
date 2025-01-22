@@ -1,5 +1,9 @@
 import Area from './Areas/Area.js';
+import AutumnArea from './Areas/AutumnArea.js';
 import MainArea from './Areas/MainArea.js';
+import SpringArea from './Areas/SpringArea.js';
+import SummerArea from './Areas/SummerArea.js';
+import WinterArea from './Areas/WinterArea.js';
 import Button from './Button.js';
 import CanvasRenderer from './CanvasRenderer.js';
 import LostInTheForest from './LostInTheForest.js';
@@ -31,19 +35,15 @@ export default class AreaButton extends Button {
     } else if (LostInTheForest.currentStage === this.area) {
       this.image = CanvasRenderer.loadNewImage('./assets/Map/atArea.png');
       // Stage is finished or not
-    } else if (this.isFinished) {
+    } else if (this.area instanceof AutumnArea && LostInTheForest.keyHistory ||
+      this.area instanceof WinterArea && LostInTheForest.keyBiology ||
+      this.area instanceof SpringArea && LostInTheForest.keyPhysics ||
+      this.area instanceof SummerArea && LostInTheForest.keyGeography
+    ) {
       this.image = CanvasRenderer.loadNewImage('./assets/Map/finishedArea.png');
     } else {
       this.image = CanvasRenderer.loadNewImage('./assets/Map/unfinishedArea.png');
     }
-  }
-
-  public setIsFinished(value: boolean): void {
-    this.isFinished = value;
-  }
-
-  public getIsFinished(): boolean {
-    return this.isFinished;
   }
 
   public getArea(): Area {

@@ -1,4 +1,5 @@
 import AutumnArea from '../Areas/AutumnArea.js';
+import LostInTheForest from '../LostInTheForest.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
 import Challenge from './Challenge.js';
@@ -102,11 +103,14 @@ export default class HistoryChallenge extends Challenge {
    */
   public override getNextStage(): Stage | null {
     if (this.clickedFinished || this.goBack) {
+      if (this.clickedFinished) {
+        LostInTheForest.keyHistory = true;
+      }
       this.clickedFinished = false;
       this.goBack = false;
       return new AutumnArea(this.player, this.isDutch);
     }
-    if(this.nextDifficulty){
+    if (this.nextDifficulty) {
       return new HistoryChallenge(this.nextDifficulty, this.player, this.isDutch);
     }
     return null;
