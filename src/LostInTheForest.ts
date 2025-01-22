@@ -1,9 +1,9 @@
-import Game from './Game.js';
-import MouseListener from './MouseListener.js';
+import Game from './Base/Game.js';
+import MouseListener from './Base/MouseListener.js';
 import Stage from './Stage.js';
 import StartScreen from './Screens/StartScreen.js';
 import Player from './Player.js';
-import CanvasRenderer from './CanvasRenderer.js';
+import CanvasRenderer from './Base/CanvasRenderer.js';
 
 export default class LostInTheForest extends Game {
   public static canvas: HTMLCanvasElement;

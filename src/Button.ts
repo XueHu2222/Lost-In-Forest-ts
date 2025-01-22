@@ -1,7 +1,7 @@
 import CanvasItem from './CanvasItem.js';
-import CanvasRenderer from './CanvasRenderer.js';
+import CanvasRenderer from './Base/CanvasRenderer.js';
 import LostInTheForest from './LostInTheForest.js';
-import MouseListener from './MouseListener.js';
+import MouseListener from './Base/MouseListener.js';
 
 export default class Button extends CanvasItem {
   private text: string;

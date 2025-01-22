@@ -1,5 +1,5 @@
 import CanvasItem from './CanvasItem.js';
-import CanvasRenderer from './CanvasRenderer.js';
+import CanvasRenderer from './Base/CanvasRenderer.js';
 import LostInTheForest from './LostInTheForest.js';
 
 export default class Animal extends CanvasItem {

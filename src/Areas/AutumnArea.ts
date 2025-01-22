@@ -1,5 +1,5 @@
 import Animal from '../Animal.js';
-import CanvasRenderer from '../CanvasRenderer.js';
+import CanvasRenderer from '../Base/CanvasRenderer.js';
 import HistoryChallenge from '../Challenges/HistoryChallenge.js';
 import LostInTheForest from '../LostInTheForest.js';
 import Player from '../Player.js';
@@ -8,7 +8,7 @@ import Area from './Area.js';
 export default class AutumnArea extends Area {
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
-    this.backgroundImage = CanvasRenderer.loadNewImage('./assets/autumn.png');
+    this.backgroundImage = CanvasRenderer.loadNewImage('./assets/Areas/autumn.png');
     this.nextChallenge = new HistoryChallenge('medium', this.player, this.isDutch);
 
     this.animal = new Animal(

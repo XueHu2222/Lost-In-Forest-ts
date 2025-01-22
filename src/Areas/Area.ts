@@ -1,9 +1,9 @@
 import Animal from '../Animal.js';
 import Button from '../Button.js';
 import LostInTheForest from '../LostInTheForest.js';
-import CanvasRenderer from '../CanvasRenderer.js';
+import CanvasRenderer from '../Base/CanvasRenderer.js';
 import Challenge from '../Challenges/Challenge.js';
-import MouseListener from '../MouseListener.js';
+import MouseListener from '../Base/MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
 import { Vector2 } from '../Types.js';
@@ -60,7 +60,7 @@ export default abstract class Area extends Stage {
     this.dialogueAnimalArea = new Button(0, 0, null, null, 0, 0);
 
     this.playButtonPosition = { x: 0, y: 0 };
-    this.playButtonImage = CanvasRenderer.loadNewImage('./assets/play-button.png');
+    this.playButtonImage = CanvasRenderer.loadNewImage('./assets/Challenges/play-button.png');
     this.nextChallenge = null;
     this.challengeCanStart = false;
   }

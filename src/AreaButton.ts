@@ -5,7 +5,7 @@ import SpringArea from './Areas/SpringArea.js';
 import SummerArea from './Areas/SummerArea.js';
 import WinterArea from './Areas/WinterArea.js';
 import Button from './Button.js';
-import CanvasRenderer from './CanvasRenderer.js';
+import CanvasRenderer from './Base/CanvasRenderer.js';
 import LostInTheForest from './LostInTheForest.js';
 
 export default class AreaButton extends Button {

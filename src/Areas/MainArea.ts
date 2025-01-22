@@ -1,11 +1,11 @@
 import Button from '../Button.js';
-import CanvasRenderer from '../CanvasRenderer.js';
+import CanvasRenderer from '../Base/CanvasRenderer.js';
 import Player from '../Player.js';
 import Area from './Area.js';
 import Animal from '../Animal.js';
 import LostInTheForest from '../LostInTheForest.js';
 import Stage from '../Stage.js';
-import MouseListener from '../MouseListener.js';
+import MouseListener from '../Base/MouseListener.js';
 import CutScene from '../CutScene.js';
 
 export default class MainArea extends Area {
@@ -19,7 +19,7 @@ export default class MainArea extends Area {
 
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
-    this.backgroundImage = CanvasRenderer.loadNewImage('./assets/main.png');
+    this.backgroundImage = CanvasRenderer.loadNewImage('./assets/Areas/main.png');
     this.player.setPosY(LostInTheForest.canvas.height * 0.35);
     this.player.setWidth(LostInTheForest.canvas.width * 0.35);
     this.player.setHeight(LostInTheForest.canvas.height * 0.8);

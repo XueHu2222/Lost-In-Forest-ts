@@ -1,5 +1,5 @@
 import CanvasItem from './CanvasItem.js';
-import CanvasRenderer from './CanvasRenderer.js';
+import CanvasRenderer from './Base/CanvasRenderer.js';
 import Map from './Map.js';
 
 export default class Player extends CanvasItem {

@@ -1,5 +1,5 @@
 import Area from './Areas/Area.js';
-import CanvasRenderer from './CanvasRenderer.js';
+import CanvasRenderer from './Base/CanvasRenderer.js';
 import Player from './Player.js';
 import Stage from './Stage.js';
 

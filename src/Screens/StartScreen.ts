@@ -1,9 +1,9 @@
 import MainArea from '../Areas/MainArea.js';
 import Button from '../Button.js';
-import CanvasRenderer from '../CanvasRenderer.js';
+import CanvasRenderer from '../Base/CanvasRenderer.js';
 import CutScene from '../CutScene.js';
 import LostInTheForest from '../LostInTheForest.js';
-import MouseListener from '../MouseListener.js';
+import MouseListener from '../Base/MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
 
@@ -43,9 +43,9 @@ export default class StartScreen extends Stage {
       LostInTheForest.canvas.height * 0.2);
 
     //to add images for the button
-    const girlImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/girlButton.png');
-    const boyImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/boyButton.png');
-    const nonBinaryImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/nonbinaireButton.png');
+    const girlImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/StartScreen/girlButton.png');
+    const boyImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/StartScreen/boyButton.png');
+    const nonBinaryImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/StartScreen/nonbinaireButton.png');
     //creating gender buttons
     const boy: Button = new Button(LostInTheForest.canvas.width * 0.35,
       LostInTheForest.canvas.height * 0.3,
@@ -62,8 +62,8 @@ export default class StartScreen extends Stage {
     this.genderButtons = [boy, girl, nonBinary];
 
     //images for flag buttons
-    const dutchImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/nlFlagButton.png');
-    const englishImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/enFlagButton.png');
+    const dutchImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/StartScreen/nlFlagButton.png');
+    const englishImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/StartScreen/enFlagButton.png');
     //creating flag buttons
     const dutch: Button = new Button(LostInTheForest.canvas.width * 0.35,
       LostInTheForest.canvas.height * 0.55,
@@ -76,12 +76,12 @@ export default class StartScreen extends Stage {
     this.languageButtons = [dutch, english];
 
     //start button
-    const startImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/start-buttonstart.png');
+    const startImageButton: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/StartScreen/start-buttonstart.png');
     this.startButton = new Button(LostInTheForest.canvas.width * 0.35,
       LostInTheForest.canvas.height * 0.8,
       startImageButton, null, LostInTheForest.canvas.width * 0.3,
       LostInTheForest.canvas.height * 0.2);
-    this.backgroundImage = CanvasRenderer.loadNewImage('./assets/start.png');
+    this.backgroundImage = CanvasRenderer.loadNewImage('./assets/StartScreen/start.png');
     this.clickedStart = false;
   }
 
