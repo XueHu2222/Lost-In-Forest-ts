@@ -5,8 +5,6 @@ import Player from '../Player.js';
 import Area from './Area.js';
 
 export default class WinterArea extends Area {
-  private monkeyDialogue: string[][][];
-
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/winter.png');
@@ -36,13 +34,12 @@ export default class WinterArea extends Area {
     this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue1.png');
     this.initiateDialogButton();
 
-    this.monkeyDialogue = [
+    this.animalDialogue = [
       [['Hihi, hallo.'], ['(....klik om door te gaan)']],
       [['Als je een stuk van de sleutel wilt'], ['hebben van mij dan moet je'], ['mijn biologie uitdaging'], ['voltooien op medium.'], ['(....klik om door te gaan)']],
       [['Je kan het!'], ['(....klik op de knop om door te gaan)']]
     ];
 
-    this.animalDialogue = this.monkeyDialogue;
     this.dialogueTextPosition = {
       x: this.canvas.width * 0.75,
       y: this.canvas.height * 0.48
