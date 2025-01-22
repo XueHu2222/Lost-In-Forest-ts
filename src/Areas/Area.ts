@@ -20,21 +20,21 @@ export default abstract class Area extends Stage {
 
   protected dialogueAnimalArea: Button;
 
-  protected timeToDisplayDialogue: number = 1000;
+  protected timeToDisplayDialogue: number;
 
   protected dialogueTextPosition: { x: number, y: number };
 
-  protected challengeCanStart: boolean = false;
+  protected challengeCanStart: boolean;
 
   protected animalDialogueSize: { x: number, y: number };
 
   protected animalDialoguePosition: { x: number, y: number };
 
-  protected dialogueAnimalImage: HTMLImageElement = new Image;
+  protected dialogueAnimalImage: HTMLImageElement;
 
   protected playButtonPosition: { x: number, y: number };
 
-  protected playButtonImage: HTMLImageElement = new Image;
+  protected playButtonImage: HTMLImageElement;
 
   protected challengeStarts: boolean;
 
@@ -51,6 +51,8 @@ export default abstract class Area extends Stage {
     this.animalDialogue = [];
     this.animalDialogueIndex = 0;
     this.dialogueTextPosition = { x: 0, y: 0 };
+    this.timeToDisplayDialogue = 1000;
+    this.dialogueAnimalImage = new Image();
 
     this.animalDialogueSize = { x: 0, y: 0 };
     this.animalDialoguePosition = { x: 0, y: 0 };
@@ -59,6 +61,7 @@ export default abstract class Area extends Stage {
     this.playButtonPosition = { x: 0, y: 0 };
     this.playButtonImage = CanvasRenderer.loadNewImage('./assets/play-button.png');
     this.nextChallenge = null;
+    this.challengeCanStart = false;
   }
 
   protected initiateDialogButton(): void {

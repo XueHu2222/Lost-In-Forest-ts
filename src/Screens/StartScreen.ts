@@ -16,7 +16,7 @@ export default class StartScreen extends Stage {
 
   private startButton: Button;
 
-  private clickedStart: boolean = false;
+  private clickedStart: boolean;
 
   private selectedImage: HTMLImageElement;
 
@@ -82,6 +82,7 @@ export default class StartScreen extends Stage {
       startImageButton, null, LostInTheForest.canvas.width * 0.3,
       LostInTheForest.canvas.height * 0.2);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/start.png');
+    this.clickedStart = false;
   }
 
   /**
