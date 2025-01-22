@@ -16,7 +16,7 @@ export default class StartScreen extends Stage {
 
   private startButton: Button;
 
-  private started: boolean = false;
+  private clickedStart: boolean = false;
 
   private selectedImage: HTMLImageElement;
 
@@ -73,7 +73,7 @@ export default class StartScreen extends Stage {
    * @returns the stage if it started or nothing if its not started yet
    */
   public override getNextStage(): Stage | null {
-    if (this.started) {
+    if (this.clickedStart) {
       return new CutScene(this.player, this.isDutch, 'BeginCutscenes', 7, new MainArea(this.player, this.isDutch));
     }
     return null;
@@ -87,7 +87,7 @@ export default class StartScreen extends Stage {
     if (LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
       //startbutton
       if (this.startButton.isCollidingWithMouse()) {
-        this.started = true;
+        this.clickedStart = true;
       }
 
       //gender buttons that also give selected and set gender

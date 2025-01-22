@@ -40,12 +40,12 @@ export default class HistoryChallenge extends Challenge {
    * @returns New stage when challenge is finished
    */
   public override getNextStage(): Stage | null {
-    if (this.clickedFinished || this.goBack) {
+    if (this.clickedFinished || this.exitChallenge) {
       if (this.clickedFinished) {
         LostInTheForest.keyHistory = true;
       }
       this.clickedFinished = false;
-      this.goBack = false;
+      this.exitChallenge = false;
       return new AutumnArea(this.player, this.isDutch);
     }
     if (this.nextDifficulty) {

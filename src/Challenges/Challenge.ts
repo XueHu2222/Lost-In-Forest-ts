@@ -57,7 +57,7 @@ export default abstract class Challenge extends Stage {
 
   protected challengeScience: string;
 
-  protected goBack: boolean;
+  protected exitChallenge: boolean;
 
   private isCompleted: boolean;
 
@@ -82,7 +82,7 @@ export default abstract class Challenge extends Stage {
     this.isCompleted = false;
     this.nextDifficulty = null;
     this.hintIsOpen = false;
-    this.goBack = false;
+    this.exitChallenge = false;
     this.theoryIsOpen = false;
 
     this.primaryTextColor = 'blue';
@@ -403,7 +403,7 @@ export default abstract class Challenge extends Stage {
         this.hintIsOpen = !this.hintIsOpen;
       }
       if (this.backButton.isCollidingWithMouse()) {
-        this.goBack = true;
+        this.exitChallenge = true;
       }
     }
   }

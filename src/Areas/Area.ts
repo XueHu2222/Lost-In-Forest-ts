@@ -24,7 +24,7 @@ export default abstract class Area extends Stage {
 
   protected dialogueTextPosition: { x: number, y: number };
 
-  protected challengeCouldStarted: boolean = false;
+  protected challengeCanStart: boolean = false;
 
   protected animalDialogueSize: { x: number, y: number };
 
@@ -36,14 +36,14 @@ export default abstract class Area extends Stage {
 
   protected playButtonImage: HTMLImageElement = new Image;
 
-  protected gameStarts: boolean;
+  protected challengeStarts: boolean;
 
   protected nextChallenge: Challenge | null;
 
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
 
-    this.gameStarts = false;
+    this.challengeStarts = false;
     this.animal = new Animal(0, 0, 'bunny', 4);
     this.animalText = '';
     this.playButton = new Button(0, 0, null, null, 100, 100);
@@ -98,15 +98,13 @@ export default abstract class Area extends Stage {
       if (this.animalDialogueIndex < this.animalDialogue.length - 1) {
         this.animalDialogueIndex += 1;
         if (this.animalDialogueIndex === this.animalDialogue.length - 1) {
-          this.challengeCouldStarted = true;
+          this.challengeCanStart = true;
         }
       }
     }
 
-    if (this.challengeCouldStarted &&
-      this.animalDialogueIndex === this.animalDialogue.length - 1 &&
-      this.playButton.isCollidingWithMouse()) {
-      this.gameStarts = true;
+    if (this.challengeCanStart && this.playButton.isCollidingWithMouse()) {
+      this.challengeStarts = true;
     }
     this.player.getMap().processInput();
   }
@@ -128,7 +126,7 @@ export default abstract class Area extends Stage {
     }
     //updates the map icons
     this.player.getMap().update();
-    this.gameStarts = false;
+    this.challengeStarts = false;
   }
 
   /**
@@ -160,7 +158,7 @@ export default abstract class Area extends Stage {
   }
 
   public override getNextStage(): Stage | null {
-    if (this.gameStarts) {
+    if (this.challengeStarts) {
       this.nextChallenge?.setNextDifficulty(null);
       return this.nextChallenge;
     }
