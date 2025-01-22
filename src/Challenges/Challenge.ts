@@ -409,6 +409,19 @@ export default abstract class Challenge extends Stage {
   }
 
   /**
+ * Check if the player is exiting the challenge
+ * @returns True when exiting the challenge
+ */
+  protected leavingChallenge(): boolean {
+    if (this.clickedFinished || this.exitChallenge) {
+      this.clickedFinished = false;
+      this.exitChallenge = false;
+      return true;
+    }
+    return false;
+  }
+
+  /**
    * Render all the buttons and text
    */
   public render(): void {
@@ -462,7 +475,7 @@ export default abstract class Challenge extends Stage {
     }
   }
 
-  public setNextDifficulty(value: string | null): void{
+  public setNextDifficulty(value: string | null): void {
     this.nextDifficulty = value;
   }
 }

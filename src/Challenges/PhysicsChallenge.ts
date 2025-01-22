@@ -52,12 +52,10 @@ export default class PhysicsChallenge extends Challenge {
    * @returns New stage when challenge is finished
    */
   public override getNextStage(): Stage | null {
-    if (this.clickedFinished || this.exitChallenge) {
-      if (this.clickedFinished) {
-        LostInTheForest.keyPhysics = true;
-      }
-      this.clickedFinished = false;
-      this.exitChallenge = false;
+    if (this.clickedFinished) {
+      LostInTheForest.keyPhysics = true;
+    }
+    if (this.leavingChallenge()) {
       return new SpringArea(this.player, this.isDutch);
     }
     if (this.nextDifficulty) {

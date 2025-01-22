@@ -102,7 +102,7 @@ export default class MainArea extends Area {
     if (this.gameHasEnded) {
       return new CutScene(this.player, this.isDutch, 'EndCutscenes', 5, new MainArea(this.player, this.isDutch));
     }
-    return super.getNextStage();;
+    return super.getNextStage();
   }
 
   /**

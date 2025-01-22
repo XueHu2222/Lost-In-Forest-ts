@@ -50,12 +50,10 @@ export default class GeographyChallenge extends Challenge {
    * @returns New stage when challenge is finished
    */
   public override getNextStage(): Stage | null {
-    if (this.clickedFinished || this.exitChallenge) {
-      if (this.clickedFinished) {
-        LostInTheForest.keyGeography = true;
-      }
-      this.clickedFinished = false;
-      this.exitChallenge = false;
+    if (this.clickedFinished) {
+      LostInTheForest.keyGeography = true;
+    }
+    if (this.leavingChallenge()) {
       return new SummerArea(this.player, this.isDutch);
     }
     if (this.nextDifficulty) {
