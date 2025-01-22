@@ -115,18 +115,18 @@ export default abstract class Challenge extends Stage {
     this.buttonSelectImage = CanvasRenderer.loadNewImage(`./assets/Challenges/${this.challengeScience}/buttonSelect.png`);
 
     // Difficulty Buttons
-    const easyButton: Button = new Button(this.canvas.width * 0.02,
-      this.canvas.height * 0.25, this.buttonImage, this.buttonSelectImage, 220, 60);
+    const easyButton: Button = new Button(LostInTheForest.canvas.width * 0.02,
+      LostInTheForest.canvas.height * 0.25, this.buttonImage, this.buttonSelectImage, 220, 60);
     easyButton.setText('Easy');
     easyButton.setTextColor(this.textColor);
 
-    const mediumButton: Button = new Button(this.canvas.width * 0.02,
-      this.canvas.height * 0.35, this.buttonImage, this.buttonSelectImage, 220, 60);
+    const mediumButton: Button = new Button(LostInTheForest.canvas.width * 0.02,
+      LostInTheForest.canvas.height * 0.35, this.buttonImage, this.buttonSelectImage, 220, 60);
     mediumButton.setText('Medium');
     mediumButton.setTextColor(this.textColor);
 
-    const hardButton: Button = new Button(this.canvas.width * 0.02,
-      this.canvas.height * 0.45, this.buttonImage, this.buttonSelectImage, 220, 60);
+    const hardButton: Button = new Button(LostInTheForest.canvas.width * 0.02,
+      LostInTheForest.canvas.height * 0.45, this.buttonImage, this.buttonSelectImage, 220, 60);
     hardButton.setText('Hard');
     hardButton.setTextColor(this.textColor);
     this.difficultyButtons = [easyButton, mediumButton, hardButton];
@@ -148,21 +148,21 @@ export default abstract class Challenge extends Stage {
     }
 
     // Other Buttons
-    this.backButton = new Button(this.canvas.width * 0.02,
-      this.canvas.height * 0.15, this.buttonImage, null, 220, 60);
+    this.backButton = new Button(LostInTheForest.canvas.width * 0.02,
+      LostInTheForest.canvas.height * 0.15, this.buttonImage, null, 220, 60);
     this.backButton.setText('↩');
     this.backButton.setTextColor(this.textColor);
 
-    this.hintButton = new Button(this.canvas.width * 0.2,
-      this.canvas.height * 0.15, this.buttonImage, null, 220, 60);
+    this.hintButton = new Button(LostInTheForest.canvas.width * 0.2,
+      LostInTheForest.canvas.height * 0.15, this.buttonImage, null, 220, 60);
     this.hintButton.setText('Hint');
     this.hintButton.setTextColor(this.primaryTextColor);
 
     this.theoryButton = new Button(220, 50, null, null, 100, 100);
     this.theoryButton.setText('Theory');
 
-    this.finishButton = new Button(this.canvas.width * 0.435,
-      this.canvas.height * 0.80, this.buttonImage, null, 220, 60);
+    this.finishButton = new Button(LostInTheForest.canvas.width * 0.435,
+      LostInTheForest.canvas.height * 0.80, this.buttonImage, null, 220, 60);
     this.finishButton.setText('Finish ✓');
     this.finishButton.setTextColor(this.textColor);
   }
@@ -201,10 +201,10 @@ export default abstract class Challenge extends Stage {
     */
     challengeElements.sort(() => Math.random() - 0.5);
 
-    let yPos: number = this.canvas.height * 0.28;
+    let yPos: number = LostInTheForest.canvas.height * 0.28;
     // Each row of the elements
     for (let i: number = 0; i < this.AMOUNT_OF_CATEGORIES; i++) {
-      let xPos: number = this.canvas.width * 0.2;
+      let xPos: number = LostInTheForest.canvas.width * 0.2;
       // Each column of an element row
       for (let j: number = 0; j < this.AMOUNT_OF_ELEMENTS_PER_CATEGORY; j++) {
         // Give the first element of the array a position
@@ -216,9 +216,9 @@ export default abstract class Challenge extends Stage {
         });
         // Remove this element from the array
         challengeElements.shift();
-        xPos += this.canvas.width * 0.15;
+        xPos += LostInTheForest.canvas.width * 0.15;
       }
-      yPos += this.canvas.height * 0.125;
+      yPos += LostInTheForest.canvas.height * 0.125;
     }
   }
 
@@ -421,10 +421,10 @@ export default abstract class Challenge extends Stage {
     if (this.hintIsOpen) {
       this.hintButton.setTextColor('black');
       CanvasRenderer.writeText(
-        this.canvas,
+        LostInTheForest.canvas,
         'Categories: ' + hintCategoryText,
-        this.canvas.width * 0.35,
-        this.canvas.height * 0.2,
+        LostInTheForest.canvas.width * 0.35,
+        LostInTheForest.canvas.height * 0.2,
         'left',
         'Comic Sans MS',
         20,
@@ -450,7 +450,7 @@ export default abstract class Challenge extends Stage {
     for (const category of this.completedCategories) {
       const firstElement: ChallengeElement = category.getChallengeElements()[0] as ChallengeElement;
       CanvasRenderer.writeText(
-        this.canvas,
+        LostInTheForest.canvas,
         category.getName() + '!',
         firstElement.getPosX() + 450,
         firstElement.getPosY() - 15,

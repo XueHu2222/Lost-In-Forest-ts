@@ -1,4 +1,3 @@
-import MouseListener from '../MouseListener.js';
 import Stage from '../Stage.js';
 
 export default class EndScreen extends Stage {

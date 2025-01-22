@@ -78,8 +78,8 @@ export default abstract class Area extends Stage {
       this.playButtonPosition.y,
       this.playButtonImage,
       null,
-      this.canvas.width * 0.1,
-      this.canvas.height * 0.17
+      LostInTheForest.canvas.width * 0.1,
+      LostInTheForest.canvas.height * 0.17
     );
   }
 
@@ -145,7 +145,7 @@ export default abstract class Area extends Stage {
     if (this.timeToDisplayDialogue == 0) {
       currentDialogue.forEach((line: string[], index: number) => {
         CanvasRenderer.writeText(
-          this.canvas,
+          LostInTheForest.canvas,
           line.join(' '),
           this.dialogueTextPosition.x,
           this.dialogueTextPosition.y + index * 30,

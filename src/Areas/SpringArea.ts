@@ -12,23 +12,23 @@ export default class SpringArea extends Area {
     this.nextChallenge = new PhysicsChallenge('medium', this.player, this.isDutch);
 
     this.animal = new Animal(
-      this.canvas.width * 0.1,
-      this.canvas.height * 0.5,
+      LostInTheForest.canvas.width * 0.1,
+      LostInTheForest.canvas.height * 0.5,
       'bunny', 4);
 
     this.animalDialoguePosition = {
-      x: this.canvas.width * 0.28,
-      y: this.canvas.height * 0.3,
+      x: LostInTheForest.canvas.width * 0.28,
+      y: LostInTheForest.canvas.height * 0.3,
     };
 
     this.animalDialogueSize = {
-      x: this.canvas.width * 0.3,
-      y: this.canvas.height * 0.35
+      x: LostInTheForest.canvas.width * 0.3,
+      y: LostInTheForest.canvas.height * 0.35
     };
 
     this.playButtonPosition = {
-      x: this.canvas.width * 0.4,
-      y: this.canvas.height * 0.65
+      x: LostInTheForest.canvas.width * 0.4,
+      y: LostInTheForest.canvas.height * 0.65
     };
 
     this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue1.png');
@@ -41,14 +41,14 @@ export default class SpringArea extends Area {
     ];
 
     this.dialogueTextPosition = {
-      x: this.canvas.width * 0.34,
-      y: this.canvas.height * 0.38
+      x: LostInTheForest.canvas.width * 0.34,
+      y: LostInTheForest.canvas.height * 0.38
     };
   }
 
   public override update(elapsed: number): void {
     super.update(elapsed);
-    this.player.setPosX(this.canvas.width * 0.5);
+    this.player.setPosX(LostInTheForest.canvas.width * 0.5);
   }
 
   public override render(): void {

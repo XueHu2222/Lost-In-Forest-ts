@@ -12,24 +12,24 @@ export default class SummerArea extends Area {
     this.nextChallenge = new GeographyChallenge('medium', this.player, this.isDutch);
 
     this.animal = new Animal(
-      this.canvas.width * 0.5,
-      this.canvas.height * 0.05,
+      LostInTheForest.canvas.width * 0.5,
+      LostInTheForest.canvas.height * 0.05,
       'owl', 6
     );
 
     this.animalDialoguePosition = {
-      x: this.canvas.width * 0.28,
-      y: this.canvas.height * 0.01,
+      x: LostInTheForest.canvas.width * 0.28,
+      y: LostInTheForest.canvas.height * 0.01,
     };
 
     this.animalDialogueSize = {
-      x: this.canvas.width * 0.29,
-      y: this.canvas.height * 0.3
+      x: LostInTheForest.canvas.width * 0.29,
+      y: LostInTheForest.canvas.height * 0.3
     };
 
     this.playButtonPosition = {
-      x: this.canvas.width * 0.4,
-      y: this.canvas.height * 0.6
+      x: LostInTheForest.canvas.width * 0.4,
+      y: LostInTheForest.canvas.height * 0.6
     };
 
     this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue2.png');
@@ -42,15 +42,15 @@ export default class SummerArea extends Area {
     ];
 
     this.dialogueTextPosition = {
-      x: this.canvas.width * 0.32,
-      y: this.canvas.height * 0.1
+      x: LostInTheForest.canvas.width * 0.32,
+      y: LostInTheForest.canvas.height * 0.1
     };
   }
 
 
   public override update(elapsed: number): void {
     super.update(elapsed);
-    this.player.setPosX(this.canvas.width * 0.5);
+    this.player.setPosX(LostInTheForest.canvas.width * 0.5);
   }
 
   public override render(): void {
