@@ -1,7 +1,7 @@
 import MainArea from '../Areas/MainArea.js';
 import Button from '../Button.js';
 import CanvasRenderer from '../CanvasRenderer.js';
-import BeginCutScene from '../Cutscenes/BeginCutScene.js';
+import CutScene from '../Cutscenes/CutScene.js';
 import LostInTheForest from '../LostInTheForest.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
@@ -74,7 +74,7 @@ export default class StartScreen extends Stage {
    */
   public override getNextStage(): Stage | null {
     if (this.started) {
-      return new BeginCutScene(this.player, this.isDutch);
+      return new CutScene(this.player, this.isDutch, 'BeginCutscenes', 7, new MainArea(this.player, this.isDutch));
     }
     return null;
   }
@@ -120,14 +120,6 @@ export default class StartScreen extends Stage {
         }
       });
     }
-  }
-
-  /**
-   *
-   * @param elapsed
-   */
-  public override update(elapsed: number): void {
-
   }
 
   /**

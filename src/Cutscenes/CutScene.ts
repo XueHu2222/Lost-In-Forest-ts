@@ -1,13 +1,25 @@
+import Area from '../Areas/Area.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
 
-export default abstract class CutScene extends Stage {
-  protected frames: HTMLImageElement[];
+export default class CutScene extends Stage {
+  private frames: HTMLImageElement[];
 
-  public constructor(player: Player, isDutch: boolean) {
+  private nextArea: Area;
+
+  private folderLength: number;
+
+  private imageFolder: string;
+
+  public constructor(player: Player, isDutch: boolean, imageFolder: string,
+    folderLength: number, nextArea: Area) {
     super(player, isDutch);
+    this.nextArea = nextArea;
+    this.folderLength = folderLength;
+    this.imageFolder = imageFolder;
     this.frames = [];
+    this.loadCutsceneImages();
   }
 
   /**
@@ -16,10 +28,10 @@ export default abstract class CutScene extends Stage {
    * @param imageFolder Folder name of the frames
    * @param folderLength Amount of frames in the folder
    */
-  protected loadCutsceneImages(imageFolder: string, folderLength: number): void {
+  protected loadCutsceneImages(): void {
     // Push all the images into the frames array
-    for (let i: number = 1; i <= folderLength; i++) {
-      const imagePath: string = `./assets/${imageFolder}/${i}.png`;
+    for (let i: number = 1; i <= this.folderLength; i++) {
+      const imagePath: string = `./assets/${this.imageFolder}/${i}.png`;
       this.frames.push(CanvasRenderer.loadNewImage(imagePath));
     }
 
@@ -33,6 +45,13 @@ export default abstract class CutScene extends Stage {
   }
 
   /**
+   * 
+   */
+  public override processInput(): void {
+    //none needed in this Stage
+  }
+
+  /**
    * Render the background
    * @param canvas The canvas used to change the background
    */
@@ -41,5 +60,12 @@ export default abstract class CutScene extends Stage {
       this.backgroundImage = this.frames[0];
       this.renderBackground();
     }
+  }
+
+  public override getNextStage(): Stage | null {
+    if (!this.frames[0]) {
+      return this.nextArea;
+    }
+    return null;
   }
 }

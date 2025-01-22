@@ -5,8 +5,8 @@ import Area from './Area.js';
 import Animal from '../Animals/Animal.js';
 import LostInTheForest from '../LostInTheForest.js';
 import Stage from '../Stage.js';
-import EndCutScene from '../Cutscenes/EndCutScene.js';
 import MouseListener from '../MouseListener.js';
+import CutScene from '../Cutscenes/CutScene.js';
 
 export default class MainArea extends Area {
   private dialoguePlayerArea: Button;
@@ -69,6 +69,10 @@ export default class MainArea extends Area {
     );
   }
 
+  /**
+   * Calls Areas update, sets players position right, check which background
+   * @param elapsed time elapsed
+   */
   public override update(elapsed: number): void {
     super.update(elapsed);
     this.player.setPosX(this.canvas.width * 0.5);
@@ -78,6 +82,9 @@ export default class MainArea extends Area {
     }
   }
 
+  /**
+   * calls Areas render, renders dialogue, map and button
+   */
   public override render(): void {
     super.render();
     this.dialoguePlayerArea.render();
@@ -92,11 +99,14 @@ export default class MainArea extends Area {
 
   public override getNextStage(): Stage | null {
     if (this.ended) {
-      return new EndCutScene(this.player, this.isDutch);
+      return new CutScene(this.player, this.isDutch, 'EndCutscenes', 5, new MainArea(this.player, this.isDutch));
     }
     return super.getNextStage();;
   }
 
+  /**
+   * Uses MouseListener to check if buttons are pressed.
+   */
   public override processInput(): void {
     if (LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
       this.processAreaInput();

@@ -84,6 +84,9 @@ export default abstract class Area extends Stage {
   }
 
 
+  /**
+   * 
+   */
   public override processInput(): void {
     if (LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
       this.processAreaInput();
@@ -108,8 +111,14 @@ export default abstract class Area extends Stage {
     this.player.getMap().processInput();
   }
 
+  /**
+   * updates all elements of the map
+   * @param elapsed time elapsed
+   */
   public override update(elapsed: number): void {
+    //made animal move
     this.animal.update(elapsed);
+    //makes dialogue update
     this.timeToDisplayDialogue -= elapsed;
     if (this.timeToDisplayDialogue <= 0) {
       this.timeToDisplayDialogue = 0;
@@ -117,10 +126,14 @@ export default abstract class Area extends Stage {
     if (this.animalDialogueIndex >= this.animalDialogue.length - 1) {
       this.playButtonToChallenge();
     }
+    //updates the map icons
     this.player.getMap().update();
     this.gameStarts = false;
   }
 
+  /**
+   * Renders the bg, animal, dialogue, player, button and gives settings for dialogue.
+   */
   public override render(): void {
     this.renderBackground();
     this.animal.render();
@@ -137,7 +150,7 @@ export default abstract class Area extends Stage {
           this.dialogueTextPosition.x,
           this.dialogueTextPosition.y + index * 30,
           'left',
-          'Arial',
+          'Comic Sans MS',
           20,
           'black'
         );

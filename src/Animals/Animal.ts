@@ -3,17 +3,17 @@ import CanvasRenderer from '../CanvasRenderer.js';
 import LostInTheForest from '../LostInTheForest.js';
 
 export default class Animal extends CanvasItem {
-  protected timeToNextFrame: number;
+  private timeToNextFrame: number;
 
-  protected elapsedTime: number;
+  private elapsedTime: number;
 
-  protected animal: string;
+  private animal: string;
 
-  protected folderLength: number;
+  private folderLength: number;
 
-  protected frameIndex: number;
+  private frameIndex: number;
 
-  protected frames: HTMLImageElement[];
+  private frames: HTMLImageElement[];
 
   public constructor(posX: number, posY: number, animal: string, folderLength: number) {
     super();
@@ -39,6 +39,10 @@ export default class Animal extends CanvasItem {
     }
   }
 
+  /**
+   * To make the animals loop
+   * @param elapsed time elapsed
+   */
   public update (elapsed: number): void{
     this.timeToNextFrame -= elapsed;
     if (this.timeToNextFrame < 0){
