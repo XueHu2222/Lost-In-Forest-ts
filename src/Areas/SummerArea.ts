@@ -1,7 +1,7 @@
 import Animal from '../Animals/Animal.js';
 import CanvasRenderer from '../CanvasRenderer.js';
-import Challenge from '../Challenges/Challenge.js';
 import GeographyChallenge from '../Challenges/GeographyChallenge.js';
+import LostInTheForest from '../LostInTheForest.js';
 import Player from '../Player.js';
 import Area from './Area.js';
 
@@ -47,12 +47,18 @@ export default class SummerArea extends Area {
     };
   }
 
-
+  /**
+   * Calls Areas update, sets players position right
+   * @param elapsed time elapsed
+   */
   public override update(elapsed: number): void {
     super.update(elapsed);
     this.player.setPosX(LostInTheForest.canvas.width * 0.5);
   }
 
+  /**
+   * calls Areas render, renders map
+   */
   public override render(): void {
     super.render();
     this.player.getMap().render();

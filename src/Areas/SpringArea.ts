@@ -46,11 +46,18 @@ export default class SpringArea extends Area {
     };
   }
 
+  /**
+   * Calls Areas update, sets players position right
+   * @param elapsed time elapsed
+   */
   public override update(elapsed: number): void {
     super.update(elapsed);
     this.player.setPosX(LostInTheForest.canvas.width * 0.5);
   }
 
+  /**
+   * calls Areas render, renders map
+   */
   public override render(): void {
     super.render();
     this.player.getMap().render();

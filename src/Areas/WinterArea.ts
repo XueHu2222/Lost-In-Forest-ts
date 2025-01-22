@@ -1,6 +1,7 @@
 import Animal from '../Animals/Animal.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import BiologyChallenge from '../Challenges/BiologyChallenge.js';
+import LostInTheForest from '../LostInTheForest.js';
 import Player from '../Player.js';
 import Area from './Area.js';
 
@@ -49,12 +50,18 @@ export default class WinterArea extends Area {
     };
   }
 
-
+  /**
+   * Calls Areas update, sets players position right
+   * @param elapsed time elapsed
+   */
   public override update(elapsed: number): void {
     super.update(elapsed);
     this.player.setPosX(LostInTheForest.canvas.width * 0.15);
   }
 
+  /**
+   * calls Areas render, renders map
+   */
   public override render(): void {
     super.render();
     this.player.getMap().render();
