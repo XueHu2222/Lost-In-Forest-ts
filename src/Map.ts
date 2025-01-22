@@ -20,26 +20,26 @@ export default class Map extends CanvasItem {
     this.nextArea = null;
     // TODO: Add the area buttons to the array
     this.image = CanvasRenderer.loadNewImage('./assets/Map/map.png');
-    this.posX = LostInTheForest.canvas.width * 0.8;
-    this.posY = 0;
-    this.width = LostInTheForest.canvas.width * 0.2;
-    this.height = LostInTheForest.canvas.width * 0.2;
+    this.position.x = LostInTheForest.canvas.width * 0.8;
+    this.position.y = 0;
+    this.size.x = LostInTheForest.canvas.width * 0.2;
+    this.size.y = LostInTheForest.canvas.width * 0.2;
     this.areaButtons = [];
     this.areaButtons.push(new AreaButton(new MainArea(player, true),
-      this.posX + LostInTheForest.canvas.width * 0.04,
-      this.posY + LostInTheForest.canvas.width * 0.05));
+      this.getPosX() + LostInTheForest.canvas.width * 0.04,
+      this.getPosY() + LostInTheForest.canvas.width * 0.05));
     this.areaButtons.push(new AreaButton(new SpringArea(player, true),
-      this.posX + LostInTheForest.canvas.width * 0.09,
-      this.posY + LostInTheForest.canvas.width * 0.12));
+      this.getPosX() + LostInTheForest.canvas.width * 0.09,
+      this.getPosY() + LostInTheForest.canvas.width * 0.12));
     this.areaButtons.push(new AreaButton(new SummerArea(player, true),
-      this.posX + LostInTheForest.canvas.width * 0.08,
-      this.posY + LostInTheForest.canvas.width * 0.06));
+      this.getPosX() + LostInTheForest.canvas.width * 0.08,
+      this.getPosY() + LostInTheForest.canvas.width * 0.06));
     this.areaButtons.push(new AreaButton(new WinterArea(player, true),
-      this.posX + LostInTheForest.canvas.width * 0.11,
-      this.posY + LostInTheForest.canvas.width * 0.09));
+      this.getPosX() + LostInTheForest.canvas.width * 0.11,
+      this.getPosY() + LostInTheForest.canvas.width * 0.09));
     this.areaButtons.push(new AreaButton(new AutumnArea(player, true),
-      this.posX + LostInTheForest.canvas.width * 0.06,
-      this.posY + LostInTheForest.canvas.width * 0.1));
+      this.getPosX() + LostInTheForest.canvas.width * 0.06,
+      this.getPosY() + LostInTheForest.canvas.width * 0.1));
   }
 
   /**

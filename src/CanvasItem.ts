@@ -1,23 +1,18 @@
 import CanvasRenderer from './CanvasRenderer.js';
 import LostInTheForest from './LostInTheForest.js';
+import { Vector2 } from './Types.js';
 
 export default abstract class CanvasItem {
   protected image: HTMLImageElement;
 
-  protected posX: number;
+  protected position: Vector2;
 
-  protected posY: number;
-
-  protected width: number;
-
-  protected height: number;
+  protected size: Vector2;
 
   public constructor() {
     this.image = new Image;
-    this.posX = 0;
-    this.posY = 0;
-    this.width = 0;
-    this.height = 0;
+    this.position = {x: 0, y: 0};
+    this.size = {x: 0, y: 0};
   }
 
   /**
@@ -28,38 +23,38 @@ export default abstract class CanvasItem {
    */
   public render(): void {
     CanvasRenderer.drawImage(LostInTheForest.canvas, this.image,
-      this.posX, this.posY, this.width, this.height);
+      this.position.x, this.position.y, this.size.x, this.size.y);
   }
 
   public setPosX(posX: number): void {
-    this.posX = posX;
+    this.position.x = posX;
   }
 
   public setPosY(posY: number): void {
-    this.posY = posY;
+    this.position.y = posY;
   }
 
   public setWidth(width: number): void {
-    this.width = width;
+    this.size.x = width;
   }
 
   public setHeight(height: number): void {
-    this.height = height;
+    this.size.y = height;
   }
 
   public getPosX(): number{
-    return this.posX;
+    return this.position.x;
   }
 
   public getPosY(): number{
-    return this.posY;
+    return this.position.y;
   }
 
   public getWidth(): number {
-    return this.width;
+    return this.size.x;
   }
 
   public getHeight(): number {
-    return this.height;
+    return this.size.y;
   }
 }

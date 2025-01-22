@@ -21,10 +21,8 @@ export default class Button extends CanvasItem {
     this.text = '';
     this.textColor = 'red';
     this.textSize = 22;
-    this.posX = posX;
-    this.posY = posY;
-    this.width = width;
-    this.height = height;
+    this.position = {x: posX, y: posY};
+    this.size = {x: width, y: height};
     if (image != null) {
       this.image = image;
     }
@@ -39,10 +37,10 @@ export default class Button extends CanvasItem {
    */
   public isCollidingWithMouse(): boolean {
     const mouseListener: MouseListener = LostInTheForest.mouseListener;
-    if (mouseListener.getMousePosition().y > this.posY
-      && mouseListener.getMousePosition().y < this.posY + this.height
-      && mouseListener.getMousePosition().x > this.posX
-      && mouseListener.getMousePosition().x < this.posX + this.width) {
+    if (mouseListener.getMousePosition().y > this.getPosY()
+      && mouseListener.getMousePosition().y < this.getPosY() + this.getHeight()
+      && mouseListener.getMousePosition().x > this.getPosX()
+      && mouseListener.getMousePosition().x < this.getPosX() + this.getWidth()) {
       return true;
     }
     return false;
@@ -56,22 +54,22 @@ export default class Button extends CanvasItem {
     super.render(); // always renders the parent class (canvasItem)
     if(this.isSelected && this.selectedImage){
       CanvasRenderer.drawImage(LostInTheForest.canvas, this.selectedImage,
-        this.posX,
-        this.posY,
-        this.width,
-        this.height
+        this.getPosX(),
+        this.getPosY(),
+        this.size.x,
+        this.size.y
       );
     }
     if (this.text != '' && this.text) {
       if (this.image != null) {
         // Calculate the center position
-        const centerX: number = this.posX + (this.image.width / 2) - (-50 / 2);
-        const centerY: number = this.posY + (this.image.height / 2) - (105 / 2);
+        const centerX: number = this.getPosX() + (this.image.width / 2) - (-50 / 2);
+        const centerY: number = this.getPosY() + (this.image.height / 2) - (105 / 2);
 
         // Write the text at the center position
         CanvasRenderer.writeText(LostInTheForest.canvas, this.text, centerX, centerY, 'center', 'Comic Sans MS', this.textSize, this.textColor);
       } else {
-        CanvasRenderer.writeText(LostInTheForest.canvas, this.text, this.posX, this.posY);
+        CanvasRenderer.writeText(LostInTheForest.canvas, this.text, this.getPosX(), this.getPosY());
       }
     }
     if (this.isCollidingWithMouse()) {

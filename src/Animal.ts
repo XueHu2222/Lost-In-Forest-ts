@@ -21,8 +21,7 @@ export default class Animal extends CanvasItem {
     this.frames = [];
     this.timeToNextFrame = 500;
     this.elapsedTime = 0;
-    this.posX = posX;
-    this.posY = posY;
+    this.position = {x: posX, y: posY};
     this.animal = 'bunny';
     this.animal = animal;
     this.folderLength = 4;

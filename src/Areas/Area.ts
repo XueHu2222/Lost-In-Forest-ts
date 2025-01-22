@@ -6,6 +6,7 @@ import Challenge from '../Challenges/Challenge.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
+import { Vector2 } from '../Types.js';
 
 export default abstract class Area extends Stage {
   protected animal: Animal;
@@ -22,17 +23,17 @@ export default abstract class Area extends Stage {
 
   protected timeToDisplayDialogue: number = 1000;
 
-  protected dialogueTextPosition: { x: number, y: number };
+  protected dialogueTextPosition: Vector2;
 
   protected challengeCanStart: boolean = false;
 
-  protected animalDialogueSize: { x: number, y: number };
+  protected animalDialogueSize: Vector2;
 
-  protected animalDialoguePosition: { x: number, y: number };
+  protected animalDialoguePosition: Vector2;
 
   protected dialogueAnimalImage: HTMLImageElement = new Image;
 
-  protected playButtonPosition: { x: number, y: number };
+  protected playButtonPosition: Vector2;
 
   protected playButtonImage: HTMLImageElement = new Image;
 
