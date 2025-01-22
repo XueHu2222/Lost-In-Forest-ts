@@ -1,11 +1,20 @@
+import Area from '../Areas/Area.js';
+import AutumnArea from '../Areas/AutumnArea.js';
+import SpringArea from '../Areas/SpringArea.js';
+import SummerArea from '../Areas/SummerArea.js';
+import WinterArea from '../Areas/WinterArea.js';
 import Button from '../Button.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import LostInTheForest from '../LostInTheForest.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
+import BiologyChallenge from './BiologyChallenge.js';
 import Category from './Category.js';
 import ChallengeElement from './ChallengeElement.js';
+import GeographyChallenge from './GeographyChallenge.js';
+import HistoryChallenge from './HistoryChallenge.js';
+import PhysicsChallenge from './PhysicsChallenge.js';
 import Animal from '../Animals/Animal.js';
 
 export default abstract class Challenge extends Stage {
@@ -472,4 +481,9 @@ export default abstract class Challenge extends Stage {
       );
     }
   }
+
+  public setNextDifficulty(value: string | null): void{
+    this.nextDifficulty = value;
+  }
 }
+

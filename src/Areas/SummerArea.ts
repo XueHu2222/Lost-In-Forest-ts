@@ -1,5 +1,6 @@
 import Animal from '../Animals/Animal.js';
 import CanvasRenderer from '../CanvasRenderer.js';
+import Challenge from '../Challenges/Challenge.js';
 import GeographyChallenge from '../Challenges/GeographyChallenge.js';
 import Player from '../Player.js';
 import Area from './Area.js';

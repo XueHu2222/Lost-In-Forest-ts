@@ -7,7 +7,7 @@ import CutScene from './CutScene.js';
 export default class EndCutScene extends CutScene {
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
-    this.loadCutsceneImages('EndCutscenes', 0);
+    this.loadCutsceneImages('EndCutscenes', 5);
   }
 
   public override getNextStage(): Stage | null {

@@ -1,4 +1,5 @@
 import SpringArea from '../Areas/SpringArea.js';
+import LostInTheForest from '../LostInTheForest.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
 import Challenge from './Challenge.js';
@@ -54,6 +55,9 @@ export default class PhysicsChallenge extends Challenge {
    */
   public override getNextStage(): Stage | null {
     if (this.clickedFinished || this.goBack) {
+      if (this.clickedFinished) {
+        LostInTheForest.keyPhysics = true;
+      }
       this.clickedFinished = false;
       this.goBack = false;
       return new SpringArea(this.player, this.isDutch);

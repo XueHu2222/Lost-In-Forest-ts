@@ -1,4 +1,5 @@
 import WinterArea from '../Areas/WinterArea.js';
+import LostInTheForest from '../LostInTheForest.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
 import Challenge from './Challenge.js';
@@ -35,7 +36,7 @@ export default class BiologyChallenge extends Challenge {
       case 'hard':
         categoryData.push(['Paard / Horse', 'Koe / Cow', 'Giraf / Giraffe', 'Konijn / Rabbit']); // Herbivores
         categoryData.push(['Tijger / Tiger', 'Wolf / Wolf', 'Haai / Shark', 'Leeuw / Lion']); // Carnivores
-        categoryData.push(['Beer / Bear', 'Beer / Bear', 'Mens / Human', 'Wasbeer / Raccoon']); // Omnivores
+        categoryData.push(['Beer / Bear', 'Varken / Pig', 'Mens / Human', 'Wasbeer / Raccoon']); // Omnivores
         categoryData.push(['Mier / Ant', 'Egel / Hedgehog', 'Vogel / Bird', 'Kameleon / Chameleon']); // Insectivores
 
         categoryNames = ['Herbivores', 'Carnivores', 'Omnivores', 'Insectivores'];
@@ -55,6 +56,9 @@ export default class BiologyChallenge extends Challenge {
  */
   public override getNextStage(): Stage | null {
     if (this.clickedFinished || this.goBack) {
+      if (this.clickedFinished) {
+        LostInTheForest.keyBiology = true;
+      }
       this.clickedFinished = false;
       this.goBack = false;
       return new WinterArea(this.player, this.isDutch);
