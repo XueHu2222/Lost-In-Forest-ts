@@ -421,12 +421,15 @@ export default abstract class Challenge extends Stage {
   }
 
   /**
-   *
+   * update animal
+   @param elapsed time
    */
   public override update(elapsed: number): void {
     this.animal.update(elapsed);
   }
-
+  /**
+  * render the content for theory 
+  */
   private renderTheory(): void {
     CanvasRenderer.drawImage(this.canvas, this.theoryBackground,
       this.canvas.width * 0.05,
