@@ -14,7 +14,7 @@ export default class EndCutScene extends CutScene {
 
   public override getNextStage(): Stage | null {
     if(!this.frames[0]){
-      return new EndScreen(this.player, LostInTheForest.isDutch);
+      return new EndScreen(this.player);
     }
     return null;
   }

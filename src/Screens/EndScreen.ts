@@ -9,21 +9,25 @@ import Stage from '../Stage.js';
 import StartScreen from './StartScreen.js';
 
 export default class EndScreen extends Stage {
-  protected endMessage: string[];
+  private endMessage: string[];
 
-  protected homeButton: Button;
+  private homeButton: Button;
 
-  protected restartButton: Button;
+  private restartButton: Button;
 
-  protected isGoHome: boolean = false;
+  private isGoHome: boolean;
 
-  protected isRestart: boolean = false;
+  private isRestart: boolean;
 
-  protected allAnimals: Animal[] = [];
+  private allAnimals: Animal[] = [];
 
-  public constructor(player: Player, isDutch: boolean) {
-    super(player, isDutch);
+  public constructor(player: Player) {
+    super(player, LostInTheForest.isDutch);
+
+    //to give everything a standard value
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/start.png');
+    this.isGoHome = false;
+    this.isRestart = false;
     this.allAnimals = [
       new Animal(this.canvas.width * 0.25, this.canvas.height * 0.63, 'bunny', 4),
       new Animal(this.canvas.width * 0.5, this.canvas.height * 0.68, 'frog', 4),
@@ -51,15 +55,23 @@ export default class EndScreen extends Stage {
     );
   }
 
+  /**
+     * checks if its started to next stage
+     * @returns the stage if it started or nothing if its not started yet
+     */
   public override getNextStage(): Stage | null {
     if (this.isGoHome) {
-      return new StartScreen(LostInTheForest.setIsDutch.bind(LostInTheForest), this.player);
+      return new StartScreen(this.player);
     } if (this.isRestart) {
       return new BeginCutScene(this.player, this.isDutch);
     }
     return null;
   }
 
+  /**
+   * To check if the mouse is used
+   * @param mouseListener gives the mouse as an object
+   */
   public override processInput(): void {
     if (LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
       //homebutton
@@ -80,7 +92,7 @@ export default class EndScreen extends Stage {
   public override render(): void {
     CanvasRenderer.drawImage(this.canvas, this.backgroundImage,
       0, 0, this.canvas.width, this.canvas.height);
-      this.allAnimals.forEach((animal: Animal) => animal.render());
+    this.allAnimals.forEach((animal: Animal) => animal.render());
     this.homeButton.render();
     this.restartButton.render();
 
