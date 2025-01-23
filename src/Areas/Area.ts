@@ -6,7 +6,6 @@ import Challenge from '../Challenges/Challenge.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
-import BiologyChallenge from '../Challenges/BiologyChallenge.js';
 
 export default abstract class Area extends Stage {
   protected animal: Animal;
@@ -87,21 +86,26 @@ export default abstract class Area extends Stage {
 
   public override processInput(): void {
     if (LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
-      if (this.dialogueAnimalArea.isCollidingWithMouse()) {
-        if (this.animalDialogueIndex < this.animalDialogue.length - 1) {
-          this.animalDialogueIndex += 1;
-        } else {
+      this.processAreaInput();
+    }
+  }
+
+  protected processAreaInput(): void{
+    if (this.dialogueAnimalArea.isCollidingWithMouse()) {
+      if (this.animalDialogueIndex < this.animalDialogue.length - 1) {
+        this.animalDialogueIndex += 1;
+        if (this.animalDialogueIndex === this.animalDialogue.length - 1) {
           this.challengeCouldStarted = true;
         }
       }
-
-      if (this.challengeCouldStarted &&
-        this.animalDialogueIndex === this.animalDialogue.length - 1 &&
-        this.playButton.isCollidingWithMouse()) {
-        this.gameStarts = true;
-      }
-      this.player.getMap().processInput();
     }
+
+    if (this.challengeCouldStarted &&
+      this.animalDialogueIndex === this.animalDialogue.length - 1 &&
+      this.playButton.isCollidingWithMouse()) {
+      this.gameStarts = true;
+    }
+    this.player.getMap().processInput();
   }
 
   public override update(elapsed: number): void {
@@ -143,6 +147,7 @@ export default abstract class Area extends Stage {
 
   public override getNextStage(): Stage | null {
     if (this.gameStarts) {
+      this.nextChallenge?.setNextDifficulty(null);
       return this.nextChallenge;
     }
     if (this.player.getMap().getNextArea()) {
