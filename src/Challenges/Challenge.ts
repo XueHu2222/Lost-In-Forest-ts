@@ -1,22 +1,16 @@
-import Area from '../Areas/Area.js';
-import AutumnArea from '../Areas/AutumnArea.js';
-import SpringArea from '../Areas/SpringArea.js';
-import SummerArea from '../Areas/SummerArea.js';
-import WinterArea from '../Areas/WinterArea.js';
 import Button from '../Button.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import LostInTheForest from '../LostInTheForest.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
-import BiologyChallenge from './BiologyChallenge.js';
 import Category from './Category.js';
 import ChallengeElement from './ChallengeElement.js';
-import GeographyChallenge from './GeographyChallenge.js';
-import HistoryChallenge from './HistoryChallenge.js';
-import PhysicsChallenge from './PhysicsChallenge.js';
+import Animal from '../Animals/Animal.js';
 
 export default abstract class Challenge extends Stage {
+  protected animal: Animal;
+
   private readonly AMOUNT_OF_CATEGORIES: number;
 
   private readonly AMOUNT_OF_ELEMENTS_PER_CATEGORY: number;
@@ -35,9 +29,13 @@ export default abstract class Challenge extends Stage {
 
   private theoryButton: Button;
 
+  private closeTheoryButton: Button;
+
   private difficultyButtons: Button[];
 
   private finishButton: Button;
+
+  private theoryBackground: HTMLImageElement;
 
   private buttonImage: HTMLImageElement;
 
@@ -69,6 +67,7 @@ export default abstract class Challenge extends Stage {
 
   public constructor(difficultyLevel: string, player: Player, isDutch: boolean) {
     super(player, isDutch);
+    this.animal = new Animal(0, 0, 'monkey', 4);
     this.AMOUNT_OF_CATEGORIES = 4;
     this.AMOUNT_OF_ELEMENTS_PER_CATEGORY = 4;
     this.difficultyLevel = difficultyLevel;
@@ -93,6 +92,7 @@ export default abstract class Challenge extends Stage {
     this.buttonImage = new Image;
     this.buttonSelectImage = new Image;
     this.challengeScience = '';
+    this.theoryBackground = CanvasRenderer.loadNewImage('./assets/theoryBackground.png');
 
     // Buttons
     this.backButton = new Button(0, 0, null, null, 0, 0);
@@ -100,6 +100,9 @@ export default abstract class Challenge extends Stage {
     this.theoryButton = new Button(0, 0, null, null, 0, 0);
     this.difficultyButtons = [];
     this.finishButton = new Button(0, 0, null, null, 0, 0);
+    const closeImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/closeButton.png');
+    this.closeTheoryButton = new Button(this.canvas.width * 0.9, this.canvas.height * 0.075,
+      closeImage, null, this.canvas.width * 0.03, this.canvas.width * 0.03);
   }
 
   /**
@@ -158,8 +161,10 @@ export default abstract class Challenge extends Stage {
     this.hintButton.setText('Hint');
     this.hintButton.setTextColor(this.primaryTextColor);
 
-    this.theoryButton = new Button(220, 50, null, null, 100, 100);
-    this.theoryButton.setText('Theory');
+    const dialogueImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/dialogue2.png');
+    this.theoryButton = new Button(this.canvas.width * 0.76, this.canvas.height * 0.56,
+      dialogueImage, null, this.canvas.width * 0.15, this.canvas.height * 0.15);
+
 
     this.finishButton = new Button(this.canvas.width * 0.435,
       this.canvas.height * 0.80, this.buttonImage, null, 220, 60);
@@ -172,13 +177,17 @@ export default abstract class Challenge extends Stage {
    * @param categoryData An array of an array of the challengeElement names
    * @param categoryNames The names of each category
    */
-  protected initiateCategoryElements(categoryData: string[][], categoryNames: string[]): void {
+  protected initiateCategoryElements(categoryData: string[][][], categoryNames: string[]): void {
     this.initiateButtons();
     categoryNames.forEach((categoryName: string, index: number) => {
       const challengeELements: ChallengeElement[] = [];
-      for (const challengeElementText of categoryData[index] as string[]) {
+      if (!categoryData[index]) {
+        return;
+      }
+      for (const elementTerm of categoryData[index] as string[][]) {
         const newChallengeElement: ChallengeElement =
-          new ChallengeElement(challengeElementText, this.buttonImage, this.buttonSelectImage);
+          new ChallengeElement(elementTerm[0] as string, elementTerm[1] as string,
+            this.buttonImage, this.buttonSelectImage);
         newChallengeElement.setTextSize(18);
         newChallengeElement.setTextColor(this.textColor);
         challengeELements.push(newChallengeElement);
@@ -186,6 +195,7 @@ export default abstract class Challenge extends Stage {
       this.categories.push(new Category(categoryName, challengeELements));
     });
     this.initiateElementPositions();
+    console.log(this.categories);
   }
 
   /**
@@ -381,10 +391,6 @@ export default abstract class Challenge extends Stage {
     return false;
   }
 
-  private renderTheory(canvas: HTMLCanvasElement): void {
-
-  }
-
   /**
    * Process all the button clicks
    */
@@ -405,7 +411,102 @@ export default abstract class Challenge extends Stage {
       if (this.backButton.isCollidingWithMouse()) {
         this.goBack = true;
       }
+      if (this.theoryButton.isCollidingWithMouse()) {
+        this.theoryIsOpen = true;
+      }
+      if (this.closeTheoryButton.isCollidingWithMouse()) {
+        this.theoryIsOpen = false;
+      }
     }
+  }
+
+  /**
+   * update animal
+   @param elapsed time
+   */
+  public override update(elapsed: number): void {
+    this.animal.update(elapsed);
+  }
+  /**
+  * render the content for theory 
+  */
+  private renderTheory(): void {
+    CanvasRenderer.drawImage(this.canvas, this.theoryBackground,
+      this.canvas.width * 0.05,
+      this.canvas.height * 0.05,
+      this.canvas.width * 0.9, this.canvas.height * 0.9
+    );
+
+    const title: string = `${this.challengeScience} Theory (${this.difficultyLevel})`;
+    CanvasRenderer.writeText(this.canvas, title, this.canvas.width * 0.075, this.canvas.height * 0.125, 'start', 'arial', 32, 'black', 'bold');
+
+    // Render text
+    let categoryXPos: number = this.canvas.width * 0.075;
+    let categoryYPos: number = this.canvas.height * 0.2;
+    this.categories.forEach((category: Category, index: number) => {
+      if (index % 2 != 0) {
+        categoryYPos = this.canvas.height * 0.2;
+      } else {
+        categoryYPos = this.canvas.height * 0.6;
+      }
+      if (index == 0 || index == 1) {
+        categoryXPos = this.canvas.width * 0.075;
+      } else {
+        categoryXPos = this.canvas.width * 0.5;
+      }
+      // Category text
+      CanvasRenderer.writeText(this.canvas, category.getName(), categoryXPos, categoryYPos, 'start', 'arial', 20, 'black', 'bold');
+
+      const elementXPos: number = categoryXPos;
+      let elementYPos: number = categoryYPos + this.canvas.height * 0.03;
+      // Element text
+      for (const element of category.getChallengeElements()) {
+        let theoryString: string = element.getTheory();
+        let theoryYPos: number = elementYPos;
+
+        // Write the element text label
+        CanvasRenderer.writeText(
+          this.canvas,
+          element.getText() + ':',
+          elementXPos,
+          elementYPos,
+          'start',
+          'arial',
+          16,
+          'black',
+          'bold'
+        );
+
+        // Adjust position for theory text starting point
+        theoryYPos += 20;
+
+        // Break the theoryString into lines of 75 characters
+        while (theoryString.length > 0) {
+          // Extract up to 75 characters from the start of the string
+          const line: string = theoryString.slice(0, 75);
+
+          // Write the current line
+          CanvasRenderer.writeText(
+            this.canvas,
+            line,
+            elementXPos,
+            theoryYPos,
+            'start',
+            'arial',
+            16,
+            'black'
+          );
+
+          // Remove the written part from the string
+          theoryString = theoryString.slice(75);
+
+          // Increment Y position for the next line
+          theoryYPos += 20;
+        }
+        elementYPos += this.canvas.height * 0.08;
+      }
+    });
+    this.closeTheoryButton.render();
   }
 
   /**
@@ -416,6 +517,8 @@ export default abstract class Challenge extends Stage {
     this.backButton.render();
     this.theoryButton.render();
     this.hintButton.render();
+    this.animal.render();
+    CanvasRenderer.writeText(this.canvas, 'Klik voor de theorie', this.canvas.width * 0.83, this.canvas.height * 0.64, 'center', 'Arial', 20, 'black');
 
     const hintCategoryText: string = this.categories.reduce((acc: string, cur: Category) => acc += cur.getName() + ' - ', ' - ');
     if (this.hintIsOpen) {
@@ -460,9 +563,13 @@ export default abstract class Challenge extends Stage {
         this.secondaryTextColor
       );
     }
+
+    if (this.theoryIsOpen) {
+      this.renderTheory();
+    }
   }
 
-  public setNextDifficulty(value: string | null): void{
+  public setNextDifficulty(value: string | null): void {
     this.nextDifficulty = value;
   }
 }
