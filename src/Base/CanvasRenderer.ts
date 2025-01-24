@@ -99,9 +99,10 @@ export default class CanvasRenderer {
     fontFamily: string = 'sans-serif',
     fontSize: number = 20,
     color: string = 'red',
+    fontWeight: string = 'normal'
   ): void {
     const ctx: CanvasRenderingContext2D = CanvasRenderer.getCanvasContext(canvas);
-    ctx.font = `${fontSize}px ${fontFamily}`;
+    ctx.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
     ctx.fillStyle = color;
     ctx.textAlign = alignment;
     ctx.fillText(text, xCoordinate, yCoordinate);
