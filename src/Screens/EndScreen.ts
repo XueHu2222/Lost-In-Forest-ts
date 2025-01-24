@@ -66,6 +66,7 @@ export default class EndScreen extends Stage {
       return new MainArea(this.player, this.isDutch);
     } if (this.isRestart) {
       window.location.reload();
+      this.isRestart = false;
     }
     return null;
   }
