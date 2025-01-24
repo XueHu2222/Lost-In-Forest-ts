@@ -65,8 +65,8 @@ export default abstract class Challenge extends Stage {
 
   private theoryIsOpen: boolean;
 
-  public constructor(difficultyLevel: string, player: Player, isDutch: boolean) {
-    super(player, isDutch);
+  public constructor(difficultyLevel: string, player: Player) {
+    super(player);
     this.animal = new Animal(0, 0, 'monkey', 4);
     this.AMOUNT_OF_CATEGORIES = 4;
     this.AMOUNT_OF_ELEMENTS_PER_CATEGORY = 4;

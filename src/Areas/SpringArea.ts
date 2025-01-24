@@ -6,10 +6,10 @@ import Player from '../Player.js';
 import Area from './Area.js';
 
 export default class SpringArea extends Area {
-  public constructor(player: Player, isDutch: boolean) {
-    super(player, isDutch);
+  public constructor(player: Player) {
+    super(player);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/Areas/spring.png');
-    this.nextChallenge = new PhysicsChallenge('medium', this.player, this.isDutch);
+    this.nextChallenge = new PhysicsChallenge('medium', this.player);
 
     this.animal = new Animal(
       LostInTheForest.canvas.width * 0.1,

@@ -6,10 +6,10 @@ import Player from '../Player.js';
 import Area from './Area.js';
 
 export default class WinterArea extends Area {
-  public constructor(player: Player, isDutch: boolean) {
-    super(player, isDutch);
+  public constructor(player: Player) {
+    super(player);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/Areas/winter.png');
-    this.nextChallenge = new BiologyChallenge('medium', this.player, this.isDutch);
+    this.nextChallenge = new BiologyChallenge('medium', this.player);
 
     this.animal = new Animal(
       LostInTheForest.canvas.width * 0.55,

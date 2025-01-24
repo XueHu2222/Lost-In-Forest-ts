@@ -20,8 +20,8 @@ export default class MainArea extends Area {
 
   private backgroundFinished: HTMLImageElement;
 
-  public constructor(player: Player, isDutch: boolean) {
-    super(player, isDutch);
+  public constructor(player: Player) {
+    super(player);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/Areas/main.png');
     this.backgroundFinished = CanvasRenderer.loadNewImage('./assets/Areas/mainEnd.png');
     this.player.setPosY(LostInTheForest.canvas.height * 0.35);
@@ -88,7 +88,7 @@ export default class MainArea extends Area {
   }
 
   /**
-   * calls Areas render, renders dialogue, map and button
+   * calls Areas render, renders dialogue, map and button.
    */
   public override render(): void {
     super.render();
@@ -104,7 +104,7 @@ export default class MainArea extends Area {
 
   public override getNextStage(): Stage | null {
     if (MainArea.gameHasEnded) {
-      return new CutScene(this.player, this.isDutch, 'EndCutscenes', 5, new EndScreen(this.player));
+      return new CutScene(this.player, 'EndCutscenes', 5, new EndScreen(this.player));
     }
     return super.getNextStage();
   }

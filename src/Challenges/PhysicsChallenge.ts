@@ -6,8 +6,8 @@ import Challenge from './Challenge.js';
 import Animal from '../Animal.js';
 
 export default class PhysicsChallenge extends Challenge {
-  public constructor(difficultyLevel: string, player: Player, isDutch: boolean) {
-    super(difficultyLevel, player, isDutch);
+  public constructor(difficultyLevel: string, player: Player) {
+    super(difficultyLevel, player);
     const categoryData: string[][][] = [];
     let categoryNames: string[] = [];
     this.animal = new Animal(LostInTheForest.canvas.width * 0.8, LostInTheForest.canvas.height * 0.66, 'bunny', 4);
@@ -118,10 +118,10 @@ export default class PhysicsChallenge extends Challenge {
       LostInTheForest.keyPhysics = true;
     }
     if (this.leavingChallenge()) {
-      return new SpringArea(this.player, this.isDutch);
+      return new SpringArea(this.player);
     }
     if (this.nextDifficulty) {
-      return new PhysicsChallenge(this.nextDifficulty, this.player, this.isDutch);
+      return new PhysicsChallenge(this.nextDifficulty, this.player);
     }
     return null;
   }

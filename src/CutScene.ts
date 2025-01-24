@@ -14,9 +14,9 @@ export default class CutScene extends Stage {
 
   private timeToNextFrame: number;
 
-  public constructor(player: Player, isDutch: boolean, imageFolder: string,
+  public constructor(player: Player, imageFolder: string,
     folderLength: number, nextArea: Stage) {
-    super(player, isDutch);
+    super(player);
     this.nextStage = nextArea;
     this.folderLength = folderLength;
     this.imageFolder = imageFolder;

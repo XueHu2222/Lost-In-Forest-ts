@@ -6,8 +6,8 @@ import Challenge from './Challenge.js';
 import Animal from '../Animal.js';
 
 export default class HistoryChallenge extends Challenge {
-  public constructor(difficultyLevel: string, player: Player, isDutch: boolean) {
-    super(difficultyLevel, player, isDutch);
+  public constructor(difficultyLevel: string, player: Player) {
+    super(difficultyLevel, player);
     const categoryData: string[][][] = [];
     this.animal = new Animal(LostInTheForest.canvas.width * 0.8, LostInTheForest.canvas.height * 0.66, 'frog', 5);
 
@@ -106,10 +106,10 @@ export default class HistoryChallenge extends Challenge {
       LostInTheForest.keyHistory = true;
     }
     if (this.leavingChallenge()) {
-      return new AutumnArea(this.player, this.isDutch);
+      return new AutumnArea(this.player);
     }
     if (this.nextDifficulty) {
-      return new HistoryChallenge(this.nextDifficulty, this.player, this.isDutch);
+      return new HistoryChallenge(this.nextDifficulty, this.player);
     }
     return null;
   }

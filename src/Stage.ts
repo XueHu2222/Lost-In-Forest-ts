@@ -5,13 +5,10 @@ import Player from './Player.js';
 export default abstract class Stage {
   protected player: Player;
 
-  protected isDutch: boolean;
-
   protected backgroundImage: HTMLImageElement;
 
-  public constructor(player: Player, isDutch: boolean) {
+  public constructor(player: Player) {
     this.player = player;
-    this.isDutch = isDutch;
     this.backgroundImage = new Image;
   }
 

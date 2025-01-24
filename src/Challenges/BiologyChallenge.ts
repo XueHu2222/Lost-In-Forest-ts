@@ -7,8 +7,8 @@ import Animal from '../Animal.js';
 
 
 export default class BiologyChallenge extends Challenge {
-  public constructor(difficultyLevel: string, player: Player, isDutch: boolean) {
-    super(difficultyLevel, player, isDutch);
+  public constructor(difficultyLevel: string, player: Player) {
+    super(difficultyLevel, player);
     const categoryData: string[][][] = [];
     let categoryNames: string[] = [];
     this.animal = new Animal(LostInTheForest.canvas.width * 0.8, LostInTheForest.canvas.height * 0.66, 'monkey', 4);
@@ -119,10 +119,10 @@ export default class BiologyChallenge extends Challenge {
       LostInTheForest.keyBiology = true;
     }
     if (this.leavingChallenge()) {
-      return new WinterArea(this.player, this.isDutch);
+      return new WinterArea(this.player);
     }
     if (this.nextDifficulty) {
-      return new BiologyChallenge(this.nextDifficulty, this.player, this.isDutch);
+      return new BiologyChallenge(this.nextDifficulty, this.player);
     }
     return null;
   }
