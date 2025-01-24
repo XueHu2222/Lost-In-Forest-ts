@@ -1,4 +1,5 @@
 import Animal from '../Animals/Animal.js';
+import MainArea from '../Areas/MainArea.js';
 import Button from '../Button.js';
 import CanvasRenderer from '../CanvasRenderer.js';
 import BeginCutScene from '../Cutscenes/BeginCutScene.js';
@@ -61,9 +62,10 @@ export default class EndScreen extends Stage {
      */
   public override getNextStage(): Stage | null {
     if (this.isGoHome) {
-      return new StartScreen(this.player);
+      MainArea.ended = false;
+      return new MainArea(this.player, this.isDutch);
     } if (this.isRestart) {
-      return new BeginCutScene(this.player, this.isDutch);
+      window.location.reload();
     }
     return null;
   }

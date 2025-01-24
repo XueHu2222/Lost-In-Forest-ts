@@ -15,7 +15,7 @@ export default class MainArea extends Area {
 
   private endButton: Button;
 
-  private ended: boolean;
+  public static ended: boolean;
 
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
@@ -24,7 +24,7 @@ export default class MainArea extends Area {
     this.player.setWidth(this.canvas.width * 0.35);
     this.player.setHeight(this.canvas.height * 0.8);
 
-    this.ended = false;
+    MainArea.ended = false;
     const exitImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/exit-button.png');
     this.endButton = new Button(this.canvas.width * 0.5, this.canvas.height * 0.7, exitImage, null,
       this.canvas.width * 0.1, this.canvas.width * 0.1);
@@ -91,7 +91,7 @@ export default class MainArea extends Area {
   }
 
   public override getNextStage(): Stage | null {
-    if (this.ended) {
+    if (MainArea.ended) {
       return new EndCutScene(this.player, this.isDutch);
     }
     return super.getNextStage();;
@@ -101,7 +101,7 @@ export default class MainArea extends Area {
     if (LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
       this.processAreaInput();
       if (this.endButton.isCollidingWithMouse()) {
-        this.ended = true;
+        MainArea.ended = true;
       }
     }
   }
