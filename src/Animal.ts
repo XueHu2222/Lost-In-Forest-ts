@@ -15,7 +15,6 @@ export default class Animal extends CanvasItem {
 
   public constructor(posX: number, posY: number, animal: string, folderLength: number) {
     super();
-    // TODO: Set correct values
     this.frames = [];
     this.timeToNextFrame = 500;
     this.position = {x: posX, y: posY};
