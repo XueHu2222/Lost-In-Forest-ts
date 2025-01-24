@@ -12,6 +12,9 @@ export default class EndCutScene extends CutScene {
     this.loadCutsceneImages('EndCutscenes', 5);
   }
 
+/**
+ * Go to the endScreen after the cutscene
+ */
   public override getNextStage(): Stage | null {
     if(!this.frames[0]){
       return new EndScreen(this.player);
