@@ -88,7 +88,7 @@ export default class MainArea extends Area {
   }
 
   /**
-   * calls Areas render, renders dialogue, map and button
+   * calls Areas render, renders dialogue, map and button.
    */
   public override render(): void {
     super.render();
