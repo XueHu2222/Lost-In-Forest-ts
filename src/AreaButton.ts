@@ -5,19 +5,16 @@ import SpringArea from './Areas/SpringArea.js';
 import SummerArea from './Areas/SummerArea.js';
 import WinterArea from './Areas/WinterArea.js';
 import Button from './Button.js';
-import CanvasRenderer from './CanvasRenderer.js';
+import CanvasRenderer from './Base/CanvasRenderer.js';
 import LostInTheForest from './LostInTheForest.js';
 
 export default class AreaButton extends Button {
   private area: Area;
 
-  private isFinished: boolean;
-
   public constructor(area: Area, posX: number, posY: number) {
     super(posX, posY, null, null,
       LostInTheForest.canvas.width * 0.03, LostInTheForest.canvas.height * 0.06);
     this.area = area;
-    this.isFinished = false;
   }
 
   /**

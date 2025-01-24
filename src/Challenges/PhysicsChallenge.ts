@@ -3,14 +3,14 @@ import LostInTheForest from '../LostInTheForest.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
 import Challenge from './Challenge.js';
-import Animal from '../Animals/Animal.js';
+import Animal from '../Animal.js';
 
 export default class PhysicsChallenge extends Challenge {
   public constructor(difficultyLevel: string, player: Player, isDutch: boolean) {
     super(difficultyLevel, player, isDutch);
     const categoryData: string[][][] = [];
     let categoryNames: string[] = [];
-    this.animal = new Animal(this.canvas.width * 0.8, this.canvas.height * 0.66, 'bunny', 4);
+    this.animal = new Animal(LostInTheForest.canvas.width * 0.8, LostInTheForest.canvas.height * 0.66, 'bunny', 4);
 
     // Pushes the correct data for each category based on the difficulty
     switch (difficultyLevel) {
@@ -114,12 +114,10 @@ export default class PhysicsChallenge extends Challenge {
    * @returns New stage when challenge is finished
    */
   public override getNextStage(): Stage | null {
-    if (this.clickedFinished || this.goBack) {
-      if (this.clickedFinished) {
-        LostInTheForest.keyPhysics = true;
-      }
-      this.clickedFinished = false;
-      this.goBack = false;
+    if (this.clickedFinished) {
+      LostInTheForest.keyPhysics = true;
+    }
+    if (this.leavingChallenge()) {
       return new SpringArea(this.player, this.isDutch);
     }
     if (this.nextDifficulty) {

@@ -1,12 +1,12 @@
 import Button from '../Button.js';
-import CanvasRenderer from '../CanvasRenderer.js';
+import CanvasRenderer from '../Base/CanvasRenderer.js';
 import LostInTheForest from '../LostInTheForest.js';
-import MouseListener from '../MouseListener.js';
+import MouseListener from '../Base/MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
 import Category from './Category.js';
 import ChallengeElement from './ChallengeElement.js';
-import Animal from '../Animals/Animal.js';
+import Animal from '../Animal.js';
 
 export default abstract class Challenge extends Stage {
   protected animal: Animal;
@@ -55,7 +55,7 @@ export default abstract class Challenge extends Stage {
 
   protected challengeScience: string;
 
-  protected goBack: boolean;
+  protected exitChallenge: boolean;
 
   private isCompleted: boolean;
 
@@ -81,7 +81,7 @@ export default abstract class Challenge extends Stage {
     this.isCompleted = false;
     this.nextDifficulty = null;
     this.hintIsOpen = false;
-    this.goBack = false;
+    this.exitChallenge = false;
     this.theoryIsOpen = false;
 
     this.primaryTextColor = 'blue';
@@ -101,8 +101,8 @@ export default abstract class Challenge extends Stage {
     this.difficultyButtons = [];
     this.finishButton = new Button(0, 0, null, null, 0, 0);
     const closeImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/closeButton.png');
-    this.closeTheoryButton = new Button(this.canvas.width * 0.9, this.canvas.height * 0.075,
-      closeImage, null, this.canvas.width * 0.03, this.canvas.width * 0.03);
+    this.closeTheoryButton = new Button(LostInTheForest.canvas.width * 0.9, LostInTheForest.canvas.height * 0.075,
+      closeImage, null, LostInTheForest.canvas.width * 0.03, LostInTheForest.canvas.width * 0.03);
   }
 
   /**
@@ -118,18 +118,18 @@ export default abstract class Challenge extends Stage {
     this.buttonSelectImage = CanvasRenderer.loadNewImage(`./assets/Challenges/${this.challengeScience}/buttonSelect.png`);
 
     // Difficulty Buttons
-    const easyButton: Button = new Button(this.canvas.width * 0.02,
-      this.canvas.height * 0.25, this.buttonImage, this.buttonSelectImage, 220, 60);
+    const easyButton: Button = new Button(LostInTheForest.canvas.width * 0.02,
+      LostInTheForest.canvas.height * 0.25, this.buttonImage, this.buttonSelectImage, 220, 60);
     easyButton.setText('Easy');
     easyButton.setTextColor(this.textColor);
 
-    const mediumButton: Button = new Button(this.canvas.width * 0.02,
-      this.canvas.height * 0.35, this.buttonImage, this.buttonSelectImage, 220, 60);
+    const mediumButton: Button = new Button(LostInTheForest.canvas.width * 0.02,
+      LostInTheForest.canvas.height * 0.35, this.buttonImage, this.buttonSelectImage, 220, 60);
     mediumButton.setText('Medium');
     mediumButton.setTextColor(this.textColor);
 
-    const hardButton: Button = new Button(this.canvas.width * 0.02,
-      this.canvas.height * 0.45, this.buttonImage, this.buttonSelectImage, 220, 60);
+    const hardButton: Button = new Button(LostInTheForest.canvas.width * 0.02,
+      LostInTheForest.canvas.height * 0.45, this.buttonImage, this.buttonSelectImage, 220, 60);
     hardButton.setText('Hard');
     hardButton.setTextColor(this.textColor);
     this.difficultyButtons = [easyButton, mediumButton, hardButton];
@@ -151,23 +151,25 @@ export default abstract class Challenge extends Stage {
     }
 
     // Other Buttons
-    this.backButton = new Button(this.canvas.width * 0.02,
-      this.canvas.height * 0.15, this.buttonImage, null, 220, 60);
+    this.backButton = new Button(LostInTheForest.canvas.width * 0.02,
+      LostInTheForest.canvas.height * 0.15, this.buttonImage, null, 220, 60);
     this.backButton.setText('↩');
     this.backButton.setTextColor(this.textColor);
 
-    this.hintButton = new Button(this.canvas.width * 0.2,
-      this.canvas.height * 0.15, this.buttonImage, null, 220, 60);
+    this.hintButton = new Button(LostInTheForest.canvas.width * 0.2,
+      LostInTheForest.canvas.height * 0.15, this.buttonImage, null, 220, 60);
     this.hintButton.setText('Hint');
     this.hintButton.setTextColor(this.primaryTextColor);
 
     const dialogueImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/dialogue2.png');
-    this.theoryButton = new Button(this.canvas.width * 0.76, this.canvas.height * 0.56,
-      dialogueImage, null, this.canvas.width * 0.15, this.canvas.height * 0.15);
+    this.theoryButton = new Button(LostInTheForest.canvas.width * 0.76,
+      LostInTheForest.canvas.height * 0.56,
+      dialogueImage, null, LostInTheForest.canvas.width * 0.15,
+      LostInTheForest.canvas.height * 0.15);
 
 
-    this.finishButton = new Button(this.canvas.width * 0.435,
-      this.canvas.height * 0.80, this.buttonImage, null, 220, 60);
+    this.finishButton = new Button(LostInTheForest.canvas.width * 0.435,
+      LostInTheForest.canvas.height * 0.80, this.buttonImage, null, 220, 60);
     this.finishButton.setText('Finish ✓');
     this.finishButton.setTextColor(this.textColor);
   }
@@ -195,7 +197,6 @@ export default abstract class Challenge extends Stage {
       this.categories.push(new Category(categoryName, challengeELements));
     });
     this.initiateElementPositions();
-    console.log(this.categories);
   }
 
   /**
@@ -211,10 +212,10 @@ export default abstract class Challenge extends Stage {
     */
     challengeElements.sort(() => Math.random() - 0.5);
 
-    let yPos: number = this.canvas.height * 0.28;
+    let yPos: number = LostInTheForest.canvas.height * 0.28;
     // Each row of the elements
     for (let i: number = 0; i < this.AMOUNT_OF_CATEGORIES; i++) {
-      let xPos: number = this.canvas.width * 0.2;
+      let xPos: number = LostInTheForest.canvas.width * 0.2;
       // Each column of an element row
       for (let j: number = 0; j < this.AMOUNT_OF_ELEMENTS_PER_CATEGORY; j++) {
         // Give the first element of the array a position
@@ -226,9 +227,9 @@ export default abstract class Challenge extends Stage {
         });
         // Remove this element from the array
         challengeElements.shift();
-        xPos += this.canvas.width * 0.15;
+        xPos += LostInTheForest.canvas.width * 0.15;
       }
-      yPos += this.canvas.height * 0.125;
+      yPos += LostInTheForest.canvas.height * 0.125;
     }
   }
 
@@ -409,7 +410,7 @@ export default abstract class Challenge extends Stage {
         this.hintIsOpen = !this.hintIsOpen;
       }
       if (this.backButton.isCollidingWithMouse()) {
-        this.goBack = true;
+        this.exitChallenge = true;
       }
       if (this.theoryButton.isCollidingWithMouse()) {
         this.theoryIsOpen = true;
@@ -427,38 +428,39 @@ export default abstract class Challenge extends Stage {
   public override update(elapsed: number): void {
     this.animal.update(elapsed);
   }
+
   /**
-  * render the content for theory 
+  * render the content for theory
   */
   private renderTheory(): void {
-    CanvasRenderer.drawImage(this.canvas, this.theoryBackground,
-      this.canvas.width * 0.05,
-      this.canvas.height * 0.05,
-      this.canvas.width * 0.9, this.canvas.height * 0.9
+    CanvasRenderer.drawImage(LostInTheForest.canvas, this.theoryBackground,
+      LostInTheForest.canvas.width * 0.05,
+      LostInTheForest.canvas.height * 0.05,
+      LostInTheForest.canvas.width * 0.9, LostInTheForest.canvas.height * 0.9
     );
 
     const title: string = `${this.challengeScience} Theory (${this.difficultyLevel})`;
-    CanvasRenderer.writeText(this.canvas, title, this.canvas.width * 0.075, this.canvas.height * 0.125, 'start', 'arial', 32, 'black', 'bold');
+    CanvasRenderer.writeText(LostInTheForest.canvas, title, LostInTheForest.canvas.width * 0.075, LostInTheForest.canvas.height * 0.125, 'start', 'arial', 32, 'black', 'bold');
 
     // Render text
-    let categoryXPos: number = this.canvas.width * 0.075;
-    let categoryYPos: number = this.canvas.height * 0.2;
+    let categoryXPos: number = LostInTheForest.canvas.width * 0.075;
+    let categoryYPos: number = LostInTheForest.canvas.height * 0.2;
     this.categories.forEach((category: Category, index: number) => {
       if (index % 2 != 0) {
-        categoryYPos = this.canvas.height * 0.2;
+        categoryYPos = LostInTheForest.canvas.height * 0.2;
       } else {
-        categoryYPos = this.canvas.height * 0.6;
+        categoryYPos = LostInTheForest.canvas.height * 0.6;
       }
       if (index == 0 || index == 1) {
-        categoryXPos = this.canvas.width * 0.075;
+        categoryXPos = LostInTheForest.canvas.width * 0.075;
       } else {
-        categoryXPos = this.canvas.width * 0.5;
+        categoryXPos = LostInTheForest.canvas.width * 0.5;
       }
       // Category text
-      CanvasRenderer.writeText(this.canvas, category.getName(), categoryXPos, categoryYPos, 'start', 'arial', 20, 'black', 'bold');
+      CanvasRenderer.writeText(LostInTheForest.canvas, category.getName(), categoryXPos, categoryYPos, 'start', 'arial', 20, 'black', 'bold');
 
       const elementXPos: number = categoryXPos;
-      let elementYPos: number = categoryYPos + this.canvas.height * 0.03;
+      let elementYPos: number = categoryYPos + LostInTheForest.canvas.height * 0.03;
       // Element text
       for (const element of category.getChallengeElements()) {
         let theoryString: string = element.getTheory();
@@ -466,7 +468,7 @@ export default abstract class Challenge extends Stage {
 
         // Write the element text label
         CanvasRenderer.writeText(
-          this.canvas,
+          LostInTheForest.canvas,
           element.getText() + ':',
           elementXPos,
           elementYPos,
@@ -487,7 +489,7 @@ export default abstract class Challenge extends Stage {
 
           // Write the current line
           CanvasRenderer.writeText(
-            this.canvas,
+            LostInTheForest.canvas,
             line,
             elementXPos,
             theoryYPos,
@@ -503,10 +505,23 @@ export default abstract class Challenge extends Stage {
           // Increment Y position for the next line
           theoryYPos += 20;
         }
-        elementYPos += this.canvas.height * 0.08;
+        elementYPos += LostInTheForest.canvas.height * 0.08;
       }
     });
     this.closeTheoryButton.render();
+  }
+
+  /**
+ * Check if the player is exiting the challenge
+ * @returns True when exiting the challenge
+ */
+  protected leavingChallenge(): boolean {
+    if (this.clickedFinished || this.exitChallenge) {
+      this.clickedFinished = false;
+      this.exitChallenge = false;
+      return true;
+    }
+    return false;
   }
 
   /**
@@ -518,16 +533,16 @@ export default abstract class Challenge extends Stage {
     this.theoryButton.render();
     this.hintButton.render();
     this.animal.render();
-    CanvasRenderer.writeText(this.canvas, 'Klik voor de theorie', this.canvas.width * 0.83, this.canvas.height * 0.64, 'center', 'Arial', 20, 'black');
+    CanvasRenderer.writeText(LostInTheForest.canvas, 'Klik voor de theorie', LostInTheForest.canvas.width * 0.83, LostInTheForest.canvas.height * 0.64, 'center', 'Arial', 20, 'black');
 
     const hintCategoryText: string = this.categories.reduce((acc: string, cur: Category) => acc += cur.getName() + ' - ', ' - ');
     if (this.hintIsOpen) {
       this.hintButton.setTextColor('black');
       CanvasRenderer.writeText(
-        this.canvas,
+        LostInTheForest.canvas,
         'Categories: ' + hintCategoryText,
-        this.canvas.width * 0.35,
-        this.canvas.height * 0.2,
+        LostInTheForest.canvas.width * 0.35,
+        LostInTheForest.canvas.height * 0.2,
         'left',
         'Comic Sans MS',
         20,
@@ -553,7 +568,7 @@ export default abstract class Challenge extends Stage {
     for (const category of this.completedCategories) {
       const firstElement: ChallengeElement = category.getChallengeElements()[0] as ChallengeElement;
       CanvasRenderer.writeText(
-        this.canvas,
+        LostInTheForest.canvas,
         category.getName() + '!',
         firstElement.getPosX() + 450,
         firstElement.getPosY() - 15,

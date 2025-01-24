@@ -3,7 +3,7 @@ import LostInTheForest from '../LostInTheForest.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
 import Challenge from './Challenge.js';
-import Animal from '../Animals/Animal.js';
+import Animal from '../Animal.js';
 
 
 export default class BiologyChallenge extends Challenge {
@@ -11,7 +11,7 @@ export default class BiologyChallenge extends Challenge {
     super(difficultyLevel, player, isDutch);
     const categoryData: string[][][] = [];
     let categoryNames: string[] = [];
-    this.animal = new Animal(this.canvas.width * 0.8, this.canvas.height * 0.66, 'monkey', 4);
+    this.animal = new Animal(LostInTheForest.canvas.width * 0.8, LostInTheForest.canvas.height * 0.66, 'monkey', 4);
 
     // Pushes the correct data for each category based on the difficulty
     switch (difficultyLevel) {
@@ -115,12 +115,10 @@ export default class BiologyChallenge extends Challenge {
  * @returns New stage when challenge is finished
  */
   public override getNextStage(): Stage | null {
-    if (this.clickedFinished || this.goBack) {
-      if (this.clickedFinished) {
-        LostInTheForest.keyBiology = true;
-      }
-      this.clickedFinished = false;
-      this.goBack = false;
+    if (this.clickedFinished) {
+      LostInTheForest.keyBiology = true;
+    }
+    if (this.leavingChallenge()) {
       return new WinterArea(this.player, this.isDutch);
     }
     if (this.nextDifficulty) {
