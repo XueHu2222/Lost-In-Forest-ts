@@ -7,6 +7,7 @@ import LostInTheForest from '../LostInTheForest.js';
 import Stage from '../Stage.js';
 import MouseListener from '../Base/MouseListener.js';
 import CutScene from '../CutScene.js';
+import EndScreen from '../Screens/EndScreen.js';
 
 export default class MainArea extends Area {
   private dialoguePlayerArea: Button;
@@ -17,14 +18,17 @@ export default class MainArea extends Area {
 
   public static gameHasEnded: boolean;
 
+  private backgroundFinished: HTMLImageElement;
+
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/Areas/main.png');
+    this.backgroundFinished = CanvasRenderer.loadNewImage('./assets/Areas/mainEnd.png');
     this.player.setPosY(LostInTheForest.canvas.height * 0.35);
     this.player.setWidth(LostInTheForest.canvas.width * 0.35);
     this.player.setHeight(LostInTheForest.canvas.height * 0.8);
 
-    MainArea.gameHasEnded = false;
+    MainArea.gameHasEnded = true;
     const exitImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/exit-button.png');
     this.endButton = new Button(LostInTheForest.canvas.width * 0.5,
       LostInTheForest.canvas.height * 0.7, exitImage, null,
@@ -79,7 +83,7 @@ export default class MainArea extends Area {
     this.player.setPosX(LostInTheForest.canvas.width * 0.5);
     if (LostInTheForest.keyBiology && LostInTheForest.keyGeography &&
       LostInTheForest.keyHistory && LostInTheForest.keyPhysics) {
-      this.backgroundImage = CanvasRenderer.loadNewImage('./assets/mainEnd.png');
+      this.backgroundImage = this.backgroundFinished;
     }
   }
 
@@ -100,7 +104,7 @@ export default class MainArea extends Area {
 
   public override getNextStage(): Stage | null {
     if (MainArea.gameHasEnded) {
-      return new CutScene(this.player, this.isDutch, 'EndCutscenes', 5, new MainArea(this.player, this.isDutch));
+      return new CutScene(this.player, this.isDutch, 'EndCutscenes', 5, new EndScreen(this.player));
     }
     return super.getNextStage();
   }

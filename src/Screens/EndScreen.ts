@@ -24,15 +24,17 @@ export default class EndScreen extends Stage {
     super(player, LostInTheForest.isDutch);
 
     //to give everything a standard value
-    this.backgroundImage = CanvasRenderer.loadNewImage('./assets/start.png');
+    this.backgroundImage = CanvasRenderer.loadNewImage('./assets/StartScreen/start.png');
     this.isGoHome = false;
     this.isRestart = false;
     this.allAnimals = [
-      new Animal(LostInTheForest.canvas.width * 0.25, LostInTheForest.canvas.height * 0.73, 'bunny', 4),
-      new Animal(LostInTheForest.canvas.width * 0.5, LostInTheForest.canvas.height * 0.78, 'frog', 4),
+      new Animal(LostInTheForest.canvas.width * 0.225, LostInTheForest.canvas.height * 0.73, 'bunny', 4),
+      new Animal(LostInTheForest.canvas.width * 0.425, LostInTheForest.canvas.height * 0.78, 'frog', 4),
       new Animal(LostInTheForest.canvas.width * 0.03, LostInTheForest.canvas.height * 0.75, 'owl', 4),
       new Animal(LostInTheForest.canvas.width * 0.75, LostInTheForest.canvas.height * 0.73, 'monkey', 4),
     ];
+    
+
 
     if (this.isDutch) {
       this.endMessage = ['GEFELICITEERD!', 'JE BENT UIT HET BOS ONTSNAPT!'];
@@ -90,6 +92,7 @@ export default class EndScreen extends Stage {
  */
   public override update(elapsed: number): void {
     this.allAnimals.forEach((animal: Animal) => animal.update(elapsed));
+    this.player.setPosX(LostInTheForest.canvas.width * 0.55);
   }
 
   /**
@@ -99,6 +102,7 @@ export default class EndScreen extends Stage {
     CanvasRenderer.drawImage(LostInTheForest.canvas, this.backgroundImage,
       0, 0, LostInTheForest.canvas.width, LostInTheForest.canvas.height);
     this.allAnimals.forEach((animal: Animal) => animal.render());
+    this.player.render();
     this.homeButton.render();
     this.restartButton.render();
 
