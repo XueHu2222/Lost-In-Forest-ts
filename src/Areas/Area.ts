@@ -96,6 +96,7 @@ export default abstract class Area extends Stage {
       this.processAreaInput();
     }
   }
+  
   // Checks for button clicks 
   protected processAreaInput(): void{
     if (this.dialogueAnimalArea.isCollidingWithMouse()) {

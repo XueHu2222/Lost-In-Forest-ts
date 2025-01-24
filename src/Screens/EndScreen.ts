@@ -1,12 +1,11 @@
-import Animal from '../Animals/Animal.js';
+import Animal from '../Animal.js';
 import MainArea from '../Areas/MainArea.js';
+import CanvasRenderer from '../Base/CanvasRenderer.js';
+import MouseListener from '../Base/MouseListener.js';
 import Button from '../Button.js';
-import CanvasRenderer from '../CanvasRenderer.js';
 import LostInTheForest from '../LostInTheForest.js';
-import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
-
 
 export default class EndScreen extends Stage {
   private endMessage: string[];
@@ -29,10 +28,10 @@ export default class EndScreen extends Stage {
     this.isGoHome = false;
     this.isRestart = false;
     this.allAnimals = [
-      new Animal(this.canvas.width * 0.25, this.canvas.height * 0.73, 'bunny', 4),
-      new Animal(this.canvas.width * 0.5, this.canvas.height * 0.78, 'frog', 4),
-      new Animal(this.canvas.width * 0.03, this.canvas.height * 0.75, 'owl', 4),
-      new Animal(this.canvas.width * 0.75, this.canvas.height * 0.73, 'monkey', 4),
+      new Animal(LostInTheForest.canvas.width * 0.25, LostInTheForest.canvas.height * 0.73, 'bunny', 4),
+      new Animal(LostInTheForest.canvas.width * 0.5, LostInTheForest.canvas.height * 0.78, 'frog', 4),
+      new Animal(LostInTheForest.canvas.width * 0.03, LostInTheForest.canvas.height * 0.75, 'owl', 4),
+      new Animal(LostInTheForest.canvas.width * 0.75, LostInTheForest.canvas.height * 0.73, 'monkey', 4),
     ];
 
     if (this.isDutch) {
@@ -44,14 +43,14 @@ export default class EndScreen extends Stage {
     const restartButtonImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/restart-button.png');
 
     this.homeButton = new Button(
-      this.canvas.width * 0.55, this.canvas.height * 0.5,
+      LostInTheForest.canvas.width * 0.55, LostInTheForest.canvas.height * 0.5,
       homeButtonImage, null,
-      this.canvas.width * 0.1, this.canvas.height * 0.17
+      LostInTheForest.canvas.width * 0.1, LostInTheForest.canvas.height * 0.17
     );
     this.restartButton = new Button(
-      this.canvas.width * 0.35, this.canvas.height * 0.5,
+      LostInTheForest.canvas.width * 0.35, LostInTheForest.canvas.height * 0.5,
       restartButtonImage, null,
-      this.canvas.width * 0.1, this.canvas.height * 0.17
+      LostInTheForest.canvas.width * 0.1, LostInTheForest.canvas.height * 0.17
     );
   }
 
@@ -61,7 +60,7 @@ export default class EndScreen extends Stage {
      */
   public override getNextStage(): Stage | null {
     if (this.isGoHome) {
-      MainArea.ended = false;
+      MainArea.gameHasEnded = false;
       return new MainArea(this.player, this.isDutch);
     } if (this.isRestart) {
       window.location.reload();
@@ -97,18 +96,18 @@ export default class EndScreen extends Stage {
    * Render all the elements in the screen.
    */
   public override render(): void {
-    CanvasRenderer.drawImage(this.canvas, this.backgroundImage,
-      0, 0, this.canvas.width, this.canvas.height);
+    CanvasRenderer.drawImage(LostInTheForest.canvas, this.backgroundImage,
+      0, 0, LostInTheForest.canvas.width, LostInTheForest.canvas.height);
     this.allAnimals.forEach((animal: Animal) => animal.render());
     this.homeButton.render();
     this.restartButton.render();
 
     this.endMessage.forEach((line: string, index: number) => {
       CanvasRenderer.writeText(
-        this.canvas,
+        LostInTheForest.canvas,
         line,
-        this.canvas.width * 0.5,
-        this.canvas.height * 0.3 + index * 100,
+        LostInTheForest.canvas.width * 0.5,
+        LostInTheForest.canvas.height * 0.3 + index * 100,
         'center',
         'Comic Sans MS',
         50,
