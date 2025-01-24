@@ -93,7 +93,7 @@ export default class GeographyChallenge extends Challenge {
           ['Egypte / Egypt', 'Egypte is een land in Noord-Afrika dat grotendeels uit woestijn bestaat.   Het herbergt de Sahara, de grootste hete woestijn ter wereld.'],
           ['Saoedi-Arabië / Saudi Arabia', 'Saoedi-Arabië is een groot land in het Midden-Oosten. Grote delen van het   land zijn bedekt door woestijn, zoals de Rub al Khali.'],
           ['Australië / Australia', 'Australië is een groot land en continent op het zuidelijk halfrond. Het    heeft verschillende woestijnen, zoals de Grote Victoriawoestijn. '],
-          ['Namibië', 'De Verenigde Staten is een groot land in Noord-Amerika. Het heeft verschillende woestijnen, zoals de Mojave woestijn en de Sonora woestijn, die zich  bevinden in staten zoals Californië en Arizona.']]
+          ['Verenigde Staten / United States', 'De Verenigde Staten is een groot land in Noord-Amerika. Het heeft verschillende woestijnen, zoals de Mojave woestijn en de Sonora woestijn, die zich  bevinden in staten zoals Californië en Arizona.']]
         ); // Countries with Deserts
 
         categoryNames = ['Island Nations', 'Landlocked Countries', 'Coastal Nations', 'Countries with Deserts'];
