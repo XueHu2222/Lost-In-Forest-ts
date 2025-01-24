@@ -2,12 +2,11 @@ import Animal from '../Animals/Animal.js';
 import MainArea from '../Areas/MainArea.js';
 import Button from '../Button.js';
 import CanvasRenderer from '../CanvasRenderer.js';
-import BeginCutScene from '../Cutscenes/BeginCutScene.js';
 import LostInTheForest from '../LostInTheForest.js';
 import MouseListener from '../MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
-import StartScreen from './StartScreen.js';
+
 
 export default class EndScreen extends Stage {
   private endMessage: string[];
@@ -30,10 +29,10 @@ export default class EndScreen extends Stage {
     this.isGoHome = false;
     this.isRestart = false;
     this.allAnimals = [
-      new Animal(this.canvas.width * 0.25, this.canvas.height * 0.63, 'bunny', 4),
-      new Animal(this.canvas.width * 0.5, this.canvas.height * 0.68, 'frog', 4),
-      new Animal(this.canvas.width * 0.03, this.canvas.height * 0.65, 'owl', 4),
-      new Animal(this.canvas.width * 0.75, this.canvas.height * 0.63, 'monkey', 4),
+      new Animal(this.canvas.width * 0.25, this.canvas.height * 0.73, 'bunny', 4),
+      new Animal(this.canvas.width * 0.5, this.canvas.height * 0.78, 'frog', 4),
+      new Animal(this.canvas.width * 0.03, this.canvas.height * 0.75, 'owl', 4),
+      new Animal(this.canvas.width * 0.75, this.canvas.height * 0.73, 'monkey', 4),
     ];
 
     if (this.isDutch) {
