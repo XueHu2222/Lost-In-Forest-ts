@@ -24,7 +24,7 @@ export default class MainArea extends Area {
     this.player.setWidth(this.canvas.width * 0.35);
     this.player.setHeight(this.canvas.height * 0.8);
 
-    MainArea.ended = true;
+    MainArea.ended = false;
     const exitImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/exit-button.png');
     this.endButton = new Button(this.canvas.width * 0.5, this.canvas.height * 0.7, exitImage, null,
       this.canvas.width * 0.1, this.canvas.width * 0.1);
