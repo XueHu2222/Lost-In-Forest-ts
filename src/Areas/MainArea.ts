@@ -28,7 +28,7 @@ export default class MainArea extends Area {
     this.player.setWidth(LostInTheForest.canvas.width * 0.35);
     this.player.setHeight(LostInTheForest.canvas.height * 0.8);
 
-    MainArea.gameHasEnded = true;
+    MainArea.gameHasEnded = false;
     const exitImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/exit-button.png');
     this.endButton = new Button(LostInTheForest.canvas.width * 0.5,
       LostInTheForest.canvas.height * 0.7, exitImage, null,
