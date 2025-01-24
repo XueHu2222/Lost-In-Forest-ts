@@ -70,7 +70,6 @@ export default class EndScreen extends Stage {
 
   /**
    * To check if the mouse is used
-   * @param mouseListener gives the mouse as an object
    */
   public override processInput(): void {
     if (LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
