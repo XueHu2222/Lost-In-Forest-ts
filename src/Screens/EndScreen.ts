@@ -85,10 +85,17 @@ export default class EndScreen extends Stage {
     }
   }
 
+  /**
+ * Update the animals for animation
+ * @param elapsed time in ms elapsed from the GameLoop
+ */
   public override update(elapsed: number): void {
     this.allAnimals.forEach((animal: Animal) => animal.update(elapsed));
   }
 
+  /**
+   * Render all the elements in the screen.
+   */
   public override render(): void {
     CanvasRenderer.drawImage(this.canvas, this.backgroundImage,
       0, 0, this.canvas.width, this.canvas.height);
