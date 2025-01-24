@@ -89,14 +89,14 @@ export default abstract class Area extends Stage {
 
 
   /**
-   *
+   * checks if something is clicked in the area
    */
   public override processInput(): void {
     if (LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
       this.processAreaInput();
     }
   }
-
+  // Checks for button clicks 
   protected processAreaInput(): void{
     if (this.dialogueAnimalArea.isCollidingWithMouse()) {
       if (this.animalDialogueIndex < this.animalDialogue.length - 1) {
