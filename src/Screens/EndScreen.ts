@@ -21,7 +21,7 @@ export default class EndScreen extends Stage {
   private allAnimals: Animal[] = [];
 
   public constructor(player: Player) {
-    super(player, LostInTheForest.isDutch);
+    super(player);
 
     //to give everything a standard value
     this.backgroundImage = CanvasRenderer.loadNewImage('./assets/StartScreen/start.png');
@@ -33,10 +33,10 @@ export default class EndScreen extends Stage {
       new Animal(LostInTheForest.canvas.width * 0.03, LostInTheForest.canvas.height * 0.75, 'owl', 4),
       new Animal(LostInTheForest.canvas.width * 0.75, LostInTheForest.canvas.height * 0.73, 'monkey', 4),
     ];
-    
 
 
-    if (this.isDutch) {
+
+    if (LostInTheForest.isDutch) {
       this.endMessage = ['GEFELICITEERD!', 'JE BENT UIT HET BOS ONTSNAPT!'];
     } else {
       this.endMessage = ['CONGRATULATIONS!', 'YOU ESCAPED THE FOREST!'];
@@ -63,7 +63,7 @@ export default class EndScreen extends Stage {
   public override getNextStage(): Stage | null {
     if (this.isGoHome) {
       MainArea.gameHasEnded = false;
-      return new MainArea(this.player, this.isDutch);
+      return new MainArea(this.player);
     } if (this.isRestart) {
       window.location.reload();
       this.isRestart = false;

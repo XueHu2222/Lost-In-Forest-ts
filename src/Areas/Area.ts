@@ -41,8 +41,8 @@ export default abstract class Area extends Stage {
 
   protected nextChallenge: Challenge | null;
 
-  public constructor(player: Player, isDutch: boolean) {
-    super(player, isDutch);
+  public constructor(player: Player) {
+    super(player);
 
     this.challengeStarts = false;
     this.animal = new Animal(0, 0, 'bunny', 4);
@@ -96,8 +96,8 @@ export default abstract class Area extends Stage {
       this.processAreaInput();
     }
   }
-  
-  // Checks for button clicks 
+
+  // Checks for button clicks
   protected processAreaInput(): void{
     if (this.dialogueAnimalArea.isCollidingWithMouse()) {
       if (this.animalDialogueIndex < this.animalDialogue.length - 1) {

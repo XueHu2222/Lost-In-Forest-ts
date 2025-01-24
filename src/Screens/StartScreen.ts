@@ -23,7 +23,7 @@ export default class StartScreen extends Stage {
   private selectedFlag: Button;
 
   public constructor(player: Player) {
-    super(player, true);
+    super(player);
 
     //to give everything a standard value
     this.selectedImage = CanvasRenderer.loadNewImage('./assets/selected.png');
@@ -87,7 +87,7 @@ export default class StartScreen extends Stage {
    */
   public override getNextStage(): Stage | null {
     if (this.clickedStart) {
-      return new CutScene(this.player, this.isDutch, 'BeginCutscenes', 7, new MainArea(this.player, this.isDutch));
+      return new CutScene(this.player, 'BeginCutscenes', 7, new MainArea(this.player));
     }
     return null;
   }
