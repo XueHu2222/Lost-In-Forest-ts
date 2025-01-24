@@ -14,7 +14,7 @@ export default class LostInTheForest extends Game {
 
   public static currentStage: Stage;
 
-  private isDutch: boolean;
+  public static isDutch: boolean;
 
   public static keyHistory: boolean;
 
@@ -31,8 +31,8 @@ export default class LostInTheForest extends Game {
     LostInTheForest.canvas.width = window.innerWidth;
     LostInTheForest.mouseListener = new MouseListener(canvas);
     this.player = new Player;
-    this.isDutch = true;
-    LostInTheForest.currentStage = new StartScreen(this.setIsDutch.bind(this), this.player);
+    LostInTheForest.isDutch = true;
+    LostInTheForest.currentStage = new StartScreen(this.player);
     LostInTheForest.keyBiology = false;
     LostInTheForest.keyGeography = false;
     LostInTheForest.keyPhysics = false;
@@ -66,9 +66,5 @@ export default class LostInTheForest extends Game {
     CanvasRenderer.clearCanvas(LostInTheForest.canvas);
     LostInTheForest.canvas.style.cursor = 'default';
     LostInTheForest.currentStage.render();
-  }
-
-  public setIsDutch(value: boolean): void{
-    this.isDutch = value;
   }
 }

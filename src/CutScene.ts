@@ -6,7 +6,7 @@ import Stage from './Stage.js';
 export default class CutScene extends Stage {
   private frames: HTMLImageElement[];
 
-  private nextArea: Area;
+  private nextStage: Stage;
 
   private folderLength: number;
 
@@ -15,9 +15,9 @@ export default class CutScene extends Stage {
   private timeToNextFrame: number;
 
   public constructor(player: Player, isDutch: boolean, imageFolder: string,
-    folderLength: number, nextArea: Area) {
+    folderLength: number, nextArea: Stage) {
     super(player, isDutch);
-    this.nextArea = nextArea;
+    this.nextStage = nextArea;
     this.folderLength = folderLength;
     this.imageFolder = imageFolder;
     this.frames = [];
@@ -64,7 +64,7 @@ export default class CutScene extends Stage {
 
   public override getNextStage(): Stage | null {
     if (!this.frames[0]) {
-      return this.nextArea;
+      return this.nextStage;
     }
     return null;
   }

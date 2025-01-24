@@ -101,7 +101,8 @@ export default abstract class Challenge extends Stage {
     this.difficultyButtons = [];
     this.finishButton = new Button(0, 0, null, null, 0, 0);
     const closeImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/closeButton.png');
-    this.closeTheoryButton = new Button(LostInTheForest.canvas.width * 0.9, LostInTheForest.canvas.height * 0.075,
+    this.closeTheoryButton = new Button(LostInTheForest.canvas.width * 0.9,
+      LostInTheForest.canvas.height * 0.075,
       closeImage, null, LostInTheForest.canvas.width * 0.03, LostInTheForest.canvas.width * 0.03);
   }
 

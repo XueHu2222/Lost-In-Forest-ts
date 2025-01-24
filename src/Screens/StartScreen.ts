@@ -8,8 +8,6 @@ import Player from '../Player.js';
 import Stage from '../Stage.js';
 
 export default class StartScreen extends Stage {
-  private setIsDutch: (value: boolean) => void;
-
   private genderButtons: Button[];
 
   private languageButtons: Button[];
@@ -24,12 +22,10 @@ export default class StartScreen extends Stage {
 
   private selectedFlag: Button;
 
-  public constructor(setIsDutch: (value: boolean) => void,
-    player: Player) {
-    super(player, false);
+  public constructor(player: Player) {
+    super(player, true);
 
     //to give everything a standard value
-    this.setIsDutch = setIsDutch;
     this.selectedImage = CanvasRenderer.loadNewImage('./assets/selected.png');
 
     this.selectedGender = new Button(LostInTheForest.canvas.width * 0.3375,
@@ -128,7 +124,7 @@ export default class StartScreen extends Stage {
       //flag buttons that also give selected and set language
       this.languageButtons.forEach((languageButton: Button, index: number) => {
         if (languageButton.isCollidingWithMouse()) {
-          this.setIsDutch(index == 0 ? true : false);
+          LostInTheForest.isDutch = index === 0;
 
           // Make the selected language button active
           this.selectedFlag = new Button(
