@@ -1,33 +1,34 @@
-import Animal from '../Animals/Animal.js';
-import CanvasRenderer from '../CanvasRenderer.js';
+import Animal from '../Animal.js';
+import CanvasRenderer from '../Base/CanvasRenderer.js';
 import HistoryChallenge from '../Challenges/HistoryChallenge.js';
+import LostInTheForest from '../LostInTheForest.js';
 import Player from '../Player.js';
 import Area from './Area.js';
 
 export default class AutumnArea extends Area {
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
-    this.backgroundImage = CanvasRenderer.loadNewImage('./assets/autumn.png');
+    this.backgroundImage = CanvasRenderer.loadNewImage('./assets/Areas/autumn.png');
     this.nextChallenge = new HistoryChallenge('medium', this.player, this.isDutch);
 
     this.animal = new Animal(
-      this.canvas.width * 0.65,
-      this.canvas.height * 0.7,
+      LostInTheForest.canvas.width * 0.65,
+      LostInTheForest.canvas.height * 0.7,
       'frog', 5);
 
     this.animalDialoguePosition = {
-      x: this.canvas.width * 0.74,
-      y: this.canvas.height * 0.5,
+      x: LostInTheForest.canvas.width * 0.74,
+      y: LostInTheForest.canvas.height * 0.5,
     };
 
     this.animalDialogueSize = {
-      x: this.canvas.width * 0.23,
-      y: this.canvas.height * 0.25
+      x: LostInTheForest.canvas.width * 0.23,
+      y: LostInTheForest.canvas.height * 0.25
     };
 
     this.playButtonPosition = {
-      x: this.canvas.width * 0.46,
-      y: this.canvas.height * 0.63};
+      x: LostInTheForest.canvas.width * 0.46,
+      y: LostInTheForest.canvas.height * 0.63};
 
     this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue1.png');
     this.initiateDialogButton();
@@ -39,19 +40,17 @@ export default class AutumnArea extends Area {
     ];
 
     this.dialogueTextPosition = {
-      x: this.canvas.width * 0.78,
-      y: this.canvas.height * 0.57
+      x: LostInTheForest.canvas.width * 0.78,
+      y: LostInTheForest.canvas.height * 0.57
     };
   }
 
-
+  /**
+   * Calls Areas update, sets players position right
+   * @param elapsed time elapsed
+   */
   public override update(elapsed: number): void {
     super.update(elapsed);
-    this.player.setPosX(this.canvas.width * 0.05);
-  }
-
-  public override render(): void {
-    super.render();
-    this.player.getMap().render();
+    this.player.setPosX(LostInTheForest.canvas.width * 0.05);
   }
 }

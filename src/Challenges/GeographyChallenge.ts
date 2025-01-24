@@ -3,14 +3,14 @@ import LostInTheForest from '../LostInTheForest.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
 import Challenge from './Challenge.js';
-import Animal from '../Animals/Animal.js';
+import Animal from '../Animal.js';
 
 export default class GeographyChallenge extends Challenge {
   public constructor(difficultyLevel: string, player: Player, isDutch: boolean) {
     super(difficultyLevel, player, isDutch);
     const categoryData: string[][][] = [];
     let categoryNames: string[] = [];
-    this.animal = new Animal(this.canvas.width * 0.8, this.canvas.height * 0.66, 'owl', 6);
+    this.animal = new Animal(LostInTheForest.canvas.width * 0.8, LostInTheForest.canvas.height * 0.66, 'owl', 6);
 
     // Pushes the correct data for each category based on the difficulty
     switch (difficultyLevel) {
@@ -93,7 +93,7 @@ export default class GeographyChallenge extends Challenge {
           ['Egypte / Egypt', 'Egypte is een land in Noord-Afrika dat grotendeels uit woestijn bestaat.   Het herbergt de Sahara, de grootste hete woestijn ter wereld.'],
           ['Saoedi-Arabië / Saudi Arabia', 'Saoedi-Arabië is een groot land in het Midden-Oosten. Grote delen van het   land zijn bedekt door woestijn, zoals de Rub al Khali.'],
           ['Australië / Australia', 'Australië is een groot land en continent op het zuidelijk halfrond. Het    heeft verschillende woestijnen, zoals de Grote Victoriawoestijn. '],
-          ['Namibië', 'De Verenigde Staten is een groot land in Noord-Amerika. Het heeft verschillende woestijnen, zoals de Mojave woestijn en de Sonora woestijn, die zich  bevinden in staten zoals Californië en Arizona.']]
+          ['Verenigde Staten / United States', 'De Verenigde Staten is een groot land in Noord-Amerika. Het heeft verschillende woestijnen, zoals de Mojave woestijn en de Sonora woestijn, die zich  bevinden in staten zoals Californië en Arizona.']]
         ); // Countries with Deserts
 
         categoryNames = ['Island Nations', 'Landlocked Countries', 'Coastal Nations', 'Countries with Deserts'];
@@ -112,12 +112,10 @@ export default class GeographyChallenge extends Challenge {
    * @returns New stage when challenge is finished
    */
   public override getNextStage(): Stage | null {
-    if (this.clickedFinished || this.goBack) {
-      if (this.clickedFinished) {
-        LostInTheForest.keyGeography = true;
-      }
-      this.clickedFinished = false;
-      this.goBack = false;
+    if (this.clickedFinished) {
+      LostInTheForest.keyGeography = true;
+    }
+    if (this.leavingChallenge()) {
       return new SummerArea(this.player, this.isDutch);
     }
     if (this.nextDifficulty) {

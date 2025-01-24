@@ -1,11 +1,12 @@
-import Animal from '../Animals/Animal.js';
+import Animal from '../Animal.js';
 import Button from '../Button.js';
 import LostInTheForest from '../LostInTheForest.js';
-import CanvasRenderer from '../CanvasRenderer.js';
+import CanvasRenderer from '../Base/CanvasRenderer.js';
 import Challenge from '../Challenges/Challenge.js';
-import MouseListener from '../MouseListener.js';
+import MouseListener from '../Base/MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
+import { Vector2 } from '../Types.js';
 
 export default abstract class Area extends Stage {
   protected animal: Animal;
@@ -20,30 +21,30 @@ export default abstract class Area extends Stage {
 
   protected dialogueAnimalArea: Button;
 
-  protected timeToDisplayDialogue: number = 1000;
+  protected timeToDisplayDialogue: number;
 
-  protected dialogueTextPosition: { x: number, y: number };
+  protected dialogueTextPosition: Vector2;
 
-  protected challengeCouldStarted: boolean = false;
+  protected challengeCanStart: boolean;
 
-  protected animalDialogueSize: { x: number, y: number };
+  protected animalDialogueSize: Vector2;
 
-  protected animalDialoguePosition: { x: number, y: number };
+  protected animalDialoguePosition: Vector2;
 
-  protected dialogueAnimalImage: HTMLImageElement = new Image;
+  protected dialogueAnimalImage: HTMLImageElement;
 
-  protected playButtonPosition: { x: number, y: number };
+  protected playButtonPosition: Vector2;
 
-  protected playButtonImage: HTMLImageElement = new Image;
+  protected playButtonImage: HTMLImageElement;
 
-  protected gameStarts: boolean;
+  protected challengeStarts: boolean;
 
   protected nextChallenge: Challenge | null;
 
   public constructor(player: Player, isDutch: boolean) {
     super(player, isDutch);
 
-    this.gameStarts = false;
+    this.challengeStarts = false;
     this.animal = new Animal(0, 0, 'bunny', 4);
     this.animalText = '';
     this.playButton = new Button(0, 0, null, null, 100, 100);
@@ -51,14 +52,17 @@ export default abstract class Area extends Stage {
     this.animalDialogue = [];
     this.animalDialogueIndex = 0;
     this.dialogueTextPosition = { x: 0, y: 0 };
+    this.timeToDisplayDialogue = 1000;
+    this.dialogueAnimalImage = new Image();
 
     this.animalDialogueSize = { x: 0, y: 0 };
     this.animalDialoguePosition = { x: 0, y: 0 };
     this.dialogueAnimalArea = new Button(0, 0, null, null, 0, 0);
 
     this.playButtonPosition = { x: 0, y: 0 };
-    this.playButtonImage = CanvasRenderer.loadNewImage('./assets/play-button.png');
+    this.playButtonImage = CanvasRenderer.loadNewImage('./assets/Challenges/play-button.png');
     this.nextChallenge = null;
+    this.challengeCanStart = false;
   }
 
   protected initiateDialogButton(): void {
@@ -78,38 +82,45 @@ export default abstract class Area extends Stage {
       this.playButtonPosition.y,
       this.playButtonImage,
       null,
-      this.canvas.width * 0.1,
-      this.canvas.height * 0.17
+      LostInTheForest.canvas.width * 0.1,
+      LostInTheForest.canvas.height * 0.17
     );
   }
 
 
+  /**
+   * checks if something is clicked in the area
+   */
   public override processInput(): void {
     if (LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
       this.processAreaInput();
     }
   }
-
+  // Checks for button clicks 
   protected processAreaInput(): void{
     if (this.dialogueAnimalArea.isCollidingWithMouse()) {
       if (this.animalDialogueIndex < this.animalDialogue.length - 1) {
         this.animalDialogueIndex += 1;
         if (this.animalDialogueIndex === this.animalDialogue.length - 1) {
-          this.challengeCouldStarted = true;
+          this.challengeCanStart = true;
         }
       }
     }
 
-    if (this.challengeCouldStarted &&
-      this.animalDialogueIndex === this.animalDialogue.length - 1 &&
-      this.playButton.isCollidingWithMouse()) {
-      this.gameStarts = true;
+    if (this.challengeCanStart && this.playButton.isCollidingWithMouse()) {
+      this.challengeStarts = true;
     }
     this.player.getMap().processInput();
   }
 
+  /**
+   * updates all elements of the map
+   * @param elapsed time elapsed
+   */
   public override update(elapsed: number): void {
+    //made animal move
     this.animal.update(elapsed);
+    //makes dialogue update
     this.timeToDisplayDialogue -= elapsed;
     if (this.timeToDisplayDialogue <= 0) {
       this.timeToDisplayDialogue = 0;
@@ -117,27 +128,32 @@ export default abstract class Area extends Stage {
     if (this.animalDialogueIndex >= this.animalDialogue.length - 1) {
       this.playButtonToChallenge();
     }
+    //updates the map icons
     this.player.getMap().update();
-    this.gameStarts = false;
+    this.challengeStarts = false;
   }
 
+  /**
+   * Renders the bg, animal, dialogue, player, button and gives settings for dialogue.
+   */
   public override render(): void {
     this.renderBackground();
     this.animal.render();
     this.dialogueAnimalArea.render();
     this.player.render();
     this.playButton.render();
+    this.player.getMap().render();
 
     const currentDialogue: string[][] = this.animalDialogue[this.animalDialogueIndex] ?? [];
     if (this.timeToDisplayDialogue == 0) {
       currentDialogue.forEach((line: string[], index: number) => {
         CanvasRenderer.writeText(
-          this.canvas,
+          LostInTheForest.canvas,
           line.join(' '),
           this.dialogueTextPosition.x,
           this.dialogueTextPosition.y + index * 30,
           'left',
-          'Arial',
+          'Comic Sans MS',
           20,
           'black'
         );
@@ -146,7 +162,7 @@ export default abstract class Area extends Stage {
   }
 
   public override getNextStage(): Stage | null {
-    if (this.gameStarts) {
+    if (this.challengeStarts) {
       this.nextChallenge?.setNextDifficulty(null);
       return this.nextChallenge;
     }
