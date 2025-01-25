@@ -17,51 +17,59 @@ export default class BiologyChallenge extends Challenge {
     switch (difficultyLevel) {
       case 'easy':
         categoryData.push([
-          ['Koe / Cow', 'Een koe is een groot boerderijdier dat melk produceert. Koeien worden vaak op boerderijen gehouden omdat ze melk, vlees en leer leveren.'],
-          ['Schaap / Sheep', 'Een schaap is een wollig dier dat op boerderijen leeft. Ze worden gehouden voor hun wol, die wordt gebruikt om kleding te maken, en voor hun vlees.'],
-          ['Varken / Pig', 'Een varken is een roze of bruin boerderijdier met een snuit. Varkens worden gefokt voor hun vlees, zoals spek en varkensvlees.'],
-          ['Paard / Horse', 'Een paard is een groot dier dat snel kan rennen en mensen kan dragen. Paar-den worden op boerderijen gebruikt voor werk, zoals het trekken van karren.']]
+          [LostInTheForest.locale.t('Koe'), LostInTheForest.locale.t('Een koe is een groot boerderijdier dat melk produceert. Koeien worden vaak op boerderijen gehouden omdat ze melk, vlees en leer leveren.')],
+          [LostInTheForest.locale.t('Schaap'), LostInTheForest.locale.t('Een schaap is een wollig dier dat op boerderijen leeft. Ze worden gehouden voor hun wol, die wordt gebruikt om kleding te maken, en voor hun vlees.')],
+          [LostInTheForest.locale.t('Varken'), LostInTheForest.locale.t('Een varken is een roze of bruin boerderijdier met een snuit. Varkens worden gefokt voor hun vlees, zoals spek en varkensvlees.')],
+          [LostInTheForest.locale.t('Paard'), LostInTheForest.locale.t('Een paard is een groot dier dat snel kan rennen en mensen kan dragen. Paarden worden op boerderijen gebruikt voor werk, zoals het trekken van karren.')]]
         ); // Farm Animals
-        categoryData.push([
-          ['Kat / Cat', 'Een kat is een klein, harig dier dat spint en veel slaapt. Katten zijn pop-ulaire huisdieren omdat ze vriendelijk en gemakkelijk te verzorgen zijn.'],
-          ['Hond / Dog', 'Een hond is een trouw dier dat kan blaffen. Honden worden als huisdier     gehouden omdat ze loyaal, beschermend en geweldige metgezellen zijn.'],
-          ['Hamster', 'Een hamster is een klein, harig knaagdier met kleine pootjes. Hamsters zijn populaire huisdieren omdat ze gemakkelijk te verzorgen zijn.'],
-          ['Konijn / Rabbit', 'Een konijn is een klein dier met lange oren dat huppelt. Konijnen worden   als huisdieren gehouden omdat ze zachtaardig en leuk zijn.']]
-        ); // Pets
-        categoryData.push([
-          ['Arend / Eagle', 'Een arend is een grote vogel met scherpe klauwen en een haakvormige snavel. Arenden zijn krachtige vogels die hoog kunnen vliegen en jagen.'],
-          ['Mus / Sparrow', 'Een mus is een kleine, bruine vogel die in steden en tuinen voorkomt.      Mussen zijn veel voorkomende vogels die vaak dicht bij mensen leven.'],
-          ['Meeuw / Seagull', 'Een meeuw is een witte vogel die vaak bij de oceaan wordt gezien. Meeuwen  zijn goed in het vinden van voedsel op stranden.'],
-          ['Flamingo', 'Een flamingo is een lange, roze vogel met lange poten. De flamingo is een  unieke vogel vanwege hun roze veren en hun liefde voor water.']]
-        ); // Birds
-        categoryData.push([
-          ['Haai / Shark', 'Een haai is een grote vis met scherpe tanden. Haaien leven in de oceaan en behoren tot de top-roofdieren in het water.'],
-          ['Dolfijn / Dolphin', 'Een dolfijn is een slim en speels zeedier. Dolfijnen leven in de oceaan,   zwemmen snel en staan bekend om hun intelligentie.'],
-          ['Walvis / Whale', 'Een walvis is een gigantisch zeezoogdier dat lucht ademt. Walvissen leven  in de oceaan en zijn enkele van de grootste dieren ter wereld.'],
-          ['Octopus', 'Een octopus is een zeedier met acht armen. Octopussen leven in de oceaan en zijn bijzonder omdat ze kunnen camoufleren en zich in kleine ruimtes      kunnen wurmen.']]
-        ); // Ocean Animals
 
-        categoryNames = ['Farm Animals', 'Pets', 'Birds', 'Ocean Animals'];
+        categoryData.push([
+          [LostInTheForest.locale.t('Kat'), LostInTheForest.locale.t('Een kat is een klein, harig dier dat spint en veel slaapt. Katten zijn populaire huisdieren omdat ze vriendelijk en gemakkelijk te verzorgen zijn.')],
+          [LostInTheForest.locale.t('Hond'), LostInTheForest.locale.t('Een hond is een trouw dier dat kan blaffen. Honden worden als huisdier gehouden omdat ze loyaal, beschermend en geweldige metgezellen zijn.')],
+          [LostInTheForest.locale.t('Hamster'), LostInTheForest.locale.t('Een hamster is een klein, harig knaagdier met kleine pootjes. Hamsters zijn populaire huisdieren omdat ze gemakkelijk te verzorgen zijn.')],
+          [LostInTheForest.locale.t('Konijn'), LostInTheForest.locale.t('Een konijn is een klein dier met lange oren dat huppelt. Konijnen worden als huisdieren gehouden omdat ze zachtaardig en leuk zijn.')]
+        ]); // Pets
+
+        categoryData.push([
+          [LostInTheForest.locale.t('Arend'), LostInTheForest.locale.t('Een arend is een grote vogel met scherpe klauwen en een haakvormige snavel. Arenden zijn krachtige vogels die hoog kunnen vliegen en jagen.')],
+          [LostInTheForest.locale.t('Mus'), LostInTheForest.locale.t('Een mus is een kleine, bruine vogel die in steden en tuinen voorkomt. Mussen zijn veel voorkomende vogels die vaak dicht bij mensen leven.')],
+          [LostInTheForest.locale.t('Meeuw'), LostInTheForest.locale.t('Een meeuw is een witte vogel die vaak bij de oceaan wordt gezien. Meeuwen zijn goed in het vinden van voedsel op stranden.')],
+          [LostInTheForest.locale.t('Flamingo'), LostInTheForest.locale.t('Een flamingo is een lange, roze vogel met lange poten. De flamingo is een unieke vogel vanwege hun roze veren en hun liefde voor water.')]
+        ]); // Birds
+
+        categoryData.push([
+          [LostInTheForest.locale.t('Haai'), LostInTheForest.locale.t('Een haai is een grote vis met scherpe tanden. Haaien leven in de oceaan en behoren tot de top-roofdieren in het water.')],
+          [LostInTheForest.locale.t('Dolfijn'), LostInTheForest.locale.t('Een dolfijn is een slim en speels zeedier. Dolfijnen leven in de oceaan, zwemmen snel en staan bekend om hun intelligentie.')],
+          [LostInTheForest.locale.t('Walvis'), LostInTheForest.locale.t('Een walvis is een gigantisch zeezoogdier dat lucht ademt. Walvissen leven in de oceaan en zijn enkele van de grootste dieren ter wereld.')],
+          [LostInTheForest.locale.t('Octopus'), LostInTheForest.locale.t('Een octopus is een zeedier met acht armen. Octopussen leven in de oceaan en zijn bijzonder omdat ze kunnen camoufleren en zich in kleine ruimtes kunnen wurmen.')]
+        ]); // Ocean Animals
+
+        categoryNames = [
+          LostInTheForest.locale.t('Farm Animals'),
+          LostInTheForest.locale.t('Pets'),
+          LostInTheForest.locale.t('Birds'),
+          LostInTheForest.locale.t('Ocean Animals')
+        ];
         break;
 
       case 'medium':
         categoryData.push([
-          ['Leeuw / Lion', 'Een leeuw is naast de tijger de allergrootste kat, vaak de "koning van de  jungle" genoemd. Leeuwen zijn zoogdieren omdat ze hun jongen melk geven.'],
-          ['Dolfijn / Dolphin', 'Een dolfijn is een speels zeedier. Dolfijnen zijn zoogdieren omdat ze lucht ademen en hun jongen met melk voeden.'],
-          ['Vleermuis / Bat', 'Een vleermuis is een klein vliegend dier dat in de nacht actief is. Vleer- muizen zijn zoogdieren omdat ze bont hebben en hun jongen melk geven.'],
-          ['Olifant / Elephant', 'Een olifant is het grootste landzoogdier. Olifanten zijn zoogdieren omdat  ze haar hebben, warmbloedig zijn en levende jongen baren.']]
+          [LostInTheForest.locale.t('Leeuw'), LostInTheForest.locale.t('Een leeuw is naast de tijger de allergrootste kat, vaak de koning van de jungle genoemd. Leeuwen zijn zoogdieren omdat ze hun jongen melk geven.')],
+          ['Dolfijn', 'Een dolfijn is een speels zeedier. Dolfijnen zijn zoogdieren omdat ze lucht ademen en hun jongen met melk voeden.'],
+          ['Vleermuis', 'Een vleermuis is een klein vliegend dier dat in de nacht actief is. Vleer- muizen zijn zoogdieren omdat ze bont hebben en hun jongen melk geven.'],
+          ['Olifant', 'Een olifant is het grootste landzoogdier. Olifanten zijn zoogdieren omdat  ze haar hebben, warmbloedig zijn en levende jongen baren.']]
         ); // Mammals
         categoryData.push([
-          ['Krokodil / Crocodile', 'Een krokodil is een groot reptiel met scherpe tanden en schubbenhuid.      Krokodillen zijn reptielen omdat ze schubben hebben en eieren leggen.'],
-          ['Hagedis / Lizard', 'Een hagedis is een klein reptiel dat kan kruipen en klimmen. Het zijn rep- tielen omdat ze koudbloedig zijn en een droge, schubbige huid hebben.'],
-          ['Slang / Snake', 'Een slang is een lang reptiel zonder poten dat kronkelt. Slangen zijn      reptielen omdat ze schubben hebben en eieren leggen.'],
-          ['Schildpad / Turtle', 'Een schildpad is een langzaam reptiel met een hard schild. Schildpadden    zijn reptielen omdat ze schubben hebben, eieren leggen en op land of in het water leven.']]
+          ['Krokodil', 'Een krokodil is een groot reptiel met scherpe tanden en schubbenhuid.      Krokodillen zijn reptielen omdat ze schubben hebben en eieren leggen.'],
+          ['Hagedis', 'Een hagedis is een klein reptiel dat kan kruipen en klimmen. Het zijn rep- tielen omdat ze koudbloedig zijn en een droge, schubbige huid hebben.'],
+          ['Slang', 'Een slang is een lang reptiel zonder poten dat kronkelt. Slangen zijn      reptielen omdat ze schubben hebben en eieren leggen.'],
+          ['Schildpad', 'Een schildpad is een langzaam reptiel met een hard schild. Schildpadden    zijn reptielen omdat ze schubben hebben, eieren leggen en op land of in het water leven.']]
         ); // Reptiles
         categoryData.push([
-          ['Lieveheersbeestje / Ladybug', 'Een lieveheersbeestje is een klein, rood insect met zwarte stippen. Het    zijn insecten omdat ze zes poten en drie lichaamsdelen hebben.'],
-          ['Rups / Caterpillar', 'Een rups is de jonge vorm van een vlinder. Rupsen zijn insecten omdat ze   zes poten hebben en zich ontwikkelen tot vlinders.'],
-          ['Mier / Ant', 'Een mier is een klein, hardwerkend insect dat in kolonies leeft. Het zijn  insecten omdat ze zes poten, voelsprieten hebben en grote groepen vormen.'],
-          ['Bij / Bee', 'Een bij is een zoemend insect dat honing maakt. Bijen zijn insecten omdat  ze zes poten hebben en belangrijk zijn voor planten en bloemen.']]
+          ['Lieveheersbeestje', 'Een lieveheersbeestje is een klein, rood insect met zwarte stippen. Het    zijn insecten omdat ze zes poten en drie lichaamsdelen hebben.'],
+          ['Rups', 'Een rups is de jonge vorm van een vlinder. Rupsen zijn insecten omdat ze   zes poten hebben en zich ontwikkelen tot vlinders.'],
+          ['Mier', 'Een mier is een klein, hardwerkend insect dat in kolonies leeft. Het zijn  insecten omdat ze zes poten, voelsprieten hebben en grote groepen vormen.'],
+          ['Bij', 'Een bij is een zoemend insect dat honing maakt. Bijen zijn insecten omdat  ze zes poten hebben en belangrijk zijn voor planten en bloemen.']]
         ); // Insects
         categoryData.push([
           ['Frog', 'Een kikker is een klein dier dat in water en op het land leeft en daarom   zijn het ook amfibieën.'],

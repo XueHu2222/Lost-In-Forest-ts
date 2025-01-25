@@ -18,5 +18,13 @@
     "Spring: Dialog 2": "Als jij een stuk|van de sleutel wilt hebben|van mij dan moet je|de scheikunde uitdaging voltooien.",  
     "Spring: Dialog 3": "Veel succes!|Je zult het nodig hebben.",
 
+    "Summer: Dialog 1": "Hoot hoot, welkom.",
+    "Summer: Dialog 2": "Als je een stuk van de sleutel wilt|moet je mijn aardrijkskunde|uitdaging voltooien op medium.",
+    "Summer: Dialog 3": "Veel plezier!",
+
+    "Winter: Dialog 1": "Hihi, hallo.",
+    "Winter: Dialog 2": "Als je een stuk van de sleutel wilt|hebben van mij dan moet je|mijn biologie uitdaging|voltooien op medium.",
+    "Winter: Dialog 3": "Je kan het!",
+
     "//": "==CHALLENGES=="
 }

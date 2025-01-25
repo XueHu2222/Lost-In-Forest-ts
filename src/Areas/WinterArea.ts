@@ -35,12 +35,6 @@ export default class WinterArea extends Area {
     this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue1.png');
     this.initiateDialogButton();
 
-    this.animalDialogue = [
-      [['Hihi, hallo.'], ['(....klik om door te gaan)']],
-      [['Als je een stuk van de sleutel wilt'], ['hebben van mij dan moet je'], ['mijn biologie uitdaging'], ['voltooien op medium.'], ['(....klik om door te gaan)']],
-      [['Je kan het!'], ['(....klik op de knop om door te gaan)']]
-    ];
-
     this.dialogueTextPosition = {
       x: LostInTheForest.canvas.width * 0.75,
       y: LostInTheForest.canvas.height * 0.48
@@ -49,9 +43,9 @@ export default class WinterArea extends Area {
 
   protected override initiateDialog(): void {
     this.animalDialogue = [
-      [...this.makeDialogArray(LostInTheForest.locale.t('Main: Bunny Dialog 1')), [LostInTheForest.locale.t('Continue Dialog')]],
-      [...this.makeDialogArray(LostInTheForest.locale.t('Main: Bunny Dialog 2')), [LostInTheForest.locale.t('Continue Dialog')]],
-      [...this.makeDialogArray(LostInTheForest.locale.t('Main: Bunny Dialog 3')), [LostInTheForest.locale.t('Main: Click Map')]],
+      [...this.makeDialogArray(LostInTheForest.locale.t('Winter: Dialog 1')), [LostInTheForest.locale.t('Continue Dialog')]],
+      [...this.makeDialogArray(LostInTheForest.locale.t('Winter: Dialog 2')), [LostInTheForest.locale.t('Continue Dialog')]],
+      [...this.makeDialogArray(LostInTheForest.locale.t('Winter: Dialog 3')), [LostInTheForest.locale.t('Click Play')]],
     ];
   }
 

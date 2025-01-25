@@ -76,7 +76,7 @@ export default class MainArea extends Area {
       [...this.makeDialogArray(LostInTheForest.locale.t('Main: Dialog 3')), [LostInTheForest.locale.t('Main: Click Map')]],
     ];
   }
-
+ 
   /**
    * Calls Areas update, sets players position right, check which background
    * @param elapsed time elapsed
