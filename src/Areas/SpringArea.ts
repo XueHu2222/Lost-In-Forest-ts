@@ -34,16 +34,18 @@ export default class SpringArea extends Area {
     this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue1.png');
     this.initiateDialogButton();
 
-    this.animalDialogue = [
-      [['He, daar ben je weer.'], ['(....klik om door te gaan)']],
-      [['Als jij een stuk'], ['van de sleutel wilt hebben'], ['van mij dan moet je'], ['de scheikunde uitdaging voltooien'], ['op medium.'], ['(....klik om door te gaan)']],
-      [['Veel succes,'], [' je zult het nodig hebben.'], ['(....klik op de knop om door te gaan)']]
-    ];
-
     this.dialogueTextPosition = {
       x: LostInTheForest.canvas.width * 0.34,
       y: LostInTheForest.canvas.height * 0.38
     };
+  }
+
+  protected override initiateDialog(): void {
+    this.animalDialogue = [
+      [...this.separateDialogIntoArrays(LostInTheForest.locale.t('He, daar ben je weer.')), [LostInTheForest.locale.t('(....Klik om door te gaan)')]],
+      [...this.separateDialogIntoArrays(LostInTheForest.locale.t('Als jij een stuk|van de sleutel wilt hebben|van mij dan moet je|de scheikunde uitdaging voltooien.')), [LostInTheForest.locale.t('(....Klik om door te gaan)')]],
+      [...this.separateDialogIntoArrays(LostInTheForest.locale.t('Veel succes!|Je zult het nodig hebben.')), [LostInTheForest.locale.t('(....klik op de knop om door te gaan)')]],
+    ];
   }
 
   /**

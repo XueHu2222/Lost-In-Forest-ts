@@ -28,21 +28,24 @@ export default class AutumnArea extends Area {
 
     this.playButtonPosition = {
       x: LostInTheForest.canvas.width * 0.46,
-      y: LostInTheForest.canvas.height * 0.63};
+      y: LostInTheForest.canvas.height * 0.63
+    };
 
     this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue1.png');
     this.initiateDialogButton();
-
-    this.animalDialogue = [
-      [['Hallo kind,'], ['(....klik om door te gaan)']],
-      [['je moet mijn geschiedenis'], ['uitdaging voltooien'], ['op medium als je een stuk'], ['van de sleutel wilt hebben.'], ['(....klik om door te gaan)']],
-      [[' Veel succes!'], ['(..klik op de knop om door te gaan)']]
-    ];
 
     this.dialogueTextPosition = {
       x: LostInTheForest.canvas.width * 0.78,
       y: LostInTheForest.canvas.height * 0.57
     };
+  }
+
+  protected override initiateDialog(): void {
+    this.animalDialogue = [
+      [...this.separateDialogIntoArrays(LostInTheForest.locale.t('Hallo kind,')), [LostInTheForest.locale.t('(....Klik om door te gaan)')]],
+      [...this.separateDialogIntoArrays(LostInTheForest.locale.t('je moet mijn geschiedenis|uitdaging voltooien|als je een stuk|van de sleutel wilt hebben.')), [LostInTheForest.locale.t('(....Klik om door te gaan)')]],
+      [...this.separateDialogIntoArrays(LostInTheForest.locale.t('Veel succes!')), [LostInTheForest.locale.t('(....klik op de knop om door te gaan)')]],
+    ];
   }
 
   /**

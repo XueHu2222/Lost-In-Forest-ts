@@ -41,7 +41,7 @@ export default abstract class Challenge extends Stage {
 
   private buttonSelectImage: HTMLImageElement;
 
-  private categories: Category[];
+  protected categories: Category[];
 
   private completedCategories: Category[];
 
@@ -51,7 +51,7 @@ export default abstract class Challenge extends Stage {
 
   protected nextDifficulty: string | null;
 
-  private difficultyLevel: string;
+  protected difficultyLevel: string;
 
   protected challengeScience: string;
 
@@ -534,7 +534,7 @@ export default abstract class Challenge extends Stage {
     this.theoryButton.render();
     this.hintButton.render();
     this.animal.render();
-    CanvasRenderer.writeText(LostInTheForest.canvas, 'Klik als je het niet snapt!', LostInTheForest.canvas.width * 0.83, LostInTheForest.canvas.height * 0.64, 'center', 'Arial', 20, 'black');
+    CanvasRenderer.writeText(LostInTheForest.canvas, LostInTheForest.locale.t('Klik als je het niet snapt!'), LostInTheForest.canvas.width * 0.83, LostInTheForest.canvas.height * 0.64, 'center', 'Arial', 20, 'black');
 
     const hintCategoryText: string = this.categories.reduce((acc: string, cur: Category) => acc += cur.getName() + ' - ', ' - ');
     if (this.hintIsOpen) {
