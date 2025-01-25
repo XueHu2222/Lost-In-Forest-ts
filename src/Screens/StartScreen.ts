@@ -6,6 +6,7 @@ import LostInTheForest from '../LostInTheForest.js';
 import MouseListener from '../Base/MouseListener.js';
 import Player from '../Player.js';
 import Stage from '../Stage.js';
+import Locale from '../Base/Locale.js';
 
 export default class StartScreen extends Stage {
   private genderButtons: Button[];
@@ -124,7 +125,7 @@ export default class StartScreen extends Stage {
       //flag buttons that also give selected and set language
       this.languageButtons.forEach((languageButton: Button, index: number) => {
         if (languageButton.isCollidingWithMouse()) {
-          LostInTheForest.isDutch = index === 0;
+          LostInTheForest.locale = new Locale(index === 0 ? 'nl' : 'en');
 
           // Make the selected language button active
           this.selectedFlag = new Button(

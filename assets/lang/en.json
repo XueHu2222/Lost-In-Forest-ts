@@ -1,0 +1,22 @@
+{
+    "//": "==DIALOGS==",
+    "Continue Dialog": "(....Click to continue)",
+    "Click Play": "(....Click the button to continue)",
+
+    "Main: Player Dialog 1": "Help where am I?",
+    "Main: Player Dialog 2": "I want to go back home!",
+    "Main: Dialog 1": "No worries, I can help you!|To get out of here|you need to collect 4 pieces of a key.",
+    "Main: Dialog 2": "Go to each of the 4|different areas|and collect a part|of the key.",
+    "Main: Dialog 3": "You can choose|which area you want to go first,|good luck!",
+    "Main: Click Map": "(....Click on the map to continue)",
+
+    "Autumn: Dialog 1": "Hello child,",  
+    "Autumn: Dialog 2": "you must complete my history challenge|if you want a piece|of the key.",  
+    "Autumn: Dialog 3": "Good luck!",
+
+    "Spring: Dialog 1": "Hey, there you are again.",
+    "Spring: Dialog 2": "If you want a piece|of the key from me, you must|complete the chemistry challenge.",
+    "Spring: Dialog 3": "Good luck!|You will need it.",
+
+    "//": "==CHALLENGES=="
+}

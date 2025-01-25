@@ -98,7 +98,7 @@ export default abstract class Area extends Stage {
   }
 
   // Checks for button clicks
-  protected processAreaInput(): void{
+  protected processAreaInput(): void {
     if (this.dialogueAnimalArea.isCollidingWithMouse()) {
       if (this.animalDialogueIndex < this.animalDialogue.length - 1) {
         this.animalDialogueIndex += 1;
@@ -119,6 +119,9 @@ export default abstract class Area extends Stage {
    * @param elapsed time elapsed
    */
   public override update(elapsed: number): void {
+    if (this.animalDialogue.length === 0) {
+      this.initiateDialog();
+    }
     //made animal move
     this.animal.update(elapsed);
     //makes dialogue update
@@ -133,6 +136,21 @@ export default abstract class Area extends Stage {
     this.player.getMap().update();
     this.challengeStarts = false;
   }
+
+  /**
+   * Splits the string into array's using the separator
+   * @param string Dialog sentence
+   * @returns a string[][] were each array element was a part of a sentence
+   */
+  protected makeDialogArray(string: string): string[][] {
+    return string.split('|').map(((line: string) => [line]));
+  }
+
+
+  /**
+   * Initiates the dialog
+   */
+  protected abstract initiateDialog(): void;
 
   /**
    * Renders the bg, animal, dialogue, player, button and gives settings for dialogue.

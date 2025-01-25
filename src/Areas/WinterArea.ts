@@ -47,6 +47,14 @@ export default class WinterArea extends Area {
     };
   }
 
+  protected override initiateDialog(): void {
+    this.animalDialogue = [
+      [...this.makeDialogArray(LostInTheForest.locale.t('Main: Bunny Dialog 1')), [LostInTheForest.locale.t('Continue Dialog')]],
+      [...this.makeDialogArray(LostInTheForest.locale.t('Main: Bunny Dialog 2')), [LostInTheForest.locale.t('Continue Dialog')]],
+      [...this.makeDialogArray(LostInTheForest.locale.t('Main: Bunny Dialog 3')), [LostInTheForest.locale.t('Main: Click Map')]],
+    ];
+  }
+
   /**
    * Calls Areas update, sets players position right
    * @param elapsed time elapsed

@@ -55,11 +55,6 @@ export default class MainArea extends Area {
     this.initiateDialogButton();
     this.playButtonImage = new Image();
 
-    this.animalDialogue = [
-      [['Geen zorgen, ik kan je helpen!'], ['Om hieruit te komen,'], ['moet je 4 stukken'], ['van de sleutel verzamelen.'], ['(....klik om door te gaan)']],
-      [['Ga naar de 4'], ['verschillende gebieden'], ['om een stuk van'], ['de sleutel te krijgen'], ['(....klik om door te gaan)']],
-      [['Jij mag kiezen'], ['waar je wilt beginnen,'], ['veel succes!'], ['(....klik op de map om door te gaan)']]
-    ];
     this.dialogueTextPosition = {
       x: LostInTheForest.canvas.width * 0.2,
       y: LostInTheForest.canvas.height * 0.5
@@ -72,6 +67,14 @@ export default class MainArea extends Area {
       LostInTheForest.canvas.width * 0.23,
       LostInTheForest.canvas.height * 0.25
     );
+  }
+
+  protected override initiateDialog(): void {
+    this.animalDialogue = [
+      [...this.makeDialogArray(LostInTheForest.locale.t('Main: Dialog 1')), [LostInTheForest.locale.t('Continue Dialog')]],
+      [...this.makeDialogArray(LostInTheForest.locale.t('Main: Dialog 2')), [LostInTheForest.locale.t('Continue Dialog')]],
+      [...this.makeDialogArray(LostInTheForest.locale.t('Main: Dialog 3')), [LostInTheForest.locale.t('Main: Click Map')]],
+    ];
   }
 
   /**
@@ -93,8 +96,8 @@ export default class MainArea extends Area {
   public override render(): void {
     super.render();
     this.dialoguePlayerArea.render();
-    CanvasRenderer.writeText(LostInTheForest.canvas, 'Help waar ben ik?', LostInTheForest.canvas.width * 0.48, LostInTheForest.canvas.height * 0.36, 'left', 'Comic Sans MS', 25, 'black');
-    CanvasRenderer.writeText(LostInTheForest.canvas, 'Ik wil terug naar huis!', LostInTheForest.canvas.width * 0.48, LostInTheForest.canvas.height * 0.43, 'left', 'Comic Sans MS', 25, 'black');
+    CanvasRenderer.writeText(LostInTheForest.canvas, LostInTheForest.locale.t('Main: Player Dialog 1'), LostInTheForest.canvas.width * 0.48, LostInTheForest.canvas.height * 0.36, 'left', 'Comic Sans MS', 25, 'black');
+    CanvasRenderer.writeText(LostInTheForest.canvas, LostInTheForest.locale.t('Main: Player Dialog 2'), LostInTheForest.canvas.width * 0.48, LostInTheForest.canvas.height * 0.43, 'left', 'Comic Sans MS', 25, 'black');
     this.player.getMap().render();
     if (LostInTheForest.keyBiology && LostInTheForest.keyGeography &&
       LostInTheForest.keyHistory && LostInTheForest.keyPhysics) {

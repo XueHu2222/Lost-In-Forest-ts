@@ -4,6 +4,7 @@ import Stage from './Stage.js';
 import StartScreen from './Screens/StartScreen.js';
 import Player from './Player.js';
 import CanvasRenderer from './Base/CanvasRenderer.js';
+import Locale from './Base/Locale.js';
 
 export default class LostInTheForest extends Game {
   public static canvas: HTMLCanvasElement;
@@ -24,6 +25,8 @@ export default class LostInTheForest extends Game {
 
   public static keyPhysics: boolean;
 
+  public static locale: Locale;
+
   public constructor(canvas: HTMLCanvasElement) {
     super();
     LostInTheForest.canvas = canvas;
@@ -37,6 +40,7 @@ export default class LostInTheForest extends Game {
     LostInTheForest.keyGeography = false;
     LostInTheForest.keyPhysics = false;
     LostInTheForest.keyHistory = false;
+    LostInTheForest.locale = new Locale('nl');
   }
 
   /**
@@ -54,7 +58,7 @@ export default class LostInTheForest extends Game {
    */
   public update(elapsed: number): boolean {
     LostInTheForest.currentStage = LostInTheForest.currentStage.getNextStage()
-     || LostInTheForest.currentStage;
+      || LostInTheForest.currentStage;
     LostInTheForest.currentStage.update(elapsed);
     return true;
   }
