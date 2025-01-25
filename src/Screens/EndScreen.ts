@@ -34,13 +34,7 @@ export default class EndScreen extends Stage {
       new Animal(LostInTheForest.canvas.width * 0.75, LostInTheForest.canvas.height * 0.73, 'monkey', 4),
     ];
 
-
-
-    if (LostInTheForest.isDutch) {
-      this.endMessage = ['GEFELICITEERD!', 'JE BENT UIT HET BOS ONTSNAPT!'];
-    } else {
-      this.endMessage = ['CONGRATULATIONS!', 'YOU ESCAPED THE FOREST!'];
-    }
+    this.endMessage = [LostInTheForest.locale.t('GEFELICITEERD'), LostInTheForest.locale.t('JE BENT UIT HET BOS ONTSNAPT!')];
     const homeButtonImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/home-button.png');
     const restartButtonImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/restart-button.png');
 

@@ -15,8 +15,6 @@ export default class LostInTheForest extends Game {
 
   public static currentStage: Stage;
 
-  public static isDutch: boolean;
-
   public static keyHistory: boolean;
 
   public static keyBiology: boolean;
@@ -34,7 +32,6 @@ export default class LostInTheForest extends Game {
     LostInTheForest.canvas.width = window.innerWidth;
     LostInTheForest.mouseListener = new MouseListener(canvas);
     this.player = new Player;
-    LostInTheForest.isDutch = true;
     LostInTheForest.currentStage = new StartScreen(this.player);
     LostInTheForest.keyBiology = false;
     LostInTheForest.keyGeography = false;
