@@ -74,7 +74,7 @@ export default class Locale {
    * @param input the string to translate
    * @param params the parameters, if needed
    * @returns the translated string or the input if a translation isn't found
-   * @see {@link this.translate()}
+   * @see {@link Locale.translate()}
    */
   public t(input: string, params: { [key: string]: string } = {}): string {
     return this.translate(input, params);

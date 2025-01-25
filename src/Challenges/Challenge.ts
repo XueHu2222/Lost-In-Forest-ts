@@ -41,7 +41,7 @@ export default abstract class Challenge extends Stage {
 
   private buttonSelectImage: HTMLImageElement;
 
-  private categories: Category[];
+  protected categories: Category[];
 
   private completedCategories: Category[];
 
@@ -51,7 +51,7 @@ export default abstract class Challenge extends Stage {
 
   protected nextDifficulty: string | null;
 
-  private difficultyLevel: string;
+  protected difficultyLevel: string;
 
   protected challengeScience: string;
 

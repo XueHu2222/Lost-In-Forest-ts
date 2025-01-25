@@ -9,12 +9,20 @@ import Animal from '../Animal.js';
 export default class BiologyChallenge extends Challenge {
   public constructor(difficultyLevel: string, player: Player) {
     super(difficultyLevel, player);
+    this.animal = new Animal(LostInTheForest.canvas.width * 0.8, LostInTheForest.canvas.height * 0.66, 'monkey', 4);
+    this.challengeScience = 'Biology';
+    this.textColor = 'black';
+    this.activeTextColor = 'orange';
+    this.primaryTextColor = 'blue';
+    this.secondaryTextColor = 'purple';
+  }
+
+  private initiateData(): void{
     const categoryData: string[][][] = [];
     let categoryNames: string[] = [];
-    this.animal = new Animal(LostInTheForest.canvas.width * 0.8, LostInTheForest.canvas.height * 0.66, 'monkey', 4);
 
     // Pushes the correct data for each category based on the difficulty
-    switch (difficultyLevel) {
+    switch (this.difficultyLevel) {
       case 'easy':
         categoryData.push([
           [LostInTheForest.locale.t('Koe'), LostInTheForest.locale.t('Een koe is een groot boerderijdier dat melk produceert. Koeien worden vaak op boerderijen gehouden omdat ze melk, vlees en leer leveren.')],
@@ -110,12 +118,18 @@ export default class BiologyChallenge extends Challenge {
         categoryNames = ['Herbivores', 'Carnivores', 'Omnivores', 'Insectivores'];
         break;
     }
-    this.challengeScience = 'Biology';
-    this.textColor = 'black';
-    this.activeTextColor = 'orange';
-    this.primaryTextColor = 'blue';
-    this.secondaryTextColor = 'purple';
     this.initiateCategoryElements(categoryData, categoryNames);
+  }
+
+  /**
+   * Initiate the data if not done yet
+   * @param elapsed time
+   */
+  public override update(elapsed: number): void {
+    super.update(elapsed);
+    if(this.categories.length === 0){
+      this.initiateData();
+    }
   }
 
   /**
