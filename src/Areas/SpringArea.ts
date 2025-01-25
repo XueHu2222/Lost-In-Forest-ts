@@ -42,9 +42,9 @@ export default class SpringArea extends Area {
 
   protected override initiateDialog(): void {
     this.animalDialogue = [
-      [...this.makeDialogArray(LostInTheForest.locale.t('Spring: Dialog 1')), [LostInTheForest.locale.t('Continue Dialog')]],
-      [...this.makeDialogArray(LostInTheForest.locale.t('Spring: Dialog 2')), [LostInTheForest.locale.t('Continue Dialog')]],
-      [...this.makeDialogArray(LostInTheForest.locale.t('Spring: Dialog 3')), [LostInTheForest.locale.t('Click Play')]],
+      [...this.separateDialogIntoArrays(LostInTheForest.locale.t('He, daar ben je weer.')), [LostInTheForest.locale.t('(....Klik om door te gaan)')]],
+      [...this.separateDialogIntoArrays(LostInTheForest.locale.t('Als jij een stuk|van de sleutel wilt hebben|van mij dan moet je|de scheikunde uitdaging voltooien.')), [LostInTheForest.locale.t('(....Klik om door te gaan)')]],
+      [...this.separateDialogIntoArrays(LostInTheForest.locale.t('Veel succes!|Je zult het nodig hebben.')), [LostInTheForest.locale.t('(....klik op de knop om door te gaan)')]],
     ];
   }
 

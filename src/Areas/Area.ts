@@ -142,7 +142,7 @@ export default abstract class Area extends Stage {
    * @param string Dialog sentence
    * @returns a string[][] were each array element was a part of a sentence
    */
-  protected makeDialogArray(string: string): string[][] {
+  protected separateDialogIntoArrays(string: string): string[][] {
     return string.split('|').map(((line: string) => [line]));
   }
 

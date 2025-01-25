@@ -1,36 +1,44 @@
 {
     "//": "==DIALOGS==",
-    "Continue Dialog": "(....Click to continue)",
-    "Click Play": "(....Click the button to continue)",
+    "(....Klik om door te gaan)": "(....Click to continue)",
+    "(....klik op de knop om door te gaan)": "(....Click the button to continue)",
 
-    "Main: Player Dialog 1": "Help where am I?",
-    "Main: Player Dialog 2": "I want to go back home!",
-    "Main: Dialog 1": "No worries, I can help you!|To get out of here|you need to collect 4 pieces of a key.",
-    "Main: Dialog 2": "Go to each of the 4|different areas|and collect a part|of the key.",
-    "Main: Dialog 3": "You can choose|which area you want to go first,|good luck!",
-    "Main: Click Map": "(....Click on the map to continue)",
-
-    "Autumn: Dialog 1": "Hello child,",  
-    "Autumn: Dialog 2": "you must complete my history challenge|if you want a piece|of the key.",  
-    "Autumn: Dialog 3": "Good luck!",
-
-    "Spring: Dialog 1": "Hey, there you are again.",
-    "Spring: Dialog 2": "If you want a piece|of the key from me, you must|complete the chemistry challenge.",
-    "Spring: Dialog 3": "Good luck!|You will need it.",
+    "//": "Player",
+    "Help waar ben ik?": "Help where am I?",
+    "Ik wil terug naar huis!": "I want to go back home!",
     
-    "Summer: Dialog 1": "Hoot hoot, welcome.",
-    "Summer: Dialog 2": "If you want a piece of the key,|you must complete my geography|challenge on medium.",
-    "Summer: Dialog 3": "Have fun!",
+    "//": "Main",
+    "Geen zorgen, ik kan je helpen!|Om hieruit te komen|moet je 4 stukken van de sleutel verzamelen.": "No worries, I can help you!|To get out of here|you need to collect 4 pieces of a key.",
+    "Ga naar de 4|verschillende gebieden|om een stuk van|de sleutel te krijgen.": "Go to each of the 4|different areas|and collect a part|of the key.",
+    "Jij mag kiezen|waar je wilt beginnen,|veel succes!": "You can choose|which area you want to go first,|good luck!",
+    "(....Klik op de map om door te gaan)": "(....Click on the map to continue)",
 
-    "Winter: Dialog 1": "Hehe, hello.",
-    "Winter: Dialog 2": "If you want a piece of the key|from me, you need to complete|my biology challenge|on medium.",
-    "Winter: Dialog 3": "You can do it!",
+    "//": "Autumn",
+    "Hallo kind,": "Hello child,",  
+    "je moet mijn geschiedenis|uitdaging voltooien|als je een stuk|van de sleutel wilt hebben.": "you must complete my history challenge|if you want a piece|of the key.",  
+    "Veel succes!": "Good luck!",
+
+    "//": "Spring",
+    "He, daar ben je weer.": "Hey, there you are again.",
+    "Als jij een stuk|van de sleutel wilt hebben|van mij dan moet je|de scheikunde uitdaging voltooien.": "If you want a piece|of the key from me, you must|complete the chemistry challenge.",
+    "Veel succes!|Je zult het nodig hebben.": "Good luck!|You will need it.",
+    
+    "//": "Summer",
+    "Hoot hoot, welkom.": "Hoot hoot, welcome.",
+    "Als je een stuk van de sleutel wilt|moet je mijn aardrijkskunde|uitdaging voltooien op medium.": "If you want a piece of the key,|you must complete my geography|challenge on medium.",
+    "Veel plezier!": "Have fun!",
+
+    "//": "Winter",
+    "Hihi, hallo.": "Hehe, hello.",
+    "Als je een stuk van de sleutel wilt|hebben van mij dan moet je|mijn biologie uitdaging|voltooien op medium.": "If you want a piece of the key|from me, you need to complete|my biology challenge|on medium.",
+    "Je kan het!": "You can do it!",
+
 
     "//": "==CHALLENGES==",
-
     "Klik als je het niet snapt!": "Click if you don't understand!",
 
     "//": "==biology-easy==",
+    "Boerderijdieren": "Farm Animals",
     "Koe": "Cow",
     "Een koe is een groot boerderijdier dat melk produceert. Koeien worden vaak op boerderijen gehouden omdat ze melk, vlees en leer leveren.": "A cow is a large farm animal that produces milk. Cows are often kept on farms because they provide milk, meat, and leather.",
     "Schaap": "Sheep",
@@ -40,6 +48,7 @@
     "Paard": "Horse",
     "Een paard is een groot dier dat snel kan rennen en mensen kan dragen. Paarden worden op boerderijen gebruikt voor werk, zoals het trekken van karren.": "A horse is a large animal that can run fast and carry people. Horses are used on farms for work, such as pulling carts.",
     
+    "Huisdieren": "Pets",
     "Kat": "Cat",
     "Een kat is een klein, harig dier dat spint en veel slaapt. Katten zijn populaire huisdieren omdat ze vriendelijk en gemakkelijk te verzorgen zijn.": "A cat is a small, furry animal that purrs and sleeps a lot. Cats are popular pets because they are friendly and easy to care for.",
     "Hond": "Dog",
@@ -49,6 +58,7 @@
     "Konijn": "Rabbit",
     "Een konijn is een klein dier met lange oren dat huppelt. Konijnen worden als huisdieren gehouden omdat ze zachtaardig en leuk zijn.": "A rabbit is a small animal with long ears that hops. Rabbits are kept as pets because they are gentle and fun.",
     
+    "Vogels": "Birds",
     "Arend": "Eagle",
     "Een arend is een grote vogel met scherpe klauwen en een haakvormige snavel. Arenden zijn krachtige vogels die hoog kunnen vliegen en jagen.": "An eagle is a large bird with sharp claws and a hooked beak. Eagles are powerful birds that can fly high and hunt.",
     "Mus": "Sparrow",
@@ -58,6 +68,7 @@
     "Flamingo": "Flamingo",
     "Een flamingo is een lange, roze vogel met lange poten. De flamingo is een unieke vogel vanwege hun roze veren en hun liefde voor water.": "A flamingo is a tall, pink bird with long legs. The flamingo is a unique bird due to its pink feathers and love for water.",
     
+    "Zeedieren": "Ocean Animals",
     "Haai": "Shark",
     "Een haai is een grote vis met scherpe tanden. Haaien leven in de oceaan en behoren tot de top-roofdieren in het water.": "A shark is a large fish with sharp teeth. Sharks live in the ocean and are among the top predators in the water.",
     "Dolfijn": "Dolphin",
@@ -66,19 +77,19 @@
     "Een walvis is een gigantisch zeezoogdier dat lucht ademt. Walvissen leven in de oceaan en zijn enkele van de grootste dieren ter wereld.": "A whale is a gigantic marine mammal that breathes air. Whales live in the ocean and are some of the largest animals on Earth.",
     "Octopus": "Octopus",
     "Een octopus is een zeedier met acht armen. Octopussen leven in de oceaan en zijn bijzonder omdat ze kunnen camoufleren en zich in kleine ruimtes kunnen wurmen.": "An octopus is a sea creature with eight arms. Octopuses live in the ocean and are special because they can camouflage and squeeze into small spaces.",
-    "Farm Animals": "Farm Animals",
-    "Pets": "Pets",
-    "Birds": "Birds",
-    "Ocean Animals": "Ocean Animals",
 
     "//": "==biology-medium==",
+    "Zoogdieren": "Mammals",
     "Leeuw": "Lion",
     "Een leeuw is naast de tijger de allergrootste kat, vaak de \"koning van de jungle\" genoemd. Leeuwen zijn zoogdieren omdat ze hun jongen melk geven.": "A lion, along with the tiger, is one of the largest cats and is often called the 'king of the jungle.' Lions are mammals because they feed their young with milk.",
+    "//": "Dolphin",
     "Een dolfijn is een speels zeedier. Dolfijnen zijn zoogdieren omdat ze lucht ademen en hun jongen met melk voeden.": "A dolphin is a playful sea creature. Dolphins are mammals because they breathe air and feed their young with milk.",
     "Vleermuis": "Bat",
     "Een vleermuis is een klein vliegend dier dat in de nacht actief is. Vleermuizen zijn zoogdieren omdat ze bont hebben en hun jongen melk geven.": "A bat is a small flying creature active at night. Bats are mammals because they have fur and feed their young with milk.",
     "Olifant": "Elephant",
     "Een olifant is het grootste landzoogdier. Olifanten zijn zoogdieren omdat ze haar hebben, warmbloedig zijn en levende jongen baren.": "An elephant is the largest land mammal. Elephants are mammals because they have hair, are warm-blooded, and give birth to live young.",
+    
+    "Reptielen": "Reptiles",
     "Krokodil": "Crocodile",
     "Een krokodil is een groot reptiel met scherpe tanden en schubbenhuid. Krokodillen zijn reptielen omdat ze schubben hebben en eieren leggen.": "A crocodile is a large reptile with sharp teeth and scaly skin. Crocodiles are reptiles because they have scales and lay eggs.",
     "Hagedis": "Lizard",
@@ -87,6 +98,8 @@
     "Een slang is een lang reptiel zonder poten dat kronkelt. Slangen zijn reptielen omdat ze schubben hebben en eieren leggen.": "A snake is a long reptile without legs that slithers. Snakes are reptiles because they have scales and lay eggs.",
     "Schildpad": "Turtle",
     "Een schildpad is een langzaam reptiel met een hard schild. Schildpadden zijn reptielen omdat ze schubben hebben, eieren leggen en op land of in het water leven.": "A turtle is a slow reptile with a hard shell. Turtles are reptiles because they have scales, lay eggs, and live on land or in water.",
+    
+    "Insecten": "Insects",
     "Lieveheersbeestje": "Ladybug",
     "Een lieveheersbeestje is een klein, rood insect met zwarte stippen. Het zijn insecten omdat ze zes poten en drie lichaamsdelen hebben.": "A ladybug is a small, red insect with black spots. They are insects because they have six legs and three body parts.",
     "Rups": "Caterpillar",
@@ -95,6 +108,8 @@
     "Een mier is een klein, hardwerkend insect dat in kolonies leeft. Het zijn insecten omdat ze zes poten, voelsprieten hebben en grote groepen vormen.": "An ant is a small, hardworking insect that lives in colonies. They are insects because they have six legs, antennae, and form large groups.",
     "Bij": "Bee",
     "Een bij is een zoemend insect dat honing maakt. Bijen zijn insecten omdat ze zes poten hebben en belangrijk zijn voor planten en bloemen.": "A bee is a buzzing insect that makes honey. Bees are insects because they have six legs and are important for plants and flowers.",
+    
+    "Amfibieën": "Amphibians",
     "Kikker": "Frog",
     "Een kikker is een klein dier dat in water en op het land leeft en daarom zijn het ook amfibieën.": "A frog is a small animal that lives in water and on land, which makes it an amphibian.",
     "Pad": "Toad",
@@ -103,33 +118,43 @@
     "Een salamander is een klein dier een gladde huid heeft. Salamanders zijn amfibieën omdat ze water nodig hebben om hun huid vochtig te houden.": "A salamander is a small animal with smooth skin. Salamanders are amphibians because they need water to keep their skin moist.",
     "Watersalamander": "Newt",
     "Een watersalamander is een type kleine salamander. Watersalamanders zijn amfibieën omdat ze hun leven in water beginnen en later op het land kunnen leven.": "A newt is a type of small salamander. Newts are amphibians because they start their life in water and later live on land.",
-    "Mammals": "Mammals",
-    "Reptiles": "Reptiles",
-    "Insects": "Insects",
-    "Amphibians": "Amphibians",
+
+
+
+
 
     "//": "==biology-hard==",
+    "Herbivoren": "Herbivores",
+    "//": "Horse",
     "Een paard is een groot dier dat gras en hooi eet. Paarden zijn herbivoren omdat ze alleen planten eten zoals gras en bladeren, om energie te krijgen.": "A horse is a large animal that eats grass and hay. Horses are herbivores because they only eat plants like grass and leaves to gain energy.",
+    "//": "Cow",
     "Een koe is een boerderijdier dat gras eet en melk levert. Het zijn herbivoren omdat ze een speciale maag hebben die hen helpt planten te verteren.": "A cow is a farm animal that eats grass and produces milk. Cows are herbivores because they have a special stomach that helps digest plants.",
     "Giraf": "Giraffe",
     "Een giraf is het hoogste landdier. Giraffen zijn herbivoren omdat ze alleen planten eten, en hun lange nek gebruiken om bij hun voedsel te komen.": "A giraffe is the tallest land animal. Giraffes are herbivores because they only eat plants and use their long necks to reach their food.",
+    "//": "Bunny",
     "Een konijn is een klein dier dat huppelt en groenten eet. Konijnen zijn herbivoren omdat ze gras, groenten en planten eten om gezond te blijven.": "A rabbit is a small animal that hops and eats vegetables. Rabbits are herbivores because they eat grass, vegetables, and plants to stay healthy.",
 
+    "Carnivoren": "Carnivores",
     "Tijger": "Tiger",
     "Een tijger is een grote, gestreepte kat die jaagt op andere dieren. Tijgers zijn carnivoren omdat ze vlees eten om te overleven.": "A tiger is a large striped cat that hunts other animals. Tigers are carnivores because they eat meat to survive.",
     "Wolf": "Wolf",
     "Een wolf is een wilde hond die in groepen jaagt. Wolven zijn carnivoren omdat ze jagen en vlees eten, zoals herten, konijnen en kleinere dieren.": "A wolf is a wild dog that hunts in packs. Wolves are carnivores because they hunt and eat meat, such as deer, rabbits, and smaller animals.",
+    "//": "Shark",
     "Een haai is een krachtige zee-roofdier met scherpe tanden. Haaien zijn carnivoren omdat ze andere vissen en zeedieren eten om te overleven.": "A shark is a powerful marine predator with sharp teeth. Sharks are carnivores because they eat other fish and sea creatures to survive.",
+    "//": "Lion",
     "Een leeuw is een grote kat die jaagt op dieren op de grasvlakten. Leeuwen zijn carnivoren omdat ze jagen en dieren eten, zoals gazellen.": "A lion is a large cat that hunts animals on the plains. Lions are carnivores because they hunt and eat animals, such as gazelles.",
 
+    "Omnivoren": "Omnivores",
     "Beer": "Bear",
     "Een beer is een groot dier. Beren zijn omnivoren omdat ze planten zoals bessen eten, maar ook jagen op vis en kleine dieren.": "A bear is a large animal. Bears are omnivores because they eat plants like berries but also hunt fish and small animals.",
+    "//": "Pig",
     "Een varken is een boerderijdier dat veel soorten voedsel eet. Varkens zijn omnivoren omdat ze zowel planten als vlees eten.": "A pig is a farm animal that eats many types of food. Pigs are omnivores because they eat both plants and meat.",
     "Mens": "Human",
     "Een mens is een persoon, en wij maken deel uit van het dierenrijk. Mensen zijn omnivoren omdat we zowel planten als vlees eten om energie te krijgen.": "A human is a person, and we are part of the animal kingdom. Humans are omnivores because we eat both plants and meat to gain energy.",
     "Wasbeer": "Raccoon",
     "Een wasbeer is een klein dier dat in de nacht vaak naar voedsel zoekt. Wasberen zijn omnivoren omdat ze zowel planten als kleine dieren eten.": "A raccoon is a small animal that often looks for food at night. Raccoons are omnivores because they eat both plants and small animals.",
 
+    "Insectivoren": "Insectivores",
     "Miereneter": "Anteater",
     "Een miereneter is een groot dier met een lange snuit en een tong. Het zijn insectivoren omdat ze voornamelijk mieren eten om hun voedsel te krijgen.": "An anteater is a large animal with a long snout and a tongue. They are insectivores because they mainly eat ants to get their food.",
     "Egel": "Hedgehog",
@@ -139,13 +164,8 @@
     "Kameleon": "Chameleon",
     "Kameleons zijn insectivoren omdat ze insecten, zoals vliegen en krekels, vangen met hun lange, kleverige tongen.": "Chameleons are insectivores because they catch insects, such as flies and crickets, with their long, sticky tongues.",
 
-    "Herbivores": "Herbivores",
-    "Carnivores": "Carnivores",
-    "Omnivores": "Omnivores",
-    "Insectivores": "Insectivores",
-
     "//": "==geography-easy==",
-    "Belgium": "Belgium",
+    "België": "Belgium",
     "Chocolade": "Chocolate",
     "Chocolade is een zoete lekkernij gemaakt van cacaobonen, waarbij België bekendstaat om zijn hoogwaardige chocolade.": "Chocolate is a sweet treat made from cocoa beans, with Belgium renowned for its high-quality chocolate.",
     "Brussel": "Brussels",
@@ -155,7 +175,7 @@
     "Wafels": "Waffles",
     "Wafels zijn een Belgische specialiteit met twee beroemde soorten: Brusselse wafels (licht en luchtig) en Luikse wafels (zoet en gekarameliseerd).": "Waffles are a Belgian specialty with two famous types: Brussels waffles (light and airy) and Liège waffles (sweet and caramelized).",
     
-    "Netherlands": "Netherlands",
+    "Nederland": "Netherlands",
     "Windmolen": "Windmill",
     "Nederland staat bekend om zijn historische windmolens en ze werden gebruikt om energie op te wekken of graan te malen.": "The Netherlands is known for its historic windmills, used to generate energy or grind grain.",
     "Kanaal": "Canal",
@@ -165,7 +185,7 @@
     "Tulpen": "Tulips",
     "Tulpen zijn mooie bloemen die in de lente bloeien. Nederland is beroemd om zijn uitgestrekte tulpenvelden en tulpenfestivals, en het exporteert miljoenen tulpenbollen wereldwijd.": "Tulips are beautiful flowers that bloom in spring. The Netherlands is famous for its vast tulip fields and festivals, exporting millions of tulip bulbs worldwide.",
 
-    "Germany": "Germany",
+    "//": "Germany",
     "Bratwurst": "Bratwurst",
     "Duitsland staat bekend om de bratwurst en is een traditioneel gerecht dat vaak wordt gegeten tijdens festivals en maaltijden.": "Germany is famous for bratwurst, a traditional dish often eaten during festivals and meals.",
     "Schnitzel": "Schnitzel",
@@ -175,7 +195,7 @@
     "Berlijn": "Berlin",
     "Berlijn is de hoofdstad van Duitsland. Het is een belangrijk cultureel en historisch centrum, bekend om bezienswaardigheden zoals de Berlijnse Muur.": "Berlin is the capital of Germany. It is an important cultural and historical center, known for landmarks like the Berlin Wall.",
 
-    "England": "England",
+    "Engeland": "England",
     "Big Ben": "Big Ben",
     "Big Ben is een beroemde klokkentoren in Londen. Het is een symbool van Engeland en zijn hoofdstad Londen.": "Big Ben is a famous clock tower in London. It is a symbol of England and its capital, London.",
     "Royalty": "Royalty",
@@ -186,7 +206,7 @@
     "Rode telefooncellen zijn kleine hokjes met openbare telefoons. De rode telefooncel is een iconisch symbool van Engeland, vooral in steden zoals Londen.": "Red telephone boxes are small booths with public telephones. The red telephone box is an iconic symbol of England, especially in cities like London.",
 
     "//": "==geography-medium==",
-    "Europe": "Europe",
+    "Europa": "Europe",
     "Frankrijk": "France",
     "Frankrijk is een land in Europa en staat bekend om zijn rijke cultuur, eten, wijn, mode en bezienswaardigheden zoals de Eiffeltoren.": "France is a country in Europe known for its rich culture, food, wine, fashion, and landmarks like the Eiffel Tower.",
     "Italië": "Italy",
@@ -196,7 +216,7 @@
     "Zweden": "Sweden",
     "Zweden is een land in Europa en staat bekend om zijn prachtige bossen, meren en moderne steden zoals Stockholm.": "Sweden is a country in Europe known for its beautiful forests, lakes, and modern cities like Stockholm.",
   
-    "Asia": "Asia",
+    "Azië": "Asia",
     "Japan": "Japan",
     "Japan is een eilandnatie in Azië, beroemd om zijn technologie, kersenbloesems en traditionele cultuur.": "Japan is an island nation in Asia, famous for its technology, cherry blossoms, and traditional culture.",
     "India": "India",
@@ -206,7 +226,7 @@
     "Korea": "Korea",
     "Zuid-Korea, een land in Azië staat bekend om K-Pop, technologie en gerechten zoals kimchi.": "South Korea, a country in Asia, is known for K-Pop, technology, and dishes like kimchi.",
   
-    "Africa": "Africa",
+    "Afrika": "Africa",
     "Egypte": "Egypt",
     "Egypte, een land in Afrika, staat bekend om zijn oude piramides, de Sfinx en zijn rijke geschiedenis.": "Egypt, a country in Africa, is known for its ancient pyramids, the Sphinx, and its rich history.",
     "Zuid-Afrika": "South Africa",
@@ -216,7 +236,7 @@
     "Nigeria": "Nigeria",
     "Nigeria, een land in Afrika, staat bekend om zijn grote bevolking, diversiteit en Nollywood, de op een na grootste filmindustrie ter wereld.": "Nigeria, a country in Africa, is known for its large population, diversity, and Nollywood, the second-largest film industry in the world.",
   
-    "Americas": "Americas",
+    "Amerika": "Americas",
     "Verenigde Staten": "United States",
     "De V.S. een land in Noord-Amerika staat bekend om grote steden zoals New York, iconische bezienswaardigheden en zijn invloed op de wereld.": "The U.S., a country in North America, is known for large cities like New York, iconic landmarks, and its global influence.",
     "Brazilië": "Brazil",
@@ -227,7 +247,7 @@
     "Argentinië, een land in Zuid-Amerika, staat bekend om de tangodans, het wereldberoemde rundvlees en de Andes.": "Argentina, a country in South America, is known for the tango dance, its world-famous beef, and the Andes.",
 
     "//": "==geography-hard==",
-    "Island Nations": "Island Nations",
+    "Eilandnaties": "Island Nations",
     "Japan is een eilandnatie in Azië, bestaande uit meer dan 6.000 eilanden.": "Japan is an island nation in Asia, consisting of over 6,000 islands.",
     "IJsland": "Iceland",
     "IJsland is een klein eiland in de Noord-Atlantische Oceaan. Bekend om zijn vulkanen, gletsjers en prachtige landschappen.": "Iceland is a small island in the North Atlantic Ocean. Known for its volcanoes, glaciers, and beautiful landscapes.",
@@ -236,7 +256,7 @@
     "Verenigd Koninkrijk": "United Kingdom",
     "Het Verenigd Koninkrijk is een eiland bestaande uit Engeland, Schotland, Wales en Noord-Ierland.": "The United Kingdom is an island consisting of England, Scotland, Wales, and Northern Ireland.",
 
-    "Landlocked Countries": "Landlocked Countries",
+    "Landen zonder toegang tot zee": "Landlocked Countries",
     "Zwitserland": "Switzerland",
     "Zwitserland is een klein land in Europa, omringd door bergen. Het heeft geen kustlijn en is omringd door landen zoals Frankrijk en Italië.": "Switzerland is a small country in Europe, surrounded by mountains. It has no coastline and is bordered by countries like France and Italy.",
     "Oostenrijk": "Austria",
@@ -246,7 +266,7 @@
     "Tsjechië": "Czech Republic",
     "Tsjechië is een land in Centraal-Europa, bekend om zijn kastelen en hoofdstad Praag. Het is landlocked, omringd door andere landen zonder toegang tot de oceaan.": "Czech Republic is a country in Central Europe, known for its castles and capital Prague. It is landlocked, surrounded by other countries with no access to the ocean.",
 
-    "Coastal Nations": "Coastal Nations",
+    "Kustnaties": "Coastal Nations",
     "Noorwegen": "Norway",
     "Noorwegen is een land in Noord-Europa met een lange kustlijn. Het heeft duizenden kilometers kustlijn, met fjorden en toegang tot de oceaan.": "Norway is a country in Northern Europe with a long coastline. It has thousands of kilometers of coastline, with fjords and access to the ocean.",
     "Spanje is een land in Zuid-Europa. Het heeft een lange kustlijn langs de Middellandse Zee en de Atlantische Oceaan.": "Spain is a country in Southern Europe. It has a long coastline along the Mediterranean Sea and the Atlantic Ocean.",
@@ -254,7 +274,7 @@
     "Griekenland is een land in Zuidoost-Europa dat bestaat uit honderden eilanden. Het heeft een lange kustlijn met toegang tot de Middellandse Zee.": "Greece is a country in Southeast Europe consisting of hundreds of islands. It has a long coastline with access to the Mediterranean Sea.",
     "Frankrijk is een land in West-Europa met bergen en stranden. Het heeft kustlijnen langs de Atlantische Oceaan en de Middellandse Zee.": "France is a country in Western Europe with mountains and beaches. It has coastlines along the Atlantic Ocean and the Mediterranean Sea.",
 
-    "Countries with Deserts": "Countries with Deserts",
+    "Landen met woestijnen": "Countries with Deserts",
     "Egypte is een land in Noord-Afrika dat grotendeels uit woestijn bestaat. Het herbergt de Sahara, de grootste hete woestijn ter wereld.": "Egypt is a country in North Africa that is mostly desert. It is home to the Sahara, the largest hot desert in the world.",
     "Saoedi-Arabië": "Saudi Arabia",
     "Saoedi-Arabië is een groot land in het Midden-Oosten. Grote delen van het land zijn bedekt door woestijn, zoals de Rub al Khali.": "Saudi Arabia is a large country in the Middle East. Large parts of the country are covered by deserts, such as the Rub al Khali.",
@@ -263,7 +283,7 @@
     "De Verenigde Staten is een groot land in Noord-Amerika. Het heeft verschillende woestijnen, zoals de Mojave woestijn en de Sonora woestijn, die zich bevinden in staten zoals Californië en Arizona.": "The United States is a large country in North America. It has various deserts, such as the Mojave Desert and the Sonoran Desert, located in states like California and Arizona.",
 
     "//": "==history-easy==",
-    "World War 2": "World War 2",
+    "Tweede wereldoorlog": "World War 2",
     "Tanks": "Tanks",
     "Een tank is een zwaar gepantserd voertuig met een kanon en rupsbanden, essentieel in WOII voor mobiele vuurkracht en het doorbreken van linies.": "A tank is a heavily armored vehicle with a cannon and tracks, essential in WWII for mobile firepower and breaking through lines.",
     "Anne Frank": "Anne Frank",
@@ -273,7 +293,7 @@
     "Soldaten": "Soldiers",
     "Soldaten vochten in veldslagen tijdens de oorlog, verdedigden hun landen en namen deel aan militaire operaties op verschillende fronten.": "Soldiers fought in battles during the war, defended their countries, and participated in military operations on various fronts.",
 
-    "The Dark Ages": "The Dark Ages",
+    "Middeleeuwen": "The Dark Ages",
     "Kastelen": "Castles",
     "Kastelen waren grote stenen gebouwen waar koningen, koninginnen en ridders woonden en bescherming boden tijdens gevechten.": "Castles were large stone buildings where kings, queens, and knights lived and provided protection during battles.",
     "Ridders": "Knights",
@@ -283,7 +303,7 @@
     "Koningin": "Queen",
     "Koninginnen waren heersers of de vrouwen van koningen, die hielpen bij het beheer van het land.": "Queens were rulers or the wives of kings, who helped manage the land.",
 
-    "Antiquity": "Antiquity",
+    "Oudheid": "Antiquity",
     "Romeinen": "The Romans",
     "De Romeinen waren mensen uit het oude Rome, bekend om het bouwen van wegen, steden en monumenten zoals het Colosseum.": "The Romans were people from ancient Rome, known for building roads, cities, and monuments like the Colosseum.",
     "Grieken": "The Greeks",
@@ -378,7 +398,7 @@
     "Stenen werktuigen, gemaakt van rotsen, waren cruciaal voor vroege mensen om te jagen, vlees te snijden en onderdak te bouwen.": "Stone tools, made from rocks, were essential for early humans to hunt, cut meat, and build shelters.",
 
     "//": "==physics-easy==",
-    "Solids": "Solids",
+    "Vaste stoffen": "Solids",
     "Een steen is een hard materiaal dat in de natuur voorkomt. Het verandert niet gemakkelijk van vorm en blijft in de loop van de tijd vast.": "A stone is a hard material found in nature. It doesn't easily change shape and remains solid over time.",
     "Hout": "Wood",
     "Hout is een materiaal dat afkomstig is van bomen en veel wordt gebruikt. Het is vast en behoudt zijn vorm, tenzij het wordt veranderd.": "Wood is a material derived from trees and widely used. It is solid and retains its shape unless altered.",
@@ -387,7 +407,7 @@
     "Krijt": "Chalk",
     "Krijt is een zacht, wit materiaal dat wordt gebruikt om te schrijven. Krijt blijft in één vorm en stroomt niet zoals een vloeistof of gas.": "Chalk is a soft, white material used for writing. Chalk stays in one form and does not flow like a liquid or gas.",
 
-    "Liquids": "Liquids",
+    "Vloeistoffen": "Liquids",
     "Water": "Water",
     "Water is een heldere vloeistof die essentieel is voor het leven. Het stroomt gemakkelijk en wordt voor veel gebruikt.": "Water is a clear liquid essential for life. It flows easily and has many uses.",
     "Lichaamsvloeistoffen": "Bodily Fluids",
@@ -397,7 +417,7 @@
     "Olie": "Oil",
     "Olie is een gladde vloeistof die zich niet mengt met water. Het stroomt gemakkelijk, en wordt voor veel gebruikt.": "Oil is a slippery liquid that does not mix with water. It flows easily and has many uses.",
 
-    "Gases": "Gases",
+    "Gassen": "Gases",
     "Lucht": "Air",
     "Lucht is een mengsel van gassen die we elke dag inademen. Het vult de ruimte om ons heen, heeft geen vaste vorm en verspreidt zich vrij.": "Air is a mixture of gases we breathe every day. It fills the space around us, has no fixed shape, and spreads freely.",
     "Zuurstof": "Oxygen",
@@ -407,7 +427,7 @@
     "Waterdamp": "Water Vapor",
     "Waterdamp is water in gasvorm, zoals stoom. Het stijgt op en verspreidt zich wanneer water erg heet wordt, waardoor damp in de lucht ontstaat.": "Water vapor is water in gas form, like steam. It rises and spreads when water gets very hot, forming vapor in the air.",
 
-    "Food Substances": "Food Substances",
+    "Voedingsstoffen": "Food Substances",
     "Melk": "Milk",
     "Melk is een drank die van koeien komt. Het bevat voedingsstoffen zoals calcium, die helpen de botten te versterken.": "Milk is a drink that comes from cows. It contains nutrients like calcium, which help strengthen bones.",
     "Suiker": "Sugar",
@@ -417,14 +437,14 @@
     "Boter is een zachte, gele voeding gemaakt van melk. Het wordt gebruikt in het koken en voegt smaak toe aan verschillende gerechten.": "Butter is a soft, yellow food made from milk. It is used in cooking and adds flavor to various dishes.",
 
     "//": "==physics-medium==",
-    "Natural Materials": "Natural Materials",
+    "Natuurlijke materialen": "Natural Materials",
     "Hout komt van bomen en wordt gebruikt om meubels en huizen te bouwen. Het komt uit de natuur en is niet door mensen gemaakt.": "Wood comes from trees and is used to build furniture and houses. It comes from nature and is not man-made.",
     "Zand": "Sand",
     "Zand bestaat uit kleine korrels gesteente, vaak te vinden op stranden. Het wordt van nature gevormd wanneer gesteente in kleine stukjes breekt.": "Sand is made up of tiny grains of rock, often found on beaches. It is naturally formed when rocks break into small pieces.",
     "Een steen is een hard materiaal dat uit de grond komt. Stenen worden van nature gevormd door de aarde in de loop van de tijd.": "A stone is a hard material that comes from the ground. Stones are naturally formed by the earth over time.",
     "Water is een vloeistof die we moeten drinken om in leven te blijven. Het komt uit rivieren, meren en regen.": "Water is a liquid that we need to drink to stay alive. It comes from rivers, lakes, and rain.",
 
-    "Man-Made Materials": "Man-Made Materials",
+    "Mens gemaakte materialen": "Man-Made Materials",
     "Plastic": "Plastic",
     "Plastic is een flexibel materiaal. Het wordt door mensen in fabrieken gemaakt met behulp van chemicaliën.": "Plastic is a flexible material. It is made by humans in factories using chemicals.",
     "Zeep": "Soap",
@@ -444,7 +464,7 @@
     "Sterren": "Stars",
     "Sterren zijn enorme ballen van gloeiend gas in de ruimte. Sterren zijn gemaakt van plasma omdat hun gassen extreem heet en vol energie zijn.": "Stars are huge balls of glowing gas in space. Stars are made of plasma because their gases are extremely hot and full of energy.",
 
-    "Metals": "Metals",
+    "Metals": "Metalen",
     "IJzer is een sterk, hard metaal dat wordt gebruikt om dingen te bouwen.": "Iron is a strong, hard metal used to build things.",
     "Zilver": "Silver",
     "Zilver is een glanzend metaal dat wordt gebruikt voor sieraden en munten.": "Silver is a shiny metal used for jewelry and coins.",
@@ -454,10 +474,10 @@
     "Koper is een roodbruin metaal dat wordt gebruikt in draden en pijpen. Koper geleidt elektriciteit heel goed.": "Copper is a reddish-brown metal used in wires and pipes. Copper conducts electricity very well.",
 
     "//": "==physics-hard==",
-    "Flammable Substances": "Flammable Substances",
-    "Non-Flammable Substances": "Non-Flammable Substances",
-    "Floating Substances": "Floating Substances",
-    "Sinking Substances": "Sinking Substances",
+    "Brandbare stoffen": "Flammable Substances",
+    "Niet-brandbare stoffen": "Non-Flammable Substances",
+    "Drijvende stoffen": "Floating Substances",
+    "Zinkende stoffen": "Sinking Substances",
     
     "Hout is een vast materiaal dat uit bomen komt. Hout is brandbaar omdat het gemakkelijk vlam vat en warmte en rook vrijgeeft.": "Wood is a solid material that comes from trees. Wood is flammable because it easily catches fire, releasing heat and smoke.",
     "Papier is een dun materiaal gemaakt van houtpulp. Papier is brandbaar omdat het snel verbrandt bij contact met vuur.": "Paper is a thin material made from wood pulp. Paper is flammable because it burns quickly when it comes into contact with fire.",

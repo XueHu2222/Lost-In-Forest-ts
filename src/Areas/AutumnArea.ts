@@ -42,9 +42,9 @@ export default class AutumnArea extends Area {
 
   protected override initiateDialog(): void {
     this.animalDialogue = [
-      [...this.makeDialogArray(LostInTheForest.locale.t('Autumn: Dialog 1')), [LostInTheForest.locale.t('Continue Dialog')]],
-      [...this.makeDialogArray(LostInTheForest.locale.t('Autumn: Dialog 2')), [LostInTheForest.locale.t('Continue Dialog')]],
-      [...this.makeDialogArray(LostInTheForest.locale.t('Autumn: Dialog 3')), [LostInTheForest.locale.t('Click Play')]],
+      [...this.separateDialogIntoArrays(LostInTheForest.locale.t('Hallo kind,')), [LostInTheForest.locale.t('(....Klik om door te gaan)')]],
+      [...this.separateDialogIntoArrays(LostInTheForest.locale.t('je moet mijn geschiedenis|uitdaging voltooien|als je een stuk|van de sleutel wilt hebben.')), [LostInTheForest.locale.t('(....Klik om door te gaan)')]],
+      [...this.separateDialogIntoArrays(LostInTheForest.locale.t('Veel succes!')), [LostInTheForest.locale.t('(....klik op de knop om door te gaan)')]],
     ];
   }
 

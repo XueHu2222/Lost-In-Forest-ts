@@ -53,10 +53,10 @@ export default class BiologyChallenge extends Challenge {
         ]); // Ocean Animals
 
         categoryNames = [
-          LostInTheForest.locale.t('Farm Animals'),
-          LostInTheForest.locale.t('Pets'),
-          LostInTheForest.locale.t('Birds'),
-          LostInTheForest.locale.t('Ocean Animals')
+          LostInTheForest.locale.t('Boerderijdieren'),
+          LostInTheForest.locale.t('Huisdieren'),
+          LostInTheForest.locale.t('Vogels'),
+          LostInTheForest.locale.t('Zeedieren')
         ];
         break;
 
@@ -90,10 +90,10 @@ export default class BiologyChallenge extends Challenge {
         ]); // Amphibians
 
         categoryNames = [
-          LostInTheForest.locale.t('Mammals'),
-          LostInTheForest.locale.t('Reptiles'),
-          LostInTheForest.locale.t('Insects'),
-          LostInTheForest.locale.t('Amphibians')
+          LostInTheForest.locale.t('Zoogdieren'),
+          LostInTheForest.locale.t('Reptielen'),
+          LostInTheForest.locale.t('Insecten'),
+          LostInTheForest.locale.t('Amfibieën')
         ];
         break;
 
@@ -127,10 +127,10 @@ export default class BiologyChallenge extends Challenge {
         ]); // Insectivores
 
         categoryNames = [
-          LostInTheForest.locale.t('Herbivores'),
-          LostInTheForest.locale.t('Carnivores'),
-          LostInTheForest.locale.t('Omnivores'),
-          LostInTheForest.locale.t('Insectivores')
+          LostInTheForest.locale.t('Herbivoren'),
+          LostInTheForest.locale.t('Carnivoren'),
+          LostInTheForest.locale.t('Omnivoren'),
+          LostInTheForest.locale.t('Insectivoren')
         ];
         break;
     }

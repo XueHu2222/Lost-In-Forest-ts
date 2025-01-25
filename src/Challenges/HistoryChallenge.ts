@@ -14,7 +14,12 @@ export default class HistoryChallenge extends Challenge {
 
   private initiateData(): void {
     const categoryData: string[][][] = [];
-    const categoryNames: string[] = ['World War 2', 'The Dark Ages', 'Antiquity', 'Prehistory'];
+    const categoryNames: string[] = [
+      LostInTheForest.locale.t('Tweede wereldoorlog'),
+      LostInTheForest.locale.t('Middeleeuwen'),
+      LostInTheForest.locale.t('Oudheid'),
+      LostInTheForest.locale.t('Prehistory'),
+    ];
 
     // Pushes the correct data for each category based on the difficulty
     switch (this.difficultyLevel) {

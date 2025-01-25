@@ -43,9 +43,9 @@ export default class SummerArea extends Area {
 
   protected override initiateDialog(): void {
     this.animalDialogue = [
-      [...this.makeDialogArray(LostInTheForest.locale.t('Summer: Dialog 1')), [LostInTheForest.locale.t('Continue Dialog')]],
-      [...this.makeDialogArray(LostInTheForest.locale.t('Summer: Dialog 2')), [LostInTheForest.locale.t('Continue Dialog')]],
-      [...this.makeDialogArray(LostInTheForest.locale.t('Summer: Dialog 3')), [LostInTheForest.locale.t('Click Play')]],
+      [...this.separateDialogIntoArrays(LostInTheForest.locale.t('Hoot hoot, welkom.')), [LostInTheForest.locale.t('(....Klik om door te gaan)')]],
+      [...this.separateDialogIntoArrays(LostInTheForest.locale.t('Als je een stuk van de sleutel wilt|moet je mijn aardrijkskunde|uitdaging voltooien op medium.')), [LostInTheForest.locale.t('(....Klik om door te gaan)')]],
+      [...this.separateDialogIntoArrays(LostInTheForest.locale.t('Veel plezier!')), [LostInTheForest.locale.t('(....klik op de knop om door te gaan)')]],
     ];
   }
 

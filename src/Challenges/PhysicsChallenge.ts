@@ -52,10 +52,10 @@ export default class PhysicsChallenge extends Challenge {
         ]); // Food Substances
 
         categoryNames = [
-          LostInTheForest.locale.t('Solids'),
-          LostInTheForest.locale.t('Liquids'),
-          LostInTheForest.locale.t('Gases'),
-          LostInTheForest.locale.t('Food Substances')
+          LostInTheForest.locale.t('Vaste stoffen'),
+          LostInTheForest.locale.t('Vloeistoffen'),
+          LostInTheForest.locale.t('Gassen'),
+          LostInTheForest.locale.t('Voedingsstoffen')
         ];
         break;
 
@@ -89,10 +89,10 @@ export default class PhysicsChallenge extends Challenge {
         ]); // Metals
 
         categoryNames = [
-          LostInTheForest.locale.t('Natural Materials'),
-          LostInTheForest.locale.t('Man-Made Materials'),
+          LostInTheForest.locale.t('Natuurlijke materialen'),
+          LostInTheForest.locale.t('Mens gemaakte materialen'),
           LostInTheForest.locale.t('Plasma'),
-          LostInTheForest.locale.t('Metals')
+          LostInTheForest.locale.t('Metalen')
         ];
         break;
 
@@ -126,10 +126,10 @@ export default class PhysicsChallenge extends Challenge {
         ]); // Sinking Substances
 
         categoryNames = [
-          LostInTheForest.locale.t('Flammable Substances'),
-          LostInTheForest.locale.t('Non-Flammable Substances'),
-          LostInTheForest.locale.t('Floating Substances'),
-          LostInTheForest.locale.t('Sinking Substances')
+          LostInTheForest.locale.t('Brandbare stoffen'),
+          LostInTheForest.locale.t('Niet-brandbare stoffen'),
+          LostInTheForest.locale.t('Drijvende stoffen'),
+          LostInTheForest.locale.t('Zinkende stoffen')
         ];
         break;
     }

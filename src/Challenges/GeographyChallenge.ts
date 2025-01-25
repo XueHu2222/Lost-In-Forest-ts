@@ -51,10 +51,10 @@ export default class GeographyChallenge extends Challenge {
         ]); // England
 
         categoryNames = [
-          LostInTheForest.locale.t('Belgium'),
-          LostInTheForest.locale.t('Netherlands'),
-          LostInTheForest.locale.t('Germany'),
-          LostInTheForest.locale.t('England')
+          LostInTheForest.locale.t('België'),
+          LostInTheForest.locale.t('Nederland'),
+          LostInTheForest.locale.t('Duitsland'),
+          LostInTheForest.locale.t('Engeland')
         ];
         break;
       case 'medium':
@@ -87,10 +87,10 @@ export default class GeographyChallenge extends Challenge {
         ]); // Americas
 
         categoryNames = [
-          LostInTheForest.locale.t('Europe'),
-          LostInTheForest.locale.t('Asia'),
-          LostInTheForest.locale.t('Africa'),
-          LostInTheForest.locale.t('Americas')
+          LostInTheForest.locale.t('Europa'),
+          LostInTheForest.locale.t('Azië'),
+          LostInTheForest.locale.t('Afrika'),
+          LostInTheForest.locale.t('Amerika')
         ];
         break;
       case 'hard':
@@ -123,10 +123,10 @@ export default class GeographyChallenge extends Challenge {
         ]); // Countries with Deserts
 
         categoryNames = [
-          LostInTheForest.locale.t('Island Nations'),
-          LostInTheForest.locale.t('Landlocked Countries'),
-          LostInTheForest.locale.t('Coastal Nations'),
-          LostInTheForest.locale.t('Countries with Deserts')
+          LostInTheForest.locale.t('Eilandnaties'),
+          LostInTheForest.locale.t('Landen zonder toegang tot zee'),
+          LostInTheForest.locale.t('Kustnaties'),
+          LostInTheForest.locale.t('Landen met woestijnen')
         ];
         break;
     }
