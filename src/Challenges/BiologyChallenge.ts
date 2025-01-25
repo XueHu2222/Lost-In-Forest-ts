@@ -17,7 +17,7 @@ export default class BiologyChallenge extends Challenge {
     this.secondaryTextColor = 'purple';
   }
 
-  private initiateData(): void{
+  private initiateData(): void {
     const categoryData: string[][][] = [];
     let categoryNames: string[] = [];
 
@@ -62,60 +62,76 @@ export default class BiologyChallenge extends Challenge {
 
       case 'medium':
         categoryData.push([
-          [LostInTheForest.locale.t('Leeuw'), LostInTheForest.locale.t('Een leeuw is naast de tijger de allergrootste kat, vaak de koning van de jungle genoemd. Leeuwen zijn zoogdieren omdat ze hun jongen melk geven.')],
-          ['Dolfijn', 'Een dolfijn is een speels zeedier. Dolfijnen zijn zoogdieren omdat ze lucht ademen en hun jongen met melk voeden.'],
-          ['Vleermuis', 'Een vleermuis is een klein vliegend dier dat in de nacht actief is. Vleer- muizen zijn zoogdieren omdat ze bont hebben en hun jongen melk geven.'],
-          ['Olifant', 'Een olifant is het grootste landzoogdier. Olifanten zijn zoogdieren omdat  ze haar hebben, warmbloedig zijn en levende jongen baren.']]
-        ); // Mammals
-        categoryData.push([
-          ['Krokodil', 'Een krokodil is een groot reptiel met scherpe tanden en schubbenhuid.      Krokodillen zijn reptielen omdat ze schubben hebben en eieren leggen.'],
-          ['Hagedis', 'Een hagedis is een klein reptiel dat kan kruipen en klimmen. Het zijn rep- tielen omdat ze koudbloedig zijn en een droge, schubbige huid hebben.'],
-          ['Slang', 'Een slang is een lang reptiel zonder poten dat kronkelt. Slangen zijn      reptielen omdat ze schubben hebben en eieren leggen.'],
-          ['Schildpad', 'Een schildpad is een langzaam reptiel met een hard schild. Schildpadden    zijn reptielen omdat ze schubben hebben, eieren leggen en op land of in het water leven.']]
-        ); // Reptiles
-        categoryData.push([
-          ['Lieveheersbeestje', 'Een lieveheersbeestje is een klein, rood insect met zwarte stippen. Het    zijn insecten omdat ze zes poten en drie lichaamsdelen hebben.'],
-          ['Rups', 'Een rups is de jonge vorm van een vlinder. Rupsen zijn insecten omdat ze   zes poten hebben en zich ontwikkelen tot vlinders.'],
-          ['Mier', 'Een mier is een klein, hardwerkend insect dat in kolonies leeft. Het zijn  insecten omdat ze zes poten, voelsprieten hebben en grote groepen vormen.'],
-          ['Bij', 'Een bij is een zoemend insect dat honing maakt. Bijen zijn insecten omdat  ze zes poten hebben en belangrijk zijn voor planten en bloemen.']]
-        ); // Insects
-        categoryData.push([
-          ['Frog', 'Een kikker is een klein dier dat in water en op het land leeft en daarom   zijn het ook amfibieën.'],
-          ['Toad', 'Een pad heeft een drogere huid en kortere poten dan een kikker. Het zijn   amfibieën omdat ze op het land leven maar hun eieren in water leggen.'],
-          ['Salamander', 'Een salamander is een klein dier een gladde huid heeft. Salamanders zijn   amfibieën omdat ze water nodig hebben om hun huid vochtig te houden.'],
-          ['Newt', 'Een watersalamander is een type kleine salamander. Watersalamanders zijn   amfibieën omdat ze hun leven in water beginnen en later op het land kunnen leven.']]
-        ); // Amphibians
+          [LostInTheForest.locale.t('Leeuw'), LostInTheForest.locale.t('Een leeuw is naast de tijger de allergrootste kat, vaak de "koning van de jungle" genoemd. Leeuwen zijn zoogdieren omdat ze hun jongen melk geven.')],
+          [LostInTheForest.locale.t('Dolfijn'), LostInTheForest.locale.t('Een dolfijn is een speels zeedier. Dolfijnen zijn zoogdieren omdat ze lucht ademen en hun jongen met melk voeden.')],
+          [LostInTheForest.locale.t('Vleermuis'), LostInTheForest.locale.t('Een vleermuis is een klein vliegend dier dat in de nacht actief is. Vleermuizen zijn zoogdieren omdat ze bont hebben en hun jongen melk geven.')],
+          [LostInTheForest.locale.t('Olifant'), LostInTheForest.locale.t('Een olifant is het grootste landzoogdier. Olifanten zijn zoogdieren omdat ze haar hebben, warmbloedig zijn en levende jongen baren.')]
+        ]); // Mammals
 
-        categoryNames = ['Mammals', 'Reptiles', 'Insects', 'Amphibians'];
+        categoryData.push([
+          [LostInTheForest.locale.t('Krokodil'), LostInTheForest.locale.t('Een krokodil is een groot reptiel met scherpe tanden en schubbenhuid. Krokodillen zijn reptielen omdat ze schubben hebben en eieren leggen.')],
+          [LostInTheForest.locale.t('Hagedis'), LostInTheForest.locale.t('Een hagedis is een klein reptiel dat kan kruipen en klimmen. Het zijn reptielen omdat ze koudbloedig zijn en een droge, schubbige huid hebben.')],
+          [LostInTheForest.locale.t('Slang'), LostInTheForest.locale.t('Een slang is een lang reptiel zonder poten dat kronkelt. Slangen zijn reptielen omdat ze schubben hebben en eieren leggen.')],
+          [LostInTheForest.locale.t('Schildpad'), LostInTheForest.locale.t('Een schildpad is een langzaam reptiel met een hard schild. Schildpadden zijn reptielen omdat ze schubben hebben, eieren leggen en op land of in het water leven.')]
+        ]); // Reptiles
+
+        categoryData.push([
+          [LostInTheForest.locale.t('Lieveheersbeestje'), LostInTheForest.locale.t('Een lieveheersbeestje is een klein, rood insect met zwarte stippen. Het zijn insecten omdat ze zes poten en drie lichaamsdelen hebben.')],
+          [LostInTheForest.locale.t('Rups'), LostInTheForest.locale.t('Een rups is de jonge vorm van een vlinder. Rupsen zijn insecten omdat ze zes poten hebben en zich ontwikkelen tot vlinders.')],
+          [LostInTheForest.locale.t('Mier'), LostInTheForest.locale.t('Een mier is een klein, hardwerkend insect dat in kolonies leeft. Het zijn insecten omdat ze zes poten, voelsprieten hebben en grote groepen vormen.')],
+          [LostInTheForest.locale.t('Bij'), LostInTheForest.locale.t('Een bij is een zoemend insect dat honing maakt. Bijen zijn insecten omdat ze zes poten hebben en belangrijk zijn voor planten en bloemen.')]
+        ]); // Insects
+
+        categoryData.push([
+          [LostInTheForest.locale.t('Kikker'), LostInTheForest.locale.t('Een kikker is een klein dier dat in water en op het land leeft en daarom zijn het ook amfibieën.')],
+          [LostInTheForest.locale.t('Pad'), LostInTheForest.locale.t('Een pad heeft een drogere huid en kortere poten dan een kikker. Het zijn amfibieën omdat ze op het land leven maar hun eieren in water leggen.')],
+          [LostInTheForest.locale.t('Salamander'), LostInTheForest.locale.t('Een salamander is een klein dier een gladde huid heeft. Salamanders zijn amfibieën omdat ze water nodig hebben om hun huid vochtig te houden.')],
+          [LostInTheForest.locale.t('Watersalamander'), LostInTheForest.locale.t('Een watersalamander is een type kleine salamander. Watersalamanders zijn amfibieën omdat ze hun leven in water beginnen en later op het land kunnen leven.')]
+        ]); // Amphibians
+
+        categoryNames = [
+          LostInTheForest.locale.t('Mammals'),
+          LostInTheForest.locale.t('Reptiles'),
+          LostInTheForest.locale.t('Insects'),
+          LostInTheForest.locale.t('Amphibians')
+        ];
         break;
 
       case 'hard':
         categoryData.push([
-          ['Paard / Horse', 'Een paard is een groot dier dat gras en hooi eet. Paarden zijn herbivoren  omdat ze alleen planten eten zoals gras en bladeren, om energie te krijgen.'],
-          ['Koe / Cow', 'Een koe is een boerderijdier dat gras eet en melk levert. Het zijn herbivo-ren omdat ze een speciale maag hebben die hen helpt planten te verteren.'],
-          ['Giraf / Giraffe', 'Een giraf is het hoogste landdier. Giraffen zijn herbivoren omdat ze alleen planten eten, en hun lange nek gebruiken om bij hun voedsel te komen.'],
-          ['Konijn / Rabbit', 'Een konijn is een klein dier dat huppelt en groenten eet. Konijnen zijn    herbivoren omdat ze gras, groenten en planten eten om gezond te blijven.']]
-        ); // Herbivores
-        categoryData.push([
-          ['Tijger / Tiger', 'Een tijger is een grote, gestreepte kat die jaagt op andere dieren. Tijgers zijn carnivoren omdat ze vlees eten om te overleven..'],
-          ['Wolf / Wolf', 'Een wolf is een wilde hond die in groepen jaagt. Wolven zijn carnivoren    omdat ze jagen en vlees eten, zoals herten, konijnen en kleinere dieren.'],
-          ['Haai / Shark', 'Een haai is een krachtige zee-roofdier met scherpe tanden. Haaien zijn     carnivoren omdat ze andere vissen en zeedieren eten om te overleven.'],
-          ['Leeuw / Lion', 'Een leeuw is een grote kat die jaagt op dieren op de grasvlakten. Leeuwen  zijn carnivoren omdat ze jagen en dieren eten, zoals gazellen.']]
-        ); // Carnivores
-        categoryData.push([
-          ['Beer / Bear', 'Een beer is een groot dier. Beren zijn omnivoren omdat ze planten zoals    bessen eten, maar ook jagen op vis en kleine dieren.'],
-          ['Varken / Pig', 'Een varken is een boerderijdier dat veel soorten voedsel eet. Varkens zijn omnivoren omdat ze zowel planten als vlees eten. '],
-          ['Mens / Human', 'Een mens is een persoon, en wij maken deel uit van het dierenrijk. Mensen  zijn omnivoren omdat we zowel planten als vlees eten om energie te krijgen.'],
-          ['Wasbeer / Raccoon', 'Een wasbeer is een klein dier dat  in de nacht vaak naar voedsel zoekt. Was-beren zijn omnivoren omdat ze zowel planten, als kleine dieren eten.']]
-        ); // Omnivores
-        categoryData.push([
-          ['Miereneter / Anteater', 'Een miereneter is een groot dier met een lange snuit en een tong. Het zijn insectivoren omdat ze voornamelijk mieren eten om hun voedsel te krijgen.'],
-          ['Egel / Hedgehog', 'Een egel is een klein, stekelig dier dat zich oprolt voor bescherming. Het zijn insectivoren omdat ze insecten, zoals kevers en wormen eten.'],
-          ['Vogel / Bird', 'Sommige vogels, zoals roodborstjes, eten insecten als hun belangrijkste    voedsel. Vogels kunnen insectivoren zijn omdat veel van hen insecten eten.'],
-          ['Kameleon / Chameleon', 'Kameleons zijn insectivoren omdat ze insecten, zoals vliegen en krekels,   vangen met hun lange, kleverige tongen.']]
-        ); // Insectivores
+          [LostInTheForest.locale.t('Paard'), LostInTheForest.locale.t('Een paard is een groot dier dat gras en hooi eet. Paarden zijn herbivoren omdat ze alleen planten eten zoals gras en bladeren, om energie te krijgen.')],
+          [LostInTheForest.locale.t('Koe'), LostInTheForest.locale.t('Een koe is een boerderijdier dat gras eet en melk levert. Het zijn herbivoren omdat ze een speciale maag hebben die hen helpt planten te verteren.')],
+          [LostInTheForest.locale.t('Giraf'), LostInTheForest.locale.t('Een giraf is het hoogste landdier. Giraffen zijn herbivoren omdat ze alleen planten eten, en hun lange nek gebruiken om bij hun voedsel te komen.')],
+          [LostInTheForest.locale.t('Konijn'), LostInTheForest.locale.t('Een konijn is een klein dier dat huppelt en groenten eet. Konijnen zijn herbivoren omdat ze gras, groenten en planten eten om gezond te blijven.')]
+        ]); // Herbivores
 
-        categoryNames = ['Herbivores', 'Carnivores', 'Omnivores', 'Insectivores'];
+        categoryData.push([
+          [LostInTheForest.locale.t('Tijger'), LostInTheForest.locale.t('Een tijger is een grote, gestreepte kat die jaagt op andere dieren. Tijgers zijn carnivoren omdat ze vlees eten om te overleven.')],
+          [LostInTheForest.locale.t('Wolf'), LostInTheForest.locale.t('Een wolf is een wilde hond die in groepen jaagt. Wolven zijn carnivoren omdat ze jagen en vlees eten, zoals herten, konijnen en kleinere dieren.')],
+          [LostInTheForest.locale.t('Haai'), LostInTheForest.locale.t('Een haai is een krachtige zee-roofdier met scherpe tanden. Haaien zijn carnivoren omdat ze andere vissen en zeedieren eten om te overleven.')],
+          [LostInTheForest.locale.t('Leeuw'), LostInTheForest.locale.t('Een leeuw is een grote kat die jaagt op dieren op de grasvlakten. Leeuwen zijn carnivoren omdat ze jagen en dieren eten, zoals gazellen.')]
+        ]); // Carnivores
+
+        categoryData.push([
+          [LostInTheForest.locale.t('Beer'), LostInTheForest.locale.t('Een beer is een groot dier. Beren zijn omnivoren omdat ze planten zoals bessen eten, maar ook jagen op vis en kleine dieren.')],
+          [LostInTheForest.locale.t('Varken'), LostInTheForest.locale.t('Een varken is een boerderijdier dat veel soorten voedsel eet. Varkens zijn omnivoren omdat ze zowel planten als vlees eten.')],
+          [LostInTheForest.locale.t('Mens'), LostInTheForest.locale.t('Een mens is een persoon, en wij maken deel uit van het dierenrijk. Mensen zijn omnivoren omdat we zowel planten als vlees eten om energie te krijgen.')],
+          [LostInTheForest.locale.t('Wasbeer'), LostInTheForest.locale.t('Een wasbeer is een klein dier dat in de nacht vaak naar voedsel zoekt. Wasberen zijn omnivoren omdat ze zowel planten als kleine dieren eten.')]
+        ]); // Omnivores
+
+        categoryData.push([
+          [LostInTheForest.locale.t('Miereneter'), LostInTheForest.locale.t('Een miereneter is een groot dier met een lange snuit en een tong. Het zijn insectivoren omdat ze voornamelijk mieren eten om hun voedsel te krijgen.')],
+          [LostInTheForest.locale.t('Egel'), LostInTheForest.locale.t('Een egel is een klein, stekelig dier dat zich oprolt voor bescherming. Het zijn insectivoren omdat ze insecten, zoals kevers en wormen eten.')],
+          [LostInTheForest.locale.t('Vogel'), LostInTheForest.locale.t('Sommige vogels, zoals roodborstjes, eten insecten als hun belangrijkste voedsel. Vogels kunnen insectivoren zijn omdat veel van hen insecten eten.')],
+          [LostInTheForest.locale.t('Kameleon'), LostInTheForest.locale.t('Kameleons zijn insectivoren omdat ze insecten, zoals vliegen en krekels, vangen met hun lange, kleverige tongen.')]
+        ]); // Insectivores
+
+        categoryNames = [
+          LostInTheForest.locale.t('Herbivores'),
+          LostInTheForest.locale.t('Carnivores'),
+          LostInTheForest.locale.t('Omnivores'),
+          LostInTheForest.locale.t('Insectivores')
+        ];
         break;
     }
     this.initiateCategoryElements(categoryData, categoryNames);
@@ -127,7 +143,7 @@ export default class BiologyChallenge extends Challenge {
    */
   public override update(elapsed: number): void {
     super.update(elapsed);
-    if(this.categories.length === 0){
+    if (this.categories.length === 0) {
       this.initiateData();
     }
   }
