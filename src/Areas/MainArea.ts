@@ -77,6 +77,25 @@ export default class MainArea extends Area {
     ];
   }
 
+  public override getNextStage(): Stage | null {
+    if (MainArea.gameHasEnded) {
+      return new CutScene(this.player, 'EndCutscenes', 5, new EndScreen(this.player));
+    }
+    return super.getNextStage();
+  }
+
+  /**
+ * Uses MouseListener to check if buttons are pressed.
+ */
+  public override processInput(): void {
+    if (LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
+      this.processAreaInput();
+      if (this.endButton.isCollidingWithMouse()) {
+        MainArea.gameHasEnded = true;
+      }
+    }
+  }
+
   /**
    * Calls Areas update, sets players position right, check which background
    * @param elapsed time elapsed
@@ -102,25 +121,6 @@ export default class MainArea extends Area {
     if (LostInTheForest.keyBiology && LostInTheForest.keyGeography &&
       LostInTheForest.keyHistory && LostInTheForest.keyPhysics) {
       this.endButton.render();
-    }
-  }
-
-  public override getNextStage(): Stage | null {
-    if (MainArea.gameHasEnded) {
-      return new CutScene(this.player, 'EndCutscenes', 5, new EndScreen(this.player));
-    }
-    return super.getNextStage();
-  }
-
-  /**
-   * Uses MouseListener to check if buttons are pressed.
-   */
-  public override processInput(): void {
-    if (LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
-      this.processAreaInput();
-      if (this.endButton.isCollidingWithMouse()) {
-        MainArea.gameHasEnded = true;
-      }
     }
   }
 }

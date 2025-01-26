@@ -25,10 +25,8 @@ export default abstract class Stage {
 
   };
 
-  public abstract render(): void;
-
-  protected renderBackground(): void {
+  public render(): void{
     CanvasRenderer.drawImage(LostInTheForest.canvas, this.backgroundImage, 0, 0,
       LostInTheForest.canvas.width, LostInTheForest.canvas.height);
-  }
+  };
 }

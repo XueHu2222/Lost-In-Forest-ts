@@ -75,7 +75,6 @@ export default abstract class Area extends Stage {
     );
   }
 
-
   protected playButtonToChallenge(): void {
     this.playButton = new Button(
       this.playButtonPosition.x,
@@ -87,6 +86,31 @@ export default abstract class Area extends Stage {
     );
   }
 
+  /**
+ * Splits the string into array's using the separator
+ * @param string Dialog sentence
+ * @returns a string[][] were each array element was a part of a sentence
+ */
+  protected separateDialogIntoArrays(string: string): string[][] {
+    return string.split('|').map(((line: string) => [line]));
+  }
+
+
+  /**
+   * Initiates the dialog
+   */
+  protected abstract initiateDialog(): void;
+
+  public override getNextStage(): Stage | null {
+    if (this.challengeStarts) {
+      this.nextChallenge?.setNextDifficulty(null);
+      return this.nextChallenge;
+    }
+    if (this.player.getMap().getNextArea()) {
+      return this.player.getMap().getNextArea();
+    }
+    return null;
+  }
 
   /**
    * checks if something is clicked in the area
@@ -138,25 +162,10 @@ export default abstract class Area extends Stage {
   }
 
   /**
-   * Splits the string into array's using the separator
-   * @param string Dialog sentence
-   * @returns a string[][] were each array element was a part of a sentence
-   */
-  protected separateDialogIntoArrays(string: string): string[][] {
-    return string.split('|').map(((line: string) => [line]));
-  }
-
-
-  /**
-   * Initiates the dialog
-   */
-  protected abstract initiateDialog(): void;
-
-  /**
    * Renders the bg, animal, dialogue, player, button and gives settings for dialogue.
    */
   public override render(): void {
-    this.renderBackground();
+    super.render();
     this.animal.render();
     this.dialogueAnimalArea.render();
     this.player.render();
@@ -178,17 +187,6 @@ export default abstract class Area extends Stage {
         );
       });
     }
-  }
-
-  public override getNextStage(): Stage | null {
-    if (this.challengeStarts) {
-      this.nextChallenge?.setNextDifficulty(null);
-      return this.nextChallenge;
-    }
-    if (this.player.getMap().getNextArea()) {
-      return this.player.getMap().getNextArea();
-    }
-    return null;
   }
 }
 
