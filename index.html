@@ -1,20 +1,40 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Lost In The Forest</title>
-        <style>
-            html, body {
-                margin: 0;
-            }
-            canvas {
-                display: block;
-                margin: auto;
-            }
-        </style>
-        <link rel="icon" type="image/x-icon"  href="./assets/favicon.png">
-    </head>
-    <body>
-        <canvas id="game"></canvas>
-        <script src="build/app.js" type="module"></script>
-    </body>
+
+<head>
+    <title>Lost In The Forest</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            display: block;
+            margin: auto;
+        }
+
+        /* Hides scrollbar */
+        /* For Chrome, Edge, Safari */
+        ::-webkit-scrollbar {
+            display: none;
+            /* Hides the scrollbar */
+        }
+
+        /* For Firefox */
+        * {
+            scrollbar-width: none;
+            /* Disables the scrollbar */
+            -ms-overflow-style: none;
+            /* For IE and older Edge */
+        }
+    </style>
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.png">
+</head>
+
+<body>
+    <canvas id="game"></canvas>
+    <script src="build/app.js" type="module"></script>
+</body>
+
 </html>

@@ -16,7 +16,7 @@ export default class PhysicsChallenge extends Challenge {
     this.secondaryTextColor = 'yellow';
   }
 
-  private initiateData(): void {
+  protected initiateData(): void {
     const categoryData: string[][][] = [];
     let categoryNames: string[] = [];
 
@@ -137,20 +137,9 @@ export default class PhysicsChallenge extends Challenge {
   }
 
   /**
- * Initiate the data if not done yet
- * @param elapsed time
+ * Set the next stage when this challenge is finished
+ * @returns New stage when challenge is finished
  */
-  public override update(elapsed: number): void {
-    super.update(elapsed);
-    if (this.categories.length === 0) {
-      this.initiateData();
-    }
-  }
-
-  /**
-   * Set the next stage when this challenge is finished
-   * @returns New stage when challenge is finished
-   */
   public override getNextStage(): Stage | null {
     if (this.clickedFinished) {
       LostInTheForest.keyPhysics = true;

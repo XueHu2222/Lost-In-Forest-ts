@@ -18,17 +18,13 @@ export default class Animal extends CanvasItem {
     this.frames = [];
     this.timeToNextFrame = 500;
     this.position = {x: posX, y: posY};
-    this.animal = 'bunny';
     this.animal = animal;
-    this.folderLength = 4;
     this.frameIndex = 0;
     this.folderLength= folderLength;
     this.image = CanvasRenderer.loadNewImage(`./assets/Animals/${this.animal}/1.png`);
 
-
     this.setWidth(LostInTheForest.canvas.width * 0.25);
     this.setHeight(LostInTheForest.canvas.height * 0.4);
-    this.frames = [];
     for(let i: number = 1; i < folderLength; i++){
       this.frames.push(CanvasRenderer.loadNewImage(`./assets/Animals/${this.animal}/${i}.png`));
     }

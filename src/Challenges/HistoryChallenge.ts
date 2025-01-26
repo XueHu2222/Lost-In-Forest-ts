@@ -12,7 +12,7 @@ export default class HistoryChallenge extends Challenge {
     this.challengeScience = 'History';
   }
 
-  private initiateData(): void {
+  protected initiateData(): void {
     const categoryData: string[][][] = [];
     const categoryNames: string[] = [
       LostInTheForest.locale.t('Tweede wereldoorlog'),
@@ -115,20 +115,9 @@ export default class HistoryChallenge extends Challenge {
   }
 
   /**
- * Initiate the data if not done yet
- * @param elapsed time
+ * Set the next stage when this challenge is finished
+ * @returns New stage when challenge is finished
  */
-  public override update(elapsed: number): void {
-    super.update(elapsed);
-    if (this.categories.length === 0) {
-      this.initiateData();
-    }
-  }
-
-  /**
-   * Set the next stage when this challenge is finished
-   * @returns New stage when challenge is finished
-   */
   public override getNextStage(): Stage | null {
     if (this.clickedFinished) {
       LostInTheForest.keyHistory = true;

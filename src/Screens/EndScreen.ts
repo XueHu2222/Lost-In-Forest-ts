@@ -18,7 +18,7 @@ export default class EndScreen extends Stage {
 
   private isRestart: boolean;
 
-  private allAnimals: Animal[] = [];
+  private allAnimals: Animal[];
 
   public constructor(player: Player) {
     super(player);
@@ -34,7 +34,7 @@ export default class EndScreen extends Stage {
       new Animal(LostInTheForest.canvas.width * 0.75, LostInTheForest.canvas.height * 0.73, 'monkey', 4),
     ];
 
-    this.endMessage = [LostInTheForest.locale.t('GEFELICITEERD'), LostInTheForest.locale.t('JE BENT UIT HET BOS ONTSNAPT!')];
+    this.endMessage = [LostInTheForest.locale.t('GEFELICITEERD!'), LostInTheForest.locale.t('JE BENT UIT HET BOS ONTSNAPT!')];
     const homeButtonImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/home-button.png');
     const restartButtonImage: HTMLImageElement = CanvasRenderer.loadNewImage('./assets/restart-button.png');
 
@@ -94,8 +94,7 @@ export default class EndScreen extends Stage {
    * Render all the elements in the screen.
    */
   public override render(): void {
-    CanvasRenderer.drawImage(LostInTheForest.canvas, this.backgroundImage,
-      0, 0, LostInTheForest.canvas.width, LostInTheForest.canvas.height);
+    super.render();
     this.allAnimals.forEach((animal: Animal) => animal.render());
     this.player.render();
     this.homeButton.render();

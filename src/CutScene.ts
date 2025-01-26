@@ -1,4 +1,3 @@
-import Area from './Areas/Area.js';
 import CanvasRenderer from './Base/CanvasRenderer.js';
 import Player from './Player.js';
 import Stage from './Stage.js';
@@ -31,6 +30,13 @@ export default class CutScene extends Stage {
     this.backgroundImage = this.frames[0] as HTMLImageElement;
   }
 
+  public override getNextStage(): Stage | null {
+    if (!this.frames[0]) {
+      return this.nextStage;
+    }
+    return null;
+  }
+
   /**
    *
    */
@@ -52,20 +58,5 @@ export default class CutScene extends Stage {
       }
       this.timeToNextFrame = 500;
     }
-  }
-
-  /**
-   * Render the background
-   * @param canvas The canvas used to change the background
-   */
-  public override render(): void {
-    this.renderBackground();
-  }
-
-  public override getNextStage(): Stage | null {
-    if (!this.frames[0]) {
-      return this.nextStage;
-    }
-    return null;
   }
 }

@@ -143,10 +143,8 @@ export default class StartScreen extends Stage {
    * @param canvas where it renders
    */
   public override render(): void {
-    CanvasRenderer.drawImage(LostInTheForest.canvas, this.backgroundImage,
-      0, 0, LostInTheForest.canvas.width, LostInTheForest.canvas.height);
+    super.render();
     //selected
-    this.renderBackground();
     this.selectedGender.render();
     this.selectedFlag.render();
     //buttons

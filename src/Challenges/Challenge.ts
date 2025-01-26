@@ -9,8 +9,6 @@ import ChallengeElement from './ChallengeElement.js';
 import Animal from '../Animal.js';
 
 export default abstract class Challenge extends Stage {
-  protected animal: Animal;
-
   private readonly AMOUNT_OF_CATEGORIES: number;
 
   private readonly AMOUNT_OF_ELEMENTS_PER_CATEGORY: number;
@@ -41,7 +39,7 @@ export default abstract class Challenge extends Stage {
 
   private buttonSelectImage: HTMLImageElement;
 
-  protected categories: Category[];
+  private categories: Category[];
 
   private completedCategories: Category[];
 
@@ -65,9 +63,10 @@ export default abstract class Challenge extends Stage {
 
   private theoryIsOpen: boolean;
 
+  protected animal: Animal;
+
   public constructor(difficultyLevel: string, player: Player) {
     super(player);
-    this.animal = new Animal(0, 0, 'monkey', 4);
     this.AMOUNT_OF_CATEGORIES = 4;
     this.AMOUNT_OF_ELEMENTS_PER_CATEGORY = 4;
     this.difficultyLevel = difficultyLevel;
@@ -94,6 +93,8 @@ export default abstract class Challenge extends Stage {
     this.challengeScience = '';
     this.theoryBackground = CanvasRenderer.loadNewImage('./assets/theoryBackground.png');
 
+    this.animal = new Animal(0, 0, 'monkey', 4);
+
     // Buttons
     this.backButton = new Button(0, 0, null, null, 0, 0);
     this.hintButton = new Button(0, 0, null, null, 0, 0);
@@ -105,6 +106,8 @@ export default abstract class Challenge extends Stage {
       LostInTheForest.canvas.height * 0.075,
       closeImage, null, LostInTheForest.canvas.width * 0.03, LostInTheForest.canvas.width * 0.03);
   }
+
+  protected abstract initiateData(): void;
 
   /**
    * This method initiates the buttons after the class properties have properly been set
@@ -394,6 +397,19 @@ export default abstract class Challenge extends Stage {
   }
 
   /**
+* Check if the player is exiting the challenge
+* @returns True when exiting the challenge
+*/
+  protected leavingChallenge(): boolean {
+    if (this.clickedFinished || this.exitChallenge) {
+      this.clickedFinished = false;
+      this.exitChallenge = false;
+      return true;
+    }
+    return false;
+  }
+
+  /**
    * Process all the button clicks
    */
   public processInput(): void {
@@ -423,11 +439,14 @@ export default abstract class Challenge extends Stage {
   }
 
   /**
-   * update animal
+   * update animal and initaites the data
    @param elapsed time
    */
   public override update(elapsed: number): void {
     this.animal.update(elapsed);
+    if (this.categories.length === 0) {
+      this.initiateData();
+    }
   }
 
   /**
@@ -513,23 +532,10 @@ export default abstract class Challenge extends Stage {
   }
 
   /**
- * Check if the player is exiting the challenge
- * @returns True when exiting the challenge
- */
-  protected leavingChallenge(): boolean {
-    if (this.clickedFinished || this.exitChallenge) {
-      this.clickedFinished = false;
-      this.exitChallenge = false;
-      return true;
-    }
-    return false;
-  }
-
-  /**
    * Render all the buttons and text
    */
-  public render(): void {
-    this.renderBackground();
+  public override render(): void {
+    super.render();
     this.backButton.render();
     this.theoryButton.render();
     this.hintButton.render();
