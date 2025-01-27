@@ -44,7 +44,7 @@ export default class WinterArea extends Area {
   protected override initiateDialog(): void {
     this.animalDialogue = [
       [...this.separateDialogIntoArrays(LostInTheForest.locale.t('Hihi, hallo.')), [LostInTheForest.locale.t('(....Klik om door te gaan)')]],
-      [...this.separateDialogIntoArrays(LostInTheForest.locale.t('Als je een stuk van de sleutel wilt|hebben van mij dan moet je|mijn biologie uitdaging|voltooien op medium.')), [LostInTheForest.locale.t('(....Klik om door te gaan)')]],
+      [...this.separateDialogIntoArrays(LostInTheForest.locale.t('Als je een stuk van de sleutel wilt|hebben van mij dan moet je|mijn biologie uitdaging|voltooien.')), [LostInTheForest.locale.t('(....Klik om door te gaan)')]],
       [...this.separateDialogIntoArrays(LostInTheForest.locale.t('Je kan het!')), [LostInTheForest.locale.t('(....klik op de knop om door te gaan)')]],
     ];
   }
