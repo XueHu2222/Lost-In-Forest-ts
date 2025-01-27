@@ -460,7 +460,7 @@ export default abstract class Challenge extends Stage {
     );
 
     const title: string = `${this.challengeScience} Theory (${this.difficultyLevel})`;
-    CanvasRenderer.writeText(LostInTheForest.canvas, title, LostInTheForest.canvas.width * 0.075, LostInTheForest.canvas.height * 0.125, 'start', 'arial', 32, 'black', 'bold');
+    CanvasRenderer.writeText(LostInTheForest.canvas, title, LostInTheForest.canvas.width * 0.075, LostInTheForest.canvas.height * 0.125, 'start', 'Comic Sans MS', 32, 'black', 'bold');
 
     // Render text
     let categoryXPos: number = LostInTheForest.canvas.width * 0.075;
@@ -477,7 +477,7 @@ export default abstract class Challenge extends Stage {
         categoryXPos = LostInTheForest.canvas.width * 0.5;
       }
       // Category text
-      CanvasRenderer.writeText(LostInTheForest.canvas, category.getName(), categoryXPos, categoryYPos, 'start', 'arial', 20, 'black', 'bold');
+      CanvasRenderer.writeText(LostInTheForest.canvas, category.getName(), categoryXPos, categoryYPos, 'start', 'Comic Sans MS', 20, 'black', 'bold');
 
       const elementXPos: number = categoryXPos;
       let elementYPos: number = categoryYPos + LostInTheForest.canvas.height * 0.03;
@@ -493,7 +493,7 @@ export default abstract class Challenge extends Stage {
           elementXPos,
           elementYPos,
           'start',
-          'arial',
+          'Comic Sans MS',
           16,
           'black',
           'bold'
@@ -514,7 +514,7 @@ export default abstract class Challenge extends Stage {
             elementXPos,
             theoryYPos,
             'start',
-            'arial',
+            'Comic Sans MS',
             16,
             'black'
           );
@@ -536,11 +536,12 @@ export default abstract class Challenge extends Stage {
    */
   public override render(): void {
     super.render();
+    CanvasRenderer.writeText(LostInTheForest.canvas, LostInTheForest.locale.t('Maak 4 groepen van 4 die bij elkaar passen'), LostInTheForest.canvas.width * 0.5, LostInTheForest.canvas.height * 0.07, 'center', 'Comic Sans MS', 50, 'white');
     this.backButton.render();
     this.theoryButton.render();
     this.hintButton.render();
     this.animal.render();
-    CanvasRenderer.writeText(LostInTheForest.canvas, LostInTheForest.locale.t('Klik als je het niet snapt!'), LostInTheForest.canvas.width * 0.83, LostInTheForest.canvas.height * 0.64, 'center', 'Arial', 20, 'black');
+    CanvasRenderer.writeText(LostInTheForest.canvas, LostInTheForest.locale.t('Klik als je het niet snapt!'), LostInTheForest.canvas.width * 0.83, LostInTheForest.canvas.height * 0.64, 'center', 'Comic Sans MS', 20, 'black');
 
     const hintCategoryText: string = this.categories.reduce((acc: string, cur: Category) => acc += cur.getName() + ' - ', ' - ');
     if (this.hintIsOpen) {
