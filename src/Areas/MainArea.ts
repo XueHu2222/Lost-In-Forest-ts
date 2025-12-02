@@ -8,6 +8,7 @@ import Stage from '../Stage.js';
 import MouseListener from '../Base/MouseListener.js';
 import CutScene from '../CutScene.js';
 import EndScreen from '../Screens/EndScreen.js';
+import Dialogue from '../Dialogue.js';
 
 export default class MainArea extends Area {
   private dialoguePlayerArea: Button;
@@ -39,26 +40,12 @@ export default class MainArea extends Area {
       LostInTheForest.canvas.height * 0.67,
       'bunny', 4);
 
-    this.animalDialoguePosition = {
-      x: LostInTheForest.canvas.width * 0.14,
-      y: LostInTheForest.canvas.height * 0.42
-    };
 
-    this.animalDialogueSize = {
-      x: LostInTheForest.canvas.width * 0.31,
-      y: LostInTheForest.canvas.height * 0.3
-    };
 
-    this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue1.png');
+
     this.dialoguePlayerImage = CanvasRenderer.loadNewImage('./assets/dialogue2.png');
 
-    this.initiateDialogButton();
     this.playButtonImage = new Image();
-
-    this.dialogueTextPosition = {
-      x: LostInTheForest.canvas.width * 0.2,
-      y: LostInTheForest.canvas.height * 0.5
-    };
 
     this.dialoguePlayerArea = new Button(
       LostInTheForest.canvas.width * 0.45,
@@ -75,6 +62,24 @@ export default class MainArea extends Area {
       [...this.separateDialogIntoArrays(LostInTheForest.locale.t('Ga naar de 4|verschillende gebieden|om een stuk van|de sleutel te krijgen.')), [LostInTheForest.locale.t('(....Klik om door te gaan)')]],
       [...this.separateDialogIntoArrays(LostInTheForest.locale.t('Jij mag kiezen|waar je wilt beginnen,|veel succes!')), [LostInTheForest.locale.t('(....Klik op de map om door te gaan)')]],
     ];
+
+    this.dialogue = new Dialogue({
+      dialogueData: this.animalDialogue,
+      dialogueImage: CanvasRenderer.loadNewImage('./assets/dialogue1.png'),
+      dialoguePosition: {
+        x: LostInTheForest.canvas.width * 0.14,
+        y: LostInTheForest.canvas.height * 0.42
+      },
+      dialogueSize: {
+        x: LostInTheForest.canvas.width * 0.31,
+        y: LostInTheForest.canvas.height * 0.3
+      },
+      textPosition: {
+        x: LostInTheForest.canvas.width * 0.2,
+        y: LostInTheForest.canvas.height * 0.5
+      },
+      displayTime: 1000
+    });
   }
 
   public override getNextStage(): Stage | null {

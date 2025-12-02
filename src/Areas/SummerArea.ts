@@ -1,6 +1,7 @@
 import Animal from '../Animal.js';
 import CanvasRenderer from '../Base/CanvasRenderer.js';
 import GeographyChallenge from '../Challenges/GeographyChallenge.js';
+import Dialogue from '../Dialogue.js';
 import LostInTheForest from '../LostInTheForest.js';
 import Player from '../Player.js';
 import Area from './Area.js';
@@ -17,27 +18,9 @@ export default class SummerArea extends Area {
       'owl', 6
     );
 
-    this.animalDialoguePosition = {
-      x: LostInTheForest.canvas.width * 0.28,
-      y: LostInTheForest.canvas.height * 0.01,
-    };
-
-    this.animalDialogueSize = {
-      x: LostInTheForest.canvas.width * 0.29,
-      y: LostInTheForest.canvas.height * 0.3
-    };
-
     this.playButtonPosition = {
       x: LostInTheForest.canvas.width * 0.4,
       y: LostInTheForest.canvas.height * 0.6
-    };
-
-    this.dialogueAnimalImage = CanvasRenderer.loadNewImage('./assets/dialogue2.png');
-    this.initiateDialogButton();
-
-    this.dialogueTextPosition = {
-      x: LostInTheForest.canvas.width * 0.32,
-      y: LostInTheForest.canvas.height * 0.1
     };
   }
 
@@ -47,6 +30,24 @@ export default class SummerArea extends Area {
       [...this.separateDialogIntoArrays(LostInTheForest.locale.t('Als je een stuk van de sleutel wilt|moet je mijn aardrijkskunde|uitdaging voltooien.')), [LostInTheForest.locale.t('(....Klik om door te gaan)')]],
       [...this.separateDialogIntoArrays(LostInTheForest.locale.t('Veel plezier!')), [LostInTheForest.locale.t('(....klik op de knop om door te gaan)')]],
     ];
+
+    this.dialogue = new Dialogue({
+      dialogueData: this.animalDialogue,
+      dialogueImage: CanvasRenderer.loadNewImage('./assets/dialogue2.png'),
+      dialoguePosition: {
+        x: LostInTheForest.canvas.width * 0.28,
+        y: LostInTheForest.canvas.height * 0.01
+      },
+      dialogueSize: {
+        x: LostInTheForest.canvas.width * 0.29,
+        y: LostInTheForest.canvas.height * 0.3
+      },
+      textPosition: {
+        x: LostInTheForest.canvas.width * 0.32,
+        y: LostInTheForest.canvas.height * 0.1
+      },
+      displayTime: 1000
+    });
   }
 
   /**
