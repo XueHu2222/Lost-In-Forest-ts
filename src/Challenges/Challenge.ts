@@ -413,28 +413,52 @@ export default abstract class Challenge extends Stage {
    * Process all the button clicks
    */
   public processInput(): void {
-    if (LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT)) {
+    const leftClicked: boolean =
+    LostInTheForest.mouseListener.buttonPressed(MouseListener.BUTTON_LEFT);
+
+    if (leftClicked) {
       this.checkElementsClicked();
-      if (this.finishButton.isCollidingWithMouse() && this.isCompleted) {
-        this.clickedFinished = true;
+
+      this.handleFinishButton();
+      this.handleDifficultyButtons();
+      this.handleHintButton();
+      this.handleBackButton();
+      this.handleTheoryButtons();
+    }
+  }
+
+  private handleFinishButton(): void {
+    if (this.finishButton.isCollidingWithMouse() && this.isCompleted) {
+      this.clickedFinished = true;
+    }
+  }
+
+  private handleDifficultyButtons(): void {
+    for (const button of this.difficultyButtons) {
+      if (button.isCollidingWithMouse()) {
+        this.nextDifficulty = button.getText().toLowerCase();
       }
-      for (const button of this.difficultyButtons) {
-        if (button.isCollidingWithMouse()) {
-          this.nextDifficulty = button.getText().toLowerCase();
-        }
-      }
-      if (this.hintButton.isCollidingWithMouse()) {
-        this.hintIsOpen = !this.hintIsOpen;
-      }
-      if (this.backButton.isCollidingWithMouse()) {
-        this.exitChallenge = true;
-      }
-      if (this.theoryButton.isCollidingWithMouse()) {
-        this.theoryIsOpen = true;
-      }
-      if (this.closeTheoryButton.isCollidingWithMouse()) {
-        this.theoryIsOpen = false;
-      }
+    }
+  }
+
+  private handleHintButton(): void {
+    if (this.hintButton.isCollidingWithMouse()) {
+      this.hintIsOpen = !this.hintIsOpen;
+    }
+  }
+
+  private handleBackButton(): void {
+    if (this.backButton.isCollidingWithMouse()) {
+      this.exitChallenge = true;
+    }
+  }
+
+  private handleTheoryButtons(): void {
+    if (this.theoryButton.isCollidingWithMouse()) {
+      this.theoryIsOpen = true;
+    }
+    if (this.closeTheoryButton.isCollidingWithMouse()) {
+      this.theoryIsOpen = false;
     }
   }
 
