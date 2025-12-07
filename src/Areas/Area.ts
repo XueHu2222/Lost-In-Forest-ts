@@ -69,6 +69,7 @@ export default abstract class Area extends Stage {
     this.player.getMap().processInput();
   }
 
+  
   public override update(elapsed: number): void {
     if (!this.dialogue) {
       this.initiateDialog();

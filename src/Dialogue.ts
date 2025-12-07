@@ -29,6 +29,7 @@ export default class Dialogue {
 
   private dialogueButton: Button;
 
+  // Create a new Dialogue instance
   public constructor(config: DialogueConfig) {
     this.dialogueData = config.dialogueData;
     this.dialogueImage = config.dialogueImage;
